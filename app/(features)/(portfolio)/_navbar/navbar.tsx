@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { Heart, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -20,8 +21,15 @@ export function Navbar() {
     <header className="sticky top-0 z-50 border-b border-[#eadfd4] bg-[#fffaf6]/90 backdrop-blur-xl">
       <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#9a6b4f] text-white shadow-sm">
-            <Heart className="h-5 w-5" />
+          <div className="flex h-12 w-12 items-center justify-center">
+            <Image
+              src="/images/bh_logo.webp"
+              alt="BlissFully Healing"
+              width={40}
+              height={40}
+              className="object-contain"
+              priority
+            />
           </div>
 
           <div className="leading-tight">

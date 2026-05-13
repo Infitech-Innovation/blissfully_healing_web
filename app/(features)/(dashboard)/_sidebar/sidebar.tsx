@@ -69,9 +69,9 @@ const SidebarBody = ({
       >
         {!collapsed && (
           <div className="flex items-center gap-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+            <div className="flex h-12 w-12 items-center justify-center">
               <Image
-                src="/images/"
+                src="/images/bh_logo.webp"
                 alt="BlissFully Healing"
                 width={40}
                 height={40}
