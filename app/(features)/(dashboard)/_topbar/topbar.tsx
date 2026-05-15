@@ -1,6 +1,6 @@
 "use client";
 
-import { Bell, Heart, Menu, Search, Sparkles } from "lucide-react";
+import { Bell, Menu, Search } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 

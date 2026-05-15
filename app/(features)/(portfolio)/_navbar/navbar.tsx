@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 const navLinks = [
-  { label: "Home", href: "/" },
+  { label: "Home", href: "/homepage" },
   { label: "About", href: "/about" },
   { label: "Courses", href: "/courses" },
   { label: "Retreats", href: "/retreats" },
@@ -20,7 +20,7 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-[#eadfd4] bg-[#fffaf6]/90 backdrop-blur-xl">
       <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-3">
+        <Link href="/homepage" className="flex items-center gap-3">
           <div className="flex h-12 w-12 items-center justify-center">
             <Image
               src="/images/bh_logo.webp"
