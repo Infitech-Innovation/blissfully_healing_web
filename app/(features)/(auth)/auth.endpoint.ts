@@ -2,6 +2,7 @@ import { api } from "@/lib/axios";
 import {
   AuthResponse,
   LoginFormInputs,
+  RegAuthResponse,
   RegisterFormInputs,
 } from "./definations";
 
@@ -18,7 +19,7 @@ export const loginUser = async (
 
 export const registerUser = async (
   data: RegisterFormInputs,
-): Promise<AuthResponse> => {
+): Promise<RegAuthResponse> => {
   const response = await api.post(REGISTER_URL, data);
   return response.data;
 };

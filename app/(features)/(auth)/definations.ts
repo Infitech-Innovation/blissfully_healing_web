@@ -24,3 +24,9 @@ export interface AuthResponse {
   access: string;
   refresh: string;
 }
+
+export interface RegAuthResponse {
+  first_name: string;
+  last_name: string;
+  email: string;
+}

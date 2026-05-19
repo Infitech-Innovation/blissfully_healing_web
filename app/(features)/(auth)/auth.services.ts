@@ -42,8 +42,12 @@ export const useLogin = () => {
  * Mutation: Register a busnisee
  */
 export const useRegister = () => {
+  const router = useRouter();
   return useMutation({
     mutationFn: registerUser,
+    onSuccess: () => {
+      router.push("/login");
+    },
     onError: (error) => {
       console.error("Registration failed:", error);
     },

@@ -14,7 +14,7 @@ export default function LoginPage() {
               width={800}
               height={560}
               className="h-auto w-full"
-              alt="Qwetu Links"
+              alt="Blissfully Healing"
               loading="eager"
               priority
             />
