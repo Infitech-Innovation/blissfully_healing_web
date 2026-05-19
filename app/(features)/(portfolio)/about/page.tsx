@@ -1,5 +1,5 @@
-import PageUnderDevelopment from "@/app/comming-soon";
+import OurStorySection from "./page/our-story";
 
 export default function AboutPage() {
-  return <PageUnderDevelopment title="About Page" />;
+  return <OurStorySection />;
 }

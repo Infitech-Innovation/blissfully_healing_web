@@ -1,5 +1,5 @@
-import PageUnderDevelopment from "@/app/comming-soon";
+import SanctuarySection from "./sections/sanctuary-section";
 
 export default function HomePage() {
-  return <PageUnderDevelopment title="Home Page" />;
+  return <SanctuarySection />;
 }
