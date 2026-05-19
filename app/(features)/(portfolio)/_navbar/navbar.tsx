@@ -98,7 +98,7 @@ export function Navbar() {
                 variant="ghost"
                 className="justify-center text-lg text-[#6f5c4f] hover:bg-[#f3e8df]"
               >
-                <Link href="/auth/login" onClick={() => setOpen(false)}>
+                <Link href="/login" onClick={() => setOpen(false)}>
                   Sign In
                 </Link>
               </Button>

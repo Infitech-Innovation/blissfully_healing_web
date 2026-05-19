@@ -1,6 +1,6 @@
 "use client";
 
-import { PanelLeftClose, PanelLeftOpen, X } from "lucide-react";
+import { LogOut, PanelLeftClose, PanelLeftOpen, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,8 +13,9 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-
-type Role = "admin" | "user";
+import { ROLE } from "../../(auth)/definations";
+import { useAuthStore } from "@/app/stores/useAuthStore";
+import { useLogout } from "../../(auth)/auth.services";
 
 interface SidebarProps {
   collapsed: boolean;
@@ -23,7 +24,10 @@ interface SidebarProps {
   onMobileOpenChange?: (open: boolean) => void;
 }
 
-const currentUserRole: Role = "admin"; // later get from auth user
+const ROLE_LABELS: Record<ROLE, string> = {
+  admin: "Administrator",
+  user: "User",
+};
 
 const SidebarBody = ({
   collapsed,
@@ -40,11 +44,27 @@ const SidebarBody = ({
 }) => {
   const pathname = usePathname();
 
-  const mainMenu = links[currentUserRole];
-  const bottomMenu = helpLinks[currentUserRole];
+  const user = useAuthStore((state) => state.user);
+  // const logout = useAuthStore((state) => state.logout);
 
+  const role: ROLE = user?.role ?? "user";
+  const mainMenu = links[role];
+  const bottomMenu = helpLinks[role];
   const isActive = (href: string) =>
     pathname === href || pathname.startsWith(`${href}/`);
+
+  const { mutate: logoutUser, isPending: isLoggingOut } = useLogout();
+
+  const name = `${user?.first_name ?? "User"} ${user?.last_name ?? ""}`.trim();
+
+  const initials = name
+    ? name
+        .split(" ")
+        .map((n) => n[0])
+        .join("")
+        .toUpperCase()
+        .slice(0, 2)
+    : "?";
 
   return (
     <div className="flex h-full flex-col">
@@ -174,6 +194,60 @@ const SidebarBody = ({
           </>
         )}
       </nav>
+
+      {/* User Profile */}
+      <div
+        className={cn(
+          "border-t border-border",
+          collapsed ? "px-2 py-3" : "px-3 py-3",
+        )}
+      >
+        {collapsed ? (
+          // Collapsed: just show avatar + logout icon stacked
+          <div className="flex flex-col items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/15 text-xs font-semibold text-foreground">
+              {initials}
+            </div>
+            <button
+              onClick={() => logoutUser()}
+              disabled={isLoggingOut}
+              title="Log out"
+              className="rounded-md p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground disabled:opacity-50"
+            >
+              <LogOut
+                className={cn("h-4 w-4", isLoggingOut && "animate-spin")}
+              />
+            </button>
+          </div>
+        ) : (
+          // Expanded: show name, role badge, logout button
+          <div className="flex items-center justify-between gap-2">
+            <div className="flex min-w-0 items-center gap-2">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/15 text-xs font-semibold text-foreground">
+                {initials}
+              </div>
+              <div className="min-w-0">
+                <p className="truncate text-sm font-medium text-foreground">
+                  {name}
+                </p>
+                <p className="text-[11px] text-muted-foreground">
+                  {ROLE_LABELS[role]}
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={() => logoutUser()}
+              disabled={isLoggingOut}
+              title="Log out"
+              className="shrink-0 cursor-pointer rounded-md p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              <LogOut
+                className={cn("h-4 w-4", isLoggingOut && "animate-spin")}
+              />
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
