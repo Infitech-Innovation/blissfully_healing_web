@@ -15,6 +15,7 @@ function LoadingButton({
     <Button
       disabled={isLoading || props.disabled}
       aria-disabled={isLoading || props.disabled}
+      className="min-h-11 bg-red-600 hover:bg-red-700 gap-2 rounded-md  px-4 py-2 font-medium text-white transition disabled:cursor-not-allowed disabled:opacity-70"
       {...props}
     >
       {isLoading && <Loader2 className="h-4 w-4 animate-spin" />}
@@ -77,6 +78,7 @@ export function DeleteAccount() {
               <Button
                 type="button"
                 variant="outline"
+                className="min-h-11 gap-2 rounded-md  px-4 py-2 font-medium transition disabled:cursor-not-allowed disabled:opacity-70"
                 disabled={isPending}
                 onClick={() => setConfirmOpen(false)}
               >
