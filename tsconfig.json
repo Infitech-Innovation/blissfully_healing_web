@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-  ],
+, "../Test/ff/validator.ts", "../Test/ff/routes.d.ts"  ],
   "exclude": ["node_modules"]
 }

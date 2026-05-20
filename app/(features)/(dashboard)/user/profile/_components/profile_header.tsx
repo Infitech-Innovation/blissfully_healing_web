@@ -37,6 +37,7 @@ export function ProfileHeader() {
           <Image
             src={userData.background}
             fill
+            loading="eager"
             className="h-full w-full object-cover"
             alt="Profile Background"
           />
@@ -47,6 +48,7 @@ export function ProfileHeader() {
           <AvatarImage
             src={user?.avatar || " "}
             alt="Profile Avatar"
+            loading="eager"
             className="border-4 border-background"
           />
           <AvatarFallback className="border-4 border-background text-6xl bold">

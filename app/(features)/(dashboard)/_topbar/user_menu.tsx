@@ -8,7 +8,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { LogOut, Settings, Loader2, UserCircle2 } from "lucide-react";
+import { LogOut, Loader2, UserCircle2 } from "lucide-react";
 import { useAuthStore } from "@/app/stores/useAuthStore";
 import { useLogout } from "@/app/(features)/(auth)/auth.services";
 import Link from "next/link";
@@ -17,15 +17,9 @@ import { cn } from "@/lib/utils";
 export default function UserMenu() {
   const user = useAuthStore((state) => state.user);
   const { mutate: logoutUser, isPending: isLoggingOut } = useLogout();
-  const fallbackName =
-    `${user?.first_name ?? "User"} ${user?.last_name ?? ""}`.trim();
-  const name = user?.full_name || fallbackName;
-  const profileHref = user?.role === "admin" ? "/admin/settings" : "/user/profile";
-  const settingsHref =
-    user?.role === "admin" ? "/admin/settings" : "/settings";
 
-  const initials = name
-    ? name
+  const initials = user?.full_name
+    ? user.full_name
         .split(" ")
         .map((n) => n[0])
         .join("")
@@ -52,7 +46,7 @@ export default function UserMenu() {
         {/* User info */}
         <DropdownMenuLabel className="font-normal">
           <p className="text-sm font-medium text-foreground">
-            {name}
+            {user?.full_name ?? "User"}
           </p>
           <p className="truncate text-xs text-muted-foreground">
             {user?.email ?? ""}
@@ -63,12 +57,15 @@ export default function UserMenu() {
 
         {/* Account Settings */}
         <DropdownMenuItem asChild>
-          <Link href={profileHref} className="group flex cursor-pointer items-center">
+          <Link
+            href="/user/profile"
+            className="group flex cursor-pointer items-center"
+          >
             <UserCircle2 className="mr-2 h-4 w-4 transition-transform duration-300 group-hover:scale-105" />
             Profile
           </Link>
         </DropdownMenuItem>
-        <DropdownMenuItem asChild>
+        {/* <DropdownMenuItem asChild>
           <Link
             href={settingsHref}
             className="group flex cursor-pointer items-center"
@@ -76,7 +73,7 @@ export default function UserMenu() {
             <Settings className="mr-2 h-4 w-4 transition-transform duration-300 group-hover:rotate-45" />
             Settings
           </Link>
-        </DropdownMenuItem>
+        </DropdownMenuItem> */}
 
         <DropdownMenuSeparator />
 
