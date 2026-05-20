@@ -1,17 +1,18 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";;
+import { persist } from "zustand/middleware";
 import { getDashboardForRole } from "../lib/roles";
 import { createCookieStorage } from "./cookie-storage";
-import { User } from "../(features)/(auth)/definations";
+import { Profile } from "../(features)/(auth)/definations";
 
 interface AuthState {
   // User data
-  user: User | null;
+  user: Profile | null;
   access: string | null;
+  refresh: string | null;
 
   // Auth methods
-  setAuthData: (user: User, access: string) => void;
-  setUser: (user: User) => void;
+  setAuthData: (user: Profile, access: string, refresh: string) => void;
+  setUser: (user: Profile) => void;
   logout: () => void;
 
   // Getters
@@ -19,23 +20,26 @@ interface AuthState {
   getRedirectPath: () => string;
 }
 
-type PersistedAuthState = Pick<AuthState, "user" | "access">;
+type PersistedAuthState = Pick<AuthState, "user" | "access" | "refresh">;
 
 export const useAuthStore = create<AuthState>()(
   persist(
     (set, get) => ({
       user: null,
       access: null,
+      refresh: null,
 
       /**
        * Set user authentication data after login/register
        * @param user - Authenticated user
        * @param access - Auth access from server
+       * @param refresh - Auth refresh token from server
        */
-      setAuthData: (user, access) => {
+      setAuthData: (user, access, refresh) => {
         set({
           user,
           access,
+          refresh,
         });
       },
 
@@ -54,6 +58,7 @@ export const useAuthStore = create<AuthState>()(
         set({
           user: null,
           access: null,
+          refresh: null,
         });
       },
 
@@ -61,8 +66,8 @@ export const useAuthStore = create<AuthState>()(
        * Check if user is authenticated
        */
       isAuthenticated: () => {
-        const { user, access } = get();
-        return !!user && !!access;
+        const { user, access, refresh } = get();
+        return !!user && !!access && !!refresh;
       },
 
       getRedirectPath: () => {
@@ -77,6 +82,7 @@ export const useAuthStore = create<AuthState>()(
       partialize: (state): PersistedAuthState => ({
         user: state.user,
         access: state.access,
+        refresh: state.refresh,
       }),
       version: 1,
     },
@@ -86,3 +92,4 @@ export const useAuthStore = create<AuthState>()(
 // Export selector hooks for better performance
 export const useUser = () => useAuthStore((state) => state.user);
 export const useAuthToken = () => useAuthStore((state) => state.access);
+export const useRefreshToken = () => useAuthStore((state) => state.refresh);

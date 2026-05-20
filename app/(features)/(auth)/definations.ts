@@ -8,6 +8,12 @@ export type User = {
   role: ROLE;
 };
 
+export interface Profile extends User {
+  bio: string | null;
+  avatar: string | null;
+  full_name: string;
+}
+
 export type LoginFormInputs = {
   email: string;
   password: string;

@@ -1,7 +1,14 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/app/stores/useAuthStore";
-import { loginUser, logoutUser, registerUser } from "./auth.endpoint";
+import {
+  loginUser,
+  logoutUser,
+  registerUser,
+  userProfile,
+} from "./auth.endpoint";
+import { useEffect } from "react";
+import { Profile } from "./definations";
 
 export const authQueryKeys = {
   all: ["auth"] as const,
@@ -12,7 +19,7 @@ export const authQueryKeys = {
  * Mutation: Login with email and password
  */
 export const useLogin = () => {
-  const queryClient = useQueryClient();
+  // const queryClient = useQueryClient();
   const { setAuthData, getRedirectPath } = useAuthStore();
   const router = useRouter();
 
@@ -21,10 +28,10 @@ export const useLogin = () => {
 
     onSuccess: (data) => {
       // 1. Persist user + token
-      setAuthData(data.user, data.access);
+      setAuthData(data.user as Profile, data.access, data.refresh);
 
       // 2. Cache user in React Query
-      queryClient.setQueryData(authQueryKeys.user(), data.user);
+      // queryClient.setQueryData(authQueryKeys.user(), data.user);
 
       // 3. Redirect to the role-specific dashboard
       //    getRedirectPath() reads the role we just set above
@@ -37,6 +44,7 @@ export const useLogin = () => {
     },
   });
 };
+
 
 /**
  * Mutation: Register a busnisee
@@ -59,11 +67,11 @@ export const useRegister = () => {
  */
 export const useLogout = () => {
   const queryClient = useQueryClient();
-  const { logout } = useAuthStore();
+  const { logout, refresh } = useAuthStore();
   const router = useRouter();
 
   return useMutation({
-    mutationFn: () => logoutUser(),
+    mutationFn: () => logoutUser(refresh || ""),
     onSuccess: () => {
       logout();
       queryClient.clear();
@@ -73,4 +81,33 @@ export const useLogout = () => {
       console.error("Logout failed:", error);
     },
   });
+};
+
+/**
+ * Query: Get User Profile
+ */
+
+export const useProfile = () => {
+  const { setUser } = useAuthStore();
+  const access = useAuthStore((state) => state.access);
+
+  const query = useQuery<Profile>({
+    queryKey: authQueryKeys.user(),
+    queryFn: userProfile,
+    enabled: !!access, // Only fetch if access token exists
+  });
+
+  useEffect(() => {
+    if (query.data) {
+      setUser(query.data);
+    }
+  }, [query.data, setUser]);
+
+  useEffect(() => {
+    if (query.error) {
+      console.error("Profile fetch failed:", query.error);
+    }
+  }, [query.error]);
+
+  return query;
 };

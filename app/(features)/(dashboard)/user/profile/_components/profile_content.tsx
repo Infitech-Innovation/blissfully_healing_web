@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { BriefcaseBusiness, Mail, Languages } from "lucide-react";
+import { BriefcaseBusiness, Mail, Languages, NotebookText } from "lucide-react";
 import { useState, type ReactNode } from "react";
 import { ChangePasswordForm } from "./change_password";
 import { useAuthStore } from "@/app/stores/useAuthStore";
@@ -14,6 +14,7 @@ import { useAuthStore } from "@/app/stores/useAuthStore";
 interface UserDetails {
   role: string;
   email: string;
+  bio?: string | null;
 }
 
 function ProfileContentIntroItem({
@@ -53,11 +54,13 @@ function ProfileContentIntroList({
         value={userDetails.email}
         icon={<Mail className="h-4 w-4" />}
       />
-      {/* <ProfileContentIntroItem
-        title="Phone Number"
-        value={userData.phoneNumber}
-        icon={<Phone className="h-4 w-4" />}
-      /> */}
+      
+      <ProfileContentIntroItem
+        title="Bio"
+        value={userDetails.bio || "No bio added yet"}
+        icon={<NotebookText className="h-4 w-4" />}
+      />
+
       <ProfileContentIntroItem
         title="Language"
         value="English"
@@ -82,14 +85,14 @@ export function ProfileContentIntro() {
 
   return (
     <div className="mt-8">
-      <article className="flex">
+      <article className="flex flex-col min-[900px]:flex-row">
         {/* Sidebar Nav */}
-        <nav className="flex w-64 shrink-0 flex-col gap-y-1 border-e p-4 pt-6">
+        <nav className="flex w-full shrink-0 gap-2 overflow-x-auto border-b p-4 min-[900px]:w-64 min-[900px]:flex-col min-[900px]:gap-y-1 min-[900px]:overflow-visible min-[900px]:border-b-0 min-[900px]:border-e min-[900px]:pt-6">
           {navItems.map(({ key, label }) => (
             <button
               key={key}
               onClick={() => setActive(key)}
-              className={`rounded-md px-3 py-2 text-start text-sm font-medium transition-colors hover:bg-muted ${
+              className={`shrink-0 rounded-md px-3 py-2 text-start text-sm font-medium transition-colors hover:bg-muted min-[900px]:w-full ${
                 active === key
                   ? "bg-muted text-foreground"
                   : "text-muted-foreground"
@@ -101,7 +104,7 @@ export function ProfileContentIntro() {
         </nav>
 
         {/* Content */}
-        <div className="flex-1">
+        <div className="min-w-0 flex-1">
           {active === "info" && (
             <>
               <CardHeader>

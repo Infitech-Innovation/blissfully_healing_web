@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Sidebar } from "./_sidebar/sidebar";
 import { Topbar } from "./_topbar/topbar";
+import { useProfile } from "../(auth)/auth.services";
 
 export default function MainLayout({
   children,
@@ -11,6 +12,7 @@ export default function MainLayout({
 }) {
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  useProfile();
 
   return (
     <div className="flex h-screen bg-background overflow-hidden">

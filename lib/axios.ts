@@ -1,55 +1,66 @@
+import { useAuthStore } from "@/app/stores/useAuthStore";
 import axios from "axios";
+
+const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 /**
  * Create axios instance with default configuration
  */
 export const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+  baseURL: BASE_URL,
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
   },
 });
 
-// ── Helper: read and parse the auth cookie ──────────────────────────────────
-function getAuthCookie(): { access: string | null } {
-  try {
-    const raw = document.cookie
-      .split("; ")
-      .find((row) => row.startsWith("auth-store="))
-      ?.split("=")
-      .slice(1)
-      .join("=");
-
-    if (!raw) return { access: null };
-
-    const parsed = JSON.parse(decodeURIComponent(raw));
-    return { access: parsed?.state?.access ?? null };
-  } catch {
-    return { access: null };
-  }
-}
-
-// ── Request interceptor: attach Bearer access from cookie ────────────────────
+// ── Request interceptor: attach Bearer token from store ──────────────────────
 api.interceptors.request.use((config) => {
-  const { access } = getAuthCookie();
+  const access = useAuthStore.getState().access; // read directly from store
   if (access) {
     config.headers.Authorization = `Bearer ${access}`;
   }
-//   console.log(access)
   return config;
 });
 
 // ── Response interceptor: handle expired / invalid access ────────────────────
 api.interceptors.response.use(
   (res) => res,
-  (error) => {
-    if (error.response?.status === 401) {
-      // Remove the auth cookie and redirect to login
-      document.cookie =
-        "auth-store=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      window.location.href = "/login";
+  async (error) => {
+    const originalRequest = error.config;
+
+    if (error.response?.status !== 401 || originalRequest._retry) {
+      return Promise.reject(error);
     }
-    return Promise.reject(error);
+
+    originalRequest._retry = true;
+
+    const currentRefresh = useAuthStore.getState().refresh;
+
+    if (!currentRefresh) {
+      useAuthStore.getState().logout();
+      window.location.href = "/login";
+      return Promise.reject(error);
+    }
+
+    try {
+      const res = await axios.post(
+        `${BASE_URL}/auth/token/refresh/`, // same base URL as everything else
+        { refresh: currentRefresh },
+      );
+
+      const { access, refresh } = res.data;
+
+      useAuthStore
+        .getState()
+        .setAuthData(useAuthStore.getState().user!, access, refresh);
+
+      originalRequest.headers.Authorization = `Bearer ${access}`;
+      return api(originalRequest);
+    } catch {
+      useAuthStore.getState().logout();
+      window.location.href = "/login";
+      return Promise.reject(error);
+    }
   },
 );
