@@ -10,6 +10,7 @@ import { BriefcaseBusiness, Mail, Languages, NotebookText } from "lucide-react";
 import { useState, type ReactNode } from "react";
 import { ChangePasswordForm } from "./change_password";
 import { useAuthStore } from "@/app/stores/useAuthStore";
+import { DangerousZone } from "./_delete/danger_zone";
 
 interface UserDetails {
   role: string;
@@ -112,6 +113,8 @@ export function ProfileContentIntro() {
               </CardHeader>
               <CardContent className="mt-5">
                 <ProfileContentIntroList userDetails={user} />
+
+                <DangerousZone/>
               </CardContent>
             </>
           )}

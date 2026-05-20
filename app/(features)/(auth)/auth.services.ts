@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/app/stores/useAuthStore";
 import {
+  deleteProfile,
   loginUser,
   logoutUser,
   registerUser,
@@ -44,7 +45,6 @@ export const useLogin = () => {
     },
   });
 };
-
 
 /**
  * Mutation: Register a busnisee
@@ -110,4 +110,36 @@ export const useProfile = () => {
   }, [query.error]);
 
   return query;
+};
+
+/**
+ * Delete User Profile
+ */
+
+/**
+ * Delete User Profile
+ */
+export const useDeleteProfile = () => {
+  const queryClient = useQueryClient();
+  const { logout } = useAuthStore();
+  const router = useRouter();
+
+  return useMutation({
+    mutationFn: deleteProfile,
+
+    onSuccess: () => {
+      // clear auth store
+      logout();
+
+      // clear all react-query cached data
+      queryClient.clear();
+
+      // redirect user to login
+      router.replace("/login");
+    },
+
+    onError: (error) => {
+      console.error("Delete profile failed:", error);
+    },
+  });
 };

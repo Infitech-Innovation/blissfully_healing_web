@@ -85,10 +85,11 @@ export function ChangePasswordForm() {
       <Button
         type="submit"
         disabled={isSubmitting}
-        className="min-h-11 w-full rounded-md bg-black px-4 py-2 font-medium text-white transition hover:bg-black/90 disabled:cursor-not-allowed disabled:opacity-70"
+        className="min-h-11 w-full gap-2 rounded-md bg-black px-4 py-2 font-medium text-white transition hover:bg-black/90 disabled:cursor-not-allowed disabled:opacity-70"
+        aria-disabled={isSubmitting}
       >
-        {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-        Set new password
+        {isSubmitting && <Loader2 className="h-4 w-4 animate-spin" />}
+        {isSubmitting ? "Updating password..." : "Set new password"}
       </Button>
     </form>
   );

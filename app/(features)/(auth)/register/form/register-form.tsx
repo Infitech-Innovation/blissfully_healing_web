@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { AlertCircle, Eye, EyeOff } from "lucide-react";
+import { AlertCircle, Eye, EyeOff, Loader2 } from "lucide-react";
 import { useAuthStore } from "@/app/stores/useAuthStore";
 import { AxiosError } from "axios";
 import { useRegister } from "../../auth.services";
@@ -46,6 +46,7 @@ export default function RegisterForm() {
   const onSubmit = (data: RegisterFormData) => {
     registerUser(data);
   };
+  const isLoading = isSubmitting || isPending;
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="w-full space-y-4">
@@ -191,10 +192,12 @@ export default function RegisterForm() {
       {/* Submit */}
       <button
         type="submit"
-        disabled={isSubmitting || isPending}
-        className="min-h-11 w-full rounded-md bg-black px-4 py-2 font-medium text-white transition hover:bg-black/90 disabled:cursor-not-allowed disabled:opacity-70"
+        disabled={isLoading}
+        className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-md bg-black px-4 py-2 font-medium text-white transition hover:bg-black/90 disabled:cursor-not-allowed disabled:opacity-70"
+        aria-disabled={isLoading}
       >
-        {isPending ? "Creating account..." : "Register"}
+        {isLoading && <Loader2 className="h-4 w-4 animate-spin" />}
+        {isLoading ? "Creating account..." : "Register"}
       </button>
     </form>
   );

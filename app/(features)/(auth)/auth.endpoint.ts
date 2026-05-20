@@ -34,3 +34,7 @@ export const userProfile = async (): Promise<Profile> => {
   const response = await api.get(PROFILE);
   return response.data;
 };
+
+export const deleteProfile = async (): Promise<void> => {
+  await api.delete(PROFILE);
+};

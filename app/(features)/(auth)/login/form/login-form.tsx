@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { AlertCircle, Eye, EyeOff } from "lucide-react";
+import { AlertCircle, Eye, EyeOff, Loader2 } from "lucide-react";
 import { useAuthStore } from "@/app/stores/useAuthStore";
 import { useLogin } from "../../auth.services";
 import { AxiosError } from "axios";
@@ -45,6 +45,7 @@ export default function LoginForm() {
   const onSubmit = (data: LoginFormData) => {
     login(data); // useLogin handles redirect on success
   };
+  const isLoading = isSubmitting || isPending;
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="w-full space-y-4">
@@ -99,11 +100,12 @@ export default function LoginForm() {
 
       <button
         type="submit"
-        disabled={isSubmitting || isPending}
-        className="min-h-11 w-full rounded-md bg-primary px-4 py-2 font-medium text-white transition hover:bg-black/90 disabled:cursor-not-allowed disabled:opacity-70"
-        aria-disabled={isPending}
+        disabled={isLoading}
+        className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 font-medium text-white transition hover:bg-black/90 disabled:cursor-not-allowed disabled:opacity-70"
+        aria-disabled={isLoading}
       >
-        {isPending ? "Logging in..." : "Login"}
+        {isLoading && <Loader2 className="h-4 w-4 animate-spin" />}
+        {isLoading ? "Logging in..." : "Login"}
       </button>
 
       {isError && (
