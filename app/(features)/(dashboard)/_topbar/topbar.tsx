@@ -3,6 +3,8 @@
 import { Bell, Menu, Search } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { Suspense } from "react";
+import UserMenu from "./user_menu";
 
 interface TopbarProps {
   onMenuClick: () => void;
@@ -92,13 +94,9 @@ export function Topbar({ onMenuClick }: TopbarProps) {
           <Bell className="h-4 w-4" />
         </Button>
 
-        <button
-          type="button"
-          className="flex h-9 w-9 items-center justify-center rounded-full bg-[#9a6b4f] text-xs font-semibold text-white shadow-sm"
-          aria-label="User menu"
-        >
-          BH
-        </button>
+        <Suspense>
+          <UserMenu />
+        </Suspense>
       </div>
     </header>
   );
