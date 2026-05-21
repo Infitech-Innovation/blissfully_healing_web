@@ -12,7 +12,7 @@ import { AxiosError } from "axios";
 import { loginSchema } from "@/app/lib/auth.zod";
 
 type ApiErrorResponse = {
-  message?: string;
+  detail?: string;
 };
 
 type LoginFormData = z.infer<typeof loginSchema>;
@@ -33,8 +33,8 @@ export default function LoginForm() {
     },
   });
 
-  // useLogin returns: { mutate: login, isPending, isError, error, data }
-  const { mutate: login, isPending, isError, error } = useLogin();
+  // useLogin returns: { mutateAsync: login, isPending, isError, error, data }
+  const { mutateAsync: login, isPending, isError, error } = useLogin();
 
   useEffect(() => {
     if (isAuthenticated()) {
@@ -42,8 +42,8 @@ export default function LoginForm() {
     }
   }, [isAuthenticated, router, getRedirectPath]);
 
-  const onSubmit = (data: LoginFormData) => {
-    login(data); // useLogin handles redirect on success
+  const onSubmit = async (data: LoginFormData) => {
+    await login(data); // useLogin handles redirect on success
   };
   const isLoading = isSubmitting || isPending;
 
@@ -116,7 +116,7 @@ export default function LoginForm() {
         >
           <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-red-500" />
           <p className="text-sm text-red-600">
-            {(error as AxiosError<ApiErrorResponse>)?.response?.data?.message ??
+            {(error as AxiosError<ApiErrorResponse>)?.response?.data?.detail ??
               "Invalid credentials."}
           </p>
         </div>

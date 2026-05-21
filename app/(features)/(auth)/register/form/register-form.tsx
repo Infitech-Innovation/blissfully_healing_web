@@ -4,15 +4,18 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { AlertCircle, Eye, EyeOff, Loader2 } from "lucide-react";
+import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { useAuthStore } from "@/app/stores/useAuthStore";
 import { AxiosError } from "axios";
 import { useRegister } from "../../auth.services";
 import { RegisterFormData, registerSchema } from "@/app/lib/auth.zod";
 
+type ApiFieldErrors = Partial<Record<keyof RegisterFormData | "non_field_errors", string[]>>;
+
 type ApiErrorResponse = {
   message?: string;
-};
+} & ApiFieldErrors;
+
 
 export default function RegisterForm() {
   const router = useRouter();
@@ -23,6 +26,7 @@ export default function RegisterForm() {
   const {
     register: field,
     handleSubmit,
+    setError,
     formState: { errors, isSubmitting },
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
@@ -35,7 +39,7 @@ export default function RegisterForm() {
     },
   });
 
-  const { mutate: registerUser, isPending, isError, error } = useRegister();
+  const { mutate: registerUser, isPending } = useRegister();
 
   useEffect(() => {
     if (isAuthenticated()) {
@@ -44,8 +48,32 @@ export default function RegisterForm() {
   }, [isAuthenticated, router, getRedirectPath]);
 
   const onSubmit = (data: RegisterFormData) => {
-    registerUser(data);
+    registerUser(data, {
+      onError(err) {
+        const apiError = err as AxiosError<ApiErrorResponse>;
+        const responseData = apiError?.response?.data;
+
+        if (!responseData) return;
+
+        // Field-level keys that map directly to form fields
+        const fieldKeys: (keyof RegisterFormData)[] = [
+          "first_name",
+          "last_name",
+          "email",
+          "password",
+          "confirm_password",
+        ];
+
+        fieldKeys.forEach((key) => {
+          const messages = responseData[key];
+          if (messages?.length) {
+            setError(key, { type: "server", message: messages[0] });
+          }
+        });
+      },
+    });
   };
+
   const isLoading = isSubmitting || isPending;
 
   return (
@@ -170,23 +198,6 @@ export default function RegisterForm() {
             </p>
           )}
         </div>
-      </div>
-
-      {/* API Error */}
-      <div
-        className="flex min-h-8 items-end"
-        aria-live="polite"
-        aria-atomic="true"
-      >
-        {isError && (
-          <div className="flex items-start gap-1 text-sm text-red-500">
-            <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
-            <p>
-              {(error as AxiosError<ApiErrorResponse>)?.response?.data
-                ?.message ?? "Something went wrong. Please try again."}
-            </p>
-          </div>
-        )}
       </div>
 
       {/* Submit */}

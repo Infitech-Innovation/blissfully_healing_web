@@ -13,7 +13,7 @@ export const ROLE_PATH_PERMISSIONS: Record<string, ROLE[]> = {
 };
 
 export function getDashboardForRole(role: ROLE): string {
-  return ROLE_DASHBOARDS[role] ?? "/login";
+  return ROLE_DASHBOARDS[role] ?? "/dashboard";
 }
 
 export function isRoleAllowedOnPath(role: ROLE, pathname: string): boolean {

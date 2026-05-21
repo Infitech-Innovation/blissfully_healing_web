@@ -39,7 +39,8 @@ api.interceptors.response.use(
 
     if (!currentRefresh) {
       useAuthStore.getState().logout();
-      window.location.href = "/login";
+      // Use soft navigation instead of hard reload to preserve component state
+      // The middleware/proxy will handle redirecting unauthenticated requests
       return Promise.reject(error);
     }
 

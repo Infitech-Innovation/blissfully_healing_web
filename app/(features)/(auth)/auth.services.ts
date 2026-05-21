@@ -20,7 +20,7 @@ export const authQueryKeys = {
  * Mutation: Login with email and password
  */
 export const useLogin = () => {
-  // const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
   const { setAuthData, getRedirectPath } = useAuthStore();
   const router = useRouter();
 
@@ -32,12 +32,12 @@ export const useLogin = () => {
       setAuthData(data.user as Profile, data.access, data.refresh);
 
       // 2. Cache user in React Query
-      // queryClient.setQueryData(authQueryKeys.user(), data.user);
+      queryClient.setQueryData(authQueryKeys.user(), data.user);
 
       // 3. Redirect to the role-specific dashboard
       //    getRedirectPath() reads the role we just set above
       const path = getRedirectPath();
-      router.push(path);
+      router.replace(path === "/login" ? "/dashboard" : path);
     },
 
     onError: (error) => {
