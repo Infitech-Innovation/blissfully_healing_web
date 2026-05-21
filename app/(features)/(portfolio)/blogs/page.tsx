@@ -1,5 +1,5 @@
-import PageUnderDevelopment from '@/app/comming-soon';
+import BlogSection from "./_components/blogs_page";
 
 export default function BlogPage() {
- return <PageUnderDevelopment title="Blog Page" />;
+  return <BlogSection />;
 }
