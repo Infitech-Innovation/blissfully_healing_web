@@ -1,4 +1,4 @@
-import SanctuarySection from "./sections/sanctuary-section";
+import SanctuarySection from "./_sections/sanctuary-section";
 
 export default function HomePage() {
   return <SanctuarySection />;
