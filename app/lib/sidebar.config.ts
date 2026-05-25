@@ -1,20 +1,15 @@
 import {
   LayoutGrid,
   BookOpen,
-  Users2,
   CalendarDays,
   CreditCard,
-  BarChart3,
   Video,
   HeartHandshake,
   ShoppingBag,
-  FileText,
   Headphones,
   Settings,
-  ShieldCheck,
   Sparkles,
   UserCircle2,
-  ImageIcon,
   MessageCircleHeart,
 } from "lucide-react";
 
@@ -26,66 +21,66 @@ export const links = {
       href: "/dashboard",
     },
 
-    {
-      icon: FileText,
-      label: "Blogs",
-      href: "/admin/blogs",
-    },
+    // {
+    //   icon: FileText,
+    //   label: "Blogs",
+    //   href: "/admin/blogs",
+    // },
 
-    {
-      icon: BookOpen,
-      label: "Courses",
-      href: "/admin/courses",
-    },
+    // {
+    //   icon: BookOpen,
+    //   label: "Courses",
+    //   href: "/admin/courses",
+    // },
 
-    {
-      icon: Video,
-      label: "Videos",
-      href: "/admin/videos",
-    },
+    // {
+    //   icon: Video,
+    //   label: "Videos",
+    //   href: "/admin/videos",
+    // },
 
-    {
-      icon: ShoppingBag,
-      label: "E-Books",
-      href: "/admin/ebooks",
-    },
+    // {
+    //   icon: ShoppingBag,
+    //   label: "E-Books",
+    //   href: "/admin/ebooks",
+    // },
 
-    {
-      icon: CalendarDays,
-      label: "Retreats",
-      href: "/admin/retreats",
-    },
+    // {
+    //   icon: CalendarDays,
+    //   label: "Retreats",
+    //   href: "/admin/retreats",
+    // },
 
-    {
-      icon: HeartHandshake,
-      label: "Support Groups",
-      href: "/admin/support-groups",
-    },
+    // {
+    //   icon: HeartHandshake,
+    //   label: "Support Groups",
+    //   href: "/admin/support-groups",
+    // },
 
-    {
-      icon: Users2,
-      label: "Users",
-      href: "/admin/users",
-    },
+    // {
+    //   icon: Users2,
+    //   label: "Users",
+    //   href: "/admin/users",
+    // },
 
-    {
-      icon: CreditCard,
-      label: "Payments",
-      href: "/admin/payments",
-    },
+    // {
+    //   icon: CreditCard,
+    //   label: "Payments",
+    //   href: "/admin/payments",
+    // },
 
-    {
-      icon: BarChart3,
-      label: "Analytics",
-      href: "/admin/analytics",
-    },
+    // {
+    //   icon: BarChart3,
+    //   label: "Analytics",
+    //   href: "/admin/analytics",
+    // },
 
-    {
-      icon: ImageIcon,
-      label: "Media Library",
-      href: "",
-      // href: "/admin/media",
-    },
+    // {
+    //   icon: ImageIcon,
+    //   label: "Media Library",
+    //   href: "",
+    //   // href: "/admin/media",
+    // },
   ],
 
   user: [
@@ -153,23 +148,23 @@ export const helpLinks = {
       href: "/admin-guide",
     },
 
-    {
-      icon: Headphones,
-      label: "Support",
-      href: "/support",
-    },
+    // {
+    //   icon: Headphones,
+    //   label: "Support",
+    //   href: "/support",
+    // },
 
-    {
-      icon: ShieldCheck,
-      label: "Security",
-      href: "/security",
-    },
+    // {
+    //   icon: ShieldCheck,
+    //   label: "Security",
+    //   href: "/security",
+    // },
 
-    {
-      icon: Settings,
-      label: "Settings",
-      href: "/settings",
-    },
+    // {
+    //   icon: Settings,
+    //   label: "Settings",
+    //   href: "/settings",
+    // },
   ],
 
   user: [

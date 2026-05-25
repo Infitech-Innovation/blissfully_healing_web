@@ -1,5 +1,13 @@
-import PageUnderDevelopment from "@/app/comming-soon";
+import BlogDetailsPage from "./blogs_details";
 
-export default function BlogDetailsPage() {
-  return <PageUnderDevelopment title="Blog Details Page" />;
+type PageProps = {
+  params: Promise<{
+    slug: string;
+  }>;
+};
+
+export default async function BlogDetailsRoute({ params }: PageProps) {
+  const { slug } = await params;
+
+  return <BlogDetailsPage slug={slug} />;
 }
