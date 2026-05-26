@@ -3,14 +3,70 @@
 // import Image from "next/image";
 import { Calendar, Clock } from "lucide-react";
 import { useBlogDetails } from "../blogs.services";
+import DOMPurify from "isomorphic-dompurify";
+import { useEffect, useMemo } from "react";
 // import Link from "next/link";
 
 type Props = {
   slug: string;
 };
 
+declare global {
+  interface Window {
+    jwreload?: (...args: unknown[]) => typeof jwreloadFallback;
+  }
+}
+
+function jwreloadFallback() {
+  return jwreloadFallback;
+}
+
+function installLegacyBlogHtmlGuards() {
+  if (typeof window === "undefined") return;
+
+  window.jwreload = jwreloadFallback;
+}
+
+function sanitizeBlogBody(body: string) {
+  return DOMPurify.sanitize(body, {
+    USE_PROFILES: { html: true },
+    ADD_ATTR: ["class", "style", "data-list-item-id"],
+    FORBID_TAGS: [
+      "script",
+      "iframe",
+      "object",
+      "embed",
+      "form",
+      "input",
+      "button",
+      "link",
+      "meta",
+    ],
+    FORBID_ATTR: [
+      "onerror",
+      "onload",
+      "onclick",
+      "onmouseover",
+      "onfocus",
+      "onsubmit",
+      "srcdoc",
+    ],
+  });
+}
+
 export default function BlogDetailsPage({ slug }: Props) {
+  installLegacyBlogHtmlGuards();
+
   const { data: blog, isLoading, isError } = useBlogDetails(slug);
+
+  useEffect(() => {
+    installLegacyBlogHtmlGuards();
+  }, []);
+
+  const sanitizedBody = useMemo(
+    () => (blog ? sanitizeBlogBody(blog.body) : ""),
+    [blog],
+  );
 
   if (isLoading) return <p className="p-10">Loading...</p>;
   if (isError || !blog) return <p className="p-10">Blog not found.</p>;
@@ -31,7 +87,6 @@ export default function BlogDetailsPage({ slug }: Props) {
       year: "numeric",
     },
   );
-
   return (
     <main className="min-h-screen bg-[#f9f5f0] text-[#2c1a10]">
       {/* <section className="relative overflow-hidden bg-gradient-to-br from-[#f0e6db] via-[#e8d5c4] to-[#dcc9b5] px-5 py-14 text-center md:px-10 md:py-20">
@@ -92,9 +147,16 @@ export default function BlogDetailsPage({ slug }: Props) {
           </div>
         </aside>
 
-        <article
+        {/* <article
           className="prose max-w-none prose-headings:font-serif prose-headings:text-[#2c1a10] prose-p:font-light prose-p:leading-8 prose-p:text-[#5a3e2e] prose-li:text-[#5a3e2e] prose-img:rounded-2xl"
           dangerouslySetInnerHTML={{ __html: blog.body }}
+        /> */}
+
+        <article
+          className="prose prose-lg max-w-none text-[#4f3728] prose-headings:font-serif prose-headings:font-semibold prose-headings:leading-tight prose-headings:text-[#2c1a10] prose-h1:text-5xl prose-h2:text-4xl prose-h3:text-3xl prose-p:font-light prose-p:leading-8 prose-p:text-[#5a3e2e] prose-a:font-semibold prose-a:text-[#9a6b4f] prose-a:underline prose-a:underline-offset-4 prose-strong:text-[#2c1a10] prose-em:text-[#866452] prose-ul:my-6 prose-ul:pl-7 prose-ol:my-6 prose-ol:pl-7 prose-li:my-2 prose-li:pl-1 marker:text-[#b28b67] prose-blockquote:rounded-r-2xl prose-blockquote:border-l-4 prose-blockquote:border-l-[#b28b67] prose-blockquote:bg-[#fffaf6] prose-blockquote:px-6 prose-blockquote:py-5 prose-blockquote:text-[#5a3e2e] prose-blockquote:shadow-[0_12px_32px_rgba(63,52,44,0.06)] prose-img:rounded-[22px] prose-img:shadow-[0_18px_46px_rgba(63,52,44,0.12)] prose-figcaption:text-center prose-figcaption:text-[#866452] prose-table:text-sm prose-th:border prose-th:border-[#e8d9cc] prose-th:bg-[#efe2d6] prose-th:text-[#2c1a10] prose-td:border prose-td:border-[#e8d9cc] prose-td:p-4 prose-hr:border-[#e8d9cc] prose-pre:rounded-2xl prose-pre:bg-[#2c1a10] prose-code:rounded-md prose-code:bg-[#efe2d6] prose-code:px-1 prose-code:py-0.5 prose-code:text-[#2c1a10] prose-pre:prose-code:bg-transparent prose-pre:prose-code:text-inherit [&_.ck-list-marker-color::marker]:text-[var(--ck-content-list-marker-color)] [&_.image-style-side]:float-right [&_.image-style-side]:mb-5 [&_.image-style-side]:ml-7 [&_.image-style-side]:max-w-[min(45%,340px)] [&_.image-style-align-left]:float-left [&_.image-style-align-left]:mb-5 [&_.image-style-align-left]:mr-7 [&_.image-style-align-left]:max-w-[min(45%,340px)] [&_.image-style-align-center]:mx-auto [&_.image-style-align-center]:text-center max-md:prose-base max-md:[&_.image-style-align-left]:float-none max-md:[&_.image-style-align-left]:mx-0 max-md:[&_.image-style-align-left]:max-w-full max-md:[&_.image-style-side]:float-none max-md:[&_.image-style-side]:mx-0 max-md:[&_.image-style-side]:max-w-full"
+          dangerouslySetInnerHTML={{
+            __html: sanitizedBody,
+          }}
         />
       </section>
     </main>
