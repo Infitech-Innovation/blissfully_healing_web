@@ -1,11 +1,30 @@
+
+interface Lesson {
+  id: string;
+  title: string;
+  subtitle: string;
+  duration: string;
+}
+
+interface Chapter {
+  id: string;
+  number: number;
+  title: string;
+  lessons: Lesson[];
+}
+
+
 export type Course = {
   id: number;
   slug: string;
   title: string;
-  description: string;
+  shortDescription: string;
+  fullDescription: string;
+  chapters: Chapter[];
+  features: string[];
   category: string;
   imageUrl: string;
-  level: string;
+  difficulty: string;
   duration: string;
   lessons: number;
   price: string;

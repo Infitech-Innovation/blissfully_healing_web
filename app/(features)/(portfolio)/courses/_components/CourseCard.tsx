@@ -26,7 +26,7 @@ export default function CourseCard({ course }: Props) {
           {course.category}
         </div>
         <div className="absolute bottom-4 left-4 rounded-full bg-[#2f251f]/80 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur">
-          {course.level}
+          {course.difficulty}
         </div>
       </div>
 
@@ -46,7 +46,7 @@ export default function CourseCard({ course }: Props) {
           {course.title}
         </h3>
         <p className="mt-3 line-clamp-3 text-sm leading-6 text-[#6f5c4f]">
-          {course.description}
+          {course.shortDescription}
         </p>
 
         <div className="mt-6 flex items-center justify-between border-t border-[#eadfd4] pt-5">
