@@ -7,8 +7,8 @@ import {
   getFeaturedBlogs,
 } from "./blogs.endpoints";
 
-const CAT_KEYS = ["categories"];
-const F_BLOGS_KEYS = ["fblogs"];
+export const CAT_KEYS = ["categories"];
+export const F_BLOGS_KEYS = ["fblogs"];
 
 export const BLOGS_KEYS = {
   all: ["blogs"] as const,
@@ -21,7 +21,7 @@ export const useCategory = () => {
   return useQuery<Category[]>({
     queryKey: CAT_KEYS,
     queryFn: getCategory,
-    staleTime: 1000 * 60 * 5,
+    staleTime: 60 * 60 * 1000,
     retry: 2,
   });
 };
@@ -52,5 +52,6 @@ export const useBlogDetails = (slug: string) => {
     queryKey: BLOGS_KEYS.detail(slug),
     queryFn: () => getBlogDetails(slug),
     enabled: !!slug,
+    staleTime: 1000 * 60 * 10,
   });
 };

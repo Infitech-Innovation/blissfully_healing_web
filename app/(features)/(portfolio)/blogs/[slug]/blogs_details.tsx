@@ -5,6 +5,7 @@ import { Calendar, Clock } from "lucide-react";
 import { useBlogDetails } from "../blogs.services";
 import DOMPurify from "isomorphic-dompurify";
 import { useEffect, useMemo } from "react";
+import { BlogDetailsSkeleton } from "./blog_details_skeleton";
 // import Link from "next/link";
 
 type Props = {
@@ -57,7 +58,7 @@ function sanitizeBlogBody(body: string) {
 export default function BlogDetailsPage({ slug }: Props) {
   installLegacyBlogHtmlGuards();
 
-  const { data: blog, isLoading, isError } = useBlogDetails(slug);
+  const { data: blog, isError, isLoading } = useBlogDetails(slug);
 
   useEffect(() => {
     installLegacyBlogHtmlGuards();
@@ -68,7 +69,7 @@ export default function BlogDetailsPage({ slug }: Props) {
     [blog],
   );
 
-  if (isLoading) return <p className="p-10">Loading...</p>;
+  if (isLoading) return <BlogDetailsSkeleton />;
   if (isError || !blog) return <p className="p-10">Blog not found.</p>;
 
   const authorName = `${blog.author?.first_name ?? ""} ${

@@ -6,6 +6,7 @@ import { useBlogs, useCategory } from "../blogs.services";
 import { BlogCardMobile } from "./blogs_mobile";
 import { BlogCardDesktop } from "./blogs_desktop";
 import { BlogCardItem } from "../definations";
+import { BlogSectionSkeleton } from "./blogs_skeleton";
 
 export default function BlogSection() {
 
@@ -18,6 +19,10 @@ console.log("Blogs data:", { blogs, blogsLoading });
   const categories = ["All blogs", ...(data ?? []).map((cat) => cat.name)];
 
   const [activeTab, setActiveTab] = useState("All blogs");
+
+  if (isLoading || blogsLoading) {
+    return <BlogSectionSkeleton />;
+  }
 
   const blogCards: BlogCardItem[] = (blogs ?? []).map((blog) => ({
     href: `/blogs/${blog.slug}`,
