@@ -1,10 +1,9 @@
 "use client";
 
-import { Play, X } from "lucide-react";
-import { useState } from "react";
+import { Play } from "lucide-react";
 
 export function VideoCTASection() {
-  const [playing, setPlaying] = useState(false);
+  // const [playing, setPlaying] = useState(false);
 
   return (
     <section className="relative flex min-h-[80svh] items-center justify-center overflow-hidden">
@@ -20,7 +19,7 @@ export function VideoCTASection() {
       <div className="relative z-10 px-6 text-center">
         <button
           type="button"
-          onClick={() => setPlaying((value) => !value)}
+          // onClick={() => setPlaying((value) => !value)}
           className="group mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full border border-white/45 bg-white/16 backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:bg-white/25"
           aria-label="Watch retreat story"
         >
@@ -33,7 +32,7 @@ export function VideoCTASection() {
           Watch Our Retreat Story
         </p>
 
-        {playing && (
+        {/* {playing && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#2f251f]/92 p-6">
             <button
               type="button"
@@ -47,7 +46,7 @@ export function VideoCTASection() {
               <p className="text-sm text-white/55">Video player placeholder</p>
             </div>
           </div>
-        )}
+        )} */}
       </div>
     </section>
   );
