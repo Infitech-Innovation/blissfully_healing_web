@@ -8,7 +8,7 @@ export function HeroSection() {
             "url('https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=1800&q=80')",
         }}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#2f251f]/75 via-[#2f251f]/50 to-[#fffaf6]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#2f251f]/60 via-[#2f251f]/50 to-[#fffaf6]" />
 
       <div className="relative z-10 mx-auto max-w-3xl px-6 text-center">
         <p className="mb-5 text-xs font-semibold uppercase tracking-[0.3em] text-[#d8b06a]">

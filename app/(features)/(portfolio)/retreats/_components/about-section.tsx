@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export function AboutSection() {
   return (
-    <section className="bg-[#fffaf6] px-6 py-24">
+    <section className="bg-[#fffaf6] px-6 pt-24">
       <div className="mx-auto grid max-w-7xl items-center gap-16 md:grid-cols-2">
         <div className="relative overflow-hidden rounded-[8px] border border-[#eadfd4] bg-[#f8f0e8] shadow-[0_18px_45px_rgba(63,52,44,0.08)]">
           <Image

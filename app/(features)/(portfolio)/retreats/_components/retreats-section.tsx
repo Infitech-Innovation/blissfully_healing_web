@@ -1,9 +1,8 @@
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { stays } from "./retreat-data";
-import Link from "next/link";
 
-export function AccommodationsSection() {
+export function RetreatsSection() {
   return (
     <section className="bg-[#fffaf6] px-6 py-24">
       <div className="mx-auto max-w-7xl">
@@ -17,18 +16,6 @@ export function AccommodationsSection() {
               <br />
               For Restoration
             </h2>
-          </div>
-          <div className="md:max-w-xs">
-            <p className="mb-4 text-sm leading-7 text-[#6f5c4f]">
-              From private renewal to group sanctuary, each retreat is shaped
-              for rest, emotional spaciousness, and grounded integration.
-            </p>
-            <Link
-              href="/temples/voyage"
-              className="rounded-[8px] border border-[#eadfd4] bg-white px-6 py-3 text-xs font-bold uppercase tracking-widest text-[#6f5c4f] transition hover:border-[#8f6249] hover:text-[#8f6249]"
-            >
-              View All Retreats
-            </Link>
           </div>
         </div>
 
@@ -54,9 +41,7 @@ export function AccommodationsSection() {
               <h3 className="mb-2 font-serif text-xl font-semibold text-[#2f251f]">
                 {stay.name}
               </h3>
-              <p className="mb-4 text-sm leading-6 text-[#6f5c4f]">
-                {stay.desc}
-              </p>
+              <p className="mb-4 text-sm leading-6 text-[#6f5c4f]">{stay.desc}</p>
               <button className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#8f6249] group/btn">
                 View Details
                 <ArrowRight
