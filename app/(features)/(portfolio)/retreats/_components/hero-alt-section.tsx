@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export function HeroAltSection() {
   return (
     <section className="relative flex min-h-[calc(100svh-96px)] items-center overflow-hidden bg-[#2f251f]">
@@ -29,9 +31,12 @@ export function HeroAltSection() {
           </p>
 
           <div className="flex flex-wrap gap-4">
-            <button className="rounded-[8px] bg-[#8f6249] px-8 py-4 text-xs font-bold uppercase tracking-[0.18em] text-white shadow-[0_16px_34px_rgba(47,37,31,0.24)] transition hover:bg-[#744d39]">
+            <Link
+              href="/temples/voyage"
+              className="rounded-[8px] bg-[#8f6249] px-8 py-4 text-xs font-bold uppercase tracking-[0.18em] text-white shadow-[0_16px_34px_rgba(47,37,31,0.24)] transition hover:bg-[#744d39]"
+            >
               Explore Retreats
-            </button>
+            </Link>
             <button className="rounded-[8px] border border-white/55 px-8 py-4 text-xs font-bold uppercase tracking-[0.18em] text-white transition hover:bg-white/12">
               Book A Call
             </button>
