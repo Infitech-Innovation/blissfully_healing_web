@@ -1,12 +1,16 @@
+import Image from "next/image";
+
 export function HeroSection() {
   return (
     <section className="relative flex min-h-[calc(100svh-96px)] items-center justify-center overflow-hidden">
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=1800&q=80')",
-        }}
+      <Image
+        src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&q=75"
+        alt="Calm outdoor retreat setting"
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover"
+        unoptimized
       />
       <div className="absolute inset-0 bg-gradient-to-b from-[#2f251f]/60 via-[#2f251f]/50 to-[#fffaf6]" />
 

@@ -4,7 +4,7 @@ export default function ContactHero() {
   return (
     <section className="relative min-h-[520px] overflow-hidden bg-[#2f251f]">
       <Image
-        src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1800&q=80"
+        src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=75"
         alt="A peaceful healing space with soft natural light"
         fill
         priority
@@ -20,7 +20,7 @@ export default function ContactHero() {
             <br />
             Gentle Conversation
           </h1>
-          <p className="mt-6 max-w-2xl text-md leading-8 text-white/76 md:text-lg">
+          <p className="mt-6 max-w-2xl text-base leading-8 text-white/76 md:text-lg">
             Reach out for retreat enquiries, course support, healing pathways,
             or a quiet first step toward the kind of care that fits your season.
           </p>

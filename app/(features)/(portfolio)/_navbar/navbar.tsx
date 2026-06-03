@@ -35,7 +35,6 @@ export function Navbar() {
             width={60}
             height={60}
             className="h-12 w-12 shrink-0 object-contain sm:h-14 sm:w-14"
-            priority
           />
 
           <div className="min-w-0 leading-tight">

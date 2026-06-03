@@ -1,4 +1,5 @@
 import { BookOpen, Clock, Compass, Heart } from "lucide-react";
+import Image from "next/image";
 
 export default function CourseHero() {
   return (
@@ -33,12 +34,14 @@ export default function CourseHero() {
         </div>
 
         <div className="relative min-h-[360px] overflow-hidden rounded-[8px] border border-[#eadfd4] bg-white shadow-[0_30px_80px_rgba(63,52,44,0.16)]">
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage:
-                "url(https://images.unsplash.com/photo-1545389336-cf090694435e?auto=format&fit=crop&w=1000&q=80)",
-            }}
+          <Image
+            src="https://images.unsplash.com/photo-1545389336-cf090694435e?auto=format&fit=crop&q=75"
+            alt="Guided healing course practice"
+            fill
+            priority
+            sizes="(min-width: 1024px) 44vw, 100vw"
+            className="object-cover"
+            unoptimized
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#2f251f]/55 via-transparent to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-6 text-white">

@@ -16,7 +16,6 @@ export default function LoginPage() {
               className="h-auto w-full"
               alt="Blissfully Healing"
               loading="eager"
-              priority
             />
           </div>
         </div>

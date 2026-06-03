@@ -40,6 +40,7 @@ export function ProfileHeader() {
             loading="eager"
             className="h-full w-full object-cover"
             alt="Profile Background"
+            unoptimized
           />
         )}
       </AspectRatio>

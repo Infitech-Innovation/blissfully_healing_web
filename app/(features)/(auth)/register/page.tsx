@@ -26,7 +26,6 @@ export default function RegisterPage() {
                 className="h-auto w-full"
                 alt="Blissfully Healing"
                 loading="eager"
-                priority
               />
             </div>
             <h1 className="mt-4 font-[family-name:var(--font-great-vibes)] text-4xl text-[#d4af37]">

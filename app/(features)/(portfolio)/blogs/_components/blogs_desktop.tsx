@@ -49,6 +49,7 @@ export function BlogCardDesktop({
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-105"
           sizes="400px"
+          unoptimized={blog.image.startsWith("http")}
         />
         {/* Category badge */}
         <div className="absolute bottom-3 left-3 flex items-center gap-1.5 bg-white/90 backdrop-blur-sm rounded-full px-2.5 py-1">

@@ -1,18 +1,18 @@
-"use client";
-
 import { Play } from "lucide-react";
+import Image from "next/image";
 
 export function VideoCTASection() {
   // const [playing, setPlaying] = useState(false);
 
   return (
     <section className="relative flex min-h-[80svh] items-center justify-center overflow-hidden">
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1800&q=80')",
-        }}
+      <Image
+        src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=75"
+        alt="Mountain retreat at dusk"
+        fill
+        sizes="100vw"
+        className="object-cover"
+        unoptimized
       />
       <div className="absolute inset-0 bg-[#2f251f]/62" />
 

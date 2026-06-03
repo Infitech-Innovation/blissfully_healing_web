@@ -44,6 +44,7 @@ export function FeaturesSection() {
               width={900}
               height={600}
               className="h-full w-full object-cover"
+              unoptimized
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#2f251f]/35 via-transparent to-transparent" />
           </div>

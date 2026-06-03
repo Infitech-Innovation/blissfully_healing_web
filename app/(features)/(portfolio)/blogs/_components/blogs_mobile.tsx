@@ -48,6 +48,7 @@ export function BlogCardMobile({
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-105"
           sizes="(max-width: 768px) 100vw, 50vw"
+          unoptimized={blog.image.startsWith("http")}
         />
         <div className="absolute bottom-3 left-3 flex items-center gap-1.5 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1">
           <span className="w-1.5 h-1.5 rounded-full bg-[#c47a35] shrink-0" />

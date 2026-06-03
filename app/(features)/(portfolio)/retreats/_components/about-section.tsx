@@ -11,6 +11,7 @@ export function AboutSection() {
             className="aspect-[4/3] h-full w-full object-cover"
             width={900}
             height={600}
+            unoptimized
           />
         </div>
 

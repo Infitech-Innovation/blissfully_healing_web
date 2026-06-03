@@ -48,7 +48,7 @@ export default function HomeOverviewPage() {
       return;
     }
 
-    const timer = setTimeout(() => setLoading(false), 2500);
+    const timer = setTimeout(() => setLoading(false), 700);
     return () => clearTimeout(timer);
   }, [router]);
 
@@ -63,7 +63,7 @@ export default function HomeOverviewPage() {
 
     autoOpenStarted.current = true;
 
-    const openTimer = setTimeout(() => openLetter(), 700);
+    const openTimer = setTimeout(() => openLetter(), 350);
     return () => clearTimeout(openTimer);
   }, [isOpening, loading, openLetter, showLetter]);
 
@@ -91,7 +91,6 @@ export default function HomeOverviewPage() {
               width={170}
               height={170}
               className="mx-auto animate-pulse"
-              priority
             />
 
             <h1 className="mt-4 font-[family-name:var(--font-great-vibes)] text-4xl text-[#d4af37]">

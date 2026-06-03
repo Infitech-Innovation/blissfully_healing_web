@@ -33,6 +33,7 @@ export function RetreatsSection() {
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   width={900}
                   height={600}
+                  unoptimized
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#2f251f]/45 to-transparent" />
                 <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-[#8f6249] shadow-sm backdrop-blur">

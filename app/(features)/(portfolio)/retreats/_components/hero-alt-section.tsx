@@ -1,14 +1,17 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export function HeroAltSection() {
   return (
     <section className="relative flex min-h-[calc(100svh-96px)] items-center overflow-hidden bg-[#2f251f]">
-      <div
-        className="absolute inset-0 bg-cover bg-center opacity-70"
-        style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=1800&q=80')",
-        }}
+      <Image
+        src="https://images.unsplash.com/photo-1508193638397-1c4234db14d8?auto=format&fit=crop&q=75"
+        alt="Quiet mountain retreat landscape"
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover opacity-70"
+        unoptimized
       />
       <div className="absolute inset-0 bg-gradient-to-r from-[#2f251f]/95 via-[#2f251f]/60 to-[#2f251f]/10" />
 

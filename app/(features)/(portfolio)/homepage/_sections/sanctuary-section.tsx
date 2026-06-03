@@ -76,7 +76,7 @@ export default function SanctuarySection() {
                     width={1280}
                     height={900}
                     className={styles.sanctuaryPostImage}
-                    unoptimized={typeof temple.image === 'string' && temple.image.startsWith('http')}
+                    unoptimized={temple.image.startsWith("http")}
                   />
                 </Link>
 
