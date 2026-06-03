@@ -57,13 +57,16 @@ export function AccommodationsSection() {
               <p className="mb-4 text-sm leading-6 text-[#6f5c4f]">
                 {stay.desc}
               </p>
-              <button className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#8f6249] group/btn">
+              <Link
+                href={`/retreats/${stay.slug}`}
+                className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#8f6249] group/btn"
+              >
                 View Details
                 <ArrowRight
                   size={14}
                   className="transition-transform duration-200 group-hover/btn:translate-x-1"
                 />
-              </button>
+              </Link>
             </article>
           ))}
         </div>
