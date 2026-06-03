@@ -14,7 +14,6 @@ const sanctuaryLinks = [
   { label: "Retreats", href: "/retreats" },
   { label: "Courses", href: "/courses" },
   { label: "Blog", href: "/blogs" },
-  { label: "Shop", href: "/shop" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -53,16 +52,19 @@ export default function FooterSection() {
                 alt="Blissfully Healing"
                 width={128}
                 height={128}
-                className="h-full w-full object-contain"
+                className="h-20 w-20 shrink-0 object-contain"
               />
               <span>
                 <span className="block font-serif text-3xl font-semibold leading-none text-white">
                   Blissfully Healing
                 </span>
+                <span className="mt-2 block text-xs font-semibold uppercase tracking-[0.22em] text-[#d8b06a]">
+                  Royal healing sanctuary
+                </span>
               </span>
             </Link>
 
-            <p className="mt-7 max-w-md text-md leading-7 text-white/68">
+            <p className="mt-7 max-w-md text-base leading-7 text-white/68">
               A sacred digital home for emotional restoration, spiritual
               reconnection, and soft transformation through retreats, courses,
               temples, and guided care.
@@ -70,7 +72,7 @@ export default function FooterSection() {
           </section>
 
           <nav aria-label="Sanctuary links">
-            <h2 className="mb-5 text-md font-bold uppercase tracking-[0.24em] text-[#d8b06a]">
+            <h2 className="mb-5 text-sm font-bold uppercase tracking-[0.24em] text-[#d8b06a]">
               Sanctuary
             </h2>
             <div className="grid gap-3">
@@ -78,11 +80,11 @@ export default function FooterSection() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="group flex w-fit items-center gap-2 text-md text-white/70 transition hover:text-white"
+                  className="group flex w-fit items-center gap-2 text-sm text-white/70 transition hover:text-white"
                 >
                   {link.label}
                   <ArrowUpRight
-                    size={16}
+                    size={14}
                     className="opacity-0 transition group-hover:translate-x-0.5 group-hover:opacity-100"
                   />
                 </Link>
@@ -91,7 +93,7 @@ export default function FooterSection() {
           </nav>
 
           <nav aria-label="Healing pathways">
-            <h2 className="mb-5 text-md font-bold uppercase tracking-[0.24em] text-[#d8b06a]">
+            <h2 className="mb-5 text-sm font-bold uppercase tracking-[0.24em] text-[#d8b06a]">
               Pathways
             </h2>
             <div className="grid gap-3">
@@ -112,7 +114,7 @@ export default function FooterSection() {
           </nav>
 
           <section>
-            <h2 className="mb-5 text-md font-bold uppercase tracking-[0.24em] text-[#d8b06a]">
+            <h2 className="mb-5 text-sm font-bold uppercase tracking-[0.24em] text-[#d8b06a]">
               Begin Gently
             </h2>
             <div className="grid gap-4">
@@ -141,7 +143,7 @@ export default function FooterSection() {
 
         <div className="mt-14 border-t border-white/10 pt-6">
           <div className="flex flex-col justify-between gap-4 text-xs text-white/48 md:flex-row md:items-center">
-            <p>© {year} Blissfully Healing. All rights reserved.</p>
+            <p>Copyright {year} Blissfully Healing. All rights reserved.</p>
             <div className="flex flex-wrap gap-x-6 gap-y-2">
               <Link href="/security" className="transition hover:text-white/80">
                 Security
@@ -152,9 +154,7 @@ export default function FooterSection() {
               <Link href="/login" className="transition hover:text-white/80">
                 Member Login
               </Link>
-              <Link href="#" className="transition hover:text-white/80">
-                By Infitech Innovations
-              </Link>
+              <span>By Infitech Innovations</span>
             </div>
           </div>
         </div>
