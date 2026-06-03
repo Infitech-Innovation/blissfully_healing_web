@@ -1,52 +1,102 @@
-import { Play } from "lucide-react";
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { Play, Pause } from "lucide-react";
+
+const posterImage =
+  "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=60";
 
 export function VideoCTASection() {
-  // const [playing, setPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const [showVideo, setShowVideo] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  useEffect(() => {
+    if (!showVideo) {
+      return;
+    }
+
+    videoRef.current
+      ?.play()
+      .then(() => setIsPlaying(true))
+      .catch(() => setIsPlaying(false));
+  }, [showVideo]);
+
+  const handleToggleVideo = () => {
+    const video = videoRef.current;
+
+    if (!showVideo) {
+      setShowVideo(true);
+      return;
+    }
+
+    if (!video) return;
+
+    if (video.paused) {
+      video.play();
+      setIsPlaying(true);
+    } else {
+      video.pause();
+      setIsPlaying(false);
+    }
+  };
 
   return (
-    <section className="relative flex min-h-[80svh] items-center justify-center overflow-hidden">
-      <Image
-        src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=75"
-        alt="Mountain retreat at dusk"
-        fill
-        sizes="100vw"
-        className="object-cover"
-        unoptimized
-      />
+    <section className="relative flex min-h-[64svh] items-center justify-center overflow-hidden bg-[#2f251f] md:min-h-[72svh]">
+      {showVideo && (
+        <video
+          ref={videoRef}
+          playsInline
+          preload="none"
+          poster={posterImage}
+          onPlay={() => setIsPlaying(true)}
+          onPause={() => setIsPlaying(false)}
+          className="absolute inset-0 h-full w-full object-cover"
+        >
+          <source src="/video/retreat.mp4" type="video/mp4" />
+        </video>
+      )}
+
+      {!showVideo && (
+        <Image
+          src={posterImage}
+          alt="Mountain retreat at dusk"
+          fill
+          loading="lazy"
+          fetchPriority="low"
+          sizes="(min-width: 1024px) 100vw, 100vw"
+          className="object-cover"
+          unoptimized
+        />
+      )}
+
       <div className="absolute inset-0 bg-[#2f251f]/62" />
 
       <div className="relative z-10 px-6 text-center">
         <button
           type="button"
-          // onClick={() => setPlaying((value) => !value)}
+          onClick={handleToggleVideo}
           className="group mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full border border-white/45 bg-white/16 backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:bg-white/25"
-          aria-label="Watch retreat story"
+          aria-label={isPlaying ? "Pause video" : "Play video"}
         >
-          <Play
-            size={28}
-            className="ml-1 fill-[#d8b06a] text-[#d8b06a] transition-transform duration-200 group-hover:scale-110"
-          />
+          {isPlaying ? (
+            <Pause
+              size={28}
+              className="text-[#d8b06a] transition-transform duration-200 group-hover:scale-110"
+            />
+          ) : (
+            <Play
+              size={28}
+              className="ml-1 fill-[#d8b06a] text-[#d8b06a] transition-transform duration-200 group-hover:scale-110"
+            />
+          )}
         </button>
-        <p className="text-sm font-semibold uppercase tracking-widest text-white/75">
-          Watch Our Retreat Story
-        </p>
 
-        {/* {playing && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#2f251f]/92 p-6">
-            <button
-              type="button"
-              onClick={() => setPlaying(false)}
-              className="absolute right-6 top-6 text-white transition hover:text-[#d8b06a]"
-              aria-label="Close video"
-            >
-              <X size={28} />
-            </button>
-            <div className="flex aspect-video w-full max-w-4xl items-center justify-center rounded-[8px] border border-[#eadfd4]/20 bg-[#3f342c]">
-              <p className="text-sm text-white/55">Video player placeholder</p>
-            </div>
-          </div>
-        )} */}
+        <p className="text-sm font-semibold uppercase tracking-widest text-white/75">
+          {isPlaying ? "Pause Retreat Story" : "Watch Our Retreat Story"}
+        </p>
       </div>
     </section>
   );
