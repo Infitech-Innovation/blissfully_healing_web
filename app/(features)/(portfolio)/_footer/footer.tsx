@@ -44,7 +44,7 @@ export default function FooterSection() {
         <div className="grid gap-12 lg:grid-cols-[1.15fr_0.85fr_0.85fr_1fr]">
           <section>
             <Link
-              href="/homepage"
+              href="/"
               className="inline-flex items-center gap-4 transition hover:opacity-90"
             >
               <Image

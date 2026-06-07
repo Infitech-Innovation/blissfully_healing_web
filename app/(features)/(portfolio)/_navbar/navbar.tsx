@@ -22,13 +22,13 @@ export function Navbar() {
   const pathname = usePathname();
   const isActive = (href: string) =>
     pathname === href ||
-    (href !== "/homepage" && pathname.startsWith(`${href}/`));
+    (href !== "/" && pathname.startsWith(`${href}/`));
 
   return (
     <header className="sticky top-0 z-50 border-b border-[#eadfd4] bg-white/90 backdrop-blur">
       <nav className="mx-auto flex max-w-7xl items-center justify-between gap-5 px-4 py-4 sm:px-6 sm:py-5 lg:px-8">
         <Link
-          href="/homepage"
+          href="/"
           className="flex min-w-0 items-center gap-3 text-xl font-bold text-[#2f251f] transition hover:text-[#8f6249] sm:text-2xl"
           onClick={() => setOpen(false)}
         >

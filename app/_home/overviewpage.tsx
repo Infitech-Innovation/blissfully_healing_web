@@ -40,17 +40,17 @@ export default function HomeOverviewPage() {
     };
   }, [isOpening, shouldReduceMotion, showLetter]);
 
-  // useEffect(() => {
-  //   const hasEntered = localStorage.getItem("hasEnteredSanctuary");
+  useEffect(() => {
+    // const hasEntered = localStorage.getItem("hasEnteredSanctuary");
 
-  //   if (hasEntered === "true") {
-  //     router.replace("/homepage");
-  //     return;
-  //   }
+    // if (hasEntered === "true") {
+    //   router.replace("/homepage");
+    //   return;
+    // }
 
-  //   const timer = setTimeout(() => setLoading(false), 700);
-  //   return () => clearTimeout(timer);
-  // }, [router]);
+    const timer = setTimeout(() => setLoading(false), 700);
+    return () => clearTimeout(timer);
+  }, [router]);
 
   useEffect(() => {
     if (loading) {
@@ -76,7 +76,7 @@ export default function HomeOverviewPage() {
   }, []);
 
   const handleEnterSanctuary = () => {
-    localStorage.setItem("hasEnteredSanctuary", "true");
+    // localStorage.setItem("hasEnteredSanctuary", "true");
     router.replace("/homepage");
   };
 
@@ -115,7 +115,9 @@ export default function HomeOverviewPage() {
               <motion.div
                 layout
                 className={styles.letterMotionWrap}
-                transition={{ layout: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } }}
+                transition={{
+                  layout: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+                }}
               >
                 <AnimatePresence mode="wait" initial={false}>
                   {!showLetter ? (
@@ -168,6 +170,7 @@ export default function HomeOverviewPage() {
                       <Image
                         src="/images/old_paper.webp"
                         alt="Old Paper"
+                        loading="eager"
                         width={900}
                         height={1000}
                         className={styles.paperImage}
@@ -180,35 +183,37 @@ export default function HomeOverviewPage() {
                           </b>
                         </p>
 
-                        <p className={styles.letterIntro}>To you, my Beloved,</p>
-
-                        <p className="mt-2">
-                          Welcome to Blissfully Healing, a sanctuary crafted for
-                          those ready to reconnect with themselves. Step in as you
-                          are - there&apos;s no need to fix or manage anything; this
-                          is the beginning of your restoration.
+                        <p className={styles.letterIntro}>
+                          To you, my Beloved,
                         </p>
 
                         <p className="mt-2">
-                          Here, your search for safety ends. You&apos;ve spent too
-                          long striving to &quot;fix&quot; a life that was never broken.
-                          Healing isn&apos;t a task - it&apos;s a frequency. Like rare
-                          stones, you shift from effort into the natural power of
-                          simply being.
+                          Welcome to Blissfully Healing, a sanctuary crafted for
+                          those ready to reconnect with themselves. Step in as
+                          you are - there&apos;s no need to fix or manage
+                          anything; this is the beginning of your restoration.
+                        </p>
+
+                        <p className="mt-2">
+                          Here, your search for safety ends. You&apos;ve spent
+                          too long striving to &quot;fix&quot; a life that was
+                          never broken. Healing isn&apos;t a task - it&apos;s a
+                          frequency. Like rare stones, you shift from effort
+                          into the natural power of simply being.
                         </p>
 
                         <p className="mt-2">
                           Your sovereignty is innate, like the geometry of the
                           heart. Growth and expansion happen when conditions are
                           right, not through forced effort. Blissfully Healing
-                          honors your past shadows as grounding forces that allow
-                          your spirit to rise, embracing the ease of true
+                          honors your past shadows as grounding forces that
+                          allow your spirit to rise, embracing the ease of true
                           self-sovereignty.
                         </p>
                         <p className="mt-2">
-                          To guide this journey, six unique Sanctuaries have been
-                          curated - each a sacred container supporting your evolution
-                          at every stage:
+                          To guide this journey, six unique Sanctuaries have
+                          been curated - each a sacred container supporting your
+                          evolution at every stage:
                         </p>
 
                         <p className="mt-5">
@@ -221,25 +226,25 @@ export default function HomeOverviewPage() {
                           <li>
                             <p>
                               <b>Sanctuary of Stillness:</b> A space of
-                              transcendent holding and silence. Through breath and
-                              guided stillness, we clear your field to reveal your
-                              center.
+                              transcendent holding and silence. Through breath
+                              and guided stillness, we clear your field to
+                              reveal your center.
                             </p>
                           </li>
 
                           <li>
                             <p>
-                              <b>Sanctuary of Belonging:</b> A sacred container for
-                              shared power. Sovereign Circles - exclusive cohorts
-                              limited to five individuals.
+                              <b>Sanctuary of Belonging:</b> A sacred container
+                              for shared power. Sovereign Circles - exclusive
+                              cohorts limited to five individuals.
                             </p>
                           </li>
 
                           <li>
                             <p>
                               <b>Sanctuary of Purification:</b> A rhythmic space
-                              aligned with lunar cycles with bath and oil anointment
-                              rituals.
+                              aligned with lunar cycles with bath and oil
+                              anointment rituals.
                             </p>
                           </li>
 
@@ -253,15 +258,17 @@ export default function HomeOverviewPage() {
 
                           <li>
                             <p>
-                              <b>Sanctuary of the Return:</b> The inner sanctum for
-                              private intensive sessions and personal restoration.
+                              <b>Sanctuary of the Return:</b> The inner sanctum
+                              for private intensive sessions and personal
+                              restoration.
                             </p>
                           </li>
 
                           <li>
                             <p>
-                              <b>Sanctuary of Remembrance:</b> A space dedicated to
-                              sacred learning and rediscovery of forgotten truths.
+                              <b>Sanctuary of Remembrance:</b> A space dedicated
+                              to sacred learning and rediscovery of forgotten
+                              truths.
                             </p>
                           </li>
                         </ol>
@@ -274,7 +281,10 @@ export default function HomeOverviewPage() {
           </div>
 
           <div className={styles.enterWrap}>
-            <button onClick={handleEnterSanctuary} className={styles.enterButton}>
+            <button
+              onClick={handleEnterSanctuary}
+              className={styles.enterButton}
+            >
               Enter
               <br />
               Sanctuary
