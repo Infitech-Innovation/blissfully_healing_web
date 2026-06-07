@@ -18,11 +18,8 @@ export default function SanctuarySection() {
       <div className={styles.sanctuaryWholeArea}>
         <div className={styles.sanctuaryCollectionList}>
           {temples.map((temple) => (
-            <div className={styles.sanctuaryCardArea} key={temple.title}>
-              <div
-                className={styles.sanctuaryCard}
-                style={{ backgroundColor: temple.Bgcolor }}
-              >
+            <div className={styles.sanctuaryCardArea} key={temple.title} >
+              <div className={styles.sanctuaryCard} style={{ backgroundColor: temple.color }}>
                 <Link
                   href={temple.href}
                   className={styles.sanctuaryCardImageWrap}
@@ -55,15 +52,11 @@ export default function SanctuarySection() {
                     <Link
                       href={temple.href}
                       className={styles.sanctuaryPostTitle}
-                      style={{ color: temple.textColor }}
                     >
                       {temple.title}
                     </Link>
 
-                    <p
-                      className={styles.sanctuaryPostContent}
-                      style={{ color: temple.textColor }}
-                    >
+                    <p className={styles.sanctuaryPostContent}>
                       {temple.content ||
                         "Explore the sanctuary temple with immersive rituals, guided offerings, and sacred space for return."}
                     </p>
@@ -71,10 +64,6 @@ export default function SanctuarySection() {
                     <Link
                       href={temple.href}
                       className={styles.sanctuaryEnterButton}
-                      style={{
-                        backgroundColor: temple.textColor,
-                        color: temple.Bgcolor,
-                      }}
                     >
                       Visit Temple
                     </Link>
