@@ -13,13 +13,16 @@ const navLinks = [
   { label: "Courses", href: "/courses" },
   { label: "Retreats", href: "/retreats" },
   { label: "Blog", href: "/blogs" },
+  { label: "Support Groups", href: "/support-groups" },
+  { label: "Shop", href: "/shop" },
 ];
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const isActive = (href: string) =>
-    pathname === href || (href !== "/homepage" && pathname.startsWith(`${href}/`));
+    pathname === href ||
+    (href !== "/homepage" && pathname.startsWith(`${href}/`));
 
   return (
     <header className="sticky top-0 z-50 border-b border-[#eadfd4] bg-white/90 backdrop-blur">

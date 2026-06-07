@@ -40,17 +40,17 @@ export default function HomeOverviewPage() {
     };
   }, [isOpening, shouldReduceMotion, showLetter]);
 
-  useEffect(() => {
-    const hasEntered = localStorage.getItem("hasEnteredSanctuary");
+  // useEffect(() => {
+  //   const hasEntered = localStorage.getItem("hasEnteredSanctuary");
 
-    if (hasEntered === "true") {
-      router.replace("/homepage");
-      return;
-    }
+  //   if (hasEntered === "true") {
+  //     router.replace("/homepage");
+  //     return;
+  //   }
 
-    const timer = setTimeout(() => setLoading(false), 700);
-    return () => clearTimeout(timer);
-  }, [router]);
+  //   const timer = setTimeout(() => setLoading(false), 700);
+  //   return () => clearTimeout(timer);
+  // }, [router]);
 
   useEffect(() => {
     if (loading) {
