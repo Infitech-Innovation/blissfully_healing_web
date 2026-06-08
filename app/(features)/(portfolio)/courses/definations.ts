@@ -28,4 +28,11 @@ export type Course = {
   duration: string;
   lessons: number;
   price: string;
+  progress?: number;
 };
+
+export interface EnrolledCourse extends Course {
+  completedLessonIds?: string[];
+  lastAccessedLessonId?: string;
+  enrolledAt?: string;
+}

@@ -6,8 +6,6 @@ import {
   Video,
   HeartHandshake,
   ShoppingBag,
-  Headphones,
-  Settings,
   Sparkles,
   UserCircle2,
   MessageCircleHeart,
@@ -174,16 +172,16 @@ export const helpLinks = {
       href: "/help",
     },
 
-    {
-      icon: Headphones,
-      label: "Support",
-      href: "/support",
-    },
+    // {
+    //   icon: Headphones,
+    //   label: "Support",
+    //   href: "/support",
+    // },
 
-    {
-      icon: Settings,
-      label: "Settings",
-      href: "/settings",
-    },
+    // {
+    //   icon: Settings,
+    //   label: "Settings",
+    //   href: "/settings",
+    // },
   ],
 };

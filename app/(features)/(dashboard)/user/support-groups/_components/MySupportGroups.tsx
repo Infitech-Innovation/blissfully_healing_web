@@ -1,12 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { mockGroups, mockUser } from "../data";
+import { mockSupportGroups, mockUser } from "../data";
 import Link from "next/link";
 import { getTimeUntil } from "../utils";
 import { GroupCard } from "./GroupCard";
 
-// ─── Main Page ────────────────────────────────────────────────────────────────
 export default function MySupportGroupsDashboard() {
   const [expandedId, setExpandedId] = useState<number | null>(null);
   const toggle = (id: number) => setExpandedId(expandedId === id ? null : id);
@@ -32,7 +31,7 @@ export default function MySupportGroupsDashboard() {
             Circles Joined
           </p>
           <p className="mt-3 text-3xl font-semibold text-black">
-            {mockGroups.length}
+            {mockSupportGroups.length}
           </p>
           <p className="mt-1 text-sm text-slate-400">active memberships</p>
         </div>
@@ -42,7 +41,7 @@ export default function MySupportGroupsDashboard() {
             Sessions Attended
           </p>
           <p className="mt-3 text-3xl font-semibold text-black">
-            {mockGroups.reduce((a, g) => a + g.sessionsAttended, 0)}
+            {mockSupportGroups.reduce((a, g) => a + g.sessionsAttended, 0)}
           </p>
           <p className="mt-1 text-sm text-slate-400">this journey</p>
         </div>
@@ -52,7 +51,7 @@ export default function MySupportGroupsDashboard() {
             Next Session
           </p>
           <p className="mt-3 text-3xl font-semibold text-black">
-            {getTimeUntil(mockGroups.map((g) => g.nextSession).sort()[0])}
+            {getTimeUntil(mockSupportGroups.map((g) => g.nextSession).sort()[0])}
           </p>
           <p className="mt-1 text-sm text-slate-400">Gentle Grief Circle</p>
         </div>
@@ -66,7 +65,7 @@ export default function MySupportGroupsDashboard() {
         </div>
       </div>
 
-      {mockGroups.map((g) => (
+      {mockSupportGroups.map((g) => (
         <GroupCard
           key={g.id}
           group={g}

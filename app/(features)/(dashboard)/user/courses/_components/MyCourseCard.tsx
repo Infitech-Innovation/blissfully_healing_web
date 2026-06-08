@@ -1,18 +1,21 @@
 "use client";
 
+import { Course } from "@/app/(features)/(portfolio)/courses/definations";
 import { ArrowRight, BookOpen, Clock } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { Course } from "../definations";
 
 interface Props {
   course: Course;
 }
 
-export default function CourseCard({ course }: Props) {
+export default function MyCourseCard({ course }: Props) {
+  const percent = typeof course.progress === "number" ? course.progress : 30;
+  const completed = course.lessons ? Math.round((percent / 100) * course.lessons) : null;
+
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-[8px] border border-[#eadfd4] bg-white shadow-[0_18px_45px_rgba(63,52,44,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_28px_70px_rgba(63,52,44,0.14)]">
-      <div className="relative h-60 overflow-hidden bg-[#f8f0e8] ">
+      <div className="relative h-60 overflow-hidden bg-[#f8f0e8]">
         <Image
           src={course.imageUrl}
           alt={course.title}
@@ -45,17 +48,27 @@ export default function CourseCard({ course }: Props) {
         <h3 className="text-xl font-semibold leading-snug text-[#2f251f]">
           {course.title}
         </h3>
-        <p className="mt-3 line-clamp-3 text-sm leading-6 text-[#6f5c4f]">
-          {course.shortDescription}
-        </p>
 
-        <div className="mt-6 flex items-center justify-between border-t border-[#eadfd4] pt-5">
-          <p className="font-semibold text-[#2f251f]">{course.price}</p>
+        <div className="mt-auto flex flex-col gap-4 border-t border-[#eadfd4] pt-5">
+          <div>
+            <div className="flex items-center justify-between gap-4">
+              <p className="font-semibold text-[#2f251f]">{percent}% Progress</p>
+              <p className="text-sm text-[#7a6658]">{completed ?? "-"} of {course.lessons} lessons</p>
+            </div>
+
+            <div className="mt-2.5 h-2 w-full overflow-hidden rounded-full bg-[#efe8df]">
+              <div
+                className="h-full rounded-full bg-[#8f6249] transition-all duration-300"
+                style={{ width: `${Math.min(100, Math.max(0, percent))}%` }}
+              />
+            </div>
+          </div>
+
           <Link
-            href={`/courses/${course.slug}`}
-            className="inline-flex items-center gap-2 rounded-sm bg-[#8f6249] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#744d39]"
+            href={`/user/courses/${course.slug}`}
+            className="inline-flex items-center justify-center gap-2 rounded-sm bg-[#8f6249] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#744d39]"
           >
-            Learn More
+            Continue Learning
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

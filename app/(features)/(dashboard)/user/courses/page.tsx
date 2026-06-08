@@ -1,5 +1,5 @@
-import PageUnderDevelopment from '@/app/comming-soon';
+import MyCoursePage from "./_components/MyCoursePage";
 
 export default function CoursesPage() {
- return <PageUnderDevelopment title="Courses Page" />;
+  return <MyCoursePage />;
 }

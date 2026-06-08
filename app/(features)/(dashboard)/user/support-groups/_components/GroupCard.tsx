@@ -1,6 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { formatDate, getTimeUntil } from "../utils";
-import { Group } from "../definations";
 import { ProgressRing } from "./ProgressRing";
 import {
   Calendar,
@@ -9,16 +7,20 @@ import {
   Network,
   Users,
 } from "lucide-react";
+import { SupportGroup } from "../definations";
 
 interface GroupCardProp {
-  group: Group;
+  group: SupportGroup;
   isExpanded: boolean;
   onToggle: () => void;
 }
 
 export function GroupCard({ group, isExpanded, onToggle }: GroupCardProp) {
-  const timeUntil = getTimeUntil(group.nextSession);
-  const nextDate = formatDate(group.nextSession);
+  // const timeUntil = getTimeUntil(group.nextSession);
+  // const nextDate = formatDate(group.nextSession);
+
+  const timeUntil = group.nextSession;
+  const nextDate = group.nextSession;
 
   return (
     <div
@@ -30,7 +32,7 @@ export function GroupCard({ group, isExpanded, onToggle }: GroupCardProp) {
     >
       {/* HEADER */}
       <div
-        className="flex cursor-pointer items-center gap-4 p-5 sm:p-6"
+        className="flex cursor-pointer items-center lg:flex-row sm:flex-col gap-4 p-5 sm:p-6"
         onClick={onToggle}
       >
         <div
@@ -130,7 +132,7 @@ export function GroupCard({ group, isExpanded, onToggle }: GroupCardProp) {
           {/* TOP GRID */}
           <div className="grid gap-6 lg:grid-cols-[auto_1fr]">
             {/* PROGRESS */}
-            <div className="flex items-center gap-4 rounded-md border border-[#eadfd4] bg-white p-4">
+            <div className="flex flex-col items-center gap-4 border border-[#eadfd4] bg-white p-4">
               <ProgressRing
                 attended={group.sessionsAttended}
                 total={group.totalSessions}
