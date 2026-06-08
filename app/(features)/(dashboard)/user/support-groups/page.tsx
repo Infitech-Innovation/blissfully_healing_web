@@ -1,5 +1,6 @@
-import PageUnderDevelopment from '@/app/comming-soon';
+import MySupportGroupsDashboard from "./_components/MySupportGroups";
+
 
 export default function SupportGroupsPage() {
- return <PageUnderDevelopment title="SupportGroups Page" />;
+ return <MySupportGroupsDashboard />;
 }
