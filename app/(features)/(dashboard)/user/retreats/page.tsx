@@ -1,5 +1,5 @@
-import PageUnderDevelopment from '@/app/comming-soon';
+import { MyReatreatsSection } from './_components/MyRetreats';
 
 export default function RetreatsPage() {
- return <PageUnderDevelopment title="Retreats Page" />;
+    return <MyReatreatsSection />
 }

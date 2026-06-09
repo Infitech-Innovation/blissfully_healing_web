@@ -1,6 +1,5 @@
+import { features } from "@/app/(features)/(dashboard)/user/retreats/definations";
 import Image from "next/image";
-import { features } from "./retreat-data";
-
 export function FeaturesSection() {
   return (
     <section className="bg-[#f8f0e8] px-6 py-24">

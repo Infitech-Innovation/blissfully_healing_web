@@ -1,6 +1,7 @@
+import { stays } from "@/app/(features)/(dashboard)/user/retreats/definations";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
-import { stays } from "./retreat-data";
+
 import Link from "next/link";
 
 export function AccommodationsSection() {

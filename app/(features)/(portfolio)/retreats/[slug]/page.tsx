@@ -1,3 +1,4 @@
+import { stays } from "@/app/(features)/(dashboard)/user/retreats/definations";
 import {
   ArrowLeft,
   CalendarDays,
@@ -12,7 +13,6 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { stays } from "../_components/retreat-data";
 
 type PageProps = {
   params: Promise<{

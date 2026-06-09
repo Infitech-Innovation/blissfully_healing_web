@@ -1,7 +1,7 @@
+import { stays } from "@/app/(features)/(dashboard)/user/retreats/definations";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { stays } from "./retreat-data";
 
 export function RetreatsSection() {
   return (
@@ -43,7 +43,9 @@ export function RetreatsSection() {
               <h3 className="mb-2 font-serif text-xl font-semibold text-[#2f251f]">
                 {stay.name}
               </h3>
-              <p className="mb-4 text-sm leading-6 text-[#6f5c4f]">{stay.desc}</p>
+              <p className="mb-4 text-sm leading-6 text-[#6f5c4f]">
+                {stay.desc}
+              </p>
               <Link
                 href={`/retreats/${stay.slug}`}
                 className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#8f6249] group/btn"
