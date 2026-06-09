@@ -1,5 +1,5 @@
-import PageUnderDevelopment from '@/app/comming-soon';
+import PurchaseHist from "./_componets/PurchaseHist";
 
 export default function PurchasePage() {
- return <PageUnderDevelopment title="Purchase Page" />;
+  return <PurchaseHist />;
 }
