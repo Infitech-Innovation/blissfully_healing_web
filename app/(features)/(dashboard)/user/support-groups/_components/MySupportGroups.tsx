@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { mockSupportGroups, mockUser } from "../data";
+import { mockSupportGroups, } from "../data";
 import Link from "next/link";
 import { getTimeUntil } from "../utils";
 import { GroupCard } from "./GroupCard";
+import { mockUser } from "../../../dashboard/definations";
 
 export default function MySupportGroupsDashboard() {
   const [expandedId, setExpandedId] = useState<number | null>(null);
