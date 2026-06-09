@@ -27,7 +27,7 @@ export default function LibrarySection() {
                             Access and download your purchased digital literature, somatic handbooks, and ritual blueprints.
                         </p>
                         <Link
-                            href="/shop/library"
+                            href="/shop"
                             className="inline-block rounded-[8px] border border-[#eadfd4] bg-white px-6 py-3 text-xs font-bold uppercase tracking-widest text-[#6f5c4f] transition hover:border-[#8f6249] hover:text-[#8f6249]"
                         >
                             Browse Bookstore
