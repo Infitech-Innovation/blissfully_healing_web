@@ -1,5 +1,5 @@
-import PageUnderDevelopment from '@/app/comming-soon';
+import MyHealingJourneyPage from "./_components/MyHealingJourney";
 
 export default function JourneyPage() {
- return <PageUnderDevelopment title="Journey Page" />;
+ return <MyHealingJourneyPage />;
 }
