@@ -1,5 +1,5 @@
-import PageUnderDevelopment from '@/app/comming-soon';
+import LibrarySection from "./_components/MyLibrary";
 
 export default function EbooksPage() {
- return <PageUnderDevelopment title="Ebooks Page" />;
+    return <LibrarySection />;
 }
