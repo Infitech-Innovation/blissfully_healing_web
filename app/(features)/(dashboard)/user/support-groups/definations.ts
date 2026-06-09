@@ -1,5 +1,6 @@
 export interface SupportGroup {
   id: number;
+  slug: string;
   name: string;
   category: string;
   facilitator: string;

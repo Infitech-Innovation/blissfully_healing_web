@@ -8,6 +8,7 @@ export const mockUser = {
 export const mockSupportGroups: SupportGroup[] = [
   {
     id: 1,
+    slug: "gentle-grief-circle",
     name: "Gentle Grief Circle",
     category: "Grief & Loss",
     facilitator: "Dr. Nadia Osei",
@@ -37,6 +38,7 @@ export const mockSupportGroups: SupportGroup[] = [
   },
   {
     id: 2,
+    slug: "inner-child-healing",
     name: "Inner Child Healing",
     category: "Emotional Healing",
     facilitator: "Kezia Mwangi",
@@ -66,6 +68,7 @@ export const mockSupportGroups: SupportGroup[] = [
   },
   {
     id: 3,
+    slug: "awakening-mothers",
     name: "Awakening Mothers",
     category: "Maternal Wellness",
     facilitator: "Sade Afolabi",
@@ -95,6 +98,7 @@ export const mockSupportGroups: SupportGroup[] = [
   },
   {
     id: 4,
+    slug: "men-who-feel",
     name: "Men Who Feel",
     category: "Men's Wellness",
     facilitator: "Jabari Ndung'u",
@@ -124,6 +128,7 @@ export const mockSupportGroups: SupportGroup[] = [
   },
   {
     id: 5,
+    slug: "releasing-anxiety",
     name: "Releasing Anxiety",
     category: "Mental Health",
     facilitator: "Dr. Amara Diallo",
@@ -153,6 +158,7 @@ export const mockSupportGroups: SupportGroup[] = [
   },
   {
     id: 6,
+    slug: "spiritual-seekers-circle",
     name: "Spiritual Seekers Circle",
     category: "Spirituality",
     facilitator: "Zara Kamau",

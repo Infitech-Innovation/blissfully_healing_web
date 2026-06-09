@@ -1,13 +1,12 @@
+import Link from "next/link";
 import { SupportGroup } from "@/app/(features)/(dashboard)/user/support-groups/definations";
 import { StatusBadge } from "./statusBadge";
 import { Calendar, Clock } from "lucide-react";
 
 export function GroupCard({
   group,
-  onSelect,
 }: {
   group: SupportGroup;
-  onSelect: (id: number) => void;
 }) {
   return (
     <article className="flex flex-col bg-white border border-stone-200/70 rounded-md overflow-hidden shadow-sm hover:shadow-md hover:border-stone-300/90 transition-all duration-300 group">
@@ -18,7 +17,7 @@ export function GroupCard({
         {/* Card Header metadata */}
         <div className="flex justify-between items-center mb-3">
           <span
-            className="text-[10px] tracking-widest uppercase font-bold"
+            className="text-[14px] tracking-widest uppercase font-bold"
             style={{ color: group.secondaryColor }}
           >
             {group.category}
@@ -27,32 +26,32 @@ export function GroupCard({
         </div>
 
         {/* Clickable Heading Structure */}
-        <button
-          onClick={() => onSelect(group.id)}
+        <Link
+          href={`/support-groups/${group.slug}`}
           className="flex-1 block text-left space-y-1.5 focus:outline-none group/title w-full mb-4"
         >
           <div className="flex items-start gap-2">
-            <span className="text-xl select-none" role="img" aria-label="icon">
+            <span className="text-2xl select-none" role="img" aria-label="icon">
               {group.icon}
             </span>
             <h3 className="font-serif text-lg font-medium text-stone-800 leading-snug group-hover/title:text-stone-900 transition-colors">
               {group.name}
             </h3>
           </div>
-          <p className="text-xs text-stone-500 font-light line-clamp-2 leading-relaxed">
+          <p className="text-md text-stone-500 font-light line-clamp-2 leading-relaxed">
             {group.description}
           </p>
-        </button>
+        </Link>
 
         {/* Schedule Ribbon Context */}
         <div className="pt-3.5 border-t border-stone-100 grid grid-cols-2 gap-2 text-stone-600 mb-4">
-          <div className="flex items-center gap-1.5 text-xs font-light truncate">
+          <div className="flex items-center gap-1.5 text-md font-light truncate">
             <span className="opacity-60 text-stone-400">
               <Calendar />
             </span>
             <span className="truncate">{group.schedule}</span>
           </div>
-          <div className="flex items-center gap-1.5 text-xs font-light truncate">
+          <div className="flex items-center gap-1.5 text-md font-light truncate">
             <span className="opacity-60 text-stone-400">
               <Clock />
             </span>
@@ -62,7 +61,7 @@ export function GroupCard({
 
         {/* Custom Progress / Seats Visual Indicator */}
         <div className="space-y-1.5 mb-5">
-          <div className="flex justify-between items-center text-[10px] tracking-wide text-stone-400 uppercase font-semibold">
+          <div className="flex justify-between items-center text-[12px] tracking-wide text-stone-400 uppercase font-semibold">
             <span>Circle Attendance</span>
             <span className="font-sans font-bold text-stone-600">
               {group.members}/{group.maxMembers}
@@ -82,20 +81,20 @@ export function GroupCard({
         {/* Footer actions row */}
         <div className="pt-3.5 border-t border-stone-100 flex items-center justify-between mt-auto">
           <div className="flex flex-col">
-            <span className="text-[9px] tracking-wider uppercase text-stone-400 font-semibold">
+            <span className="text-[12px] tracking-wider uppercase text-stone-400 font-semibold">
               Next Session
             </span>
-            <span className="text-xs text-stone-600 font-semibold">
+            <span className="text-md text-stone-600 font-semibold">
               {group.nextSession.split(",")[1] || group.nextSession}
             </span>
           </div>
 
-          <button
-            onClick={() => onSelect(group.id)}
-            className="text-xs font-medium tracking-wide px-4 py-2 rounded-xl bg-stone-50 hover:bg-stone-100 border border-stone-200 text-stone-700 transition-colors cursor-pointer"
+          <Link
+            href={`/support-groups/${group.slug}`}
+            className="text-md font-medium tracking-wide px-4 py-2 rounded-xl bg-stone-50 hover:bg-stone-100 border border-stone-200 text-stone-700 transition-colors"
           >
             View Details
-          </button>
+          </Link>
         </div>
       </div>
     </article>
