@@ -1,5 +1,5 @@
-import PageUnderDevelopment from '@/app/comming-soon';
+import { HealingVideoSanctuary } from './_components/VideosPage';
 
 export default function VideosPage() {
- return <PageUnderDevelopment title="Videos Page" />;
+ return <HealingVideoSanctuary/>;
 }
