@@ -1,5 +1,5 @@
-import PageUnderDevelopment from "@/app/comming-soon";
+import { DashboardAnalytics } from "../_components/user/DashboardAnalytics";
 
 export default function UserDashboard() {
-  return <PageUnderDevelopment title="User Dashboard" />;
+  return <DashboardAnalytics />;
 }
