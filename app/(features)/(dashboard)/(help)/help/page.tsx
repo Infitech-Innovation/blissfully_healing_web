@@ -1,5 +1,5 @@
-import PageUnderDevelopment from '@/app/comming-soon';
+import HelpCenterPage from "./_components/HelpCenter";
 
 export default function HelpPage() {
- return <PageUnderDevelopment title="Help Page" />;
+ return <HelpCenterPage/>;
 }
