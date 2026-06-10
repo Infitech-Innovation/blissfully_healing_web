@@ -12,7 +12,6 @@ import { LogOut, Loader2, UserCircle2 } from "lucide-react";
 import { useAuthStore } from "@/app/stores/useAuthStore";
 import { useLogout } from "@/app/(features)/(auth)/auth.services";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
 
 export default function UserMenu() {
   const user = useAuthStore((state) => state.user);
@@ -27,13 +26,17 @@ export default function UserMenu() {
         .slice(0, 2)
     : "BH";
 
+  // Dynamically switch destination depending on security role definitions
+  const profileHref =
+    user?.role === "admin" ? "/admin/settings" : "/user/profile";
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button
           type="button"
-          className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-xs font-semibold text-primary-foreground outline-none ring-offset-background transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-          aria-label="User menu"
+          className="flex h-8 w-8 items-center justify-center rounded-full bg-[#8f6249] text-[11px] font-bold uppercase tracking-wider text-white outline-none ring-offset-white transition hover:bg-[#3f342c] focus-visible:ring-2 focus-visible:ring-[#8f6249] focus-visible:ring-offset-2"
+          aria-label="Toggle structural user dashboard operations card"
         >
           {initials}
         </button>
@@ -41,68 +44,50 @@ export default function UserMenu() {
 
       <DropdownMenuContent
         align="end"
-        className="w-52 animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95"
+        className="w-56 border-[#eadfd4] bg-white p-1.5 shadow-[0_10px_30px_rgba(63,52,44,0.08)] animate-in fade-in-0 zoom-in-95"
       >
-        {/* User info */}
-        <DropdownMenuLabel className="font-normal">
-          <p className="text-sm font-medium text-foreground">
-            {user?.full_name ?? "User"}
+        {/* User Identity Ledger Details */}
+        <DropdownMenuLabel className="px-2.5 py-2 font-normal">
+          <p className="text-xs font-bold uppercase tracking-wider text-[#8f6249]">
+            {user?.role === "admin" ? "Administrator Account" : "Workspace Hub"}
           </p>
-          <p className="truncate text-xs text-muted-foreground">
-            {user?.email ?? ""}
+          <p className="font-serif text-sm font-medium text-[#2f251f] mt-0.5 truncate">
+            {user?.full_name ?? "Valued Seeker"}
           </p>
+          {user?.email && (
+            <p className="truncate text-xs text-[#7a6658] opacity-85 mt-0.5">
+              {user.email}
+            </p>
+          )}
         </DropdownMenuLabel>
 
-        <DropdownMenuSeparator />
+        <DropdownMenuSeparator className="bg-[#eadfd4]/60 my-1" />
 
-        {/* Account Settings */}
+        {/* Dynamic Route Gateway Item */}
         <DropdownMenuItem asChild>
           <Link
-            href="/user/profile"
-            className="group flex cursor-pointer items-center"
+            href={profileHref}
+            className="group flex w-full cursor-pointer items-center rounded-[4px] px-2.5 py-2 text-xs font-medium text-[#3f342c] outline-none transition-colors hover:bg-[#fffaf6] focus:bg-[#fffaf6] focus:text-[#8f6249]"
           >
-            <UserCircle2 className="mr-2 h-4 w-4 transition-transform duration-300 group-hover:scale-105" />
-            Profile
+            <UserCircle2 className="mr-2 h-4 w-4 text-[#6f5c4f] transition-transform duration-200 group-hover:scale-105 group-focus:text-[#8f6249]" />
+            <span>Account Profile</span>
           </Link>
         </DropdownMenuItem>
-        {/* <DropdownMenuItem asChild>
-          <Link
-            href={settingsHref}
-            className="group flex cursor-pointer items-center"
-          >
-            <Settings className="mr-2 h-4 w-4 transition-transform duration-300 group-hover:rotate-45" />
-            Settings
-          </Link>
-        </DropdownMenuItem> */}
 
-        <DropdownMenuSeparator />
+        <DropdownMenuSeparator className="bg-[#eadfd4]/60 my-1" />
 
-        {/* Logout */}
+        {/* Synchronized Destruction Action Parameter */}
         <DropdownMenuItem
           onClick={() => logoutUser()}
           disabled={isLoggingOut}
-          className="group cursor-pointer text-red-600 focus:bg-red-50 focus:text-red-600 disabled:cursor-not-allowed"
+          className="group flex w-full cursor-pointer items-center rounded-[4px] px-2.5 py-2 text-xs font-semibold text-red-600 outline-none transition-colors focus:bg-red-50/60 focus:text-red-700 disabled:cursor-not-allowed disabled:opacity-50"
         >
-          <div
-            className={cn(
-              "mr-2 flex h-4 w-4 items-center justify-center",
-              isLoggingOut && "animate-spin",
-            )}
-          >
-            {isLoggingOut ? (
-              <Loader2 className="h-4 w-4" />
-            ) : (
-              <LogOut className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-            )}
-          </div>
-          <span
-            className={cn(
-              "transition-opacity duration-200",
-              isLoggingOut && "opacity-60",
-            )}
-          >
-            {isLoggingOut ? "Logging out..." : "Log out"}
-          </span>
+          {isLoggingOut ? (
+            <Loader2 className="mr-2 h-4 w-4 animate-spin text-red-500" />
+          ) : (
+            <LogOut className="mr-2 h-4 w-4 text-red-500/80 transition-transform duration-200 group-hover:translate-x-0.5" />
+          )}
+          <span>{isLoggingOut ? "Disconnecting..." : "Terminate Session"}</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
