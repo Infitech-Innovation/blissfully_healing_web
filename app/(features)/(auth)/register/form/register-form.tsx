@@ -4,24 +4,29 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Eye, EyeOff, Loader2 } from "lucide-react";
+import { AlertCircle, Eye, EyeOff, Loader2 } from "lucide-react";
 import { useAuthStore } from "@/app/stores/useAuthStore";
 import { AxiosError } from "axios";
 import { useRegister } from "../../auth.services";
 import { RegisterFormData, registerSchema } from "@/app/lib/auth.zod";
 
-type ApiFieldErrors = Partial<Record<keyof RegisterFormData | "non_field_errors", string[]>>;
+type ApiFieldErrors = Partial<
+  Record<keyof RegisterFormData | "non_field_errors", string[]>
+>;
 
 type ApiErrorResponse = {
   message?: string;
 } & ApiFieldErrors;
 
+const inputClassName =
+  "min-h-11 w-full rounded-[4px] border border-[#eadfd4] bg-[#fffaf6]/50 px-3 py-2 text-sm text-[#2f251f] outline-none transition placeholder:text-[#b28b67]/60 focus:border-[#8f6249] focus:bg-white focus:ring-4 focus:ring-[#8f6249]/5 sm:text-sm";
 
 export default function RegisterForm() {
   const router = useRouter();
   const { isAuthenticated, getRedirectPath } = useAuthStore();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [globalError, setGlobalError] = useState<string | null>(null);
 
   const {
     register: field,
@@ -39,7 +44,7 @@ export default function RegisterForm() {
     },
   });
 
-  const { mutate: registerUser, isPending } = useRegister();
+  const { mutate: registerUser, isPending, isError } = useRegister();
 
   useEffect(() => {
     if (isAuthenticated()) {
@@ -48,14 +53,28 @@ export default function RegisterForm() {
   }, [isAuthenticated, router, getRedirectPath]);
 
   const onSubmit = (data: RegisterFormData) => {
+    setGlobalError(null);
+
     registerUser(data, {
       onError(err) {
         const apiError = err as AxiosError<ApiErrorResponse>;
         const responseData = apiError?.response?.data;
 
-        if (!responseData) return;
+        if (!responseData) {
+          setGlobalError(
+            "An unexpected service disconnect occurred. Please try again.",
+          );
+          return;
+        }
 
-        // Field-level keys that map directly to form fields
+        // Capture generic microservice response errors
+        if (responseData.message) {
+          setGlobalError(responseData.message);
+        } else if (responseData.non_field_errors?.length) {
+          setGlobalError(responseData.non_field_errors[0]);
+        }
+
+        // Map field-level validation structural responses
         const fieldKeys: (keyof RegisterFormData)[] = [
           "first_name",
           "last_name",
@@ -77,66 +96,91 @@ export default function RegisterForm() {
   const isLoading = isSubmitting || isPending;
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="w-full space-y-4">
-      <h1 className="mb-4 text-center text-lg font-medium sm:text-xl">
-        Create your account
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="w-full rounded-lg border border-[#eadfd4] bg-white p-6 space-y-4 shadow-[0_4px_20px_rgba(63,52,44,0.03)]"
+    >
+      <h1 className="mb-2 text-center font-serif text-lg font-semibold tracking-wide text-[#3f342c] sm:text-xl">
+        Create Your Account
       </h1>
 
-      {/* Row 1: Full Name + Email */}
+      {/* Row 1: Name Information Grid */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="space-y-1.5">
-          <label className="text-sm font-medium" htmlFor="first_name">
+          <label
+            className="text-xs font-bold uppercase tracking-wider text-[#3f342c]"
+            htmlFor="first_name"
+          >
             First Name
           </label>
           <input
             id="first_name"
             type="text"
             {...field("first_name")}
-            className="min-h-11 w-full rounded-md border px-3 py-2 text-base outline-none transition focus:border-black focus:ring-2 focus:ring-black/10 sm:text-sm"
-            placeholder="e.g. First Name"
+            className={inputClassName}
+            placeholder="e.g. Jane"
+            disabled={isLoading}
           />
           {errors.first_name && (
-            <p className="text-sm text-red-500">{errors.first_name.message}</p>
+            <p className="text-xs font-semibold text-[#744d39]">
+              {errors.first_name.message}
+            </p>
           )}
         </div>
 
         <div className="space-y-1.5">
-          <label className="text-sm font-medium" htmlFor="last_name">
+          <label
+            className="text-xs font-bold uppercase tracking-wider text-[#3f342c]"
+            htmlFor="last_name"
+          >
             Last Name
           </label>
           <input
             id="last_name"
             type="text"
             {...field("last_name")}
-            className="min-h-11 w-full rounded-md border px-3 py-2 text-base outline-none transition focus:border-black focus:ring-2 focus:ring-black/10 sm:text-sm"
-            placeholder="e.g. Last Name"
+            className={inputClassName}
+            placeholder="e.g. Doe"
+            disabled={isLoading}
           />
           {errors.last_name && (
-            <p className="text-sm text-red-500">{errors.last_name.message}</p>
+            <p className="text-xs font-semibold text-[#744d39]">
+              {errors.last_name.message}
+            </p>
           )}
         </div>
       </div>
 
+      {/* Row 2: Communication Channel Block */}
       <div className="space-y-1.5">
-        <label className="text-sm font-medium" htmlFor="email">
-          Email
+        <label
+          className="text-xs font-bold uppercase tracking-wider text-[#3f342c]"
+          htmlFor="email"
+        >
+          Email Address
         </label>
         <input
           id="email"
           type="email"
           {...field("email")}
-          className="min-h-11 w-full rounded-md border px-3 py-2 text-base outline-none transition focus:border-black focus:ring-2 focus:ring-black/10 sm:text-sm"
-          placeholder="e.g. blissfully@email.com"
+          className={inputClassName}
+          placeholder="e.g. jane.doe@domain.com"
+          disabled={isLoading}
         />
         {errors.email && (
-          <p className="text-sm text-red-500">{errors.email.message}</p>
+          <p className="text-xs font-semibold text-[#744d39]">
+            {errors.email.message}
+          </p>
         )}
       </div>
 
-      {/* Row 4: Password + Confirm Password */}
+      {/* Row 3: Double Security Field Controls */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="space-y-1.5">
-          <label className="text-sm font-medium" htmlFor="password">
+          <label
+            className="text-xs font-bold uppercase tracking-wider text-[#3f342c]"
+            htmlFor="password"
+          >
             Password
           </label>
           <div className="relative">
@@ -144,14 +188,20 @@ export default function RegisterForm() {
               id="password"
               type={showPassword ? "text" : "password"}
               {...field("password")}
-              className="min-h-11 w-full rounded-md border px-3 py-2 text-base outline-none transition focus:border-black focus:ring-2 focus:ring-black/10 sm:text-sm"
+              className={inputClassName}
               placeholder="Min. 8 characters"
+              disabled={isLoading}
             />
             <button
               type="button"
               onClick={() => setShowPassword((v) => !v)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-              aria-label={showPassword ? "Hide password" : "Show password"}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-[#b28b67] hover:text-[#8f6249]"
+              aria-label={
+                showPassword
+                  ? "Hide password text representation"
+                  : "Expose password text representation"
+              }
+              disabled={isLoading}
             >
               {showPassword ? (
                 <EyeOff className="h-4 w-4" />
@@ -161,12 +211,17 @@ export default function RegisterForm() {
             </button>
           </div>
           {errors.password && (
-            <p className="text-sm text-red-500">{errors.password.message}</p>
+            <p className="text-xs font-semibold text-[#744d39]">
+              {errors.password.message}
+            </p>
           )}
         </div>
 
         <div className="space-y-1.5">
-          <label className="text-sm font-medium" htmlFor="confirm_password">
+          <label
+            className="text-xs font-bold uppercase tracking-wider text-[#3f342c]"
+            htmlFor="confirm_password"
+          >
             Confirm Password
           </label>
           <div className="relative">
@@ -174,16 +229,20 @@ export default function RegisterForm() {
               id="confirm_password"
               type={showConfirmPassword ? "text" : "password"}
               {...field("confirm_password")}
-              className="min-h-11 w-full rounded-md border px-3 py-2 text-base outline-none transition focus:border-black focus:ring-2 focus:ring-black/10 sm:text-sm"
-              placeholder="Re-enter your password"
+              className={inputClassName}
+              placeholder="Re-type system password"
+              disabled={isLoading}
             />
             <button
               type="button"
               onClick={() => setShowConfirmPassword((v) => !v)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-[#b28b67] hover:text-[#8f6249]"
               aria-label={
-                showConfirmPassword ? "Hide password" : "Show password"
+                showConfirmPassword
+                  ? "Hide password field confirmation text"
+                  : "Reveal password field confirmation text"
               }
+              disabled={isLoading}
             >
               {showConfirmPassword ? (
                 <EyeOff className="h-4 w-4" />
@@ -193,23 +252,38 @@ export default function RegisterForm() {
             </button>
           </div>
           {errors.confirm_password && (
-            <p className="text-sm text-red-500">
+            <p className="text-xs font-semibold text-[#744d39]">
               {errors.confirm_password.message}
             </p>
           )}
         </div>
       </div>
 
-      {/* Submit */}
+      {/* Submit Action Interface */}
       <button
         type="submit"
         disabled={isLoading}
-        className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-md bg-black px-4 py-2 font-medium text-white transition hover:bg-black/90 disabled:cursor-not-allowed disabled:opacity-70"
+        className="mt-2 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-[4px] bg-[#8f6249] px-4 py-2 text-xs font-bold uppercase tracking-widest text-white transition hover:bg-[#3f342c] disabled:cursor-not-allowed disabled:opacity-50"
         aria-disabled={isLoading}
       >
         {isLoading && <Loader2 className="h-4 w-4 animate-spin" />}
-        {isLoading ? "Creating account..." : "Register"}
+        <span>{isLoading ? "Onboarding Profile..." : "Register Profile"}</span>
       </button>
+
+      {/* Global Fallback Error Render Alert Block */}
+      {(globalError || isError) && (
+        <div
+          className="flex items-start gap-2 rounded-[4px] border border-[#744d39]/20 bg-[#fffaf6] px-4 py-3 mt-3"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-[#744d39]" />
+          <p className="text-xs font-medium text-[#744d39]">
+            {globalError ??
+              "Could not synchronize credentials. Please resolve existing issues."}
+          </p>
+        </div>
+      )}
     </form>
   );
 }

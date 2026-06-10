@@ -5,32 +5,50 @@ import Link from "next/link";
 
 export default function LoginPage() {
   return (
-    <main className="flex min-h-[100dvh] items-center justify-center px-4 py-8 sm:px-6 md:h-screen md:py-0">
-      <div className="relative mx-auto flex w-full max-w-[420px] flex-col space-y-4 sm:max-w-[400px] md:-mt-32">
-        <div className="flex w-full items-center justify-center rounded-lg py-2 sm:py-3 md:h-36">
-          <div className="w-28 text-white sm:w-32 md:w-36">
+    <main className="flex min-h-[100dvh] items-center justify-center bg-[#fffaf6] px-4 py-10 sm:px-6">
+      <div className="w-full max-w-[400px] space-y-5">
+        
+        {/* Branding Vault Area */}
+        <div className="flex w-full items-center justify-center py-2 sm:py-4">
+          <div className="w-32 sm:w-36">
             <Image
               src="/images/bh_logo.webp"
-              width={800}
-              height={560}
-              className="h-auto w-full"
-              alt="Blissfully Healing"
-              loading="eager"
+              width={400}
+              height={280}
+              className="h-auto w-full object-contain"
+              alt="Blissfully Healing Identity"
+              priority // Replaces loading="eager" for better Next.js LCP optimization flags
             />
           </div>
         </div>
-        <Suspense>
+
+        {/* Dynamic Context Form Boundary */}
+        <Suspense 
+          fallback={
+            <div className="w-full rounded-lg border border-[#eadfd4] bg-white p-6 space-y-4 shadow-sm animate-pulse">
+              <div className="h-9 w-1/3 bg-[#f8f0e8] rounded-[4px]" />
+              <div className="space-y-2">
+                <div className="h-11 bg-[#f8f0e8] rounded-[4px]" />
+                <div className="h-11 bg-[#f8f0e8] rounded-[4px]" />
+              </div>
+              <div className="h-11 bg-[#eadfd4] rounded-[4px] mt-2" />
+            </div>
+          }
+        >
           <LoginForm />
         </Suspense>
-        <p className="text-center text-sm text-gray-500">
-          Don&apos;t have an account?{" "}
+
+        {/* Navigation Trailing Parameter */}
+        <p className="text-center text-xs sm:text-sm text-[#7a6658]">
+          Don&apos;t have a security profile?{" "}
           <Link
             href="/register"
-            className="font-medium text-black underline-offset-4 hover:underline"
+            className="font-bold text-[#3f342c] underline decoration-[#eadfd4] underline-offset-4 transition hover:text-[#8f6249] hover:decoration-[#8f6249]"
           >
-            Create one
+            Create one here
           </Link>
         </p>
+
       </div>
     </main>
   );
