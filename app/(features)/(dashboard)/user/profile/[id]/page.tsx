@@ -1,6 +1,5 @@
-import PageUnderDevelopment from '@/app/comming-soon';
-import React from 'react'
+import { EditProfileForm } from '../forms/EditForm';
 
 export default function EditProfilePage() {
-  return <PageUnderDevelopment title="Edit Profile Page" />;
+  return <EditProfileForm/>;
 }

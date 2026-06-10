@@ -4,13 +4,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  ChangePasswordFormType,
-  changePasswordSchema,
-} from "@/app/lib/auth.zod";
+import { ChangePasswordFormType, changePasswordSchema } from "@/app/lib/auth.zod";
 
 const inputClassName =
-  "min-h-11 w-full rounded-md border px-3 py-2 text-base outline-none transition focus:border-black focus:ring-2 focus:ring-black/10 sm:text-sm";
+  "min-h-11 w-full rounded-[4px] border border-[#eadfd4] bg-[#fffaf6]/50 px-3 py-2 text-sm text-[#2f251f] outline-none transition placeholder:text-[#b28b67]/60 focus:border-[#8f6249] focus:bg-white focus:ring-4 focus:ring-[#8f6249]/5";
 
 export function ChangePasswordForm() {
   const {
@@ -19,77 +16,69 @@ export function ChangePasswordForm() {
     formState: { errors, isSubmitting },
   } = useForm<ChangePasswordFormType>({
     resolver: zodResolver(changePasswordSchema),
-    defaultValues: {
-      currentPassword: "",
-      newPassword: "",
-      confirmPassword: "",
-    },
+    defaultValues: { currentPassword: "", newPassword: "", confirmPassword: "" },
   });
 
-  async function onSubmit(
-    // eslint-disable-next-line
-    _: ChangePasswordFormType,
-  ): Promise<void> {}
+  async function onSubmit(_: ChangePasswordFormType): Promise<void> {}
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="grid gap-y-4">
-      <div className="grid gap-y-1">
-        <label htmlFor="currentPassword" className="text-sm font-medium">
-          Current Password
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <div className="grid gap-y-1.5">
+        <label htmlFor="currentPassword" className="text-xs font-bold uppercase tracking-wider text-[#3f342c]">
+          Current Key Token
         </label>
         <input
           id="currentPassword"
           type="password"
           {...register("currentPassword")}
           className={inputClassName}
-          placeholder="Enter current password"
+          placeholder="Enter current password token"
         />
         {errors.currentPassword && (
-          <p className="text-sm text-red-500">
-            {errors.currentPassword.message}
-          </p>
+          <p className="text-xs font-semibold text-[#744d39]">{errors.currentPassword.message}</p>
         )}
       </div>
-      <div className="grid gap-y-1">
-        <label htmlFor="newPassword" className="text-sm font-medium">
-          New Password
+
+      <div className="grid gap-y-1.5">
+        <label htmlFor="newPassword" className="text-xs font-bold uppercase tracking-wider text-[#3f342c]">
+          New Key Token
         </label>
         <input
           id="newPassword"
           type="password"
           {...register("newPassword")}
           className={inputClassName}
-          placeholder="Enter new password"
+          placeholder="Define new security credentials"
         />
         {errors.newPassword && (
-          <p className="text-sm text-red-500">{errors.newPassword.message}</p>
+          <p className="text-xs font-semibold text-[#744d39]">{errors.newPassword.message}</p>
         )}
       </div>
-      <div className="grid gap-y-1">
-        <label htmlFor="confirmPassword" className="text-sm font-medium">
-          Confirm Password
+
+      <div className="grid gap-y-1.5">
+        <label htmlFor="confirmPassword" className="text-xs font-bold uppercase tracking-wider text-[#3f342c]">
+          Confirm New Key Token
         </label>
         <input
           id="confirmPassword"
           type="password"
           {...register("confirmPassword")}
           className={inputClassName}
-          placeholder="Confirm new password"
+          placeholder="Re-type new security token"
         />
         {errors.confirmPassword && (
-          <p className="text-sm text-red-500">
-            {errors.confirmPassword.message}
-          </p>
+          <p className="text-xs font-semibold text-[#744d39]">{errors.confirmPassword.message}</p>
         )}
       </div>
+
       <Button
         type="submit"
         disabled={isSubmitting}
-        className="min-h-11 w-full gap-2 rounded-md bg-black px-4 py-2 font-medium text-white transition hover:bg-black/90 disabled:cursor-not-allowed disabled:opacity-70"
+        className="min-h-11 w-full gap-2 rounded-[4px] bg-[#8f6249] hover:bg-[#3f342c] text-xs font-bold uppercase tracking-widest text-white transition-all shadow-sm disabled:cursor-not-allowed disabled:opacity-50 pt-0.5"
         aria-disabled={isSubmitting}
       >
         {isSubmitting && <Loader2 className="h-4 w-4 animate-spin" />}
-        {isSubmitting ? "Updating password..." : "Set new password"}
+        {isSubmitting ? "Syncing Credentials..." : "Authorize New Security Key"}
       </Button>
     </form>
   );

@@ -1,9 +1,7 @@
 "use client";
 
 import {
-  CardContent,
   CardDescription,
-  CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import { BriefcaseBusiness, Mail, Languages, NotebookText } from "lucide-react";
@@ -11,6 +9,7 @@ import { useState, type ReactNode } from "react";
 import { ChangePasswordForm } from "./change_password";
 import { useAuthStore } from "@/app/stores/useAuthStore";
 import { DangerousZone } from "./_delete/danger_zone";
+import { cn } from "@/lib/utils";
 
 interface UserDetails {
   role: string;
@@ -28,11 +27,12 @@ function ProfileContentIntroItem({
   value: string | ReactNode;
 }) {
   return (
-    <li className="inline-flex items-baseline gap-x-1">
-      <span className="h-4 w-4 translate-y-[0.2rem]">{icon}</span>
-      <p>
-        {title} <span className="text-primary">{value}</span>
-      </p>
+    <li className="flex items-start gap-3 rounded-[6px] border border-[#eadfd4]/60 bg-white p-3.5 shadow-[0_4px_12px_rgba(63,52,44,0.01)]">
+      <span className="h-4 w-4 text-[#8f6249] shrink-0 mt-0.5">{icon}</span>
+      <div className="space-y-0.5">
+        <p className="text-[10px] font-bold uppercase tracking-wider text-[#b28b67]">{title}</p>
+        <p className="text-sm font-medium text-[#2f251f]">{value}</p>
+      </div>
     </li>
   );
 }
@@ -43,94 +43,86 @@ function ProfileContentIntroList({
   userDetails: UserDetails;
 }) {
   return (
-    <ul className="grid gap-y-3">
-      <ProfileContentIntroItem
-        title="Role"
-        value={<>{userDetails.role}</>}
-        icon={<BriefcaseBusiness className="h-4 w-4" />}
-      />
-
+    <ul className="grid gap-3 grid-cols-1 sm:grid-cols-2">
       <ProfileContentIntroItem
         title="Email"
         value={userDetails.email}
         icon={<Mail className="h-4 w-4" />}
       />
-      
       <ProfileContentIntroItem
-        title="Bio"
-        value={userDetails.bio || "No bio added yet"}
-        icon={<NotebookText className="h-4 w-4" />}
-      />
-
-      <ProfileContentIntroItem
-        title="Language"
+        title="Language Preference"
         value="English"
         icon={<Languages className="h-4 w-4" />}
       />
+      <div className="sm:col-span-2">
+        <ProfileContentIntroItem
+          title="Personal Journey Bio"
+          value={userDetails.bio || "No reflection bio added to your sanctuary profile yet."}
+          icon={<NotebookText className="h-4 w-4" />}
+        />
+      </div>
     </ul>
   );
 }
 
 const navItems = [
-  { key: "info", label: "Info" },
-  { key: "change-password", label: "Change Password" },
+  { key: "info", label: "Account Info" },
+  { key: "change-password", label: "Security & Password" },
 ] as const;
 
 type NavKey = (typeof navItems)[number]["key"];
 
 export function ProfileContentIntro() {
   const [active, setActive] = useState<NavKey>("info");
-
   const user = useAuthStore((state) => state.user);
+
   if (!user) return null;
 
   return (
-    <div className="mt-8">
+    <div className="mt-8 rounded-[8px] border border-[#eadfd4] bg-white shadow-[0_12px_30px_rgba(63,52,44,0.02)] overflow-hidden">
       <article className="flex flex-col min-[900px]:flex-row">
-        {/* Sidebar Nav */}
-        <nav className="flex w-full shrink-0 gap-2 overflow-x-auto border-b p-4 min-[900px]:w-64 min-[900px]:flex-col min-[900px]:gap-y-1 min-[900px]:overflow-visible min-[900px]:border-b-0 min-[900px]:border-e min-[900px]:pt-6">
+        
+        {/* Sanctuary Sidebar Nav Layout */}
+        <nav className="flex w-full shrink-0 gap-2 overflow-x-auto border-b border-[#eadfd4] bg-[#fffaf6] p-4 min-[900px]:w-64 min-[900px]:flex-col min-[900px]:gap-y-1.5 min-[900px]:overflow-visible min-[900px]:border-b-0 min-[900px]:border-e min-[900px]:p-6">
           {navItems.map(({ key, label }) => (
             <button
               key={key}
               onClick={() => setActive(key)}
-              className={`shrink-0 rounded-md px-3 py-2 text-start text-sm font-medium transition-colors hover:bg-muted min-[900px]:w-full ${
+              className={cn(
+                "shrink-0 rounded-[4px] px-4 py-2.5 text-start text-xs font-bold uppercase tracking-wider transition-all",
                 active === key
-                  ? "bg-muted text-foreground"
-                  : "text-muted-foreground"
-              }`}
+                  ? "bg-[#8f6249] text-white shadow-sm"
+                  : "text-[#6f5c4f] hover:bg-[#f8f0e8] hover:text-[#2f251f]"
+              )}
             >
               {label}
             </button>
           ))}
         </nav>
 
-        {/* Content */}
-        <div className="min-w-0 flex-1">
+        {/* Primary Settings Workspace Panel */}
+        <div className="min-w-0 flex-1 bg-white p-6 sm:p-8">
           {active === "info" && (
-            <>
-              <CardHeader>
-                <CardTitle className="bold">Intro</CardTitle>
-              </CardHeader>
-              <CardContent className="mt-5">
-                <ProfileContentIntroList userDetails={user} />
-
-                <DangerousZone/>
-              </CardContent>
-            </>
+            <div className="space-y-6">
+              <div>
+                <CardTitle className="font-serif text-xl font-semibold text-[#2f251f]">Account Profile</CardTitle>
+                <CardDescription className="text-xs text-[#744d39] mt-0.5">Your fundamental digital presence inside the portal.</CardDescription>
+              </div>
+              <ProfileContentIntroList userDetails={user} />
+              <DangerousZone />
+            </div>
           )}
+
           {active === "change-password" && (
-            <>
-              <CardHeader>
-                <CardTitle className="bold">Change Password</CardTitle>
-                <CardDescription>
-                  Update your password to keep your account secure. Choose a
-                  strong, unique password.
+            <div className="space-y-6 max-w-xl">
+              <div>
+                <CardTitle className="font-serif text-xl font-semibold text-[#2f251f]">Security Settings</CardTitle>
+                <CardDescription className="text-xs text-[#744d39] mt-0.5">
+                  Update your authentication tokens regularly to guarantee private spatial integrity.
                 </CardDescription>
-              </CardHeader>
-              <CardContent className="mt-5">
-                <ChangePasswordForm />
-              </CardContent>
-            </>
+              </div>
+              <ChangePasswordForm />
+            </div>
           )}
         </div>
       </article>
