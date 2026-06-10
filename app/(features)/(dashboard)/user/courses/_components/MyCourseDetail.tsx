@@ -17,7 +17,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { EnrolledCourse } from "@/app/(features)/(portfolio)/courses/definations";
 
-
 export default function MyCourseDetail({ course }: { course: EnrolledCourse }) {
   const [openChapterIds, setOpenChapterIds] = useState<string[]>([
     course.chapters[0]?.id,
@@ -214,12 +213,17 @@ export default function MyCourseDetail({ course }: { course: EnrolledCourse }) {
                               <div
                                 key={lesson.id}
                                 className={`flex items-center gap-3 px-4 py-[11px] pl-[56px] transition ${
-                                  isCurrent ? "bg-[#f8f0e8]" : "hover:bg-[#fdf6f0]"
+                                  isCurrent
+                                    ? "bg-[#f8f0e8]"
+                                    : "hover:bg-[#fdf6f0]"
                                 }`}
                               >
                                 {isLessonCompleted ? (
                                   <span className="flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full bg-[#2f9e44]">
-                                    <IconCheck size={11} className="text-white" />
+                                    <IconCheck
+                                      size={11}
+                                      className="text-white"
+                                    />
                                   </span>
                                 ) : (
                                   <IconPlayerPlay
@@ -371,7 +375,10 @@ export default function MyCourseDetail({ course }: { course: EnrolledCourse }) {
             <div className="mt-4 flex flex-col gap-3">
               {[
                 { icon: IconCheck, text: "Full lifetime access" },
-                { icon: IconDeviceMobile, text: "Access on mobile and desktop" },
+                {
+                  icon: IconDeviceMobile,
+                  text: "Access on mobile and desktop",
+                },
                 { icon: IconCertificate, text: "Certificate of completion" },
               ].map((item) => (
                 <div
@@ -405,12 +412,12 @@ export default function MyCourseDetail({ course }: { course: EnrolledCourse }) {
               </button>
             </div>
           ) : (
-            <button
-              type="button"
-              className="mt-6 w-full rounded-[8px] bg-[#8f6249] p-3 text-[15px] font-medium text-white transition hover:bg-[#744d39]"
+            <Link
+              href={`/user/courses/${course.slug}/learn`}
+              className="mt-4 inline-flex items-center justify-center w-full rounded-[8px] bg-[#8f6249] p-3 text-[15px] font-medium text-white transition hover:bg-[#744d39]"
             >
               {nextLesson ? "Continue Learning" : "Start Course"}
-            </button>
+            </Link>
           )}
 
           {!isCompleted && nextLesson && (

@@ -1,4 +1,5 @@
 import { Course } from "./definations";
+
 export const courses: Course[] = [
   {
     id: 1,
@@ -32,12 +33,20 @@ export const courses: Course[] = [
             title: "Introduction to Healing",
             subtitle: "Starting your emotional wellness journey",
             duration: "12 mins",
+            contentType: "video",
+            videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+            textContent:
+              "Welcome to your somatic journey. This core video module highlights structural milestones for your internal healing workspace tracker panels.",
           },
           {
             id: "c1-l2",
             title: "Recognizing Emotional Patterns",
             subtitle: "Understanding your emotional responses",
             duration: "15 mins",
+            contentType: "audio",
+            audioUrl: "/media/audio/emotional-patterns.mp3",
+            textContent:
+              "Listen closely to this guided somatic scanning exercise. Take a comfortable posture and observe physical resonance points.",
           },
         ],
       },
@@ -51,6 +60,9 @@ export const courses: Course[] = [
             title: "Building Self-Kindness",
             subtitle: "Learning to care for yourself gently",
             duration: "14 mins",
+            contentType: "text",
+            textContent:
+              "True self-kindness requires active pattern rewiring. Read through the structural journal notes and evaluate your primary focus vectors this week.",
           },
         ],
       },
@@ -89,12 +101,20 @@ export const courses: Course[] = [
             title: "The Nature of Loss",
             subtitle: "Exploring the emotional impact of grief",
             duration: "13 mins",
+            contentType: "video",
+            videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+            textContent:
+              "Grief is completely organic, not a structural error state. This session provides a safe container for mapping somatic responses to heavy emotional transitions.",
           },
           {
             id: "c2-l2",
             title: "Making Space for Emotions",
             subtitle: "Allowing yourself to feel safely",
             duration: "16 mins",
+            contentType: "audio",
+            audioUrl: "/media/audio/making-space.mp3",
+            textContent:
+              "Use this grounding vocal track when internal emotional waves feel intense. Ground your heels and balance your respiration matrix.",
           },
         ],
       },
@@ -108,6 +128,9 @@ export const courses: Course[] = [
             title: "Honoring Memories",
             subtitle: "Reflective practices for remembrance",
             duration: "15 mins",
+            contentType: "text",
+            textContent:
+              "Remembrance can be integrated safely through structured micro-rituals. Follow the written framework layout below to channel appreciation safely.",
           },
         ],
       },
@@ -146,12 +169,20 @@ export const courses: Course[] = [
             title: "Foundations of Breathwork",
             subtitle: "Using breath for calm and focus",
             duration: "10 mins",
+            contentType: "audio",
+            audioUrl: "/media/audio/breathwork-foundations.mp3",
+            textContent:
+              "Synchronize your breathing pattern with the soft acoustic rhythm in this deck module. Practice rhythmic diaphragmatic expansions.",
           },
           {
             id: "c3-l2",
             title: "Body Awareness Practice",
             subtitle: "Connecting with physical sensations",
             duration: "12 mins",
+            contentType: "video",
+            videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+            textContent:
+              "Visual body-mapping tutorial illustrating alignment positions and safe structural movement loops to release muscular feedback traps.",
           },
         ],
       },
@@ -165,6 +196,9 @@ export const courses: Course[] = [
             title: "Grounding Techniques",
             subtitle: "Simple methods for emotional balance",
             duration: "14 mins",
+            contentType: "text",
+            textContent:
+              "When high anxiety compromises attention patterns, activate the 5-4-3-2-1 sensory grounding sequence documented on this context panel.",
           },
         ],
       },
@@ -203,12 +237,19 @@ export const courses: Course[] = [
             title: "Understanding the Inner Child",
             subtitle: "Learning the foundations of inner child work",
             duration: "15 mins",
+            contentType: "text",
+            textContent:
+              "Inner child work involves identifying unresolved childhood protection loops. Study this structural paradigm guide before starting your visualization steps.",
           },
           {
             id: "c4-l2",
             title: "Creating Emotional Safety",
             subtitle: "Building trust within yourself",
             duration: "18 mins",
+            contentType: "video",
+            videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+            textContent:
+              "Watch this presentation detailing how to configure your internal sanctuary and hold space for early formative memory segments.",
           },
         ],
       },
@@ -222,6 +263,10 @@ export const courses: Course[] = [
             title: "Compassionate Reflection",
             subtitle: "Releasing shame and reconnecting gently",
             duration: "17 mins",
+            contentType: "audio",
+            audioUrl: "/media/audio/inner-child-reconnection.mp3",
+            textContent:
+              "A gentle somatic visualization recording designed to rewrite shame response arrays into proactive self-parenting habits.",
           },
         ],
       },
@@ -260,12 +305,19 @@ export const courses: Course[] = [
             title: "Why Journaling Helps",
             subtitle: "Understanding reflective writing",
             duration: "9 mins",
+            contentType: "text",
+            textContent:
+              "Writing acts as an objective cache download for overextended minds. Moving thoughts onto an explicit ledger grid safely reduces emotional cognitive loads.",
           },
           {
             id: "c5-l2",
             title: "Creating a Safe Writing Space",
             subtitle: "Building a consistent journaling habit",
             duration: "11 mins",
+            contentType: "video",
+            videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+            textContent:
+              "An overview of timing rituals and psychological cues that will help you maintain an uncompromised daily journaling habit.",
           },
         ],
       },
@@ -279,6 +331,10 @@ export const courses: Course[] = [
             title: "Exploring Thought Patterns",
             subtitle: "Recognizing emotions and beliefs",
             duration: "12 mins",
+            contentType: "audio",
+            audioUrl: "/media/audio/thought-patterns.mp3",
+            textContent:
+              "This stream guides you through real-time stream-of-consciousness logs. Keep your pen moving smoothly in sync with the audio track timer.",
           },
         ],
       },
@@ -317,12 +373,19 @@ export const courses: Course[] = [
             title: "What Healthy Boundaries Look Like",
             subtitle: "Learning the basics of emotional boundaries",
             duration: "13 mins",
+            contentType: "video",
+            videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+            textContent:
+              "A breakdown of flexible, rigid, and healthy porous boundaries. Learn to identify your personal perimeter thresholds clearly.",
           },
           {
             id: "c6-l2",
             title: "Recognizing Overextension",
             subtitle: "Understanding burnout and people-pleasing",
             duration: "15 mins",
+            contentType: "text",
+            textContent:
+              "People-pleasing is often an anxious protective strategy. Review this taxonomy matrix of overextension warning triggers to protect your energy levels.",
           },
         ],
       },
@@ -336,6 +399,10 @@ export const courses: Course[] = [
             title: "Speaking with Confidence",
             subtitle: "Expressing your needs respectfully",
             duration: "14 mins",
+            contentType: "audio",
+            audioUrl: "/media/audio/confident-boundaries.mp3",
+            textContent:
+              "Listen to sample scripts and linguistic boundary layouts. Practice stating your requirements directly without defensive over-explanations.",
           },
         ],
       },

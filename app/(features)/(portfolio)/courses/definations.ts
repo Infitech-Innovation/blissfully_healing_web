@@ -1,12 +1,17 @@
 
-interface Lesson {
+export interface Lesson {
   id: string;
   title: string;
   subtitle: string;
   duration: string;
+
+  contentType?: "video" | "audio" | "text";
+  videoUrl?: string;
+  audioUrl?: string;
+  textContent?: string;
 }
 
-interface Chapter {
+export interface Chapter {
   id: string;
   number: number;
   title: string;

@@ -4,7 +4,7 @@ import {
   CardDescription,
   CardTitle,
 } from "@/components/ui/card";
-import { BriefcaseBusiness, Mail, Languages, NotebookText } from "lucide-react";
+import { Mail, Languages, NotebookText } from "lucide-react";
 import { useState, type ReactNode } from "react";
 import { ChangePasswordForm } from "./change_password";
 import { useAuthStore } from "@/app/stores/useAuthStore";

@@ -48,7 +48,7 @@ export default function HomeOverviewPage() {
     //   return;
     // }
 
-    const timer = setTimeout(() => setLoading(false), 700);
+    const timer = setTimeout(() => setLoading(false), 1400);
     return () => clearTimeout(timer);
   }, [router]);
 

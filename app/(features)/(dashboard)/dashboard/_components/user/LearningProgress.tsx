@@ -2,7 +2,6 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { BookCheck, Flame, ChevronRight } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { mockCourses, mockLearningProgress } from "../../definations";
 
 export function LearningProgress() {
