@@ -1,6 +1,9 @@
-import SanctuaryTempleSection from "./_sections/SanctuaryTemples";
-import DomeHero from "./_sections/TempleDome";
+// import SanctuaryTempleSection from "./_sections/SanctuaryTemples";
+// import DomeHero from "./_sections/TempleDome";
 // import SanctuaryHero from "./_sections/section-hero";
+
+import SanctuaryTempleSection from "./_sections/sanctuary-section";
+import DomeHero from "./_sections/section-hero";
 
 export default function HomePage() {
   return (
@@ -8,7 +11,8 @@ export default function HomePage() {
       {/* <SanctuaryHero /> */}
       {/* <SanctuarySection /> */}
       <DomeHero/>
-      <SanctuaryTempleSection/>
+      <SanctuaryTempleSection
+      />
     </div>
   );
 }
