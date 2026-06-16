@@ -18,13 +18,13 @@ import Link from "next/link";
 import { Course } from "../definations";
 
 export default function CourseDetail({ course }: { course: Course }) {
-  const [openChapterIds, setOpenChapterIds] = useState<string[]>([
-    course.chapters[0]?.id,
-  ]);
+  const [openChapterIds, setOpenChapterIds] = useState<number[]>(() =>
+    course.chapters?.[0]?.id ? [course.chapters[0].id] : [],
+  );
 
-  const totalLessons = course.lessons;
+  const totalLessons = course.lesson_count;
 
-  const toggleChapter = (id: string) => {
+  const toggleChapter = (id: number) => {
     setOpenChapterIds((current) =>
       current.includes(id)
         ? current.filter((chapterId) => chapterId !== id)
@@ -46,7 +46,7 @@ export default function CourseDetail({ course }: { course: Course }) {
 
           <section className="relative aspect-[16/7] overflow-hidden rounded-[10px] border border-[#eadfd4] bg-[#f8f0e8] shadow-[0_18px_45px_rgba(63,52,44,0.08)]">
             <Image
-              src={course.imageUrl}
+              src={course.image}
               alt={course.title}
               fill
               className="object-cover"
@@ -56,7 +56,7 @@ export default function CourseDetail({ course }: { course: Course }) {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#2f251f]/45 via-transparent to-transparent" />
             <div className="absolute bottom-5 left-5 rounded-full bg-white/90 px-4 py-2 text-sm font-semibold text-[#8f6249] shadow-sm backdrop-blur">
-              {course.category}
+              {course.category.name}
             </div>
           </section>
 
@@ -65,12 +65,12 @@ export default function CourseDetail({ course }: { course: Course }) {
               {course.title}
             </h1>
             <p className="mt-3 text-[16px] leading-7 text-[#6f5c4f]">
-              {course.shortDescription}
+              {course.short_description}
             </p>
             <div className="mt-4 flex flex-wrap gap-2">
               {[
                 { icon: IconSchool, label: course.difficulty },
-                { icon: IconCategory, label: course.category },
+                { icon: IconCategory, label: course.category.name },
                 { icon: IconClockHour4, label: course.duration },
               ].map((tag) => (
                 <span
@@ -89,7 +89,7 @@ export default function CourseDetail({ course }: { course: Course }) {
               Course Description
             </h2>
             <p className="mt-3 text-[16px] leading-[1.75] text-[#6f5c4f]">
-              {course.fullDescription}
+              {course.full_description}
             </p>
             <p className="mt-5 text-[16px] font-semibold text-[#3f342c]">
               Features:
@@ -194,7 +194,7 @@ export default function CourseDetail({ course }: { course: Course }) {
           <div className="flex items-center justify-between">
             <p className="text-[15px] text-[#7a6658]">Price</p>
             <p className="text-[22px] font-medium text-[#8f6249]">
-              {course.price}
+              KES {course.price}
             </p>
           </div>
 
@@ -217,7 +217,7 @@ export default function CourseDetail({ course }: { course: Course }) {
                 {
                   icon: IconCategory,
                   label: "Category",
-                  value: course.category,
+                  value: course.category.name,
                 },
                 {
                   icon: IconBook2,

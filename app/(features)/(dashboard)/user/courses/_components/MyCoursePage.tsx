@@ -17,7 +17,7 @@ export default function MyCoursePage() {
                 !normalizedQuery ||
                 [
                     course.title,
-                    course.shortDescription,
+                    course.short_description,
                     course.category,
                     course.difficulty,
                 ]

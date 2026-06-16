@@ -4,29 +4,32 @@ import { Search } from "lucide-react";
 import { useMemo, useState } from "react";
 import CourseCard from "./CourseCard";
 import CourseHero from "./CourseHero";
-import { courses } from "../courseData";
-
-const categories = [
-  "All",
-  ...Array.from(new Set(courses.map((course) => course.category))),
-];
+import { useGetCourses } from "../courses.services";
 
 export default function CourseSection() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [query, setQuery] = useState("");
 
+  const { data: courses = [] } = useGetCourses();
+
+  const categories = [
+    "All",
+    ...Array.from(new Set(courses.map((course) => course.category?.name || ""))).filter(Boolean),
+  ];
+
   const visibleCourses = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
 
-    return courses.filter((course) => {
+    return courses?.filter((course) => {
       const matchesCategory =
-        activeCategory === "All" || course.category === activeCategory;
+        activeCategory === "All" || course.category?.name === activeCategory;
+
       const matchesQuery =
         !normalizedQuery ||
         [
           course.title,
-          course.shortDescription,
-          course.category,
+          course.short_description,
+          course.category?.name,   
           course.difficulty,
         ]
           .join(" ")
@@ -35,7 +38,7 @@ export default function CourseSection() {
 
       return matchesCategory && matchesQuery;
     });
-  }, [activeCategory, query]);
+  }, [activeCategory, query, courses]);
 
   return (
     <section className="bg-[#fffaf6]">

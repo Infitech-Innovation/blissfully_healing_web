@@ -1,42 +1,18 @@
-import { notFound } from "next/navigation";
-import { courses } from "../courseData";
+"use client";
+
+import { notFound, useParams } from "next/navigation";
 import CourseDetail from "./CourseDetail";
+import { useCourseDetails } from "../courses.services";
 
-type PageProps = {
-  params: Promise<{
-    slug: string;
-  }>;
-};
+export default function CourseDetailsPage() {
+  const params = useParams();
+  const slug = params.slug as string;
 
-export function generateStaticParams() {
-  return courses.map((course) => ({
-    slug: course.slug,
-  }));
-}
+  const { data, isLoading } = useCourseDetails(slug);
+  const course = Array.isArray(data) ? data[0] : data;
 
-export async function generateMetadata({ params }: PageProps) {
-  const { slug } = await params;
-  const course = courses.find((item) => item.slug === slug);
-
-  if (!course) {
-    return {
-      title: "Course Details | Blissfully Healing",
-    };
-  }
-
-  return {
-    title: `${course.title} | Blissfully Healing`,
-    description: course.shortDescription,
-  };
-}
-
-export default async function CourseDetailsPage({ params }: PageProps) {
-  const { slug } = await params;
-  const course = courses.find((item) => item.slug === slug);
-
-  if (!course) {
-    notFound();
-  }
+  if (isLoading) return <div>Loading...</div>;
+  if (!course) return notFound();
 
   return <CourseDetail course={course} />;
 }
