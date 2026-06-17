@@ -12,20 +12,24 @@ import { LogOut, Loader2, UserCircle2 } from "lucide-react";
 import { useAuthStore } from "@/app/stores/useAuthStore";
 import { useLogout } from "@/app/(features)/(auth)/auth.services";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function UserMenu() {
+  const pathname = usePathname();
   const user = useAuthStore((state) => state.user);
   const { mutate: logoutUser, isPending: isLoggingOut } = useLogout();
 
   const initials = user?.full_name
     ? user.full_name
-        .split(" ")
-        .map((n) => n[0])
-        .join("")
-        .toUpperCase()
-        .slice(0, 2)
+      .split(" ")
+      .map((n) => n[0])
+      .join("")
+      .toUpperCase()
+      .slice(0, 2)
     : "BH";
 
+  //check route panel
+  const isUserArea = pathname.startsWith("/user");
   // Dynamically switch destination depending on security role definitions
   const profileHref =
     user?.role === "admin" ? "/admin/settings" : "/user/profile";
@@ -35,7 +39,10 @@ export default function UserMenu() {
       <DropdownMenuTrigger asChild>
         <button
           type="button"
-          className="flex h-8 w-8 items-center justify-center rounded-full bg-[#8f6249] text-[11px] font-bold uppercase tracking-wider text-white outline-none ring-offset-white transition hover:bg-[#3f342c] focus-visible:ring-2 focus-visible:ring-[#8f6249] focus-visible:ring-offset-2"
+          className={`flex items-center justify-center rounded-full bg-[#8f6249] font-bold uppercase tracking-wider text-white outline-none ring-offset-white transition hover:bg-[#3f342c] focus-visible:ring-2 focus-visible:ring-[#8f6249] focus-visible:ring-offset-2 ${isUserArea
+            ? "h-8 w-8 text-[11px]"
+            : "h-11 w-11 text-sm"
+            }`}
           aria-label="Toggle structural user dashboard operations card"
         >
           {initials}
@@ -87,7 +94,7 @@ export default function UserMenu() {
           ) : (
             <LogOut className="mr-2 h-4 w-4 text-red-500/80 transition-transform duration-200 group-hover:translate-x-0.5" />
           )}
-          <span>{isLoggingOut ? "Disconnecting..." : "Terminate Session"}</span>
+          <span>{isLoggingOut ? "Leaving..." : "Log Out"}</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

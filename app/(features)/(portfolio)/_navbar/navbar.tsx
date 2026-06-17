@@ -1,11 +1,13 @@
 "use client";
 
+import { useAuthStore } from "@/app/stores/useAuthStore";
 import { Button } from "@/components/ui/button";
 import { LogIn, Menu, Sparkles, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { Suspense, useState } from "react";
+import UserMenu from "../../(dashboard)/_topbar/user_menu";
 
 const navLinks = [
   { label: "Home", href: "/homepage" },
@@ -18,11 +20,13 @@ const navLinks = [
 ];
 
 export function Navbar() {
+  const user = useAuthStore((state) => state.user);
+  const isAuth = !!user;
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+
   const isActive = (href: string) =>
-    pathname === href ||
-    (href !== "/" && pathname.startsWith(`${href}/`));
+    pathname === href || (href !== "/" && pathname.startsWith(`${href}/`));
 
   return (
     <header className="sticky top-0 z-50 border-b border-[#eadfd4] bg-white/90 backdrop-blur">
@@ -57,9 +61,8 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 aria-current={active ? "page" : undefined}
-                className={`transition hover:text-[#8f6249] ${
-                  active ? "text-[#8f6249]" : ""
-                }`}
+                className={`transition hover:text-[#8f6249] ${active ? "text-[#8f6249]" : ""
+                  }`}
               >
                 {link.label}
               </Link>
@@ -67,27 +70,39 @@ export function Navbar() {
           })}
         </div>
 
-        <div className="hidden items-center gap-3 lg:flex">
-          <Button
-            asChild
-            variant="ghost"
-            className="h-12 rounded-md px-5 text-base font-semibold text-[#6f5c4f] hover:bg-[#f8f0e8] hover:text-[#2f251f]"
-          >
-            <Link href="/login">
-              <LogIn className="h-4 w-4" />
-              Sign In
-            </Link>
-          </Button>
+        <div className="hidden lg:flex items-center gap-3">
+          {isAuth ? (
+            <Suspense
+              fallback={
+                <div className="h-8 w-8 animate-pulse rounded-full bg-[#eadfd4]" />
+              }
+            >
+              <UserMenu />
+            </Suspense>
+          ) : (
+            <>
+              <Button
+                asChild
+                variant="ghost"
+                className="h-12 rounded-md px-5 text-base font-semibold text-[#6f5c4f] hover:bg-[#f8f0e8] hover:text-[#2f251f]"
+              >
+                <Link href="/login">
+                  <LogIn className="h-4 w-4" />
+                  Sign In
+                </Link>
+              </Button>
 
-          <Button
-            asChild
-            className="h-12 rounded-md bg-[#8f6249] px-5 text-base font-semibold text-white transition hover:bg-[#744d39] lg:px-6"
-          >
-            <Link href="/register">
-              <Sparkles className="h-4 w-4" />
-              Start Healing
-            </Link>
-          </Button>
+              <Button
+                asChild
+                className="h-12 rounded-md bg-[#8f6249] px-5 text-base font-semibold text-white transition hover:bg-[#744d39] lg:px-6"
+              >
+                <Link href="/register">
+                  <Sparkles className="h-4 w-4" />
+                  Start Healing
+                </Link>
+              </Button>
+            </>
+          )}
         </div>
 
         <button
@@ -113,9 +128,8 @@ export function Navbar() {
                   href={link.href}
                   aria-current={active ? "page" : undefined}
                   onClick={() => setOpen(false)}
-                  className={`rounded-md px-3 py-2 transition hover:bg-[#f8f0e8] hover:text-[#8f6249] ${
-                    active ? "bg-[#f8f0e8] text-[#8f6249]" : ""
-                  }`}
+                  className={`rounded-md px-3 py-2 transition hover:bg-[#f8f0e8] hover:text-[#8f6249] ${active ? "bg-[#f8f0e8] text-[#8f6249]" : ""
+                    }`}
                 >
                   {link.label}
                 </Link>
@@ -123,26 +137,38 @@ export function Navbar() {
             })}
 
             <div className="mt-2 grid gap-2 border-t border-[#eadfd4] pt-4">
-              <Button
-                asChild
-                variant="ghost"
-                className="h-12 justify-center rounded-md text-base font-semibold text-[#6f5c4f] hover:bg-[#f8f0e8]"
-              >
-                <Link href="/login" onClick={() => setOpen(false)}>
-                  <LogIn className="h-4 w-4" />
-                  Sign In
-                </Link>
-              </Button>
+              {isAuth ? (
+                <Suspense
+                  fallback={
+                    <div className="h-8 w-8 animate-pulse rounded-full bg-[#eadfd4]" />
+                  }
+                >
+                  <UserMenu />
+                </Suspense>
+              ) : (
+                <>
+                  <Button
+                    asChild
+                    variant="ghost"
+                    className="h-12 justify-center rounded-md text-base font-semibold text-[#6f5c4f] hover:bg-[#f8f0e8]"
+                  >
+                    <Link href="/login" onClick={() => setOpen(false)}>
+                      <LogIn className="h-4 w-4" />
+                      Sign In
+                    </Link>
+                  </Button>
 
-              <Button
-                asChild
-                className="h-12 rounded-md bg-[#8f6249] text-base font-semibold text-white hover:bg-[#744d39]"
-              >
-                <Link href="/register" onClick={() => setOpen(false)}>
-                  <Sparkles className="h-4 w-4" />
-                  Start Healing
-                </Link>
-              </Button>
+                  <Button
+                    asChild
+                    className="h-12 rounded-md bg-[#8f6249] text-base font-semibold text-white hover:bg-[#744d39]"
+                  >
+                    <Link href="/register" onClick={() => setOpen(false)}>
+                      <Sparkles className="h-4 w-4" />
+                      Start Healing
+                    </Link>
+                  </Button>
+                </>
+              )}
             </div>
           </div>
         </div>
