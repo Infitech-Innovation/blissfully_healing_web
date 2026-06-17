@@ -4,8 +4,8 @@ export interface Lesson {
   title: string;
   subtitle: string;
   duration: string;
-  is_preview:boolean;
-  order:number;
+  is_preview: boolean;
+  order: number;
   content_type?: "video" | "audio" | "text";
   videoUrl?: string;
   audioUrl?: string;
@@ -48,8 +48,13 @@ export type Course = {
 };
 
 
-export interface EnrolledCourse extends Course {
-  completedLessonIds?: string[];
-  lastAccessedLessonId?: string;
-  enrolledAt?: string;
+
+// Enrollment
+export interface EnrolledCourse {
+  id: number;
+  course: Course;
+  enrolled_at: Date;
+  is_active: boolean;
+  progress: number;
 }
+

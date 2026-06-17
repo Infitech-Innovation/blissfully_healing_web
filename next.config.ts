@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
-  // white listing images from external website
+  allowedDevOrigins: ['192.168.183.67'],
   images: {
     remotePatterns: [
       {
@@ -17,7 +17,7 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "res.cloudinary.com",
-      }, 
+      },
       {
         protocol: "https",
         hostname: "i.ytimg.com",

@@ -16,6 +16,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { Course } from "../definations";
+import EnrollButton from "@/components/checkoutBtn";
 
 export default function CourseDetail({ course }: { course: Course }) {
   const [openChapterIds, setOpenChapterIds] = useState<number[]>(() =>
@@ -264,12 +265,7 @@ export default function CourseDetail({ course }: { course: Course }) {
             </div>
           </div>
 
-          <button
-            type="button"
-            className="mt-6 w-full rounded-[8px] bg-[#8f6249] p-3 text-[15px] font-medium text-[#fff] transition hover:bg-[#744d39]"
-          >
-            Enroll Now
-          </button>
+          <EnrollButton id={course.id} type="course" btnName="Enroll Now" />
           <p className="mt-3 text-center text-[12px] text-[#7a6658]">
             30-day money-back guarantee
           </p>

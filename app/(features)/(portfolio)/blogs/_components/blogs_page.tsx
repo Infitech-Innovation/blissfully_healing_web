@@ -10,11 +10,11 @@ import { BlogSectionSkeleton } from "./blogs_skeleton";
 
 export default function BlogSection() {
 
-const { data, isLoading, isError, error } = useCategory();
-console.log("Categories data:", { data, isLoading, isError, error });
+const { data, isLoading } = useCategory();
+// console.log("Categories data:", { data, isLoading, isError, error });
 
 const { data: blogs, isLoading: blogsLoading } = useBlogs();
-console.log("Blogs data:", { blogs, blogsLoading });
+// console.log("Blogs data:", { blogs, blogsLoading });
 
   const categories = ["All blogs", ...(data ?? []).map((cat) => cat.name)];
 

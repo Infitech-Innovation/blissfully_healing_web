@@ -20,6 +20,7 @@ export default function CourseCard({ course }: Props) {
           sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
           className="object-cover transition duration-500 group-hover:scale-105"
           unoptimized
+          loading="eager"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#2f251f]/50 via-transparent to-transparent" />
         <div className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1.5 text-xs font-semibold text-[#8f6249] shadow-sm backdrop-blur">
