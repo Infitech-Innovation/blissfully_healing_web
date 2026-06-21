@@ -1,22 +1,14 @@
-"use client";
+// "use client";
 
-// import { useParams } from "next/navigation";
-import CourseLearningPage from "../../_components/LearnCourse";
+import PageUnderDevelopment from "@/app/comming-soon";
 
-export default function LearnPage() {
-  // const params = useParams();
-  // const slug = params.slug as string;
+// import CourseLearningPage from "../../_components/LearnCourse";
 
-  // const course = courses.find((c) => c.slug === slug);
+// export default function LearnPage() {
+//   return <CourseLearningPage />;
+// }
 
-  // if (!course) {
-  //   return (
-  //     <div className="flex h-screen items-center justify-center">
-  //       <p className="text-lg text-[#6f5c4f]">Course not found</p>
-  //     </div>
-  //   );
-  // }
 
-  // return <CourseLearningPage course={course} />;
-  return <CourseLearningPage />;
+export default function LearnPage(){
+  return <PageUnderDevelopment title="Learn Page"/>
 }

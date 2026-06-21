@@ -1,5 +1,5 @@
 import { api } from "@/lib/axios";
-import { Course, EnrolledCourse } from "./definations";
+import { Course, EnrolledCourse} from "./definations";
 import { AxiosInstance } from "axios";
 
 const COURSE_URL = "/courses/";
@@ -30,8 +30,8 @@ export const getMyEnrollments = async (apiInstance: AxiosInstance = api): Promis
     return response.data
 }
 
-export const getMyEnrollmentDetails = async (id: number) => {
-    const response = await api.get(`${ENROLLMENT_URL}/${id}`);
+export const getMyEnrollmentDetails = async (id: string) => {
+    const response = await api.get<EnrolledCourse>(`${ENROLLMENT_URL}${id}`);
     return response.data
 }
 

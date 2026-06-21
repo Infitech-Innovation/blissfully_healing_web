@@ -1,10 +1,3 @@
-import PageUnderDevelopment from "@/app/comming-soon";
-
-export default function CourseLearningPage() {
-  return <PageUnderDevelopment title="Course Learning Page" />;
-}
-
-
 //  "use client";
 
 // import { useState } from "react";

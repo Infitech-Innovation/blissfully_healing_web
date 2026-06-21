@@ -96,8 +96,19 @@ export default function CourseDetail({ course }: { course: Course }) {
               Features:
             </p>
             <ul className="mt-3 flex list-disc flex-col gap-[6px] pl-5 text-[15px] text-[#6f5c4f] marker:text-[#8f6249]">
-              {course.features.map((feature) => (
-                <li key={feature}>{feature}</li>
+              {course.features.flatMap((feature) => {
+                // If the item is a string that looks like a stringified JSON array, parse it
+                if (typeof feature === "string" && feature.startsWith("[")) {
+                  try {
+                    return JSON.parse(feature) as string[];
+                  } catch {
+                    return feature;
+                  }
+                }
+                return feature;
+              }).map((feature, index) => (
+                // Use an index-fused key fallback in case items are identical
+                <li key={`${feature}-${index}`}>{feature}</li>
               ))}
             </ul>
           </section>
@@ -143,9 +154,8 @@ export default function CourseDetail({ course }: { course: Course }) {
                       </span>
                       <IconChevronDown
                         size={18}
-                        className={`text-[#8f6249] transition duration-200 ${
-                          isOpen ? "rotate-180" : ""
-                        }`}
+                        className={`text-[#8f6249] transition duration-200 ${isOpen ? "rotate-180" : ""
+                          }`}
                       />
                     </button>
 

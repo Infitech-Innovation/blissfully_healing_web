@@ -51,10 +51,10 @@ export type Course = {
 
 // Enrollment
 export interface EnrolledCourse {
-  id: number;
+  id: string;
   course: Course;
   enrolled_at: Date;
   is_active: boolean;
   progress: number;
+  completed_lesson_ids :number[];
 }
-

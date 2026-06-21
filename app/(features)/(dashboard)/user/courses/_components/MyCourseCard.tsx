@@ -73,7 +73,7 @@ export default function MyCourseCard({ course }: Props) {
           </div>
 
           <Link
-            href={`/user/courses/${coursedetail.slug}`}
+            href={`/user/courses/${course.id}`}
             className="inline-flex items-center justify-center gap-2 rounded-sm bg-[#8f6249] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#744d39]"
           >
             Continue Learning

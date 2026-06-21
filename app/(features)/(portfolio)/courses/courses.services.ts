@@ -6,7 +6,8 @@ export const coursekeys = {
     all: ["courses"] as const,
     detail: (slug: string) => [...coursekeys.all, slug] as const,
     enrolled: ["enrolled-courses"] as const,
-    enrolleddetails: (id: number) => [...coursekeys.enrolled, id] as const,
+    enrolleddetails: (id: string) => [...coursekeys.enrolled, id] as const,
+    progress: (slug: string) => [...coursekeys.enrolled, slug] as const,
 }
 
 
@@ -51,13 +52,13 @@ export const useEnrolledCourses = () => {
     })
 }
 
-export const useEnrolledCoursesDetails = (id: number) => {
+export const useEnrolledCoursesDetails = (id: string) => {
     return useQuery({
         queryKey: coursekeys.enrolleddetails(id),
         queryFn: () => getMyEnrollmentDetails(id),
         staleTime: 1000 * 60 * 5,
         gcTime: 1000 * 60 * 30,
-        enabled: !isNaN(id),
+        enabled: !!id,
     })
 }
 
