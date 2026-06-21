@@ -1,5 +1,6 @@
-import PageUnderDevelopment from '@/app/comming-soon';
+import { purchasedEBooks } from "../../(dashboard)/user/ebooks/definations";
+import LibraryCard from "./_components/LibraryCard";
 
 export default function EbooksPage() {
- return <PageUnderDevelopment title="Ebooks Page" />;
+    return <LibraryCard library={purchasedEBooks} />;
 }

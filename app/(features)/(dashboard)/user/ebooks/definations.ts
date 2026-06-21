@@ -10,11 +10,10 @@ export interface EBook {
   pricePaid: string;
   fileSize: string;
   format: "PDF" | "EPUB" | "MOBI";
+  fileUrl: string;
   pages: number;
   chapters: string[];
 }
-
-
 
 export const purchasedEBooks: EBook[] = [
   {
@@ -28,6 +27,7 @@ export const purchasedEBooks: EBook[] = [
     pricePaid: "KES 2,400",
     fileSize: "14.2 MB",
     format: "PDF",
+    fileUrl: "https://pdfobject.com/pdf/sample.pdf",
     pages: 148,
     chapters: ["The Physiology of Pause", "Sensory Tracking Blueprints", "Daily Breath Rhythms", "Somatic Grounding Anchors"]
   },
@@ -42,6 +42,7 @@ export const purchasedEBooks: EBook[] = [
     pricePaid: "KES 1,850",
     fileSize: "8.7 MB",
     format: "EPUB",
+    fileUrl: "",
     pages: 92,
     chapters: ["Mapping the Tension", "Constructing the Soft Margin", "The Language of Rest", "Grounded Sovereignty"]
   }
