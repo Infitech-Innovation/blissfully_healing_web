@@ -1,3 +1,12 @@
+import { ReactNode } from "react";
+
+export interface GroupSchedule {
+  frequency: "weekly" | "monthly" | "once";
+  dayOfWeek: number; // 0=Sunday, 1=Monday ... 6=Saturday
+  startTime: string; // "18:00"
+  durationMinutes: number;
+  timezone: string; // Africa/Nairobi
+}
 export interface SupportGroup {
   id: number;
   slug: string;
@@ -5,25 +14,36 @@ export interface SupportGroup {
   category: string;
   facilitator: string;
   facilitatorTitle: string;
-  tagline: string;
   description: string;
-  schedule: string;
-  time: string;
-  nextSession: string;
+  schedule: GroupSchedule;
+  nextSession: Date;
   format: string;
-  duration: string;
-  members: number;
-  maxMembers: number;
-  status: "active" | "filling" | "upcoming";
-  color: string;
-  secondaryColor: string;
-  icon: string;
-  tags: string[];
-  joined: string;
+  time: string;
   sessionsAttended: number;
   totalSessions: number;
-  price: "free" | string;
+  members: number;
+  maxMembers: number;
+  status: "active" | "inactive" | "filling" | "upcoming";
+  icon: ReactNode;
+  color: string;
   upcomingTopics: string[];
-  resources: string[];
+  resources: Resources[];
+  tags: string[];
+  joined: Date;
+  price: string;
   level: string;
 }
+
+export interface Resources {
+  id: string;
+  name: string;
+  type: string;
+  size: string;
+  icon: ReactNode;
+  fileUrl: string;
+}
+
+export const mockUser = {
+  name: "Sarah",
+  email: "sarah@example.com",
+};

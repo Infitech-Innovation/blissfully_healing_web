@@ -1,10 +1,21 @@
 import Link from "next/link";
-import { StatusBadge } from "./statusBadge";
+import { ArrowLeft, Clock, Key} from "lucide-react";
 import { mockSupportGroups } from "@/app/(features)/(dashboard)/user/support-groups/data";
-import { ArrowLeft, Clock, Folder, Key } from "lucide-react";
+import { StatusBadge } from "./statusBadge";
 
 interface SupportProps {
   selectedSlug?: string;
+}
+
+function getColorFromBgClass(bgClass: string): string {
+  const colorMap: { [key: string]: string } = {
+    'bg-indigo-50': '#4F46E5',
+    'bg-amber-50': '#D97706',
+    'bg-rose-50': '#E11D48',
+    'bg-purple-50': '#A855F7',
+    'bg-emerald-50': '#059669',
+  };
+  return colorMap[bgClass] || '#64748B';
 }
 
 export default function SupportGroupsDetails({ selectedSlug }: SupportProps) {
@@ -30,24 +41,25 @@ export default function SupportGroupsDetails({ selectedSlug }: SupportProps) {
           <section className="lg:col-span-2 space-y-6">
             {/* Header Identity Card Panel */}
             <header className="rounded-md border border-stone-200/70 bg-white p-8 shadow-sm sm:p-10">
-              <span
-                className="mb-3 block text-[13px] font-bold uppercase tracking-[0.24em]"
-                style={{ color: selectedGroup.secondaryColor }}
-              >
-                {selectedGroup.category}
-              </span>
-              <h1 className="font-serif mb-3 text-4xl font-light leading-tight text-stone-900 sm:text-5xl">
-                {selectedGroup.name}
-              </h1>
-              <p className="font-serif mb-6 text-lg italic text-stone-500 sm:text-xl">
-                {selectedGroup.tagline}
-              </p>
+              <div className="flex items-start gap-3 mb-4">
+                <div className="text-3xl flex-shrink-0">
+                  {selectedGroup.icon}
+                </div>
+                <div className="flex-1">
+                  <span className="mb-2 block text-[13px] font-bold uppercase tracking-[0.24em] text-stone-500">
+                    {selectedGroup.category}
+                  </span>
+                  <h1 className="font-serif mb-2 text-4xl font-light leading-tight text-stone-900 sm:text-5xl">
+                    {selectedGroup.name}
+                  </h1>
+                </div>
+              </div>
 
               <div className="flex flex-wrap gap-2">
                 {selectedGroup.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full border border-stone-200/50 bg-stone-50 px-3 py-1 text-[11px] font-medium uppercase tracking-wider text-stone-500"
+                    className="rounded-full border border-stone-200/50 bg-stone-50 px-3 py-1 text-[11px] font-medium uppercase tracking-wider text-stone-600"
                   >
                     {tag}
                   </span>
@@ -87,15 +99,20 @@ export default function SupportGroupsDetails({ selectedSlug }: SupportProps) {
                     Shared Circle Resources
                   </h3>
                   <ul className="space-y-2">
-                    {selectedGroup.resources.map((res, index) => (
+                    {selectedGroup.resources.map((res) => (
                       <li
-                        key={index}
+                        key={res.id}
                         className="flex items-start gap-2 text-sm font-light text-stone-600 sm:text-base"
                       >
-                        <span><Folder/></span>
-                        <span className="cursor-pointer underline decoration-stone-200 transition-colors hover:text-stone-900">
-                          {res}
-                        </span>
+                        <span className="flex-shrink-0 mt-0.5">{res.icon}</span>
+                        <a 
+                          href={res.fileUrl} 
+                          download
+                          className="cursor-pointer underline decoration-stone-200 transition-colors hover:text-stone-900 truncate"
+                          title={res.name}
+                        >
+                          {res.name}
+                        </a>
                       </li>
                     ))}
                   </ul>
@@ -109,7 +126,7 @@ export default function SupportGroupsDetails({ selectedSlug }: SupportProps) {
                 </h3>
                 <div className="grid grid-cols-1 gap-4 text-sm font-light text-stone-600 sm:grid-cols-2 sm:text-base">
                   <div className="flex items-start gap-2.5">
-                    <span><Clock/></span>
+                    <span><Clock size={20} /></span>
                     <p>
                       <span className="block font-medium text-stone-800">
                         Optional Dialogues
@@ -118,7 +135,7 @@ export default function SupportGroupsDetails({ selectedSlug }: SupportProps) {
                     </p>
                   </div>
                   <div className="flex items-start gap-2.5">
-                    <span><Key/></span>
+                    <span><Key size={20} /></span>
                     <p>
                       <span className="font-medium text-stone-800 block">
                         Protected Confidentiality
@@ -137,10 +154,9 @@ export default function SupportGroupsDetails({ selectedSlug }: SupportProps) {
               </h2>
               <div className="flex flex-col sm:flex-row gap-5 items-start">
                 <div
-                  className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border text-base font-medium tracking-wider text-stone-700"
+                  className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-full border text-base font-medium tracking-wider text-white ${selectedGroup.color}`}
                   style={{
-                    backgroundColor: `${selectedGroup.color}20`,
-                    borderColor: `${selectedGroup.color}45`,
+                    backgroundColor: getColorFromBgClass(selectedGroup.color),
                   }}
                 >
                   {selectedGroup.facilitator
@@ -188,40 +204,43 @@ export default function SupportGroupsDetails({ selectedSlug }: SupportProps) {
               <div className="p-6 space-y-4">
                 <div className="space-y-3">
                   <div className="flex justify-between items-center text-md border-b border-stone-50 pb-2">
-                    <span className="text-stone-400">Delivery System:</span>
+                    <span className="text-stone-400">Format:</span>
                     <span className="font-medium text-stone-700">
-                      {selectedGroup.format} ({selectedGroup.duration})
+                      {selectedGroup.format}
                     </span>
                   </div>
                   <div className="flex justify-between items-center text-md border-b border-stone-50 pb-2">
-                    <span className="text-stone-400">Frequency Schedule:</span>
-                    <span className="font-medium text-stone-700">
-                      {selectedGroup.schedule}
+                    <span className="text-stone-400">Frequency:</span>
+                    <span className="font-medium text-stone-700 capitalize">
+                      {selectedGroup.schedule.frequency}
                     </span>
                   </div>
                   <div className="flex justify-between items-center text-md border-b border-stone-50 pb-2">
-                    <span className="text-stone-400">Time Segment:</span>
+                    <span className="text-stone-400">Duration:</span>
+                    <span className="text-sm font-medium text-stone-700">
+                      {selectedGroup.schedule.durationMinutes} mins
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center text-md border-b border-stone-50 pb-2">
+                    <span className="text-stone-400">Time:</span>
                     <span className="text-sm font-medium text-stone-700">
                       {selectedGroup.time}
                     </span>
                   </div>
                   <div className="flex justify-between items-center text-md border-b border-stone-50 pb-2">
                     <span className="text-stone-400">
-                      Next Live Connection:
+                      Next Session:
                     </span>
                     <span className="text-md font-semibold text-stone-800">
-                      {selectedGroup.nextSession}
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center text-md border-b border-stone-50 pb-2">
-                    <span className="text-stone-400">My Cohort Progress:</span>
-                    <span className="text-sm font-medium text-stone-700">
-                      {selectedGroup.sessionsAttended} of{" "}
-                      {selectedGroup.totalSessions} Sessions
+                      {selectedGroup.nextSession.toLocaleDateString('en-US', { 
+                        month: 'short', 
+                        day: 'numeric', 
+                        year: '2-digit' 
+                      })}
                     </span>
                   </div>
                   <div className="flex justify-between items-center text-md">
-                    <span className="text-stone-400">Audience Scope:</span>
+                    <span className="text-stone-400">Level:</span>
                     <span className="rounded-md border border-stone-100 bg-stone-50 px-2.5 py-0.5 text-[13px] font-medium text-stone-600">
                       {selectedGroup.level}
                     </span>
@@ -232,11 +251,11 @@ export default function SupportGroupsDetails({ selectedSlug }: SupportProps) {
 
                 <div className="flex items-baseline justify-between">
                   <span className="text-sm text-stone-400">
-                    Subscription Cost:
+                    Cost:
                   </span>
                   <span className="text-xl font-serif font-medium text-stone-800 capitalize">
-                    {selectedGroup.price === "free"
-                      ? "Complimentary"
+                    {selectedGroup.price === "Free"
+                      ? "Free"
                       : selectedGroup.price}
                   </span>
                 </div>
@@ -244,9 +263,9 @@ export default function SupportGroupsDetails({ selectedSlug }: SupportProps) {
                 <Link
                   href={`/support-groups/${selectedGroup.slug}/register`}
                   className="w-full block rounded-md py-3 text-center text-sm font-medium tracking-wider text-white transition-all shadow-sm hover:-translate-y-0.5 hover:brightness-95 active:translate-y-0"
-                  style={{ backgroundColor: selectedGroup.secondaryColor }}
+                  style={{ backgroundColor: getColorFromBgClass(selectedGroup.color) }}
                 >
-                  Secure Circle Seat →
+                  Register Now →
                 </Link>
               </div>
             </div>

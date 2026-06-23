@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { mockSupportGroups } from "@/app/(features)/(dashboard)/user/support-groups/data";
 import { GroupCard } from "./GroupCard";
+import { mockSupportGroups } from "@/app/(features)/(dashboard)/user/support-groups/data";
 
 const categories = [
   "All",
@@ -92,7 +92,9 @@ export default function SupportGroups() {
       </div>
 
         <div className="max-w-6xl mx-auto px-6 pb-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {mockSupportGroups.map((group) => (
+          {mockSupportGroups
+            .filter((group) => activeCategory === "All" || group.category === activeCategory)
+            .map((group) => (
             <GroupCard key={group.id} group={group} />
           ))}
         </div>

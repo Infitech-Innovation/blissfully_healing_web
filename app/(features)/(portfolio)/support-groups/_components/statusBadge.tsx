@@ -14,6 +14,10 @@ export function StatusBadge({ status }: { status: SupportGroup["status"] }) {
       label: "Upcoming Cohort",
       cls: "bg-blue-50 text-blue-700 border-blue-200",
     },
+    inactive: {
+      label: "Group Closed",
+      cls: "bg-grey-50 text-black-700 border-grey-200",
+    }
   };
 
   const current = badgeMap[status] || badgeMap.active;
