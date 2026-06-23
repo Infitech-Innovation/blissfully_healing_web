@@ -1,5 +1,5 @@
 
-import MyCourseDetail from "../_components/MyCourseDetail";
+import MyCourseDetail from "@/features/private/courses/MyCourseDetail";
 interface PageProps {
   params: Promise<{ id: string }>;
 }

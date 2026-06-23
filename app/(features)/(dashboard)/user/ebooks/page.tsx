@@ -1,4 +1,4 @@
-import LibrarySection from "./_components/MyLibrary";
+import LibrarySection from "../../../../../features/private/ebooks/MyLibrary";
 
 export default function EbooksPage() {
     return <LibrarySection />;

@@ -1,7 +1,7 @@
-import { AccommodationsSection } from "./_components/accommodations-section";
-import { FeaturesSection } from "./_components/features-section";
-import { HeroAltSection } from "./_components/hero-alt-section";
-import { VideoCTASection } from "./_components/video-cta-section";
+import { AccommodationsSection } from "@/features/public/retreats/accommodations-section";
+import { FeaturesSection } from "@/features/public/retreats/features-section";
+import { HeroAltSection } from "@/features/public/retreats/hero-alt-section";
+import { VideoCTASection } from "@/features/public/retreats/video-cta-section";
 
 export default function RetreatsPage() {
   return (

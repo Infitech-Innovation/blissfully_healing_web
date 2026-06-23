@@ -1,4 +1,4 @@
-import HomePage from './homepage'
+import HomePage from '@/features/public/home/homepage'
 
 export default function OverviewPage() {
   return <HomePage/>

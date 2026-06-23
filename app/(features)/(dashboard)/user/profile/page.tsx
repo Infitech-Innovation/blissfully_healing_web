@@ -1,5 +1,5 @@
-import { ProfileContentIntro } from "./_components/profile_content";
-import { ProfileHeader } from "./_components/profile_header";
+import { ProfileContentIntro } from "@/features/private/profile/profile_content";
+import { ProfileHeader } from "@/features/private/profile/profile_header";
 
 export default function ProfilePage() {
   return (

@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useVerifyPayment } from "@/app/(features)/(dashboard)/user/purchases/payment.services";
+import { useVerifyPayment } from "@/services/businessservices/payment.services";
 import { CheckCircle2, XCircle, Loader2, ArrowRight, ShoppingBag } from "lucide-react";
 import Link from "next/link";
 import { Suspense } from "react";

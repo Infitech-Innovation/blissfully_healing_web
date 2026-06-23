@@ -1,6 +1,6 @@
-import { purchasedEBooks } from "../../(dashboard)/user/ebooks/definations";
-import LibraryCard from "../ebooks/_components/LibraryCard";
-import LibraryHero from "../ebooks/_components/LibraryHero";
+import { purchasedEBooks } from "@/types/ebooks.definations";
+import LibraryCard from "@/features/public/ebooks/LibraryCard";
+import LibraryHero from "@/features/public/ebooks/LibraryHero";
 
 export default function ShopPage() {
     return (

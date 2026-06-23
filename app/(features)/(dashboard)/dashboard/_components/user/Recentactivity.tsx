@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Users, BookCheck, Download, CalendarHeart, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { mockActivity } from "../../definations";
+import { mockActivity } from "../../../../../../types/dashboard.definations";
 
 const typeConfig = {
   group: {

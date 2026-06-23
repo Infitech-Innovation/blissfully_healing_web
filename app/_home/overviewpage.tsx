@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import styles from "../styles/overview.module.css";
+import styles from "@/styles/overview.module.css";
 
 export default function HomeOverviewPage() {
   const router = useRouter();

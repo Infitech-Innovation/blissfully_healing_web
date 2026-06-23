@@ -1,4 +1,4 @@
-import { BlogDetailsSkeleton } from "./blog_details_skeleton";
+import { BlogDetailsSkeleton } from "@/features/public/blogs/blog_details_skeleton";
 
 export default function Loading() {
   return <BlogDetailsSkeleton />;

@@ -12,7 +12,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { faqs } from "../definations";
+import { faqs } from "../../../../../../types/help.definations";
 
 export default function HelpCenterPage() {
   const [searchQuery, setSearchQuery] = useState("");

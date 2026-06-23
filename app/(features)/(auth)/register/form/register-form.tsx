@@ -5,10 +5,10 @@ import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { AlertCircle, Eye, EyeOff, Loader2 } from "lucide-react";
-import { useAuthStore } from "@/app/stores/useAuthStore";
+import { useAuthStore } from "@/store/useAuthStore";
 import { AxiosError } from "axios";
-import { useRegister } from "../../auth.services";
-import { RegisterFormData, registerSchema } from "@/app/lib/auth.zod";
+import { useRegister } from "../../../../../services/businessservices/auth.services";
+import { RegisterFormData, registerSchema } from "@/app/(features)/(auth)/zod/auth.zod";
 
 type ApiFieldErrors = Partial<
   Record<keyof RegisterFormData | "non_field_errors", string[]>

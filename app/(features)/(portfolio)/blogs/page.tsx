@@ -3,9 +3,9 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-import BlogSection from "./_components/blogs_page";
-import { getBlogs, getCategory } from "./blogs.endpoints";
-import { BLOGS_KEYS, CAT_KEYS } from "./blogs.services";
+import { getBlogs, getCategory } from "@/services/endpoints/blogs.endpoints";
+import { BLOGS_KEYS, CAT_KEYS } from "@/services/businessservices/blogs.services";
+import BlogSection from "@/features/public/blogs/blogs_page";
 
 export default async function BlogPage() {
   const queryClient = new QueryClient();

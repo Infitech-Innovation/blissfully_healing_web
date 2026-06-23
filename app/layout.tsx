@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Baskervville, Geist, Geist_Mono, Great_Vibes } from "next/font/google";
-import "./styles/globals.css";
-import QueryProvider from "@/providers/query-provider";
+// import "./styles/globals.css";
+import "@/styles/globals.css"
+import QueryProvider from "@/lib/query-provider";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 

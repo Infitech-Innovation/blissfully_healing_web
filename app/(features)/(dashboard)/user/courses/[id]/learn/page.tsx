@@ -1,6 +1,6 @@
 // "use client";
 
-import PageUnderDevelopment from "@/app/comming-soon";
+import PageUnderDevelopment from "@/components/common/comming-soon";
 
 // import CourseLearningPage from "../../_components/LearnCourse";
 

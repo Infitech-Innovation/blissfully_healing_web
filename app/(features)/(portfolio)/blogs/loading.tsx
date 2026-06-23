@@ -1,4 +1,4 @@
-import { BlogSectionSkeleton } from "./_components/blogs_skeleton";
+import { BlogSectionSkeleton } from "@/features/public/blogs/blogs_skeleton";
 
 export default function Loading() {
   return <BlogSectionSkeleton />;

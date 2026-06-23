@@ -1,4 +1,4 @@
-import { stays } from "@/app/(features)/(dashboard)/user/retreats/definations";
+import { stays } from "@/types/retreats.definations";
 import {
   ArrowLeft,
   CalendarDays,

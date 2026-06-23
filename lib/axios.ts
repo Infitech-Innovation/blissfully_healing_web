@@ -1,4 +1,4 @@
-import { useAuthStore } from "@/app/stores/useAuthStore";
+import { useAuthStore } from "@/store/useAuthStore";
 import axios from "axios";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;

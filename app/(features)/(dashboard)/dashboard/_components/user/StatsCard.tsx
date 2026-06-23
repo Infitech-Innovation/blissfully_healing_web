@@ -7,7 +7,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { mockStats } from "../../definations";
+import { mockStats } from "../../../../../../types/dashboard.definations";
 
 const iconMap = {
   courses: GraduationCap,

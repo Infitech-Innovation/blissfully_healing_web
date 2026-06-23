@@ -1,8 +1,8 @@
 "use client";
 
+import CourseDetail from "@/features/public/courses/CourseDetail";
+import { useCourseDetails } from "@/services/businessservices/courses.services";
 import {useParams } from "next/navigation";
-import CourseDetail from "./CourseDetail";
-import { useCourseDetails } from "../courses.services";
 
 export default function CourseDetailsPage() {
   const params = useParams();

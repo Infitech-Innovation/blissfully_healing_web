@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Sidebar } from "./_sidebar/sidebar";
-import { Topbar } from "./_topbar/topbar";
-import { useProfile } from "../(auth)/auth.services";
+import { Sidebar } from "@/components/layout/_sidebar/sidebar";
+import { Topbar } from "@/components/layout/_topbar/topbar";
+import { useProfile } from "@/services/businessservices/auth.services";
 
 export default function MainLayout({
   children,

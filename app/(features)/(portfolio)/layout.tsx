@@ -1,7 +1,7 @@
 "use client";
 
-import FooterSection from "./_footer/footer";
-import { Navbar } from "./_navbar/navbar";
+import FooterSection from "../../../components/layout/_footer/footer";
+import { Navbar } from "../../../components/layout/_navbar/navbar";
 import { usePathname } from "next/navigation";
 
 export default function Layout({ children }: { children: React.ReactNode }) {

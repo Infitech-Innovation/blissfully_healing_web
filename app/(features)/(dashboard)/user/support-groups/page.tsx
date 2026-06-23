@@ -1,4 +1,4 @@
-import MySupportGroupsDashboard from "./_components/MySupportGroups";
+import MySupportGroupsDashboard from "@/features/private/groups/MySupportGroups";
 
 
 export default function SupportGroupsPage() {

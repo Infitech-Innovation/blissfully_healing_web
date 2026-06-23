@@ -6,10 +6,10 @@ import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { AlertCircle, Eye, EyeOff, Loader2 } from "lucide-react";
-import { useAuthStore } from "@/app/stores/useAuthStore";
-import { useLogin } from "../../auth.services";
+import { useAuthStore } from "@/store/useAuthStore";
+import { useLogin } from "../../../../../services/businessservices/auth.services";
 import { AxiosError } from "axios";
-import { loginSchema } from "@/app/lib/auth.zod";
+import { loginSchema } from "@/app/(features)/(auth)/zod/auth.zod";
 
 type ApiErrorResponse = {
   detail?: string;

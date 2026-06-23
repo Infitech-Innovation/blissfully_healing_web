@@ -1,5 +1,5 @@
-import { purchasedEBooks } from "../../(dashboard)/user/ebooks/definations";
-import LibraryCard from "./_components/LibraryCard";
+import { purchasedEBooks } from "@/types/ebooks.definations";
+import LibraryCard from "@/features/public/ebooks/LibraryCard";
 
 export default function EbooksPage() {
     return <LibraryCard library={purchasedEBooks} />;

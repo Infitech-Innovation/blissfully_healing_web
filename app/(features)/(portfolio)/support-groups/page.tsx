@@ -1,4 +1,4 @@
-import SupportGroups from "./_components/supportGroups";
+import SupportGroups from "@/features/public/groups/supportGroups";
 
 export default function Page() {
   return <SupportGroups />;

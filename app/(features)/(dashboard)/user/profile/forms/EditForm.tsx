@@ -7,7 +7,7 @@ import Link from "next/link";
 import { Loader2,User, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CardTitle, CardDescription } from "@/components/ui/card";
-import { useAuthStore } from "@/app/stores/useAuthStore";
+import { useAuthStore } from "@/store/useAuthStore";
 import { cn } from "@/lib/utils";
 
 const editProfileSchema = z.object({

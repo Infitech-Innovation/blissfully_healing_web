@@ -3,9 +3,9 @@
 import AdminDashboard from "./_pages/admindashboard";
 import { JSX, useEffect } from "react";
 import UserDashboard from "./_pages/usersdashboard";
-import { ROLE } from "../../(auth)/definations";
+import { ROLE } from "../../../../types/auth.definations";
 import { useRouter } from "next/navigation";
-import { useAuthStore } from "@/app/stores/useAuthStore";
+import { useAuthStore } from "@/store/useAuthStore";
 
 const DASHBOARD_MAP: Record<ROLE, () => JSX.Element> = {
   admin: () => <AdminDashboard />,

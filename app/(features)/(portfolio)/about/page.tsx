@@ -1,5 +1,5 @@
-import OurStorySection from "./_page/our_story";
-import ValuesSection from "./_page/our_values";
+import OurStorySection from "@/features/public/about/our_story";
+import ValuesSection from "@/features/public/about/our_values";
 
 export default function AboutPage() {
   return (
