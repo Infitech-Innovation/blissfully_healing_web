@@ -1,5 +1,5 @@
 import HomeOverviewPage from "./_home/overviewpage";
 
-export default function Home() {
+export default function HomePage() {
   return <HomeOverviewPage />;
 }

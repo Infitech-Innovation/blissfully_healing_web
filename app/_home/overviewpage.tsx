@@ -83,7 +83,7 @@ export default function HomeOverviewPage() {
   return (
     <>
       {loading && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#0d0d0d]">
+        <div data-testid="loading-overlay" className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#0d0d0d]">
           <div className="text-center">
             <Image
               src="/images/bh_logo.webp"
