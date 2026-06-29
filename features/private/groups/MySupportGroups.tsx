@@ -5,9 +5,10 @@ import Link from "next/link";
 import { GroupCard } from "./GroupCard";
 import { mockSupportGroups } from "@/mockdata/groups.data";
 import { getTimeUntil } from "@/utils/utils";
-import { mockUser } from "@/types/groups.definations";
+import { useAuthStore } from "@/store/useAuthStore";
 
 export default function MySupportGroupsDashboard() {
+  const user = useAuthStore((state) => state.user);
   const [expandedId, setExpandedId] = useState<number | null>(null);
   const toggle = (id: number) => setExpandedId(expandedId === id ? null : id);
 
@@ -42,7 +43,7 @@ export default function MySupportGroupsDashboard() {
             <h1 className="font-serif text-4xl font-semibold tracking-tight text-[#2f251f] sm:text-5xl lg:text-[3.5rem] leading-[1.1]">
               Your healing{" "}
               <em className="font-serif text-[#8f6249] italic">circles</em>,
-              &nbsp;{mockUser.name}.
+              &nbsp;{user?.full_name}.
             </h1>
 
             <p className="max-w-2xl text-sm leading-[1.8] text-[#6f5c4f]">

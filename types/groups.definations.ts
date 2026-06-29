@@ -1,7 +1,9 @@
 import { ReactNode } from "react";
 
+export type MeetingFrequency = "weekly" | "monthly" | "once";
+export type GroupStatus = "active" | "inactive" | "filling" | "upcoming";
 export interface GroupSchedule {
-  frequency: "weekly" | "monthly" | "once";
+  frequency: MeetingFrequency;
   dayOfWeek: number; // 0=Sunday, 1=Monday ... 6=Saturday
   startTime: string; // "18:00"
   durationMinutes: number;
@@ -23,7 +25,7 @@ export interface SupportGroup {
   totalSessions: number;
   members: number;
   maxMembers: number;
-  status: "active" | "inactive" | "filling" | "upcoming";
+  status: GroupStatus;
   icon: ReactNode;
   color: string;
   upcomingTopics: string[];
@@ -42,8 +44,3 @@ export interface Resources {
   icon: ReactNode;
   fileUrl: string;
 }
-
-export const mockUser = {
-  name: "Sarah",
-  email: "sarah@example.com",
-};

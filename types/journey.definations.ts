@@ -1,10 +1,12 @@
+
+export type JourneyCat = "retreat" | "course" | "circle" | "reflection";
 export interface JourneyMilestone {
   id: string;
   date: string;
   title: string;
   subtitle: string;
   description: string;
-  category: "retreat" | "course" | "circle" | "reflection";
+  category: JourneyCat;
   focusMarker?: string; 
 }
 

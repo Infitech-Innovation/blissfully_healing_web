@@ -31,7 +31,7 @@ export const logoutUser = async (refresh: string): Promise<void> => {
 };
 
 export const userProfile = async (): Promise<Profile> => {
-  const response = await api.get(PROFILE);
+  const response = await api.get<Profile>(PROFILE);
   return response.data;
 };
 

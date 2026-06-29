@@ -1,4 +1,5 @@
 // definitions.ts
+export type EbookFormat = "PDF" | "EPUB" | "MOBI";
 export interface EBook {
   slug: string;
   title: string;
@@ -9,7 +10,7 @@ export interface EBook {
   purchaseDate: string;
   pricePaid: string;
   fileSize: string;
-  format: "PDF" | "EPUB" | "MOBI";
+  format: EbookFormat;
   fileUrl: string;
   pages: number;
   chapters: string[];

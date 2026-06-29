@@ -1,4 +1,6 @@
 
+
+export type ContentType = "video" | "audio" | "text";
 export interface Lesson {
   id: number;
   title: string;
@@ -6,7 +8,7 @@ export interface Lesson {
   duration: string;
   is_preview: boolean;
   order: number;
-  content_type?: "video" | "audio" | "text";
+  content_type?: ContentType;
   videoUrl?: string;
   audioUrl?: string;
   textContent?: string;
@@ -26,7 +28,7 @@ export interface Category {
   description: string;
 }
 
-export type Course = {
+export interface Course {
   id: number;
   slug: string;
   title: string;

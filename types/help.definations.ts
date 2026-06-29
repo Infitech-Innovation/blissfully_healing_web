@@ -1,8 +1,10 @@
+
+export type FAQCAT = "journey" | "retreats" | "technical";
 export interface FAQItem {
   id: string;
   question: string;
   answer: string;
-  category: "journey" | "retreats" | "technical";
+  category: FAQCAT;
 }
 
 export const faqs: FAQItem[] = [

@@ -1,9 +1,3 @@
-export const mockUser = {
-    name: "Joseph",
-    avatar: null,
-    initials: "JO",
-};
-
 export const mockStats = [
     {
         id: "courses",
