@@ -1,5 +1,28 @@
-import { MyReatreatsSection } from '../../../../../features/private/retreats/MyRetreats';
+import { MyReatreatsSection } from "@/features/private/retreats/MyRetreats";
+import { getServerApi } from "@/lib/axios.server";
+import { retreatKeys } from "@/services/businessservices/retreats.services";
+import { getMyRetreats } from "@/services/endpoints/retreats.endpoints";
+import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 
-export default function RetreatsPage() {
-    return <MyReatreatsSection />
+export default async function RetreatsPage() {
+
+    const serverApi = await getServerApi();
+    const queryClient = new QueryClient({
+        defaultOptions: {
+            queries: {
+                staleTime: 60 * 1000,
+            },
+        },
+    });
+
+    await queryClient.prefetchQuery({
+        queryKey: retreatKeys.registered,
+        queryFn: () => getMyRetreats(serverApi),
+    });
+
+    return (
+        <HydrationBoundary state={dehydrate(queryClient)}>
+            <MyReatreatsSection />
+        </HydrationBoundary>
+    );
 }

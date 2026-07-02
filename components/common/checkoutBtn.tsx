@@ -5,13 +5,13 @@ import { useAuthStore } from "@/store/useAuthStore";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-interface EnrollButtonProps {
+interface CheckOutProps {
   id: number;
   type: string;
   btnName: string;
 }
 
-export default function EnrollButton({ id, type, btnName }: EnrollButtonProps) {
+export default function CheckOutButton({ id, type, btnName }: CheckOutProps) {
   const router = useRouter();
   const { mutate: createCheckout, isPending } = useCreateTransactionMutation();
 

@@ -64,7 +64,7 @@ export function VideoCTASection() {
           src={posterImage}
           alt="Mountain retreat at dusk"
           fill
-          loading="lazy"
+          priority
           fetchPriority="low"
           sizes="(min-width: 1024px) 100vw, 100vw"
           className="object-cover"

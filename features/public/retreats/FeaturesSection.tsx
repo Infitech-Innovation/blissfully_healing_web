@@ -42,6 +42,7 @@ export function FeaturesSection() {
               alt="Peaceful cabin in a forest"
               width={900}
               height={600}
+              priority
               className="h-full w-full object-cover"
               unoptimized
             />

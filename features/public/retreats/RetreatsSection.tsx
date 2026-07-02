@@ -1,9 +1,23 @@
-import { stays } from "@/types/retreats.definations";
+"use client";
+
+import { RetreatSkeleton } from "@/components/skeleton/Retreats";
+import { useGetRetreats } from "@/services/businessservices/retreats.services";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 export function RetreatsSection() {
+
+  const { data: stays, isLoading
+  } = useGetRetreats();
+
+  // 1. Optional Loading state (using the skeleton we made earlier)
+  console.log("retreat data", stays)
+  if (isLoading) return <RetreatSkeleton />;
+
+  // 2. Hide the entire component if stays is null, undefined, or empty
+  if (!stays || stays.length === 0) return null;
+
   return (
     <section className="bg-[#fffaf6] px-6 py-24">
       <div className="mx-auto max-w-7xl">
@@ -21,15 +35,15 @@ export function RetreatsSection() {
         </div>
 
         <div className="grid gap-6 md:grid-cols-3">
-          {stays.map((stay) => (
+          {stays?.map((stay) => (
             <article
-              key={stay.name}
+              key={stay.title}
               className="group overflow-hidden rounded-[8px] border border-[#eadfd4] bg-white p-4 shadow-[0_18px_45px_rgba(63,52,44,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_28px_70px_rgba(63,52,44,0.14)]"
             >
               <div className="relative mb-5 aspect-[4/3] overflow-hidden rounded-[6px] bg-[#f8f0e8]">
                 <Image
-                  src={stay.image}
-                  alt={stay.name}
+                  src={stay.cover_image}
+                  alt={stay.title}
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   width={900}
                   height={600}
@@ -37,14 +51,14 @@ export function RetreatsSection() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#2f251f]/45 to-transparent" />
                 <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-[#8f6249] shadow-sm backdrop-blur">
-                  {stay.tag}
+                  {stay.category_label}
                 </span>
               </div>
               <h3 className="mb-2 font-serif text-xl font-semibold text-[#2f251f]">
-                {stay.name}
+                {stay.title}
               </h3>
               <p className="mb-4 text-sm leading-6 text-[#6f5c4f]">
-                {stay.desc}
+                {stay.short_description}
               </p>
               <Link
                 href={`/retreats/${stay.slug}`}
