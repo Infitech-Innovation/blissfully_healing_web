@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 import MyCourseCard from "./MyCourseCard";
 import Link from "next/link";
 import { useEnrolledCourses } from "@/services/businessservices/courses.services";
-import MyCourseCardSkeleton from "./MySkeletonCard";
+import MyCourseCardSkeleton from "../../../components/skeleton/MySkeletonCard";
 
 export default function MyCoursePage() {
   const { data: enrollments = [], isLoading } = useEnrolledCourses();

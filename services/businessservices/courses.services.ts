@@ -22,7 +22,7 @@ export const useGetCourses = () => {
 }
 
 export const useCourseDetails = (slug: string) => {
-    return useQuery({
+    return useQuery<Course>({
         queryKey: coursekeys.detail(slug),
         queryFn: () => getCoursesDetails(slug),
         staleTime: 1000 * 60 * 5,
@@ -53,7 +53,7 @@ export const useEnrolledCourses = () => {
 }
 
 export const useEnrolledCoursesDetails = (id: string) => {
-    return useQuery({
+    return useQuery<EnrolledCourse>({
         queryKey: coursekeys.enrolleddetails(id),
         queryFn: () => getMyEnrollmentDetails(id),
         staleTime: 1000 * 60 * 5,
