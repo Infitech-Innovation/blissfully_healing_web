@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { BookCheck, Flame, ChevronRight } from "lucide-react";
-import { mockCourses, mockLearningProgress } from "../../../../../../types/dashboard.definations";
+import { mockCourses, mockLearningProgress } from "../../../types/dashboard.definations";
 
 export function LearningProgress() {
   const { overallCompletion, coursesCompleted, coursesTotal, weeklyGoalMinutes, weeklyDoneMinutes, weeklyGoalPercent } = mockLearningProgress;

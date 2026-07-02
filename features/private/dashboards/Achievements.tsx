@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { GraduationCap, BookOpen, Users, Mountain, Lock, CircleCheck as CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { mockAchievements } from "../../../../../../types/dashboard.definations";
+import { mockAchievements } from "../../../types/dashboard.definations";
 
 const iconMap = {
   graduation: GraduationCap,

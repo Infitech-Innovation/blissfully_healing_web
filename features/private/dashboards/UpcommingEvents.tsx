@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { CalendarHeart, Users, CirclePlay as PlayCircle, MapPin, Clock } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { mockEvents } from "../../../../../../types/dashboard.definations";
+import { mockEvents } from "../../../types/dashboard.definations";
 
 const eventTypeConfig = {
   retreat: {
