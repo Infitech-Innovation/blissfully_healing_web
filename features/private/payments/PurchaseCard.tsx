@@ -1,4 +1,4 @@
-import { Receipt, BookOpen, GraduationCap, Compass } from "lucide-react";
+import { BookOpen, GraduationCap, Compass, DownloadIcon } from "lucide-react";
 import { Transaction } from "@/types/payments.definations";
 import Link from "next/link";
 
@@ -72,8 +72,8 @@ export default function PurchaseCard({ purchase }: Purchaseprops) {
                                         <td className="whitespace-nowrap px-6 py-4">
                                             <span
                                                 className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider border ${isPaid
-                                                        ? "bg-emerald-50 text-emerald-700 border-emerald-200"
-                                                        : "bg-amber-50 text-amber-700 border-amber-200"
+                                                    ? "bg-emerald-50 text-emerald-700 border-emerald-200"
+                                                    : "bg-amber-50 text-amber-700 border-amber-200"
                                                     }`}
                                             >
                                                 {txn.status || "Pending"}
@@ -96,7 +96,7 @@ export default function PurchaseCard({ purchase }: Purchaseprops) {
                                                 className="inline-flex h-8 w-8 items-center justify-center rounded-[4px] border border-[#eadfd4] bg-white text-[#6f5c4f] transition hover:border-[#8f6249] hover:text-[#8f6249]"
                                                 title="View Receipt Details"
                                             >
-                                                <Receipt size={14} />
+                                                <DownloadIcon size={14} />
                                             </Link>
                                         </td>
                                     </tr>

@@ -1,10 +1,11 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { Search, Loader2 } from "lucide-react";
+import { Search } from "lucide-react";
 import PurchaseCard from "./PurchaseCard";
 import { usePayments } from "@/services/businessservices/payment.services";
 import { ProductType, Transaction } from "@/types/payments.definations";
+import PurchaseCardSkeleton from "@/components/skeleton/PurchaseHistory";
 
 export default function PurchaseHist() {
   const { data: rawData, isLoading, isError } = usePayments();
@@ -103,11 +104,10 @@ export default function PurchaseHist() {
                 type="button"
                 key={type}
                 onClick={() => setFilter(type)}
-                className={`rounded-[6px] px-4 py-2 text-xs font-bold uppercase tracking-wider transition ${
-                  filter === type
-                    ? "bg-[#8f6249] text-white"
-                    : "border border-[#eadfd4] bg-white text-[#6f5c4f] hover:border-[#8f6249] hover:text-[#8f6249]"
-                }`}
+                className={`rounded-[6px] px-4 py-2 text-xs font-bold uppercase tracking-wider transition ${filter === type
+                  ? "bg-[#8f6249] text-white"
+                  : "border border-[#eadfd4] bg-white text-[#6f5c4f] hover:border-[#8f6249] hover:text-[#8f6249]"
+                  }`}
               >
                 {type === "all" ? "All Orders" : `${type}s`}
               </button>
@@ -137,12 +137,7 @@ export default function PurchaseHist() {
         </div>
 
         {isLoading ? (
-          <div className="flex flex-col items-center justify-center py-24 gap-3">
-            <Loader2 className="h-8 w-8 animate-spin text-[#8f6249]" />
-            <p className="text-sm font-medium text-[#6f5c4f]">
-              Syncing payment history records...
-            </p>
-          </div>
+          <PurchaseCardSkeleton />
         ) : isError ? (
           <div className="rounded-[28px] border border-dashed border-red-200 bg-red-50/40 px-6 py-14 text-center">
             <h3 className="text-lg font-semibold text-red-900">
