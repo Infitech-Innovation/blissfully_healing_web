@@ -15,8 +15,8 @@ import {
 } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
-import EnrollButton from "@/components/common/checkoutBtn";
 import { Course } from "@/types/course.definations";
+import CheckOutButton from "@/components/common/checkoutBtn";
 
 export default function CourseDetail({ course }: { course: Course }) {
   const [openChapterIds, setOpenChapterIds] = useState<number[]>(() =>
@@ -275,7 +275,7 @@ export default function CourseDetail({ course }: { course: Course }) {
             </div>
           </div>
 
-          <EnrollButton id={course.id} type="course" btnName="Enroll Now" />
+          <CheckOutButton id={course.id} type="course" btnName="Enroll Now" />
           <p className="mt-3 text-center text-[12px] text-[#7a6658]">
             30-day money-back guarantee
           </p>

@@ -1,6 +1,5 @@
-import { AboutSection } from "../../../../../features/public/retreats/about-section";
-// import { HeroSection } from "../../retreats/_components/hero-section";
-import { RetreatsSection } from "../../../../../features/public/retreats/retreats-section";
+import { AboutSection } from "@/features/public/retreats/AboutSection";
+import { RetreatsSection } from "@/features/public/retreats/RetreatsSection";
 
 export default function VoyagePage() {
   return (
