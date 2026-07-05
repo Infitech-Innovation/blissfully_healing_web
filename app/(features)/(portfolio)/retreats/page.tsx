@@ -13,7 +13,7 @@ export default async function RetreatsPage() {
   });
 
   await queryClient.prefetchQuery({
-    queryKey: retreatKeys.registered,
+    queryKey: retreatKeys.all,
     queryFn: getRetreats,
   });
 

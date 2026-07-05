@@ -3,9 +3,14 @@
 
 import Link from "next/link";
 import LibraryCard from "./LibraryCard";
-import { purchasedEBooks } from "@/types/ebooks.definations";
+import { useMyEbooks } from "@/services/businessservices/ebook.services";
+import LibrarySkeleton from "@/components/skeleton/LibraryCard";
 
 export default function LibrarySection() {
+
+    const { data: purchasedEBooks = [], isLoading } = useMyEbooks()
+    console.log("books own", purchasedEBooks)
+
     return (
         <section className="bg-[#fffaf6] px-6 py-8 min-h-screen">
             <div className="mx-auto max-w-7xl">
@@ -35,7 +40,33 @@ export default function LibrarySection() {
                     </div>
                 </div>
 
-                <LibraryCard library={purchasedEBooks} />
+                {isLoading ? (
+                    <LibrarySkeleton />
+                ) : purchasedEBooks.length > 0 ? (
+                    <div className="grid gap-10 lg:grid-cols-2">
+                        {purchasedEBooks.map((ebook) => (
+                            <LibraryCard key={ebook.id} library={ebook} />
+                        ))}
+                    </div>
+                ) : (
+                    <div className="flex flex-col items-center justify-center rounded-[28px] border border-dashed border-[#dbc7b7] bg-[#f8f0e8] px-6 py-14 text-center">
+                        <h3 className="text-xl font-semibold text-[#2f251f]">
+                            No ebooks found
+                        </h3>
+
+                        <p className="mt-2 max-w-sm text-sm text-[#6f5c4f]">
+                            Please subscribe to a course to get started, or try clearing your
+                            search query.
+                        </p>
+
+                        <Link
+                            href="/shop"
+                            className="mt-6 inline-block rounded-[8px] border border-[#eadfd4] bg-white px-6 py-3 text-xs font-bold uppercase tracking-widest text-[#6f5c4f] transition hover:border-[#8f6249] hover:text-[#8f6249] shadow-sm"
+                        >
+                            Explore Curriculum
+                        </Link>
+                    </div>
+                )}
             </div>
         </section>
     );

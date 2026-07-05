@@ -1,13 +1,14 @@
 
 "use client";
 
-import { EBook } from "@/types/ebooks.definations";
-import { Search, Sparkles, Flame, Clock, Bookmark } from "lucide-react";
+
+import { EBookList } from "@/types/ebooks.definations";
+import { Search, Sparkles, Flame, Clock, Bookmark, Tag } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
 type LibraryHeroProps = {
-    ebooks: EBook[];
+    ebooks: EBookList[];
 };
 
 export default function LibraryHero({ ebooks }: LibraryHeroProps) {
@@ -102,7 +103,7 @@ export default function LibraryHero({ ebooks }: LibraryHeroProps) {
                                 {ebooks[(activeIndex - 1 + ebooks.length) % ebooks.length] && (
                                     <div className="aspect-[3/4] rounded-xl overflow-hidden bg-[#f8f0e8] relative">
                                         <Image
-                                            src={ebooks[(activeIndex - 1 + ebooks.length) % ebooks.length].coverImage}
+                                            src={ebooks[(activeIndex - 1 + ebooks.length) % ebooks.length].cover_image}
                                             alt={ebooks[(activeIndex - 1 + ebooks.length) % ebooks.length].title}
                                             className="h-full w-full object-cover"
                                             width={176}
@@ -112,7 +113,7 @@ export default function LibraryHero({ ebooks }: LibraryHeroProps) {
                                         <div className="absolute inset-0 bg-gradient-to-t from-[#2f251f]/90 via-[#2f251f]/50 to-[#2f251f]/20" />
                                         <div className="absolute inset-0 p-4 flex flex-col justify-between text-white">
                                             <span className="text-[10px] font-bold uppercase tracking-widest text-[#f8f0e8]/60">
-                                                {ebooks[(activeIndex - 1 + ebooks.length) % ebooks.length].tag}
+                                                {ebooks[(activeIndex - 1 + ebooks.length) % ebooks.length].category_label}
                                             </span>
                                             <h4 className="font-serif text-base font-bold leading-tight line-clamp-2">
                                                 {ebooks[(activeIndex - 1 + ebooks.length) % ebooks.length].title}
@@ -128,7 +129,7 @@ export default function LibraryHero({ ebooks }: LibraryHeroProps) {
                                     <div className="aspect-[3/4] rounded-2xl overflow-hidden bg-[#f8f0e8] relative group">
                                         <Image
                                             key={activeBook.slug}
-                                            src={activeBook.coverImage}
+                                            src={activeBook.cover_image}
                                             alt={activeBook.title}
                                             className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                                             width={224}
@@ -138,7 +139,7 @@ export default function LibraryHero({ ebooks }: LibraryHeroProps) {
                                         <div className="absolute inset-0 bg-gradient-to-t from-[#2f251f]/90 via-[#2f251f]/50 to-[#2f251f]/20" />
                                         <div className="absolute inset-0 p-6 flex flex-col justify-between text-white">
                                             <span className="text-xs font-bold uppercase tracking-widest text-[#f8f0e8]/80">
-                                                {activeBook.tag}
+                                                {activeBook.category_label}
                                             </span>
                                             <div>
                                                 <h3 className="font-serif text-xl font-bold leading-tight line-clamp-2">
@@ -146,10 +147,23 @@ export default function LibraryHero({ ebooks }: LibraryHeroProps) {
                                                 </h3>
                                                 <p className="mt-2 text-xs text-[#f8f0e8]/70">by {activeBook.author}</p>
                                             </div>
-                                            <div className="flex items-center justify-between">
-                                                <span className="text-sm font-bold">{activeBook.pricePaid}</span>
-                                                <div className="h-1.5 w-12 rounded-full bg-[#eadfd4]/60" />
-                                            </div>
+
+                                            {
+                                                activeBook.price === '0.00' ? (
+                                                    <div className="flex items-center justify-between">
+                                                        <span className="flex items-center gap-1.5 font-bold text-xl">
+                                                            <Tag size={15} />
+                                                            Free
+                                                        </span>
+                                                    </div>
+                                                ) : (
+                                                    <div className="flex items-center justify-between">
+                                                        <span className="text-sm font-bold">KES {activeBook.price}</span>
+
+                                                        <div className="h-1.5 w-12 rounded-full bg-[#eadfd4]/60" />
+                                                    </div>
+                                                )
+                                            }
                                         </div>
                                     </div>
                                 )}
@@ -160,7 +174,7 @@ export default function LibraryHero({ ebooks }: LibraryHeroProps) {
                                 {ebooks[(activeIndex + 1) % ebooks.length] && (
                                     <div className="aspect-[3/4] rounded-xl overflow-hidden bg-[#f8f0e8] relative">
                                         <Image
-                                            src={ebooks[(activeIndex + 1) % ebooks.length].coverImage}
+                                            src={ebooks[(activeIndex + 1) % ebooks.length].cover_image}
                                             alt={ebooks[(activeIndex + 1) % ebooks.length].title}
                                             className="h-full w-full object-cover"
                                             width={176}
@@ -170,7 +184,7 @@ export default function LibraryHero({ ebooks }: LibraryHeroProps) {
                                         <div className="absolute inset-0 bg-gradient-to-t from-[#2f251f]/90 via-[#2f251f]/50 to-[#2f251f]/20" />
                                         <div className="absolute inset-0 p-4 flex flex-col justify-between text-white">
                                             <span className="text-[10px] font-bold uppercase tracking-widest text-[#f8f0e8]/80">
-                                                {ebooks[(activeIndex + 1) % ebooks.length].tag}
+                                                {ebooks[(activeIndex + 1) % ebooks.length].category_label}
                                             </span>
                                             <h4 className="font-serif text-base font-bold leading-tight line-clamp-2">
                                                 {ebooks[(activeIndex + 1) % ebooks.length].title}

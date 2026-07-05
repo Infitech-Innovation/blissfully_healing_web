@@ -1,12 +1,26 @@
-import { purchasedEBooks } from "@/types/ebooks.definations";
-import LibraryCard from "@/features/public/ebooks/LibraryCard";
-import LibraryHero from "@/features/public/ebooks/LibraryHero";
+import LibrarySection from "@/features/public/ebooks/LibarySection";
+import { ebookKeys } from "@/services/businessservices/ebook.services";
+import { getEbooks } from "@/services/endpoints/ebooks.endpoints";
+import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 
-export default function ShopPage() {
+export default async function EbooksPage() {
+    const queryClient = new QueryClient({
+        defaultOptions: {
+            queries: {
+                staleTime: 60 * 1000,
+            },
+        },
+    });
+
+    await queryClient.prefetchQuery({
+        queryKey: ebookKeys.all,
+        queryFn: getEbooks,
+    });
+
     return (
-        <div className="mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8 lg:py-16">
-            <LibraryHero ebooks={purchasedEBooks} />
-            <LibraryCard library={purchasedEBooks} />
-        </div>
-    )
+
+        <HydrationBoundary state={dehydrate(queryClient)}>
+            <LibrarySection />
+        </HydrationBoundary>
+    );
 }
