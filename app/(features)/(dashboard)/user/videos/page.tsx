@@ -1,5 +1,5 @@
-import { HealingVideoSanctuary } from '@/features/private/video/VideosPage';
+import HealingVideosPage from "@/features/private/video/VideosPage";
 
 export default function VideosPage() {
- return <HealingVideoSanctuary/>;
+ return <HealingVideosPage/>;
 }
