@@ -1,7 +1,9 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { CalendarHeart, Users, CirclePlay as PlayCircle, MapPin, Clock } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { mockEvents } from "../../../types/dashboard.definations";
+import { UpcomingEventItem } from "@/types/dashboard.definations";
+import { formatDate } from "@/utils/utils";
+// import { mockEvents } from "../../../types/dashboard.definations";
 
 const eventTypeConfig = {
   retreat: {
@@ -33,7 +35,11 @@ const eventTypeConfig = {
   },
 };
 
-export function UpcomingEvents() {
+interface PageProps {
+  upcomming: UpcomingEventItem[]
+}
+
+export function UpcomingEvents({ upcomming }: PageProps) {
   return (
     <Card className="border shadow-sm hover:shadow-md transition-shadow duration-300">
       <CardHeader className="pb-4">
@@ -44,13 +50,13 @@ export function UpcomingEvents() {
       </CardHeader>
       <CardContent>
         <div className="space-y-3">
-          {mockEvents.map((event) => {
+          {upcomming.slice(0, 3).map((event) => {
             const cfg = eventTypeConfig[event.type as keyof typeof eventTypeConfig];
             const Icon = cfg.icon;
 
             return (
               <div
-                key={event.id}
+                key={event.title}
                 className={cn(
                   "group relative flex gap-3 rounded-xl border p-4 transition-all duration-200 cursor-default",
                   "hover:shadow-sm hover:-translate-y-0.5",
@@ -78,14 +84,14 @@ export function UpcomingEvents() {
                         cfg.badgeBg
                       )}
                     >
-                      {event.badge}
+                      {event.status}
                     </span>
                   </div>
 
                   <div className="space-y-0.5">
                     <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
                       <Clock className="h-3 w-3 shrink-0" />
-                      <span>{event.date} · {event.time}</span>
+                      <span>{formatDate(event.date)}</span>
                     </div>
                     <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
                       <MapPin className="h-3 w-3 shrink-0" />

@@ -1,4 +1,4 @@
-
+import { useUserDashboard } from "@/services/businessservices/dash.services";
 import { Achievements } from "./Achievements";
 import { DashboardHeader } from "./DashboardHeader";
 import { LearningProgress } from "./LearningProgress";
@@ -7,6 +7,20 @@ import { StatsCards } from "./StatsCard";
 import { UpcomingEvents } from "./UpcommingEvents";
 
 export function DashboardAnalytics() {
+
+  const { data: dashboard, isLoading } = useUserDashboard();
+  console.log("analytics", dashboard)
+
+  if (isLoading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-background">
+        <p className="text-sm font-medium text-muted-foreground animate-pulse">
+          Loading your wellness dashboard...
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-background">
       {/* Page background decoration */}
@@ -29,7 +43,7 @@ export function DashboardAnalytics() {
               </h2>
             </div>
           </div>
-          <StatsCards />
+          <StatsCards stats={dashboard!.overview} />
         </section>
 
         {/* Analytics: Progress + Activity */}
@@ -40,8 +54,8 @@ export function DashboardAnalytics() {
             </h2>
           </div>
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-            <LearningProgress />
-            <RecentActivity />
+            <LearningProgress  progress={dashboard!.analytics}/>
+            <RecentActivity activity={dashboard!.recent_activity} />
           </div>
         </section>
 
@@ -53,8 +67,8 @@ export function DashboardAnalytics() {
             </h2>
           </div>
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-            <UpcomingEvents />
-            <Achievements />
+            <UpcomingEvents upcomming ={dashboard!.upcoming_events} />
+            <Achievements  achievements={dashboard!.achievements}/>
           </div>
         </section>
       </div>

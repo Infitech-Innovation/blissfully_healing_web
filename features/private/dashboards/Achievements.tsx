@@ -1,18 +1,24 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { GraduationCap, BookOpen, Users, Mountain, Lock, CircleCheck as CheckCircle2 } from "lucide-react";
+import { GraduationCap, BookOpen, Users, Mountain, Lock, CircleCheck as CheckCircle2, Award } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { mockAchievements } from "../../../types/dashboard.definations";
+import { AchievementItem } from "@/types/dashboard.definations";
+// import { mockAchievements } from "../../../types/dashboard.definations";
 
 const iconMap = {
-  graduation: GraduationCap,
-  book: BookOpen,
-  users: Users,
-  mountain: Mountain,
+  first_course: GraduationCap,
+  avid_reader: BookOpen,
+  community: Users,
+  retreat_participant: Mountain,
 };
 
-export function Achievements() {
-  const earnedCount = mockAchievements.filter((a) => a.earned).length;
+interface PageProps {
+  achievements: AchievementItem[]
+}
 
+export function Achievements({ achievements }: PageProps) {
+
+  const earnedCount = achievements.filter((a) => a.earned).length;
+  const safeAchievements = achievements || [];
   return (
     <Card className="bg-[#fffaf6] border border-[#eadfd4] rounded-[8px] shadow-[0_12px_30px_rgba(63,52,44,0.02)]">
       <CardHeader className="pb-4">
@@ -22,22 +28,22 @@ export function Achievements() {
               Achievements
             </CardTitle>
             <CardDescription className="mt-0.5 text-xs text-[#744d39]">
-              {earnedCount} of {mockAchievements.length} badges earned
+              {earnedCount} of {achievements.length} badges earned
             </CardDescription>
           </div>
-          
+
           {/* Highlight Badge using Soft Ivory & Warm Gold */}
           <span className="inline-flex items-center gap-1.5 rounded-[4px] bg-[#f8f0e8] border border-[#eadfd4] px-2.5 py-1 text-xs font-bold text-[#b28b67] uppercase tracking-wider">
             <CheckCircle2 className="h-3.5 w-3.5 text-[#8f6249]" />
-            {earnedCount} / {mockAchievements.length}
+            {earnedCount} / {achievements.length}
           </span>
         </div>
       </CardHeader>
-      
+
       <CardContent>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-          {mockAchievements.map((achievement) => {
-            const Icon = iconMap[achievement.icon as keyof typeof iconMap];
+          {safeAchievements.map((achievement) => {
+            const Icon = iconMap[achievement.id as keyof typeof iconMap] || Award;
 
             return (
               <div
@@ -76,14 +82,14 @@ export function Achievements() {
                   )}>
                     {achievement.title}
                   </p>
-                  
+
                   <p className="mt-1 text-xs text-[#744d39] line-clamp-2 leading-relaxed">
                     {achievement.description}
                   </p>
-                  
+
                   {achievement.earned ? (
                     <span className="mt-2.5 inline-block rounded-[4px] bg-[#fffaf6] border border-[#eadfd4] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#b28b67]">
-                      Earned {achievement.earnedDate}
+                      Earned
                     </span>
                   ) : (
                     <span className="mt-2.5 inline-block text-[10px] font-bold uppercase tracking-wider text-[#3f342c]/40">

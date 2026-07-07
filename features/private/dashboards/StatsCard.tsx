@@ -4,10 +4,9 @@ import {
   BookOpen,
   CalendarHeart,
   Users,
-  TrendingUp,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { mockStats } from "../../../types/dashboard.definations";
+import { DashboardOverview, mockStats } from "../../../types/dashboard.definations";
 
 const iconMap = {
   courses: GraduationCap,
@@ -16,11 +15,25 @@ const iconMap = {
   groups: Users,
 };
 
-export function StatsCards() {
+const dataKeyMap: Record<string, keyof DashboardOverview> = {
+  courses: "enrolled_courses",
+  ebooks: "ebooks_library",
+  retreats: "retreats_paid_for",
+  groups: "support_groups",
+};
+
+interface PageProps {
+  stats: DashboardOverview
+}
+
+export function StatsCards({stats}: PageProps) {
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
       {mockStats.map((stat, i) => {
         const Icon = iconMap[stat.id as keyof typeof iconMap];
+        // Match the structural metadata key to the backend prop values securely
+        const targetKey = dataKeyMap[stat.id];
+        const liveValue = stats ? stats[targetKey] : 0;
 
         return (
           <Card
@@ -41,7 +54,7 @@ export function StatsCards() {
                   
                   <div className="flex items-end gap-2">
                     <span className="font-serif text-4xl font-semibold tracking-tight text-[#2f251f] tabular-nums leading-none">
-                      {stat.value}
+                      {liveValue}
                     </span>
                   </div>
                   
@@ -57,12 +70,12 @@ export function StatsCards() {
               </div>
 
               {/* Lower Trend Tracker Indicator */}
-              <div className="mt-4 flex items-center gap-1.5">
+              {/* <div className="mt-4 flex items-center gap-1.5">
                 <div className="flex items-center gap-1 rounded-[4px] bg-[#fffaf6] border border-[#eadfd4] px-2 py-0.5 text-[11px] font-semibold text-[#6f5c4f]">
                   <TrendingUp className="h-3 w-3 text-[#8f6249]" />
                   <span>{stat.trend}</span>
                 </div>
-              </div>
+              </div> */}
             </CardContent>
           </Card>
         );

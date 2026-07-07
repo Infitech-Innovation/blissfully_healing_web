@@ -1,7 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Users, BookCheck, Download, CalendarHeart, ChevronRight } from "lucide-react";
+import { Users, BookCheck, Download, CalendarHeart } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { mockActivity } from "../../../types/dashboard.definations";
+import { formatDate } from "@/utils/utils";
+import { RecentActivityItem } from "@/types/dashboard.definations";
 
 const typeConfig = {
   group: {
@@ -30,7 +31,11 @@ const typeConfig = {
   },
 };
 
-export function RecentActivity() {
+interface PageProps {
+  activity: RecentActivityItem[]
+}
+
+export function RecentActivity({ activity }: PageProps) {
   return (
     <Card className="border shadow-sm hover:shadow-md transition-shadow duration-300">
       <CardHeader className="pb-4">
@@ -39,20 +44,17 @@ export function RecentActivity() {
             <CardTitle className="text-base font-semibold">Recent Activity</CardTitle>
             <CardDescription className="mt-0.5 text-xs">Your latest platform interactions</CardDescription>
           </div>
-          <button className="flex items-center gap-0.5 text-xs font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 transition-colors mt-0.5">
-            View all <ChevronRight className="h-3 w-3" />
-          </button>
         </div>
       </CardHeader>
       <CardContent>
         <div className="relative space-y-0">
-          {mockActivity.map((item, i) => {
+          {activity.slice(0, 5).map((item, i) => {
             const cfg = typeConfig[item.type as keyof typeof typeConfig];
             const Icon = cfg.icon;
-            const isLast = i === mockActivity.length - 1;
+            const isLast = i === activity.length - 1;
 
             return (
-              <div key={item.id} className="group relative flex gap-3 pb-5">
+              <div key={item.title} className="group relative flex gap-3 pb-5">
                 {/* Timeline line */}
                 {!isLast && (
                   <div className="absolute left-5 top-10 bottom-0 w-px bg-border" />
@@ -73,10 +75,10 @@ export function RecentActivity() {
                   <p className="text-sm font-medium text-foreground leading-tight truncate">
                     {item.title}
                   </p>
-                  <p className="text-xs text-muted-foreground mt-0.5">{item.description}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">{item.subtitle}</p>
                   <div className="mt-1.5 flex items-center gap-1.5">
                     <span className={cn("h-1.5 w-1.5 rounded-full", cfg.dot)} />
-                    <span className="text-xs text-muted-foreground">{item.time}</span>
+                    <span className="text-xs text-muted-foreground">{formatDate(item.date)}</span>
                   </div>
                 </div>
               </div>
