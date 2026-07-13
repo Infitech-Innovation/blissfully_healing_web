@@ -19,8 +19,8 @@ export default async function CoursesPage() {
   });
 
   await queryClient.prefetchQuery({
-    queryKey: coursekeys.enrolled,
-    queryFn: () => getMyEnrollments(serverApi),
+    queryKey: coursekeys.enrolledList(1),
+    queryFn: async () => (await getMyEnrollments(1, serverApi)),
   });
 
   return (

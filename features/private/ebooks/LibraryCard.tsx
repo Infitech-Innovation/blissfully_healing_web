@@ -8,12 +8,12 @@ import {
   ArrowDownToLine,
 } from "lucide-react";
 import Image from "next/image";
-import { OwneredEboks } from "@/types/ebooks.definations";
+import { OwnedEbooks } from "@/types/ebooks.definations";
 import { formatDate } from "@/utils/utils";
 import { useDownloadEbookMutation } from "@/services/businessservices/ebook.services";
 
 type LibraryProps = {
-  library: OwneredEboks;
+  library: OwnedEbooks;
 };
 
 export default function LibraryCard({ library }: LibraryProps) {

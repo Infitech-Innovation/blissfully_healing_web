@@ -6,12 +6,14 @@ import { MyRetreatSkeleton } from "@/components/skeleton/MyRetreats";
 import RetreatCard from "./ReatreatCard";
 import { useState } from "react";
 import CancelRetreatModal from "./CancelRetreat";
+import { RegisteredRetreats } from "@/types/retreats.definations";
 
+const EMPTY_LIST: RegisteredRetreats[] = [];
 
 export function MyReatreatsSection() {
 
-    const { data: myretreats = [], isLoading } = useMyRetreats();
-    console.log("my retreats data", myretreats);
+    const { data: reatreatResponse, isLoading } = useMyRetreats();
+    const myretreats = reatreatResponse?.results ?? EMPTY_LIST;
 
     const cancelRetreatMutation = useCancelRetreat();
 

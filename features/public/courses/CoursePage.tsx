@@ -2,25 +2,37 @@
 
 import { Search } from "lucide-react";
 import { useMemo, useState } from "react";
+import Pagination from "@/components/custom/Pagination";
 import CourseCard from "./CourseCard";
 import CourseHero from "./CourseHero";
+import { Course } from "@/types/course.definations";
 import { useGetCourses } from "@/services/businessservices/courses.services";
+
+const EMPTY_COURSES: Course[] = [];
 
 export default function CourseSection() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [query, setQuery] = useState("");
+  const [page, setPage] = useState(1);
 
-  const { data: courses = [] } = useGetCourses();
+  const { data: coursesData, isFetching } = useGetCourses(page);
+  const courses = coursesData?.results ?? EMPTY_COURSES;
+  const pageSize = Math.max(courses.length, 1);
 
-  const categories = [
-    "All",
-    ...Array.from(new Set(courses.map((course) => course.category?.name || ""))).filter(Boolean),
-  ];
+  const categories = useMemo(
+    () => [
+      "All",
+      ...Array.from(
+        new Set(courses.map((course) => course.category?.name || ""))
+      ).filter(Boolean),
+    ],
+    [courses]
+  );
 
   const visibleCourses = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
 
-    return courses?.filter((course) => {
+    return courses.filter((course) => {
       const matchesCategory =
         activeCategory === "All" || course.category?.name === activeCategory;
 
@@ -29,7 +41,7 @@ export default function CourseSection() {
         [
           course.title,
           course.short_description,
-          course.category?.name,   
+          course.category?.name,
           course.difficulty,
         ]
           .join(" ")
@@ -60,7 +72,10 @@ export default function CourseSection() {
             <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#9a6b4f]" />
             <input
               value={query}
-              onChange={(event) => setQuery(event.target.value)}
+              onChange={(event) => {
+                setQuery(event.target.value);
+                setPage(1);
+              }}
               placeholder="Search courses"
               className="h-12 w-full rounded-sm border border-[#eadfd4] bg-white pl-11 pr-4 text-sm text-[#2f251f] outline-none transition placeholder:text-[#b39c8c] focus:border-[#8f6249] focus:ring-4 focus:ring-[#8f6249]/10"
             />
@@ -72,7 +87,10 @@ export default function CourseSection() {
             <button
               key={category}
               type="button"
-              onClick={() => setActiveCategory(category)}
+              onClick={() => {
+                setActiveCategory(category);
+                setPage(1);
+              }}
               className={`shrink-0 rounded-full border px-4 py-2 text-sm font-semibold transition ${
                 activeCategory === category
                   ? "border-[#2f251f] bg-[#2f251f] text-[#fffaf6]"
@@ -100,6 +118,14 @@ export default function CourseSection() {
             </p>
           </div>
         )}
+
+        <Pagination
+          currentPage={page}
+          totalItems={coursesData?.count ?? courses.length}
+          pageSize={pageSize}
+          onPageChange={setPage}
+          disabled={isFetching}
+        />
       </div>
     </section>
   );

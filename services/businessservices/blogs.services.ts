@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Blog, Category } from "../../types/blogs.definations";
+import { Blog, BlogResponse, Category, FeaturedBlogResponse } from "../../types/blogs.definations";
 import {
   getBlogDetails,
   getBlogs,
@@ -13,6 +13,8 @@ export const F_BLOGS_KEYS = ["fblogs"];
 export const BLOGS_KEYS = {
   all: ["blogs"] as const,
   lists: () => [...BLOGS_KEYS.all, "list"] as const,
+  list: (category: string, search: string, tag: string, page: number) =>
+    [...BLOGS_KEYS.lists(), category, search, tag, page] as const,
   detail: (slug: string) => [...BLOGS_KEYS.all, "detail", slug] as const,
 };
 
@@ -27,20 +29,27 @@ export const useCategory = () => {
 };
 
 //get blogs
-export const useBlogs = () => {
-  return useQuery<Blog[]>({
-    queryKey: BLOGS_KEYS.all,
-    queryFn: getBlogs,
+export const useBlogs = (
+  category = "",
+  search = "",
+  tag = "",
+  page = 1
+) => {
+  return useQuery<BlogResponse>({
+    queryKey: BLOGS_KEYS.list(category, search, tag, page),
+    queryFn: () => getBlogs(category, search, tag, page),
+    placeholderData: (previousData) => previousData,
     staleTime: 1000 * 60 * 5,
     retry: 2,
   });
 };
 
 //get featured blogs
-export const useFeaturedBlogs = () => {
-  return useQuery<Blog[]>({
-    queryKey: F_BLOGS_KEYS,
-    queryFn: getFeaturedBlogs,
+export const useFeaturedBlogs = (page = 1) => {
+  return useQuery<FeaturedBlogResponse>({
+    queryKey: [...F_BLOGS_KEYS, page],
+    queryFn: () => getFeaturedBlogs(page),
+    placeholderData: (previousData) => previousData,
     staleTime: 1000 * 60 * 5,
     retry: 2,
   });

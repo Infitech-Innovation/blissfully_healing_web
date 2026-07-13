@@ -4,11 +4,18 @@ import LibrarySkeleton from "@/components/skeleton/LibraryCard";
 import LibraryCard from "@/features/public/ebooks/LibraryCard";
 import LibraryHero from "@/features/public/ebooks/LibraryHero";
 import { useGetEbooks, useGetFeaturedEbooks } from "@/services/businessservices/ebook.services";
+import { EBookList } from "@/types/ebooks.definations";
+
+
+const EMPTY_EBOOKS: EBookList[] = [];
 
 export default function LibrarySection() {
 
-    const { data: eBooks = [], isLoading } = useGetEbooks();
-    const { data: featuredEBooks = [] } = useGetFeaturedEbooks();
+    const { data: eBooksData, isLoading } = useGetEbooks();
+    const { data: featuredEBookData } = useGetFeaturedEbooks();
+
+    const eBooks = eBooksData?.results ?? EMPTY_EBOOKS;
+    const featuredEBooks = featuredEBookData?.results ?? EMPTY_EBOOKS;
 
     if (isLoading) {
         return <LibrarySkeleton />;

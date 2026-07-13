@@ -1,6 +1,5 @@
+import { PaginatedResponse } from "./generic";
 
-
-export type ContentType = "video" | "audio" | "text";
 export interface Lesson {
   id: number;
   title: string;
@@ -8,7 +7,7 @@ export interface Lesson {
   duration: string;
   is_preview: boolean;
   order: number;
-  content_type?: ContentType;
+  content_type?: string;
   videoUrl?: string;
   audioUrl?: string;
   textContent?: string;
@@ -60,3 +59,8 @@ export interface EnrolledCourse {
   progress: number;
   completed_lesson_ids :number[];
 }
+
+export type CourseResponse = PaginatedResponse<Course>;
+export type FeaturedCourseResponse = PaginatedResponse<Course>;
+export type LessonResponse = PaginatedResponse<Lesson>;
+export type EnrolledCourseGroupsResponse = PaginatedResponse<EnrolledCourse>;

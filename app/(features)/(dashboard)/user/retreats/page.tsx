@@ -16,8 +16,8 @@ export default async function RetreatsPage() {
     });
 
     await queryClient.prefetchQuery({
-        queryKey: retreatKeys.registered,
-        queryFn: () => getMyRetreats(serverApi),
+        queryKey: retreatKeys.registeredList(1),
+        queryFn: async () => (await getMyRetreats(1, serverApi)),
     });
 
     return (

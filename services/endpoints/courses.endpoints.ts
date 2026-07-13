@@ -1,37 +1,53 @@
 import { api } from "@/lib/axios";
-import { Course, EnrolledCourse} from "../../types/course.definations";
+import { Category, Course, CourseResponse, EnrolledCourse, EnrolledCourseGroupsResponse, FeaturedCourseResponse, LessonResponse } from "../../types/course.definations";
 import { AxiosInstance } from "axios";
 
 const COURSE_URL = "/courses/";
 const ENROLLMENT_URL = "/enrollments/";
 
-export const getCourses = async (): Promise<Course[]> => {
-    const response = await api.get(`${COURSE_URL}`)
+export const getCourses = async (page: number = 1): Promise<CourseResponse> => {
+    const response = await api.get<CourseResponse>(`${COURSE_URL}`, {
+        params: { page }
+    })
     return response.data
 }
 
-export const getCoursesDetails = async (slug: string) => {
-    const response = await api.get(`${COURSE_URL}${slug}`)
+export const getCoursesDetails = async (slug: string): Promise<Course> => {
+    const response = await api.get<Course>(`${COURSE_URL}${slug}`)
     return response.data
 }
 
-export const getCoursesCategories = async () => {
-    const response = await api.get(`${COURSE_URL}categories/`)
+export const getCoursesCategories = async (): Promise<Category>  => {
+    const response = await api.get<Category>(`${COURSE_URL}categories/`)
     return response.data
 }
 
-export const getFeaturedCourses = async (): Promise<Course[]> => {
-    const response = await api.get(`${COURSE_URL}featured/`)
+export const getFeaturedCourses = async (page: number = 1): Promise<FeaturedCourseResponse> => {
+    const response = await api.get<FeaturedCourseResponse>(`${COURSE_URL}featured/`, {
+        params: { page }
+    })
     return response.data
 }
 
-export const getMyEnrollments = async (apiInstance: AxiosInstance = api): Promise<EnrolledCourse[]> => {
-    const response = await apiInstance.get(`${ENROLLMENT_URL}`);
+export const getMyEnrollments = async (page: number = 1, apiInstance: AxiosInstance = api): Promise<EnrolledCourseGroupsResponse> => {
+    const response = await apiInstance.get<EnrolledCourseGroupsResponse>(`${ENROLLMENT_URL}`, {
+        params: { page }
+    });
     return response.data
 }
 
-export const getMyEnrollmentDetails = async (id: string) => {
-    const response = await api.get<EnrolledCourse>(`${ENROLLMENT_URL}${id}`);
+export const getMyEnrollmentDetails = async (page: number = 1, id: string):Promise<EnrolledCourse> => {
+    const response = await api.get<EnrolledCourse>(`${ENROLLMENT_URL}${id}`, {
+        params: { page }
+    });
+    return response.data
+}
+
+
+export const getCourseLessons = async (page: number = 1, slug: string):Promise<LessonResponse> => {
+    const response = await api.get<LessonResponse>(`${COURSE_URL}${slug}/lessons/`, {
+        params: { page }
+    });
     return response.data
 }
 

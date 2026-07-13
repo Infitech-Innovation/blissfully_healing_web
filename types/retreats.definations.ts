@@ -1,12 +1,6 @@
 // definitions.ts
 import { Flame, Leaf, Mountain, Star } from "lucide-react";
-
-export type RetreatStatus = "upcoming" | "attended" | "cancelled";
-
-export type BookingType = "INSTANT_BOOK"
-
-export type RegRetreatStatus = "CONFIRMED" | "PENDING_CALL" | "CANCELLED" | "ATTENDED";
-
+import { PaginatedResponse } from "./generic";
 interface Included {
     id: number,
     text: string,
@@ -39,7 +33,7 @@ export interface RetreatDetails {
     start_date: Date;
     end_date: Date;
     price: number;
-    booking_type: BookingType;
+    booking_type: string;
     details_heading: string;
     details_text: string;
     spots_remaining: number;
@@ -61,9 +55,13 @@ export interface RetreatList {
 export interface RegisteredRetreats {
     id: string,
     retreat: RetreatList;
-    status: RegRetreatStatus;
+    status: string;
     registered_at: Date;
 }
+
+export type RetreatListResponse = PaginatedResponse<RetreatList>;
+export type FeaturedRetreatListResponse = PaginatedResponse<RetreatList>;
+export type RetreatRegResponse = PaginatedResponse<RegisteredRetreats>;
 
 
 export const features = [

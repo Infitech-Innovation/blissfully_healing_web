@@ -6,20 +6,22 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function CourseHero() {
-  const { data: featuredCourses = [] } = useGetFeaturedCourses();
+  const { data: featuredCourses } = useGetFeaturedCourses();
+  console.log("featured",featuredCourses);
   const [activeIndex, setActiveIndex] = useState(0);
-
-  const featured = featuredCourses[activeIndex];
+  const featured = featuredCourses?.results?.[activeIndex];
 
   useEffect(() => {
-    if (featuredCourses.length <= 1) return;
+    const courses = featuredCourses?.results ?? [];
+
+    if (courses.length <= 1) return;
 
     const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % featuredCourses.length);
+      setActiveIndex((prev) => (prev + 1) % courses.length);
     }, 30000);
 
     return () => clearInterval(interval);
-  }, [featuredCourses.length]);
+  }, [featuredCourses]);
 
   return (
     <div className="relative overflow-hidden border-b border-[#eadfd4] bg-[#f8f0e8]">

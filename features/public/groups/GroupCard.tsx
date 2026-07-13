@@ -1,115 +1,89 @@
 import Link from "next/link";
-import { Calendar, Clock } from "lucide-react";
-import { SupportGroup } from "@/types/groups.definations";
+import { ArrowRight, Calendar, Clock, HeartHandshake, Users } from "lucide-react";
+import { SupportGrouplist } from "@/types/groups.definations";
 import { StatusBadge } from "./statusBadge";
 
 export function GroupCard({
   group,
 }: {
-  group: SupportGroup;
+  group: SupportGrouplist;
 }) {
-  const formatDate = (date: Date) => {
-    const options: Intl.DateTimeFormatOptions = {
-      weekday: 'short',
-      month: 'short',
-      day: 'numeric'
-    };
-    return date.toLocaleDateString('en-US', options);
-  };
-
-  const getColorFromBgClass = (bgClass: string): string => {
-    const colorMap: { [key: string]: string } = {
-      'bg-indigo-50': '#4F46E5',
-      'bg-amber-50': '#D97706',
-      'bg-rose-50': '#E11D48',
-      'bg-purple-50': '#A855F7',
-      'bg-emerald-50': '#059669',
-    };
-    return colorMap[bgClass] || '#64748B';
-  };
 
   return (
-    <article className={`flex flex-col bg-white ${group.color} rounded-md overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group`}>
-      {/* Dynamic Colored Accent Line */}
-      <div
-        className="h-1 w-full"
-        style={{ backgroundColor: getColorFromBgClass(group.color) }}
-      />
-
-      <div className="p-6 flex flex-col flex-1 bg-white">
-        {/* Card Header metadata */}
-        <div className="flex justify-between items-center mb-3">
-          <span className="text-[12px] tracking-widest uppercase font-semibold text-stone-600">
-            {group.category}
-          </span>
-          <StatusBadge status={group.status} />
+    <article className="group flex h-full flex-col overflow-hidden rounded-[8px] border border-[#eadfd4] bg-white shadow-[0_18px_45px_rgba(63,52,44,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_28px_70px_rgba(63,52,44,0.14)]">
+      <div className="flex flex-1 flex-col p-6">
+        <div className="mb-5 flex items-start justify-between gap-3">
+          <div
+            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[8px] border"
+          >
+            {group.icon_image || <HeartHandshake className="text-rose-500" size={30}/>} 
+          </div>
+          <StatusBadge status={group.status_label} />
         </div>
 
-        {/* Clickable Heading Structure */}
         <Link
           href={`/support-groups/${group.slug}`}
-          className="flex-1 block text-left space-y-1.5 focus:outline-none group/title w-full mb-4"
+          className="mb-5 block focus:outline-none"
         >
-          <div className="flex items-start gap-2">
-            <div className="flex-shrink-0">
-              {group.icon}
-            </div>
-            <h3 className="text-lg font-medium text-stone-900 leading-snug group-hover/title:text-stone-950 transition-colors">
-              {group.name}
-            </h3>
-          </div>
-          <p className="text-sm text-stone-600 font-normal line-clamp-2 leading-relaxed">
-            {group.description.substring(0, 100)}...
+          <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.24em] text-[#8f6249]">
+            {group.category.name}
+          </p>
+          <h3 className="text-xl font-semibold leading-snug text-[#2f251f] transition group-hover:text-[#744d39]">
+            {group.title}
+          </h3>
+          <p className="mt-3 line-clamp-3 text-sm leading-6 text-[#6f5c4f]">
+            {group.short_description}
           </p>
         </Link>
 
-        {/* Schedule Info */}
-        <div className="pt-3.5 border-t border-stone-200 space-y-2 mb-4">
-          <div className="flex items-center gap-2 text-sm text-stone-700">
-            <Calendar size={14} className="text-stone-500" />
-            <span>{group.schedule.frequency === 'weekly' ? 'Weekly' : 'Monthly'}</span>
+        <div className="mb-5 grid gap-2 rounded-[6px] bg-[#fffaf6] p-4 text-sm text-[#6f5c4f]">
+          <div className="flex items-center gap-2">
+            <Calendar size={15} className="text-[#8f6249]" />
+            <span>{group.schedule.frequency}</span>
           </div>
-          <div className="flex items-center gap-2 text-sm text-stone-700">
-            <Clock size={14} className="text-stone-500" />
-            <span>{group.time}</span>
+          <div className="flex items-center gap-2">
+            <Clock size={15} className="text-[#8f6249]" />
+            <span>{group.schedule_time}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Users size={15} className="text-[#8f6249]" />
+            <span>{group.current_members_count} of {group.max_members} seats filled</span>
           </div>
         </div>
 
-        {/* Circle Size Progress */}
-        <div className="space-y-1.5 mb-5">
-          <div className="flex justify-between items-center text-[12px] tracking-wide text-stone-500 uppercase font-semibold">
-            <span>Members</span>
-            <span className="font-sans font-bold text-stone-700">
-              {group.members}/{group.maxMembers}
+        <div className="mb-5 space-y-2">
+          <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-widest text-[#6f5c4f]">
+            <span>Group Capacity</span>
+            <span className="text-[#2f251f]">
+              {Math.round((group.current_members_count / group.max_members) * 100)}%
             </span>
           </div>
-          <div className="w-full h-1.5 bg-stone-200 rounded-full overflow-hidden">
+          <div className="h-1.5 w-full overflow-hidden rounded-full bg-[#eadfd4]">
             <div
-              className="h-full rounded-full transition-all duration-500"
+              className="h-full rounded-full bg-[#8f6249] transition-all duration-500"
               style={{
-                width: `${Math.round((group.members / group.maxMembers) * 100)}%`,
-                backgroundColor: getColorFromBgClass(group.color),
+                width: `${Math.round((group.current_members_count / group.max_members) * 100)}%`,
               }}
             />
           </div>
         </div>
 
-        {/* Footer actions row */}
-        <div className="pt-3.5 border-t border-stone-200 flex items-center justify-between mt-auto">
+        <div className="mt-auto flex items-center justify-between border-t border-[#eadfd4] pt-5">
           <div className="flex flex-col">
-            <span className="text-[11px] tracking-wider uppercase text-stone-500 font-semibold">
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-[#6f5c4f]">
               Next Session
             </span>
-            <span className="text-sm text-stone-700 font-semibold">
-              {formatDate(group.nextSession)}
+            <span className="text-sm font-semibold text-[#2f251f]">
+              {group.next_session_date}
             </span>
           </div>
 
           <Link
             href={`/support-groups/${group.slug}`}
-            className="text-sm font-medium tracking-wide px-3 py-2 rounded-md bg-stone-100 hover:bg-stone-200 text-stone-700 transition-colors"
+            className="inline-flex items-center gap-2 rounded-sm bg-[#8f6249] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#744d39]"
           >
             Details
+            <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </div>

@@ -7,19 +7,24 @@ import { usePayments } from "@/services/businessservices/payment.services";
 import { ProductType, Transaction } from "@/types/payments.definations";
 import PurchaseCardSkeleton from "@/components/skeleton/PurchaseHistory";
 
+const EMPTY_LIST: Transaction[] = [];
+
+
 export default function PurchaseHist() {
-  const { data: rawData, isLoading, isError } = usePayments();
+  const { data: purschaseResponse, isLoading, isError } = usePayments();
   const [filter, setFilter] = useState<"all" | ProductType>("all");
   const [searchQuery, setSearchQuery] = useState("");
 
+  const purschases = purschaseResponse?.results ?? EMPTY_LIST;
+
   // 1. Safe array translation fallback to handle variant API return payloads
   const transactionsList = useMemo<Transaction[]>(() => {
-    if (!rawData) return [];
+    if (!purschases) return [];
     // Explicitly check and cast safely so TS doesn't panic
-    return Array.isArray(rawData)
-      ? (rawData as Transaction[])
-      : [rawData as unknown as Transaction];
-  }, [rawData]);
+    return Array.isArray(purschases)
+      ? (purschases as Transaction[])
+      : [purschases as unknown as Transaction];
+  }, [purschases]);
 
   // 2. Comprehensive Filtering & Matching Logic Engine
   const filteredTransactions = useMemo(() => {

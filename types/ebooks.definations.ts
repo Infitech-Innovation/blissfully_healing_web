@@ -1,3 +1,5 @@
+import { PaginatedResponse } from "./generic";
+
 // definitions.ts
 export type EbookFormat = "PDF" | "EPUB" | "MOBI";
 export interface EBookList {
@@ -23,9 +25,13 @@ export interface EBook extends EBookList {
   is_owned: boolean;
 }
 
-export interface OwneredEboks {
+export interface OwnedEbooks {
   id: string;
   ebook: EBookList;
   status: "PENDING_PAYMENT" | "PENDING_CALL" | "CONFIRMED" | "CANCELLED";
   purchased_at: Date;
 }
+
+
+export type EbookListResponse = PaginatedResponse<EBookList>;
+export type OwnedEbookResponse = PaginatedResponse<OwnedEbooks>;

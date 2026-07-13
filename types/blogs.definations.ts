@@ -1,5 +1,7 @@
 // definitions.ts
 
+import { PaginatedResponse } from "./generic";
+
 export interface Author {
   id: number;
   email: string;
@@ -49,3 +51,6 @@ export interface BlogCardItem {
   category: string;
   readTime: string;
 }
+
+export type BlogResponse = PaginatedResponse<Blog>;
+export type FeaturedBlogResponse = PaginatedResponse<Blog>;

@@ -6,10 +6,15 @@ import MyCourseCard from "./MyCourseCard";
 import Link from "next/link";
 import { useEnrolledCourses } from "@/services/businessservices/courses.services";
 import MyCourseCardSkeleton from "../../../components/skeleton/MySkeletonCard";
+import {  EnrolledCourse } from "@/types/course.definations";
+
+const EMPTY_COURSES: EnrolledCourse[] = [];
 
 export default function MyCoursePage() {
-  const { data: enrollments = [], isLoading } = useEnrolledCourses();
+  const { data: enrollmentResponse, isLoading } = useEnrolledCourses();
   const [query, setQuery] = useState("");
+
+  const enrollments = enrollmentResponse?.results ?? EMPTY_COURSES;
 
   const visibleEnrollments = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();

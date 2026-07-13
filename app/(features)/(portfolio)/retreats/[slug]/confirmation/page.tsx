@@ -9,13 +9,8 @@ export default function RetreatConfirmation() {
   const searchParams = useSearchParams();
   const token = searchParams.get('token');
 
-  console.log("Received Token:", token); // For debugging purposes
-
   // Decode the dynamic token
   const retreatData = token ? decodeRetreatToken(token) : null;
-
-  console.log("Decoded Retreat Data:", retreatData); // For debugging purposes
-
   // Error boundary / Fallback if the token is corrupted or missing
   if (!retreatData) {
     return (

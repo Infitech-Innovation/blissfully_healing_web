@@ -1,5 +1,5 @@
 import { api } from "@/lib/axios";
-import { Blog, Category } from "../../types/blogs.definations";
+import { Blog, BlogResponse, Category, FeaturedBlogResponse } from "../../types/blogs.definations";
 
 const CAT_URL = "/blog/categories/";
 const BLOGS_URL = "/blog/";
@@ -13,14 +13,29 @@ export const getCategory = async (): Promise<Category[]> => {
 };
 
 //get blogs
-export const getBlogs = async (): Promise<Blog[]> => {
-  const response = await api.get<Blog[]>(BLOGS_URL);
+export const getBlogs = async (
+  category: string,
+  search: string,
+  tag: string,
+  page: number
+): Promise<BlogResponse> => {
+  const response = await api.get<BlogResponse>(BLOGS_URL, {
+    params: {
+      category,
+      search,
+      tag,
+      page,
+    },
+  });
+
   return response.data;
 };
 
 //get featured blogs
-export const getFeaturedBlogs = async (): Promise<Blog[]> => {
-  const response = await api.get<Blog[]>(FEATURED_BLOGS_URL);
+export const getFeaturedBlogs = async (page: number): Promise<FeaturedBlogResponse> => {
+  const response = await api.get<FeaturedBlogResponse>(FEATURED_BLOGS_URL, {
+    params: { page }
+  });
   return response.data;
 };
 

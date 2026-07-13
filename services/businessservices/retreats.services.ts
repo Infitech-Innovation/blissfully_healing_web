@@ -1,20 +1,24 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { cancelRetreat, getFeaturedRetreats, getMyRetreats, getRetreatDetails, getRetreats, registerRetreat } from "../endpoints/retreats.endpoints"
-import { RegisteredRetreats, RetreatDetails, RetreatList } from "@/types/retreats.definations"
+import { FeaturedRetreatListResponse, RetreatDetails, RetreatListResponse, RetreatRegResponse } from "@/types/retreats.definations"
 
 export const retreatKeys = {
     all: ["retreats"] as const,
+    list: (page: number) => [...retreatKeys.all, "list", page] as const,
+    featured: (page: number) => [...retreatKeys.all, "featured", page] as const,
     detail: (slug: string) => [...retreatKeys.all, slug] as const,
     registered: ["registred-treats"] as const,
+    registeredList: (page: number) => [...retreatKeys.registered, "list", page] as const,
     registereddetails: (id: string) => [...retreatKeys.registered, id] as const,
 }
 
 
 // Retreats 
-export const useGetRetreats = () => {
-    return useQuery<RetreatList[]>({
-        queryKey: retreatKeys.all,
-        queryFn: () => getRetreats(),
+export const useGetRetreats = (page = 1) => {
+    return useQuery<RetreatListResponse>({
+        queryKey: retreatKeys.list(page),
+        queryFn: () => getRetreats(page),
+        placeholderData: (previousData) => previousData,
         staleTime: 1000 * 60 * 5,
         gcTime: 1000 * 60 * 30,
     })
@@ -30,10 +34,11 @@ export const useRetreatDetails = (slug: string) => {
     })
 }
 
-export const useGetFeaturedRetreats = () => {
-    return useQuery<RetreatList[]>({
-        queryKey: retreatKeys.all,
-        queryFn: () => getFeaturedRetreats(),
+export const useGetFeaturedRetreats = (page = 1) => {
+    return useQuery<FeaturedRetreatListResponse>({
+        queryKey: retreatKeys.featured(page),
+        queryFn: () => getFeaturedRetreats(page),
+        placeholderData: (previousData) => previousData,
         staleTime: 1000 * 60 * 5,
         gcTime: 1000 * 60 * 30,
     })
@@ -42,10 +47,11 @@ export const useGetFeaturedRetreats = () => {
 
 
 // Enrollments
-export const useMyRetreats = () => {
-    return useQuery<RegisteredRetreats[]>({
-        queryKey: retreatKeys.registered,
-        queryFn: () => getMyRetreats(),
+export const useMyRetreats = (page = 1) => {
+    return useQuery<RetreatRegResponse>({
+        queryKey: retreatKeys.registeredList(page),
+        queryFn: () => getMyRetreats(page),
+        placeholderData: (previousData) => previousData,
         staleTime: 1000 * 60 * 5,
         gcTime: 1000 * 60 * 30,
     })

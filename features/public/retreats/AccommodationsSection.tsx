@@ -2,16 +2,19 @@
 
 import { RetreatSkeleton } from "@/components/skeleton/Retreats";
 import { useGetRetreats } from "@/services/businessservices/retreats.services";
+import { RetreatList } from "@/types/retreats.definations";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 
 import Link from "next/link";
 
+const EMPTY_COURSES: RetreatList[] = [];
+
 export function AccommodationsSection() {
 
-  const { data: stays, isLoading
+  const { data: staysData, isLoading
   } = useGetRetreats();
-
+  const stays = staysData?.results ?? EMPTY_COURSES;
   // 1. Optional Loading state (using the skeleton we made earlier)
   console.log("retreat data", stays)
   if (isLoading) return <RetreatSkeleton />;

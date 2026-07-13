@@ -5,7 +5,7 @@ import {
 } from "@tanstack/react-query";
 import CourseSection from "@/features/public/courses/CoursePage";
 import { coursekeys } from "@/services/businessservices/courses.services";
-import { getCourses } from "@/services/endpoints/courses.endpoints";
+import { getCourses, getFeaturedCourses } from "@/services/endpoints/courses.endpoints";
 
 export default async function CoursesPage() {
   const queryClient = new QueryClient({
@@ -16,10 +16,16 @@ export default async function CoursesPage() {
     },
   });
 
-  await queryClient.prefetchQuery({
-    queryKey: coursekeys.all,
-    queryFn: getCourses,
-  });
+  await Promise.all([
+    queryClient.prefetchQuery({
+      queryKey: coursekeys.list(1),
+      queryFn: () => getCourses(1),
+    }),
+    queryClient.prefetchQuery({
+      queryKey: coursekeys.featured(1),
+      queryFn: () => getFeaturedCourses(1),
+    }),
+  ]);
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>

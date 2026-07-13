@@ -1,5 +1,5 @@
 import { api } from "@/lib/axios";
-import { PaymentPayload, Transaction } from "../../types/payments.definations";
+import { PaymentPayload, TransactionResponse } from "../../types/payments.definations";
 
 const PAYMENTS_URL = "/payments/";
 
@@ -9,8 +9,10 @@ export const createTransaction = async (
     return response.data
 }
 
-export const getPayments = async (): Promise<Transaction[]> => {
-    const response = await api.get(`${PAYMENTS_URL}`);
+export const getPayments = async (page: number = 1): Promise<TransactionResponse> => {
+    const response = await api.get(`${PAYMENTS_URL}`, {
+        params: { page }
+    });
     return response.data;
 };
 

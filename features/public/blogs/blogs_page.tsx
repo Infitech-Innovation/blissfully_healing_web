@@ -10,12 +10,13 @@ import { BlogSectionSkeleton } from "./blogs_skeleton";
 
 export default function BlogSection() {
 
-const { data, isLoading } = useCategory();
-// console.log("Categories data:", { data, isLoading, isError, error });
+  const { data, isLoading } = useCategory();
+  // console.log("Categories data:", { data, isLoading, isError, error });
 
-const { data: blogs, isLoading: blogsLoading } = useBlogs();
-// console.log("Blogs data:", { blogs, blogsLoading });
+  const { data: blogsData, isLoading: blogsLoading } = useBlogs();
+  // console.log("Blogs data:", { blogs, blogsLoading });
 
+  const blogs = blogsData?.results || []
   const categories = ["All blogs", ...(data ?? []).map((cat) => cat.name)];
 
   const [activeTab, setActiveTab] = useState("All blogs");
@@ -64,11 +65,10 @@ const { data: blogs, isLoading: blogsLoading } = useBlogs();
                     role="tab"
                     aria-selected={active}
                     onClick={() => setActiveTab(cat)}
-                    className={`px-4 py-1.5 rounded-full text-base font-medium border transition-all duration-200 ${
-                      active
-                        ? "bg-[#2d1a0e] text-[#faf5ef] border-[#2d1a0e]"
-                        : "bg-transparent text-[#5a3e2b] border-[#d9ccc0] hover:border-[#c47a35] hover:text-[#c47a35]"
-                    }`}
+                    className={`px-4 py-1.5 rounded-full text-base font-medium border transition-all duration-200 ${active
+                      ? "bg-[#2d1a0e] text-[#faf5ef] border-[#2d1a0e]"
+                      : "bg-transparent text-[#5a3e2b] border-[#d9ccc0] hover:border-[#c47a35] hover:text-[#c47a35]"
+                      }`}
                   >
                     {cat}
                   </button>
@@ -106,11 +106,10 @@ const { data: blogs, isLoading: blogsLoading } = useBlogs();
                     role="tab"
                     aria-selected={active}
                     onClick={() => setActiveTab(cat)}
-                    className={`w-full text-left px-4 py-2.5 rounded-xl text-base font-medium transition-all duration-200 border ${
-                      active
-                        ? "bg-[#2d1a0e] text-[#faf5ef] border-[#2d1a0e]"
-                        : "bg-transparent text-[#5a3e2b] border-transparent hover:bg-[#f0e6d8] hover:text-[#2d1a0e]"
-                    }`}
+                    className={`w-full text-left px-4 py-2.5 rounded-xl text-base font-medium transition-all duration-200 border ${active
+                      ? "bg-[#2d1a0e] text-[#faf5ef] border-[#2d1a0e]"
+                      : "bg-transparent text-[#5a3e2b] border-transparent hover:bg-[#f0e6d8] hover:text-[#2d1a0e]"
+                      }`}
                   >
                     {cat}
                   </button>

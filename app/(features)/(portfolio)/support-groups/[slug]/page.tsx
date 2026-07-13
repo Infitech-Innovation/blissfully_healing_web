@@ -1,12 +1,21 @@
+"use client";
+
 import SupportGroupsDetails from "@/features/public/groups/GroupDetails";
+import { GroupDetailSkeleton } from "@/components/skeleton/GroupSkeleton";
+import { useGroupDetails } from "@/services/businessservices/groups.services";
+import { useParams, notFound } from "next/navigation";
 
-interface PageProps {
-  params: Promise<{
-    slug: string;
-  }>;
-}
+export default function GroupsDetailPage() {
+  const { slug } = useParams() as { slug: string };
+  const { data: group, isLoading, error } = useGroupDetails(slug);
 
-export default async function Page({ params }: PageProps) {
-  const { slug } = await params;
-  return <SupportGroupsDetails selectedSlug={slug} />;
+  if (isLoading) {
+    return <GroupDetailSkeleton />;
+  }
+
+  if (error || !group) {
+    notFound();
+  }
+
+  return <SupportGroupsDetails group={group} />
 }

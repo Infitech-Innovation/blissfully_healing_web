@@ -1,277 +1,336 @@
 import Link from "next/link";
-import { ArrowLeft, Clock, Key} from "lucide-react";
-import { mockSupportGroups } from "@/mockdata/groups.data";
+import type { ReactNode } from "react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  CalendarDays,
+  CheckCircle2,
+  Clock,
+  Download,
+  HeartHandshake,
+  KeyRound,
+  MapPin,
+  ShieldCheck,
+  Users,
+} from "lucide-react";
+import { SupportGroup } from "@/types/groups.definations";
 import { StatusBadge } from "./statusBadge";
 
 interface SupportProps {
-  selectedSlug?: string;
+  group: SupportGroup;
 }
 
-function getColorFromBgClass(bgClass: string): string {
-  const colorMap: { [key: string]: string } = {
-    'bg-indigo-50': '#4F46E5',
-    'bg-amber-50': '#D97706',
-    'bg-rose-50': '#E11D48',
-    'bg-purple-50': '#A855F7',
-    'bg-emerald-50': '#059669',
-  };
-  return colorMap[bgClass] || '#64748B';
-}
 
-export default function SupportGroupsDetails({ selectedSlug }: SupportProps) {
-  const selectedGroup = selectedSlug
-    ? mockSupportGroups.find((g) => g.slug === selectedSlug)
-    : null;
-  if (selectedGroup) {
+export default function SupportGroupsDetails({ group }: SupportProps) {
+
+  if (!group) {
     return (
-      <main className="min-h-screen bg-gradient-to-b from-stone-50 via-white to-stone-50 text-stone-800 antialiased selection:bg-stone-200/60 pb-24">
-        {/* Navigation Breadcrumb Line */}
-        <div className="mx-auto max-w-6xl px-6 pt-12">
+      <main className="min-h-screen bg-[#fffaf6] px-5 py-20 text-[#2f251f] sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl rounded-[8px] border border-[#eadfd4] bg-white p-8 text-center shadow-[0_18px_45px_rgba(63,52,44,0.06)]">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-[#8f6249]">
+            Support Groups
+          </p>
+          <h1 className="font-serif text-3xl font-semibold text-[#2f251f]">
+            This group could not be found.
+          </h1>
+          <p className="mx-auto mt-3 max-w-xl leading-7 text-[#6f5c4f]">
+            The group may have moved, closed, or the link may be outdated.
+          </p>
           <Link
             href="/support-groups"
-            className="inline-flex items-center gap-2 text-md font-medium tracking-wide text-stone-400 hover:text-stone-700 transition-colors focus:outline-none"
+            className="mt-6 inline-flex items-center justify-center gap-2 rounded-sm bg-[#8f6249] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#744d39]"
           >
-            <span><ArrowLeft/></span> Back to Active Circles
+            <ArrowLeft className="h-4 w-4" />
+            Back to Groups
           </Link>
-        </div>
-
-        {/* Main Columns Structural Grid */}
-        <div className="mx-auto mt-8 grid max-w-6xl grid-cols-1 gap-8 px-6 items-start lg:grid-cols-3">
-          {/* Main Left Columns Content Hub */}
-          <section className="lg:col-span-2 space-y-6">
-            {/* Header Identity Card Panel */}
-            <header className="rounded-md border border-stone-200/70 bg-white p-8 shadow-sm sm:p-10">
-              <div className="flex items-start gap-3 mb-4">
-                <div className="text-3xl flex-shrink-0">
-                  {selectedGroup.icon}
-                </div>
-                <div className="flex-1">
-                  <span className="mb-2 block text-[13px] font-bold uppercase tracking-[0.24em] text-stone-500">
-                    {selectedGroup.category}
-                  </span>
-                  <h1 className="font-serif mb-2 text-4xl font-light leading-tight text-stone-900 sm:text-5xl">
-                    {selectedGroup.name}
-                  </h1>
-                </div>
-              </div>
-
-              <div className="flex flex-wrap gap-2">
-                {selectedGroup.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full border border-stone-200/50 bg-stone-50 px-3 py-1 text-[11px] font-medium uppercase tracking-wider text-stone-600"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </header>
-
-            {/* Comprehensive Information Content Block */}
-            <div className="space-y-6 rounded-md border border-stone-200/70 bg-white p-8 shadow-sm sm:p-10">
-              <h2 className="font-serif text-2xl font-medium text-stone-900 sm:text-3xl">
-                About this Circle
-              </h2>
-              <p className="whitespace-pre-line text-base font-light leading-8 text-stone-600 sm:text-lg">
-                {selectedGroup.description}
-              </p>
-
-              {/* Dynamic Curated Array Mapping from custom parameters */}
-              <div className="grid grid-cols-1 gap-6 border-t border-stone-100 pt-6 sm:grid-cols-2">
-                <div>
-                  <h3 className="mb-3 text-[13px] font-bold uppercase tracking-[0.22em] text-stone-400">
-                    Upcoming Iterative Topics
-                  </h3>
-                  <ul className="space-y-2">
-                    {selectedGroup.upcomingTopics.map((topic, index) => (
-                      <li
-                        key={index}
-                        className="flex items-start gap-2 text-sm font-light text-stone-600 sm:text-base"
-                      >
-                        <span className="text-[#8B6A44]">•</span>
-                        <span>{topic}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="mb-3 text-[13px] font-bold uppercase tracking-[0.22em] text-stone-400">
-                    Shared Circle Resources
-                  </h3>
-                  <ul className="space-y-2">
-                    {selectedGroup.resources.map((res) => (
-                      <li
-                        key={res.id}
-                        className="flex items-start gap-2 text-sm font-light text-stone-600 sm:text-base"
-                      >
-                        <span className="flex-shrink-0 mt-0.5">{res.icon}</span>
-                        <a 
-                          href={res.fileUrl} 
-                          download
-                          className="cursor-pointer underline decoration-stone-200 transition-colors hover:text-stone-900 truncate"
-                          title={res.name}
-                        >
-                          {res.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-
-              {/* Intentional Core Safe Space Values Footer */}
-              <div className="border-t border-stone-100 pt-6">
-                <h3 className="mb-4 text-[13px] font-bold uppercase tracking-[0.22em] text-stone-400">
-                  Intentional Group Guidelines
-                </h3>
-                <div className="grid grid-cols-1 gap-4 text-sm font-light text-stone-600 sm:grid-cols-2 sm:text-base">
-                  <div className="flex items-start gap-2.5">
-                    <span><Clock size={20} /></span>
-                    <p>
-                      <span className="block font-medium text-stone-800">
-                        Optional Dialogues
-                      </span>
-                      Speak out only when your heart feels ready to deliver.
-                    </p>
-                  </div>
-                  <div className="flex items-start gap-2.5">
-                    <span><Key size={20} /></span>
-                    <p>
-                      <span className="font-medium text-stone-800 block">
-                        Protected Confidentiality
-                      </span>
-                      What is processed in this screen module stays safe within.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Practitioner Bio Information Layout Row */}
-            <div className="rounded-md border border-stone-200/70 bg-white p-8 shadow-sm sm:p-10">
-              <h2 className="mb-6 text-[13px] font-bold uppercase tracking-[0.22em] text-stone-400">
-                Expert Practitioner
-              </h2>
-              <div className="flex flex-col sm:flex-row gap-5 items-start">
-                <div
-                  className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-full border text-base font-medium tracking-wider text-white ${selectedGroup.color}`}
-                  style={{
-                    backgroundColor: getColorFromBgClass(selectedGroup.color),
-                  }}
-                >
-                  {selectedGroup.facilitator
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")}
-                </div>
-                <div className="space-y-2">
-                  <div>
-                    <h3 className="font-serif text-xl font-medium text-stone-900">
-                      {selectedGroup.facilitator}
-                    </h3>
-                    <p className="text-sm font-medium text-stone-400">
-                      {selectedGroup.facilitatorTitle}
-                    </p>
-                  </div>
-                  <p className="text-sm font-light leading-7 text-stone-500 sm:text-base">
-                    Qualified tracking specialist regulating safe emotional
-                    containment workflows. Managing equity elements, balancing
-                    individual pacing timelines, and provisioning specialized
-                    therapeutic frameworks across every 90-minute gathering
-                    block.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Interactive Right Sidebar Element Registry */}
-          <aside className="space-y-6 lg:sticky lg:top-8">
-            <div className="bg-white border border-stone-200/70 rounded-md shadow-sm overflow-hidden">
-              <div className="p-6 border-b border-stone-100 bg-stone-50/50 flex justify-between items-center">
-                <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-stone-400">
-                    Seat Occupancy
-                  </p>
-                  <p className="mt-1 text-sm font-medium text-stone-600">
-                    {selectedGroup.members} / {selectedGroup.maxMembers}{" "}
-                    Registered
-                  </p>
-                </div>
-                <StatusBadge status={selectedGroup.status} />
-              </div>
-
-              <div className="p-6 space-y-4">
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center text-md border-b border-stone-50 pb-2">
-                    <span className="text-stone-400">Format:</span>
-                    <span className="font-medium text-stone-700">
-                      {selectedGroup.format}
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center text-md border-b border-stone-50 pb-2">
-                    <span className="text-stone-400">Frequency:</span>
-                    <span className="font-medium text-stone-700 capitalize">
-                      {selectedGroup.schedule.frequency}
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center text-md border-b border-stone-50 pb-2">
-                    <span className="text-stone-400">Duration:</span>
-                    <span className="text-sm font-medium text-stone-700">
-                      {selectedGroup.schedule.durationMinutes} mins
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center text-md border-b border-stone-50 pb-2">
-                    <span className="text-stone-400">Time:</span>
-                    <span className="text-sm font-medium text-stone-700">
-                      {selectedGroup.time}
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center text-md border-b border-stone-50 pb-2">
-                    <span className="text-stone-400">
-                      Next Session:
-                    </span>
-                    <span className="text-md font-semibold text-stone-800">
-                      {selectedGroup.nextSession.toLocaleDateString('en-US', { 
-                        month: 'short', 
-                        day: 'numeric', 
-                        year: '2-digit' 
-                      })}
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center text-md">
-                    <span className="text-stone-400">Level:</span>
-                    <span className="rounded-md border border-stone-100 bg-stone-50 px-2.5 py-0.5 text-[13px] font-medium text-stone-600">
-                      {selectedGroup.level}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="h-px bg-stone-100 my-2" />
-
-                <div className="flex items-baseline justify-between">
-                  <span className="text-sm text-stone-400">
-                    Cost:
-                  </span>
-                  <span className="text-xl font-serif font-medium text-stone-800 capitalize">
-                    {selectedGroup.price === "Free"
-                      ? "Free"
-                      : selectedGroup.price}
-                  </span>
-                </div>
-
-                <Link
-                  href={`/support-groups/${selectedGroup.slug}/register`}
-                  className="w-full block rounded-md py-3 text-center text-sm font-medium tracking-wider text-white transition-all shadow-sm hover:-translate-y-0.5 hover:brightness-95 active:translate-y-0"
-                  style={{ backgroundColor: getColorFromBgClass(selectedGroup.color) }}
-                >
-                  Register Now →
-                </Link>
-              </div>
-            </div>
-          </aside>
         </div>
       </main>
     );
   }
+
+  const capacity = Math.round(
+    (group.current_members_count / group.max_members) * 100
+  );
+  const facilitatorInitials =
+    group.facilitator_initials?.trim().toUpperCase() ||
+    group.facilitator_name
+      .split(" ")
+      .filter(Boolean)
+      .map((name) => name[0])
+      .join("")
+      .toUpperCase();
+
+  return (
+    <main className="min-h-screen bg-[#fffaf6] pb-16 text-[#2f251f]">
+      <section className="border-b border-[#eadfd4] bg-white">
+        <div className="mx-auto max-w-7xl px-5 py-10 sm:px-6 lg:px-8 lg:py-14">
+          <Link
+            href="/support-groups"
+            className="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-[#8f6249] transition hover:text-[#744d39]"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Back to Support Groups
+          </Link>
+
+          <div className="grid gap-8 lg:grid-cols-[1fr_360px] lg:items-end">
+            <div>
+              <div className="mb-5 flex flex-wrap items-center gap-3">
+                <span className="rounded-full border border-[#eadfd4] bg-[#fffaf6] px-3 py-1.5 text-xs font-bold uppercase tracking-widest text-[#8f6249]">
+                  {group.category.name}
+                </span>
+                <StatusBadge status={group.status_label} />
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div
+                  className="hidden h-14 w-14 shrink-0 items-center justify-center rounded-[8px] border sm:flex"
+                // style={{
+                //   backgroundColor: `${accentColor}14`,
+                //   borderColor: `${accentColor}33`,
+                // }}
+                >
+                  {group.icon_image || <HeartHandshake className="text-rose-500" size={30} />}
+                </div>
+                <div>
+                  <h1 className="max-w-4xl font-serif text-4xl font-semibold leading-tight text-[#2f251f] sm:text-5xl lg:text-6xl">
+                    {group.title}
+                  </h1>
+                  <p className="mt-5 max-w-3xl text-base leading-7 text-[#6f5c4f] sm:text-lg">
+                    {group.short_description}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid gap-3 rounded-[8px] border border-[#eadfd4] bg-[#fffaf6] p-4">
+              <div className="flex items-center justify-between gap-4">
+                <span className="text-xs font-semibold uppercase tracking-widest text-[#6f5c4f]">
+                  Next Session
+                </span>
+                <span className="text-sm font-semibold text-[#2f251f]">
+                  {group.next_session_date}
+                </span>
+              </div>
+              <div className="flex items-center justify-between gap-4">
+                <span className="text-xs font-semibold uppercase tracking-widest text-[#6f5c4f]">
+                  Price
+                </span>
+                <span className="text-sm font-semibold text-[#2f251f]">
+                  {group.price}
+                </span>
+              </div>
+              <Link
+                href={`/support-groups/${group.slug}/register`}
+                className="mt-2 inline-flex items-center justify-center gap-2 rounded-sm bg-[#8f6249] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#744d39]"
+              >
+                Register Now
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="mx-auto grid max-w-7xl gap-8 px-5 py-12 sm:px-6 lg:grid-cols-[1fr_360px] lg:px-8 lg:py-16">
+        <section className="space-y-6">
+          <div className="rounded-[8px] border border-[#eadfd4] bg-white p-6 shadow-[0_18px_45px_rgba(63,52,44,0.06)] sm:p-8">
+            <h2 className="font-serif text-3xl font-semibold text-[#2f251f]">
+              What We Will Explore
+            </h2>
+            <div className="mt-6 grid gap-3">
+              {group.topics.map((topic) => (
+                <div
+                  key={topic.id}
+                  className="flex items-start gap-3 rounded-[6px] bg-[#fffaf6] p-4 text-[#6f5c4f]"
+                >
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#8f6249]" />
+                  <span className="leading-6">{topic.text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2">
+            <div className="rounded-[8px] border border-[#eadfd4] bg-white p-6 shadow-[0_18px_45px_rgba(63,52,44,0.06)] sm:p-8">
+              <h2 className="font-serif text-2xl font-semibold text-[#2f251f]">
+                Group Guidelines
+              </h2>
+              <div className="mt-5 space-y-4">
+                <div className="flex items-start gap-3">
+                  <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-[#8f6249]" />
+                  <div>
+                    <h3 className="font-semibold text-[#2f251f]">
+                      Share at your pace
+                    </h3>
+                    <p className="mt-1 text-sm leading-6 text-[#6f5c4f]">
+                      You are welcome to listen, reflect, or speak when you feel
+                      ready.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <KeyRound className="mt-0.5 h-5 w-5 shrink-0 text-[#8f6249]" />
+                  <div>
+                    <h3 className="font-semibold text-[#2f251f]">
+                      Confidential space
+                    </h3>
+                    <p className="mt-1 text-sm leading-6 text-[#6f5c4f]">
+                      Group conversations are treated with respect, care, and
+                      privacy.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {group.resources && group.resources.length > 0 && (
+              <div className="rounded-[8px] border border-[#eadfd4] bg-white p-6 shadow-[0_18px_45px_rgba(63,52,44,0.06)] sm:p-8">
+                <h2 className="font-serif text-2xl font-semibold text-[#2f251f]">
+                  Shared Resources
+                </h2>
+
+                <div className="mt-5 space-y-3">
+                  {group.resources.map((resource) => (
+                    <a
+                      key={resource.id}
+                      href={resource.fileUrl}
+                      download
+                      className="flex items-center gap-3 rounded-[6px] border border-[#eadfd4] bg-[#fffaf6] p-3 text-sm font-semibold text-[#6f5c4f] transition hover:border-[#8f6249] hover:text-[#2f251f]"
+                      title={resource.name}
+                    >
+                      <span className="shrink-0 text-[#8f6249]">
+                        {resource.icon}
+                      </span>
+
+                      <span className="min-w-0 flex-1 truncate">
+                        {resource.name}
+                      </span>
+
+                      <Download className="h-4 w-4 shrink-0" />
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div className="rounded-[8px] border border-[#eadfd4] bg-white p-6 shadow-[0_18px_45px_rgba(63,52,44,0.06)] sm:p-8">
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-[#8f6249]">
+              Facilitator
+            </p>
+            <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
+              <div
+                className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-[#8f6249] text-base font-semibold tracking-wider text-white"
+              >
+                {facilitatorInitials}
+              </div>
+              <div>
+                <h2 className="font-serif text-2xl font-semibold text-[#2f251f]">
+                  {group.facilitator_name}
+                </h2>
+                <p className="mt-1 text-sm font-semibold text-[#8f6249]">
+                  {group.facilitator_title}
+                </p>
+                <p className="mt-4 max-w-2xl leading-7 text-[#6f5c4f]">
+                  {group.facilitator_bio}
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <aside className="space-y-6 lg:sticky lg:top-8 lg:self-start">
+          <div className="overflow-hidden rounded-[8px] border border-[#eadfd4] bg-white shadow-[0_18px_45px_rgba(63,52,44,0.08)]">
+            <div className="border-b border-[#eadfd4] bg-[#fffaf6] p-6">
+              <div className="mb-3 flex items-center justify-between gap-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#8f6249]">
+                  Group Capacity
+                </p>
+                <StatusBadge status={group.status_label} />
+              </div>
+              <div className="flex items-end justify-between">
+                <p className="text-3xl font-semibold text-[#2f251f]">
+                  {group.current_members_count}/{group.max_members}
+                </p>
+                <p className="text-sm font-semibold text-[#6f5c4f]">
+                  {capacity}% filled
+                </p>
+              </div>
+              <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-[#eadfd4]">
+                <div
+                  className="h-full rounded-full bg-[#8f6249]"
+                  style={{ width: `${capacity}%` }}
+                />
+              </div>
+            </div>
+
+            <div className="space-y-4 p-6">
+              <InfoRow
+                icon={<MapPin className="h-4 w-4" />}
+                label="Format"
+                value={group.format}
+              />
+              <InfoRow
+                icon={<CalendarDays className="h-4 w-4" />}
+                label="Frequency"
+                value={group.schedule.frequency}
+              />
+              <InfoRow
+                icon={<Clock className="h-4 w-4" />}
+                label="Duration"
+                value={`${group.schedule.durationMinutes} mins`}
+              />
+              <InfoRow
+                icon={<Users className="h-4 w-4" />}
+                label="Level"
+                value={group.levels}
+              />
+
+              <div className="border-t border-[#eadfd4] pt-5">
+                <div className="mb-5 flex items-baseline justify-between gap-4">
+                  <span className="text-sm font-semibold text-[#6f5c4f]">
+                    Cost
+                  </span>
+                  <span className="font-serif text-2xl font-semibold text-[#2f251f]">
+                    {group.price}
+                  </span>
+                </div>
+                <Link
+                  href={`/support-groups/${group.slug}/register`}
+                  className="flex w-full items-center justify-center gap-2 rounded-sm bg-[#8f6249] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#744d39]"
+                >
+                  Register Now
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+  );
+}
+
+function InfoRow({
+  icon,
+  label,
+  value,
+}: {
+  icon: ReactNode;
+  label: string;
+  value: string;
+}) {
+  return (
+    <div className="flex items-start gap-3">
+      <span className="mt-0.5 text-[#8f6249]">{icon}</span>
+      <div className="min-w-0 flex-1">
+        <p className="text-xs font-semibold uppercase tracking-widest text-[#6f5c4f]">
+          {label}
+        </p>
+        <p className="mt-1 break-words text-sm font-semibold capitalize text-[#2f251f]">
+          {value}
+        </p>
+      </div>
+    </div>
+  );
 }

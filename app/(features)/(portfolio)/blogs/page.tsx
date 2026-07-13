@@ -12,8 +12,8 @@ export default async function BlogPage() {
 
   await Promise.all([
     queryClient.prefetchQuery({
-      queryKey: BLOGS_KEYS.all,
-      queryFn: getBlogs,
+      queryKey: BLOGS_KEYS.list("", "", "", 1),
+      queryFn: async() => (await getBlogs("", "", "", 1)),
       staleTime: 1000 * 60 * 5,
     }),
 

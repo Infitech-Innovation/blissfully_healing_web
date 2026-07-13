@@ -1,12 +1,14 @@
 import { api } from "@/lib/axios";
-import { RegisteredRetreats, RetreatDetails, RetreatList } from "@/types/retreats.definations";
+import { FeaturedRetreatListResponse, RetreatDetails, RetreatListResponse, RetreatRegResponse } from "@/types/retreats.definations";
 import { AxiosInstance } from "axios";
 
 const RETREATS_URL = "/retreats/";
 const MY_RETREATS_URL = "/retreats/my-registrations";
 
-export const getRetreats = async (): Promise<RetreatList[]> => {
-    const response = await api.get<RetreatList[]>(`${RETREATS_URL}`)
+export const getRetreats = async (page: number = 1): Promise<RetreatListResponse> => {
+    const response = await api.get<RetreatListResponse>(RETREATS_URL, {
+        params: { page }
+    })
     return response.data
 }
 
@@ -15,13 +17,17 @@ export const getRetreatDetails = async (slug: string): Promise<RetreatDetails> =
     return response.data
 }
 
-export const getFeaturedRetreats = async (): Promise<RetreatList[]> => {
-    const response = await api.get<RetreatList[]>(`${RETREATS_URL}featured/`)
+export const getFeaturedRetreats = async (page: number = 1): Promise<FeaturedRetreatListResponse> => {
+    const response = await api.get<FeaturedRetreatListResponse>(`${RETREATS_URL}featured/`, {
+        params: { page }
+    })
     return response.data
 }
 
-export const getMyRetreats = async (apiInstance: AxiosInstance = api): Promise<RegisteredRetreats[]> => {
-    const response = await apiInstance.get<RegisteredRetreats[]>(`${MY_RETREATS_URL}`);
+export const getMyRetreats = async (page: number = 1, apiInstance: AxiosInstance = api): Promise<RetreatRegResponse> => {
+    const response = await apiInstance.get<RetreatRegResponse>(MY_RETREATS_URL, {
+        params: { page }
+    });
     return response.data
 }
 

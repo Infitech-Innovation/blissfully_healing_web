@@ -5,11 +5,15 @@ import Link from "next/link";
 import LibraryCard from "./LibraryCard";
 import { useMyEbooks } from "@/services/businessservices/ebook.services";
 import LibrarySkeleton from "@/components/skeleton/LibraryCard";
+import { OwnedEbooks } from "@/types/ebooks.definations";
+
+const EMPTY_LIST: OwnedEbooks[] = [];
+
 
 export default function LibrarySection() {
 
-    const { data: purchasedEBooks = [], isLoading } = useMyEbooks()
-    console.log("books own", purchasedEBooks)
+    const { data: purchasedEBooksResponse, isLoading } = useMyEbooks()
+    const purchasedEBooks = purchasedEBooksResponse?.results ?? EMPTY_LIST;
 
     return (
         <section className="bg-[#fffaf6] px-6 py-8 min-h-screen">
