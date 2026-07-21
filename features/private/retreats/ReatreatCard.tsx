@@ -1,7 +1,7 @@
 import CheckOutButton from "@/components/common/checkoutBtn";
 import { RegisterButton } from "@/features/public/retreats/RegisterButton";
 import { RegisteredRetreats } from "@/types/retreats.definations";
-import { Download } from "lucide-react";
+import { Download, Trash2 } from "lucide-react";
 import Image from "next/image";
 
 type RetreatProps = {
@@ -10,7 +10,7 @@ type RetreatProps = {
     price: number;
 };
 
-export default function RetreatCard({ retreat,price, onCancelClick }: RetreatProps) {
+export default function RetreatCard({ retreat, price, onCancelClick }: RetreatProps) {
 
     return (
         <article
@@ -48,9 +48,9 @@ export default function RetreatCard({ retreat,price, onCancelClick }: RetreatPro
                     {retreat.retreat.short_description}
                 </p>
                 {/* ── Action row ── */}
-                <div className="mt-auto flex w-full items-center justify-center gap-3">
+                <div className="mt-auto flex w-full flex-col gap-3 pt-6 sm:flex-row sm:items-center">
                     {retreat.status === "PENDING_CALL" ? (
-                        <div className="flex-[4]">
+                        <div className="min-w-0 flex-1 [&>button]:mt-0 [&>button]:h-11 [&>button]:px-4 [&>button]:py-0 [&>button]:text-sm [&>button]:normal-case [&>button]:tracking-normal">
                             <CheckOutButton
                                 id={retreat.retreat.id}
                                 type="retreat"
@@ -58,12 +58,13 @@ export default function RetreatCard({ retreat,price, onCancelClick }: RetreatPro
                             />
                         </div>
                     ) : retreat.status === "CANCELLED" ? (
-                        <div className="flex-[4]">
+                        <div className="min-w-0 flex-1 [&>button]:mt-0 [&>button]:h-11 [&>button]:px-4 [&>button]:py-0 [&>button]:text-sm [&>button]:normal-case [&>button]:tracking-normal">
                             <RegisterButton slug={retreat.retreat.slug} price={price} />
                         </div>
                     ) : retreat.status === "CONFIRMED" ? (
                         <button
-                            className="flex-[4] h-11 inline-flex items-center justify-center gap-2 rounded-lg bg-[#0B4F3C] px-4 text-sm font-semibold text-white transition hover:bg-[#083A2C]"
+                            type="button"
+                            className="inline-flex h-11 min-w-0 flex-1 items-center justify-center gap-2 rounded-[8px] bg-[#0B4F3C] px-4 text-sm font-semibold text-white transition hover:bg-[#083A2C]"
                         >
                             <Download size={16} />
                             Download Itinerary
@@ -73,15 +74,16 @@ export default function RetreatCard({ retreat,price, onCancelClick }: RetreatPro
                     {retreat.status !== "CANCELLED" && (
                         <button
                             type="button"
+                            aria-label="Cancel retreat"
                             onClick={() =>
                                 onCancelClick({
                                     slug: retreat.retreat.slug,
                                     title: retreat.retreat.title,
                                 })
                             }
-                            className="flex-[1] h-11 inline-flex items-center justify-center rounded-lg bg-red-50 px-3 text-sm font-semibold text-red-600 transition hover:bg-red-100"
+                            className="inline-flex h-11 w-full items-center justify-center rounded-[8px] border border-red-100 bg-red-50 px-4 text-red-600 transition hover:border-red-200 hover:bg-red-100 sm:w-11 sm:px-0"
                         >
-                            Cancel
+                            <Trash2 size={16} />
                         </button>
                     )}
                 </div>
