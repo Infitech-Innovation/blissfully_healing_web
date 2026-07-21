@@ -76,7 +76,7 @@ function SuccessPaymentContent() {
         </Link>
         
         <Link
-          href="/"
+          href="/dashboard"
           className="flex items-center justify-center gap-2 rounded-[6px] bg-[#8f6249] px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-white transition hover:bg-[#734d36]"
         >
           Home Dashboard

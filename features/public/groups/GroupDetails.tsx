@@ -132,7 +132,7 @@ export default function SupportGroupsDetails({ group }: SupportProps) {
               </div>
               <CheckOutButton
                 id={group.id}
-                type="Support_group"
+                type="support_group"
                 btnName={"Register Now"}
               />
               {/* <Link

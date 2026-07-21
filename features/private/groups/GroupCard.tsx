@@ -4,6 +4,7 @@ import {
     Calendar,
     Download,
     GraduationCap,
+    LogOut,
     Network,
     Users,
     ChevronRight,
@@ -22,6 +23,7 @@ interface GroupCardProp {
     group: SupportGroup;
     isExpanded: boolean;
     onToggle: () => void;
+    onLeaveClick: (group: { slug: string; title: string }) => void;
 }
 
 function ResourceCard({ resource }: { resource: Resources; }) {
@@ -96,7 +98,7 @@ function ResourceCard({ resource }: { resource: Resources; }) {
     );
 }
 
-export function GroupCard({ group, isExpanded, onToggle }: GroupCardProp) {
+export function GroupCard({ group, isExpanded, onToggle, onLeaveClick }: GroupCardProp) {
     // Programmatic Adjustments for utilities using real Dates
     // const timeUntil = getTimeUntil(group.ne);
     // const nextDate = formatDate(group.nextSession);
@@ -503,7 +505,7 @@ export function GroupCard({ group, isExpanded, onToggle }: GroupCardProp) {
                     </div>
 
                     {/* ACTIONS */}
-                    <div className="relative flex flex-col gap-4 pt-4 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="relative flex flex-col gap-3 pt-4 sm:flex-row sm:items-center sm:justify-between">
                         {isHybridOrInPerson ? (
                             <Button
                                 size="lg"
@@ -549,6 +551,22 @@ export function GroupCard({ group, isExpanded, onToggle }: GroupCardProp) {
                                 )}
                             </Button>
                         )}
+
+                        <Button
+                            type="button"
+                            size="lg"
+                            variant="destructive"
+                            onClick={() =>
+                                onLeaveClick({
+                                    slug: group.slug,
+                                    title: group.title,
+                                })
+                            }
+                            className="w-full rounded-[10px] border border-red-100 bg-red-50 px-8 py-4 text-[12px] font-bold uppercase tracking-[0.15em] text-red-600 transition-all duration-300 hover:border-red-200 hover:bg-red-100 hover:text-red-700 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+                        >
+                            <LogOut className="h-4 w-4" />
+                            Leave Group
+                        </Button>
                     </div>
                 </div>
             )}

@@ -5,20 +5,26 @@ import Link from "next/link";
 import { getTimeUntil } from "@/utils/utils";
 import { useAuthStore } from "@/store/useAuthStore";
 import { MyGroupMembership } from "@/types/groups.definations";
-import { useMyGroups } from "@/services/businessservices/groups.services";
+import { useLeaveGroup, useMyGroups } from "@/services/businessservices/groups.services";
 import { GroupCard } from "./GroupCard";
 import MyJoinedGroup from "@/components/skeleton/MyJoinedGroup";
+import LeaveGroupModal from "./LeaveGroupModal";
 
 const EMPTY_LIST: MyGroupMembership[] = [];
 
 export default function MySupportGroupsDashboard() {
   const user = useAuthStore((state) => state.user);
   const [expandedId, setExpandedId] = useState<number | null>(null);
+  const [activeGroupToLeave, setActiveGroupToLeave] = useState<{
+    slug: string;
+    title: string;
+  } | null>(null);
 
   const toggle = (id: number) =>
     setExpandedId((prev) => (prev === id ? null : id));
 
   const { data: myGroupResponse, isLoading } = useMyGroups();
+  const leaveGroupMutation = useLeaveGroup();
 
   const memberships = myGroupResponse?.results ?? EMPTY_LIST;
 
@@ -59,6 +65,16 @@ export default function MySupportGroupsDashboard() {
   // const nextGroup = sortedGroups[0];
   // const nextSessionDate = nextGroup?.next_session_date ?? null;
   // const nextGroupTitle = nextGroup?.title ?? "No upcoming circles";
+
+  const handleLeaveConfirmation = () => {
+    if (!activeGroupToLeave) return;
+
+    leaveGroupMutation.mutate(activeGroupToLeave.slug, {
+      onSuccess: () => {
+        setActiveGroupToLeave(null);
+      },
+    });
+  };
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#fffaf6] text-[#2f251f]">
@@ -166,6 +182,7 @@ export default function MySupportGroupsDashboard() {
                 group={group}
                 isExpanded={expandedId === group.id}
                 onToggle={() => toggle(group.id)}
+                onLeaveClick={setActiveGroupToLeave}
               />
             ))
           ) : (
@@ -210,6 +227,14 @@ export default function MySupportGroupsDashboard() {
           </Link>
         </div>
       </div>
+      {activeGroupToLeave && (
+        <LeaveGroupModal
+          name={activeGroupToLeave.title}
+          onConfirm={handleLeaveConfirmation}
+          onCancel={() => setActiveGroupToLeave(null)}
+          isLoading={leaveGroupMutation.isPending}
+        />
+      )}
     </div>
   );
 }
