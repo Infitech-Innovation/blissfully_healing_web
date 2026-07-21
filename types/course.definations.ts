@@ -7,12 +7,22 @@ export interface Lesson {
   duration: string;
   is_preview: boolean;
   order: number;
-  content_type?: string;
-  videoUrl?: string;
-  audioUrl?: string;
-  textContent?: string;
+  blocks: LessonBlocks[]
+  // content_type?: string;
+  // videoUrl?: string;
+  // audioUrl?: string;
+  // textContent?: string;
 }
 
+export interface LessonBlocks {
+  id: number;
+  block_type: string;
+  order: number;
+  video_url: string;
+  audio_file: string,
+  text_content: string;
+  duration_minutes: string;
+}
 export interface Chapter {
   id: number;
   number: number;
@@ -57,7 +67,11 @@ export interface EnrolledCourse {
   enrolled_at: Date;
   is_active: boolean;
   progress: number;
-  completed_lesson_ids :number[];
+  completed_lesson_ids: number[];
+}
+
+export interface CourseProgressResponse {
+  completed_lesson_ids: number[];
 }
 
 export type CourseResponse = PaginatedResponse<Course>;
