@@ -1,7 +1,7 @@
 import MySupportGroupsDashboard from "@/features/private/groups/MySupportGroups";
 import { getServerApi } from "@/lib/axios.server";
-import { groupKeys } from "@/services/businessservices/groups.services";
-import { getMyGroups } from "@/services/endpoints/groups.endpoints";
+import { groupKeys } from "@/hooks/useGroups";
+import { getMyGroups } from "@/services/groups.endpoints";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 
 

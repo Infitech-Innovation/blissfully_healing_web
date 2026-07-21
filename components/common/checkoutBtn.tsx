@@ -1,6 +1,6 @@
 "use client";
 
-import { useCreateTransactionMutation } from "@/services/businessservices/payment.services";
+import { useCreateTransactionMutation } from "@/hooks/usePayments";
 import { useAuthStore } from "@/store/useAuthStore";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";

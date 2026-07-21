@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { getGroupDetails, getGroups, getMyGroups, joinGroup, leaveGroup } from "../endpoints/groups.endpoints";
+import { getGroupDetails, getGroups, getMyGroups, joinGroup, leaveGroup } from "../services/groups.endpoints";
 import { MyGroupMembershipResponse, SupportGroup, SupportGroupsResponse } from "@/types/groups.definations";
 
 export const groupKeys = {

@@ -3,7 +3,7 @@
 
 import { RetreatDetailSkeleton } from "@/components/skeleton/RetreatDetails";
 import { RetreatDetailView } from "@/features/public/retreats/RetreatDetails";
-import { useRetreatDetails } from "@/services/businessservices/retreats.services";
+import { useRetreatDetails } from "@/hooks/useRetreats";
 // import { getRetreats } from "@/services/endpoints/retreats.endpoints";
 import { useParams, notFound } from "next/navigation";
 

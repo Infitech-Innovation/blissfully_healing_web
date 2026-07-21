@@ -1,6 +1,6 @@
 import LibrarySection from "@/features/public/ebooks/LibarySection";
-import { ebookKeys } from "@/services/businessservices/ebook.services";
-import { getEbooks, getFeaturedEbooks } from "@/services/endpoints/ebooks.endpoints";
+import { ebookKeys } from "@/hooks/useEbooks";
+import { getEbooks, getFeaturedEbooks } from "@/services/ebooks.endpoints";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 
 export default async function EbooksPage() {

@@ -1,6 +1,6 @@
 import { VideoListResponse } from "@/types/videos.definations";
 import { useQuery } from "@tanstack/react-query";
-import { fetchVideosList } from "../endpoints/videos.endpoints";
+import { fetchVideosList } from "../services/videos.endpoints";
 
 /**
  * Custom Hook Layer: Wraps the endpoint layer inside TanStack Query

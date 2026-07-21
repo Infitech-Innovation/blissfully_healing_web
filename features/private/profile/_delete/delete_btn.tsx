@@ -4,7 +4,7 @@ import { Loader2, AlertTriangle } from "lucide-react";
 import type { ComponentProps } from "react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { useDeleteProfile } from "@/services/businessservices/auth.services";
+import { useDeleteProfile } from "@/hooks/useAuthenication";
 
 function LoadingButton({
   isLoading,

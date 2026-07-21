@@ -1,6 +1,6 @@
 import SupportGroups from "@/features/public/groups/supportGroups";
-import { groupKeys } from "@/services/businessservices/groups.services";
-import { getGroups } from "@/services/endpoints/groups.endpoints";
+import { groupKeys } from "@/hooks/useGroups";
+import { getGroups } from "@/services/groups.endpoints";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 
 export default async function Page() {

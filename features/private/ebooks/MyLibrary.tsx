@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 import LibraryCard from "./LibraryCard";
-import { useMyEbooks } from "@/services/businessservices/ebook.services";
+import { useMyEbooks } from "@/hooks/useEbooks";
 import LibrarySkeleton from "@/components/skeleton/LibraryCard";
 import { OwnedEbooks } from "@/types/ebooks.definations";
 

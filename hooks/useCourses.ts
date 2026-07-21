@@ -12,7 +12,7 @@ import {
     goNext,
     goPrevious,
     markComplete,
-} from "../endpoints/courses.endpoints"
+} from "../services/courses.endpoints"
 import {
     Category,
     Course,
@@ -23,7 +23,7 @@ import {
     FeaturedCourseResponse,
     Lesson,
     LessonResponse,
-} from "../../types/course.definations"
+} from "../types/course.definations"
 
 // Centralized React Query keys keep course cache reads and invalidations consistent.
 export const coursekeys = {

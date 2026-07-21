@@ -4,7 +4,7 @@ import { Search } from "lucide-react";
 import { useMemo, useState } from "react";
 import MyCourseCard from "./MyCourseCard";
 import Link from "next/link";
-import { useEnrolledCourses } from "@/services/businessservices/courses.services";
+import { useEnrolledCourses } from "@/hooks/useCourses";
 import MyCourseCardSkeleton from "../../../components/skeleton/MySkeletonCard";
 import {  EnrolledCourse } from "@/types/course.definations";
 

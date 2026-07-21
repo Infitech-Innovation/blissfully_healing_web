@@ -6,7 +6,7 @@ import Pagination from "@/components/custom/Pagination";
 import CourseCard from "./CourseCard";
 import CourseHero from "./CourseHero";
 import { Course } from "@/types/course.definations";
-import { useGetCourses } from "@/services/businessservices/courses.services";
+import { useGetCourses } from "@/hooks/useCourses";
 
 const EMPTY_COURSES: Course[] = [];
 

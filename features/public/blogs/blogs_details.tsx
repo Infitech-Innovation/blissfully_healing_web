@@ -2,7 +2,7 @@
 
 // import Image from "next/image";
 import { Calendar, Clock } from "lucide-react";
-import { useBlogDetails } from "@/services/businessservices/blogs.services";
+import { useBlogDetails } from "@/hooks/useBlogs";
 import DOMPurify from "isomorphic-dompurify";
 import { useEffect, useMemo } from "react";
 import { BlogDetailsSkeleton } from "./blog_details_skeleton";

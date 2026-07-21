@@ -15,7 +15,7 @@ import {
 } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEnrolledCoursesDetails } from "@/services/businessservices/courses.services";
+import { useEnrolledCoursesDetails } from "@/hooks/useCourses";
 import MyRegisteredCourse from "@/components/skeleton/MyRegisteredCourse";
 
 interface PageProps {

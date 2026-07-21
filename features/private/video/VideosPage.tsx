@@ -15,7 +15,7 @@ import {
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { formatDate } from "@/utils/utils";
-import { useVideosListQuery } from "@/services/businessservices/videos.services";
+import { useVideosListQuery } from "@/hooks/useVideos";
 import { VideoAsset } from "@/types/videos.definations";
 import VideoSanctuarySkeleton from "@/components/skeleton/VideoSanctuary";
 

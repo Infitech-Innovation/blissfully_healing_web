@@ -1,6 +1,6 @@
 import { UserDashboardData } from "@/types/dashboard.definations"
 import { useQuery } from "@tanstack/react-query"
-import { getAnalytics } from "../endpoints/dash.endpoints"
+import { getAnalytics } from "../services/dash.endpoints"
 
 export const useUserDashboard = () => {
     return useQuery<UserDashboardData>({

@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { PaymentPayload,TransactionResponse } from "../../types/payments.definations";
-import { createTransaction, getPaymentDetails, getPayments, verifyPayments } from "../endpoints/payment.endpoints";
+import { PaymentPayload,TransactionResponse } from "../types/payments.definations";
+import { createTransaction, getPaymentDetails, getPayments, verifyPayments } from "../services/payment.endpoints";
 
 export const paymentKeys = {
     all: ["payments"] as const,

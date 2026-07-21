@@ -1,6 +1,6 @@
 import RetreatSectionPage from "@/features/public/retreats/RetreatPage";
-import { retreatKeys } from "@/services/businessservices/retreats.services";
-import { getRetreats } from "@/services/endpoints/retreats.endpoints";
+import { retreatKeys } from "@/hooks/useRetreats";
+import { getRetreats } from "@/services/retreats.endpoints";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 
 export default async function RetreatsPage() {

@@ -1,7 +1,7 @@
 "use client";
 
 import { RetreatSkeleton } from "@/components/skeleton/Retreats";
-import { useGetRetreats } from "@/services/businessservices/retreats.services";
+import { useGetRetreats } from "@/hooks/useRetreats";
 import { RetreatList } from "@/types/retreats.definations";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";

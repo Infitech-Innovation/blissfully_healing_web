@@ -7,9 +7,9 @@ import {
   logoutUser,
   registerUser,
   userProfile,
-} from "../endpoints/auth.endpoint";
+} from "../services/auth.endpoint";
 import { useEffect } from "react";
-import { Profile } from "../../types/auth.definations";
+import { Profile } from "../types/auth.definations";
 
 export const authQueryKeys = {
   all: ["auth"] as const,

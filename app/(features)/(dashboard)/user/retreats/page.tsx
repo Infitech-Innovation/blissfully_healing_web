@@ -1,7 +1,7 @@
 import { MyReatreatsSection } from "@/features/private/retreats/MyRetreats";
 import { getServerApi } from "@/lib/axios.server";
-import { retreatKeys } from "@/services/businessservices/retreats.services";
-import { getMyRetreats } from "@/services/endpoints/retreats.endpoints";
+import { retreatKeys } from "@/hooks/useRetreats";
+import { getMyRetreats } from "@/services/retreats.endpoints";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 
 export default async function RetreatsPage() {

@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { AlertCircle, Eye, EyeOff, Loader2 } from "lucide-react";
 import { useAuthStore } from "@/store/useAuthStore";
 import { AxiosError } from "axios";
-import { useRegister } from "../../../../../services/businessservices/auth.services";
+import { useRegister } from "../../../../../hooks/useAuthenication";
 import { RegisterFormData, registerSchema } from "@/app/(features)/(auth)/zod/auth.zod";
 
 type ApiFieldErrors = Partial<

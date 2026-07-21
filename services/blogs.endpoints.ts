@@ -1,5 +1,5 @@
 import { api } from "@/lib/axios";
-import { Blog, BlogResponse, Category, FeaturedBlogResponse } from "../../types/blogs.definations";
+import { Blog, BlogResponse, Category, FeaturedBlogResponse } from "../types/blogs.definations";
 
 const CAT_URL = "/blog/categories/";
 const BLOGS_URL = "/blog/";

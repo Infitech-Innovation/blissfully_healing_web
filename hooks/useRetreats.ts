@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import { cancelRetreat, getFeaturedRetreats, getMyRetreats, getRetreatDetails, getRetreats, registerRetreat } from "../endpoints/retreats.endpoints"
+import { cancelRetreat, getFeaturedRetreats, getMyRetreats, getRetreatDetails, getRetreats, registerRetreat } from "../services/retreats.endpoints"
 import { FeaturedRetreatListResponse, RetreatDetails, RetreatListResponse, RetreatRegResponse } from "@/types/retreats.definations"
 
 export const retreatKeys = {

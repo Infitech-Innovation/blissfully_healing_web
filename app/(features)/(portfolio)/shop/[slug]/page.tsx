@@ -2,7 +2,7 @@
 
 import EbookDetailSkeleton from "@/components/skeleton/EbookDetails";
 import EbookDetailsView from "@/features/public/ebooks/EbookDetailsView";
-import { useEbookDetails } from "@/services/businessservices/ebook.services";
+import { useEbookDetails } from "@/hooks/useEbooks";
 // import { getEbooks } from "@/services/endpoints/ebooks.endpoints";
 import { useParams, notFound } from "next/navigation";
 

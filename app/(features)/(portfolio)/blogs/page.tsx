@@ -3,8 +3,8 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-import { getBlogs, getCategory } from "@/services/endpoints/blogs.endpoints";
-import { BLOGS_KEYS, CAT_KEYS } from "@/services/businessservices/blogs.services";
+import { getBlogs, getCategory } from "@/services/blogs.endpoints";
+import { BLOGS_KEYS, CAT_KEYS } from "@/hooks/useBlogs";
 import BlogSection from "@/features/public/blogs/blogs_page";
 
 export default async function BlogPage() {

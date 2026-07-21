@@ -1,4 +1,4 @@
-import { useUserDashboard } from "@/services/businessservices/dash.services";
+import { useUserDashboard } from "@/hooks/useDashboard";
 import { DashboardSkeleton } from "@/components/skeleton/DashboardSkeleton";
 import { Achievements } from "./Achievements";
 import { DashboardHeader } from "./DashboardHeader";

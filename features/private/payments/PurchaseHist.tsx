@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import { Search } from "lucide-react";
 import PurchaseCard from "./PurchaseCard";
-import { usePayments } from "@/services/businessservices/payment.services";
+import { usePayments } from "@/hooks/usePayments";
 import { ProductType, Transaction } from "@/types/payments.definations";
 import PurchaseCardSkeleton from "@/components/skeleton/PurchaseHistory";
 

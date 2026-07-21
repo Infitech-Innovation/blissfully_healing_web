@@ -2,7 +2,7 @@
 
 import CourseDetailsSkeleton from "@/components/skeleton/CourseDetailsSkeleton";
 import CourseDetail from "@/features/public/courses/CourseDetail";
-import { useCourseDetails } from "@/services/businessservices/courses.services";
+import { useCourseDetails } from "@/hooks/useCourses";
 // import { getCourses } from "@/services/endpoints/courses.endpoints";
 import { useParams } from "next/navigation";
 

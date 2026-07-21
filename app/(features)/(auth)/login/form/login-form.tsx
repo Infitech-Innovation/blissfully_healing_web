@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { AlertCircle, Eye, EyeOff, Loader2 } from "lucide-react";
 import { useAuthStore } from "@/store/useAuthStore";
-import { useLogin } from "../../../../../services/businessservices/auth.services";
+import { useLogin } from "../../../../../hooks/useAuthenication";
 import { AxiosError } from "axios";
 import { loginSchema } from "@/app/(features)/(auth)/zod/auth.zod";
 

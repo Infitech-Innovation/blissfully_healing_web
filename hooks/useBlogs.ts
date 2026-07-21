@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { Blog, BlogResponse, Category, FeaturedBlogResponse } from "../../types/blogs.definations";
+import { Blog, BlogResponse, Category, FeaturedBlogResponse } from "../types/blogs.definations";
 import {
   getBlogDetails,
   getBlogs,
   getCategory,
   getFeaturedBlogs,
-} from "../endpoints/blogs.endpoints";
+} from "../services/blogs.endpoints";
 
 export const CAT_KEYS = ["categories"];
 export const F_BLOGS_KEYS = ["fblogs"];

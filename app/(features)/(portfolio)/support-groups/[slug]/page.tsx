@@ -2,7 +2,7 @@
 
 import SupportGroupsDetails from "@/features/public/groups/GroupDetails";
 import { GroupDetailSkeleton } from "@/components/skeleton/GroupSkeleton";
-import { useGroupDetails } from "@/services/businessservices/groups.services";
+import { useGroupDetails } from "@/hooks/useGroups";
 import { useParams, notFound } from "next/navigation";
 // import { getGroups } from "@/services/endpoints/groups.endpoints";
 

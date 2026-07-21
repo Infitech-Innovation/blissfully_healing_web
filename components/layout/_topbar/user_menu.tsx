@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { LogOut, Loader2, UserCircle2 } from "lucide-react";
 import { useAuthStore } from "@/store/useAuthStore";
-import { useLogout } from "@/services/businessservices/auth.services";
+import { useLogout } from "@/hooks/useAuthenication";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 

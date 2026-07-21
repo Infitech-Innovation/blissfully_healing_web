@@ -1,6 +1,6 @@
 "use client";
 
-import { useGetFeaturedCourses } from "@/services/businessservices/courses.services";
+import { useGetFeaturedCourses } from "@/hooks/useCourses";
 import { BookOpen, Clock, Compass, Heart } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";

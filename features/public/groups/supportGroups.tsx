@@ -6,7 +6,7 @@ import { CalendarDays, HeartHandshake, Search, Users } from "lucide-react";
 import { GroupCard } from "./GroupCard";
 import { GroupSkeleton } from "../../../components/skeleton/GroupSkeleton";
 import { SupportGrouplist } from "@/types/groups.definations";
-import { useGroups } from "@/services/businessservices/groups.services";
+import { useGroups } from "@/hooks/useGroups";
 
 const EMPTY_List: SupportGrouplist[] = [];
 const ALL_CATEGORIES = { label: "All", value: "all" };

@@ -1,5 +1,5 @@
 import { api } from "@/lib/axios";
-import { Category, Course, CourseProgressResponse, CourseResponse, EnrolledCourse, EnrolledCourseGroupsResponse, FeaturedCourseResponse, Lesson, LessonResponse } from "../../types/course.definations";
+import { Category, Course, CourseProgressResponse, CourseResponse, EnrolledCourse, EnrolledCourseGroupsResponse, FeaturedCourseResponse, Lesson, LessonResponse } from "../types/course.definations";
 import { AxiosInstance } from "axios";
 
 const COURSE_URL = "/courses/";

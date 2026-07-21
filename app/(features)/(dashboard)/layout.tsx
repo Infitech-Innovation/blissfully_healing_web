@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Sidebar } from "@/components/layout/_sidebar/sidebar";
 import { Topbar } from "@/components/layout/_topbar/topbar";
-import { useProfile } from "@/services/businessservices/auth.services";
+import { useProfile } from "@/hooks/useAuthenication";
 
 export default function MainLayout({
   children,

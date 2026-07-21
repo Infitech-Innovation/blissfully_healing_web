@@ -4,8 +4,8 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 import MyCoursePage from "@/features/private/courses/MyCoursePage";
-import { coursekeys } from "@/services/businessservices/courses.services";
-import { getMyEnrollments } from "@/services/endpoints/courses.endpoints";
+import { coursekeys } from "@/hooks/useCourses";
+import { getMyEnrollments } from "@/services/courses.endpoints";
 import { getServerApi } from "@/lib/axios.server";
 
 export default async function CoursesPage() {

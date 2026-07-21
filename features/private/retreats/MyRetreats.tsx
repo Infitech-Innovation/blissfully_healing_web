@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useCancelRetreat, useMyRetreats } from "@/services/businessservices/retreats.services";
+import { useCancelRetreat, useMyRetreats } from "@/hooks/useRetreats";
 import { MyRetreatSkeleton } from "@/components/skeleton/MyRetreats";
 import RetreatCard from "./ReatreatCard";
 import { useState } from "react";

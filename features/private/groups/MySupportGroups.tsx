@@ -5,7 +5,7 @@ import Link from "next/link";
 import { getTimeUntil } from "@/utils/utils";
 import { useAuthStore } from "@/store/useAuthStore";
 import { MyGroupMembership } from "@/types/groups.definations";
-import { useLeaveGroup, useMyGroups } from "@/services/businessservices/groups.services";
+import { useLeaveGroup, useMyGroups } from "@/hooks/useGroups";
 import { GroupCard } from "./GroupCard";
 import MyJoinedGroup from "@/components/skeleton/MyJoinedGroup";
 import LeaveGroupModal from "./LeaveGroupModal";

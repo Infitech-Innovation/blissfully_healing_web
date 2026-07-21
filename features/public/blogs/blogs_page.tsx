@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import styles from "@/styles/blogs.module.css";
-import { useBlogs, useCategory } from "@/services/businessservices/blogs.services";
+import { useBlogs, useCategory } from "@/hooks/useBlogs";
 import { BlogCardMobile } from "./blogs_mobile";
 import { BlogCardDesktop } from "./blogs_desktop";
 import { BlogCardItem } from "@/types/blogs.definations";

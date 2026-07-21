@@ -4,8 +4,8 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 import CourseSection from "@/features/public/courses/CoursePage";
-import { coursekeys } from "@/services/businessservices/courses.services";
-import { getCourses, getFeaturedCourses } from "@/services/endpoints/courses.endpoints";
+import { coursekeys } from "@/hooks/useCourses";
+import { getCourses, getFeaturedCourses } from "@/services/courses.endpoints";
 
 export default async function CoursesPage() {
   const queryClient = new QueryClient({

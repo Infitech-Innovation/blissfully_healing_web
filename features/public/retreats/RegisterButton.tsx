@@ -1,6 +1,6 @@
 "use client";
 
-import { useRegisterRetreat } from "@/services/businessservices/retreats.services";
+import { useRegisterRetreat } from "@/hooks/useRetreats";
 import { useAuthStore } from "@/store/useAuthStore";
 import { RegisteredRetreats } from "@/types/retreats.definations";
 import { encodeRetreatToken } from "@/utils/token";

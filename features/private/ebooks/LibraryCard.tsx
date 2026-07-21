@@ -10,7 +10,7 @@ import {
 import Image from "next/image";
 import { OwnedEbooks } from "@/types/ebooks.definations";
 import { formatDate } from "@/utils/utils";
-import { useDownloadEbookMutation } from "@/services/businessservices/ebook.services";
+import { useDownloadEbookMutation } from "@/hooks/useEbooks";
 
 type LibraryProps = {
   library: OwnedEbooks;

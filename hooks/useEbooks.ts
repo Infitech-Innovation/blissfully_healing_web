@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { EBook, EbookListResponse, OwnedEbookResponse } from "@/types/ebooks.definations"
-import { downloadEbook, getEbookDetails, getEbooks, getFeaturedEbooks, getMyEbooks, ownEbook } from "../endpoints/ebooks.endpoints"
+import { downloadEbook, getEbookDetails, getEbooks, getFeaturedEbooks, getMyEbooks, ownEbook } from "../services/ebooks.endpoints"
 
 export const ebookKeys = {
     all: ["ebooks"] as const,

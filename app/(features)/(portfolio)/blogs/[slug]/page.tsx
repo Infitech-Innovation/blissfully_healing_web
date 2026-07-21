@@ -3,8 +3,8 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-import { BLOGS_KEYS } from "@/services/businessservices/blogs.services";
-import { getBlogDetails, getBlogs } from "@/services/endpoints/blogs.endpoints";
+import { BLOGS_KEYS } from "@/hooks/useBlogs";
+import { getBlogDetails, getBlogs } from "@/services/blogs.endpoints";
 import BlogDetailsPage from "@/features/public/blogs/blogs_details";
 
 type PageProps = {

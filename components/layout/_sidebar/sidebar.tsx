@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/sheet";
 import { ROLE } from "../../../types/auth.definations";
 import { useAuthStore } from "@/store/useAuthStore";
-import { useLogout } from "../../../services/businessservices/auth.services";
+import { useLogout } from "../../../hooks/useAuthenication";
 
 interface SidebarProps {
   collapsed: boolean;

@@ -5,7 +5,7 @@ import {
   Profile,
   RegAuthResponse,
   RegisterFormInputs,
-} from "../../types/auth.definations";
+} from "../types/auth.definations";
 
 const LOGIN_URL = "/auth/login/";
 const REGISTER_URL = "/auth/register/";

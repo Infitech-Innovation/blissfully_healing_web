@@ -1,5 +1,5 @@
 import { api } from "@/lib/axios";
-import { PaymentPayload, TransactionResponse } from "../../types/payments.definations";
+import { PaymentPayload, TransactionResponse } from "../types/payments.definations";
 
 const PAYMENTS_URL = "/payments/";
 
