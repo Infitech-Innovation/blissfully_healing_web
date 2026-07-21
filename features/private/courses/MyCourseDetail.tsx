@@ -26,12 +26,14 @@ export default function MyCourseDetail({ id }: PageProps) {
 
   const { data: enrolledData, isLoading } = useEnrolledCoursesDetails(id)
 
+  
+
   const [openChapterIds, setOpenChapterIds] = useState<number[]>(() => {
     if (!enrolledData?.course?.chapters?.[0]?.id) return [];
     return [enrolledData.course.chapters[0].id];
   });
 
-  if (isLoading) return <MyRegisteredCourse/>;
+  if (isLoading) return <MyRegisteredCourse />;
   if (!enrolledData) {
     return (
       <div className="flex h-screen flex-col items-center justify-center gap-4 bg-[#fffaf6] px-4 text-center">
@@ -278,7 +280,7 @@ export default function MyCourseDetail({ id }: PageProps) {
                                 <div className="min-w-0 flex-1">
                                   <p
                                     className={`truncate text-[14px] ${isLessonCompleted
-                                      ? "text-[#7a6658] line-through decoration-[#b8a090]"
+                                      ? "text-[#7a6658] decoration-[#b8a090]"  // line-through
                                       : isCurrent
                                         ? "font-medium text-[#2f251f]"
                                         : "text-[#3f342c]"
@@ -452,7 +454,7 @@ export default function MyCourseDetail({ id }: PageProps) {
             </div>
           ) : (
             <Link
-              href={`/user/courses/${course.slug}/learn`}
+              href={`/user/courses/${enrolledData.id}/learn`}
               className="mt-4 inline-flex items-center justify-center w-full rounded-[8px] bg-[#8f6249] p-3 text-[15px] font-medium text-white transition hover:bg-[#744d39]"
             >
               {nextLesson ? "Continue Learning" : "Start Course"}

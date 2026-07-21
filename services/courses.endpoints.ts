@@ -15,7 +15,7 @@ export const getCourses = async (page: number = 1): Promise<CourseResponse> => {
 
 //get coursedetails
 export const getCoursesDetails = async (slug: string): Promise<Course> => {
-    const response = await api.get<Course>(`${COURSE_URL}${slug}`)
+    const response = await api.get<Course>(`${COURSE_URL}${slug}/`)
     return response.data
 }
 
@@ -35,7 +35,7 @@ export const getLessonDetails = async (slug: string, id: number): Promise<Lesson
 
 //mark lesson complete
 export const markComplete = async (slug: string, id: number) => {
-    const response = await api.post(`${COURSE_URL}${slug}/lessons/${id}/complete`)
+    const response = await api.post(`${COURSE_URL}${slug}/lessons/${id}/complete/`)
     return response.data
 }
 
@@ -94,7 +94,7 @@ export const getMyEnrollments = async (page: number = 1, apiInstance: AxiosInsta
 
 //get enrollment details
 export const getMyEnrollmentDetails = async (page: number = 1, id: string): Promise<EnrolledCourse> => {
-    const response = await api.get<EnrolledCourse>(`${ENROLLMENT_URL}${id}`, {
+    const response = await api.get<EnrolledCourse>(`${ENROLLMENT_URL}${id}/`, {
         params: { page }
     });
     return response.data

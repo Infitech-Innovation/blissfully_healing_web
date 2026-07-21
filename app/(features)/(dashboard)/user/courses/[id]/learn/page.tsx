@@ -1,14 +1,11 @@
-// "use client";
+import CourseLearningPage from "@/features/private/courses/LearnCourse";
 
-import PageUnderDevelopment from "@/components/common/comming-soon";
+interface PageProps {
+  params: Promise<{ id: string }>;
+}
 
-// import CourseLearningPage from "../../_components/LearnCourse";
-
-// export default function LearnPage() {
-//   return <CourseLearningPage />;
-// }
-
-
-export default function LearnPage(){
-  return <PageUnderDevelopment title="Learn Page"/>
+export default async function LearnPage({ params }: PageProps) {
+  const { id } = await params;
+  
+  return <CourseLearningPage id={id} />;
 }
