@@ -29,7 +29,7 @@ export interface OwnedEbooks {
   id: string;
   ebook: EBookList;
   status: "PENDING_PAYMENT" | "PENDING_CALL" | "CONFIRMED" | "CANCELLED";
-  purchased_at: Date;
+  purchased_at: string;
 }
 
 

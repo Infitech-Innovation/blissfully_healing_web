@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Calendar, Clock, HeartHandshake, Users } from "lucide-react";
 import { SupportGrouplist } from "@/types/groups.definations";
 import { StatusBadge } from "./statusBadge";
+import { formatDate } from "@/utils/utils";
 
 export function GroupCard({
   group,
@@ -16,7 +17,7 @@ export function GroupCard({
           <div
             className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[8px] border"
           >
-            {group.icon_image || <HeartHandshake className="text-rose-500" size={30}/>} 
+            {group.icon_image || <HeartHandshake className="text-rose-500" size={30} />}
           </div>
           <StatusBadge status={group.status_label} />
         </div>
@@ -74,7 +75,7 @@ export function GroupCard({
               Next Session
             </span>
             <span className="text-sm font-semibold text-[#2f251f]">
-              {group.next_session_date}
+              {formatDate(group.next_session_date)}
             </span>
           </div>
 

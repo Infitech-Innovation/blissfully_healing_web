@@ -4,7 +4,16 @@
 import { RetreatDetailSkeleton } from "@/components/skeleton/RetreatDetails";
 import { RetreatDetailView } from "@/features/public/retreats/RetreatDetails";
 import { useRetreatDetails } from "@/services/businessservices/retreats.services";
+// import { getRetreats } from "@/services/endpoints/retreats.endpoints";
 import { useParams, notFound } from "next/navigation";
+
+// export async function generateStaticParams() {
+//   const { results } = await getRetreats(1);
+
+//   return results.map((retreat) => ({
+//     slug: retreat.slug,
+//   }));
+// }
 
 export default function RetreatDetailPage() {
   const { slug } = useParams() as { slug: string };

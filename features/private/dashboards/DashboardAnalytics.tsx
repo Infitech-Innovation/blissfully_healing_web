@@ -1,4 +1,5 @@
 import { useUserDashboard } from "@/services/businessservices/dash.services";
+import { DashboardSkeleton } from "@/components/skeleton/DashboardSkeleton";
 import { Achievements } from "./Achievements";
 import { DashboardHeader } from "./DashboardHeader";
 import { LearningProgress } from "./LearningProgress";
@@ -12,13 +13,7 @@ export function DashboardAnalytics() {
   console.log("analytics", dashboard)
 
   if (isLoading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-background">
-        <p className="text-sm font-medium text-muted-foreground animate-pulse">
-          Loading your wellness dashboard...
-        </p>
-      </div>
-    );
+    return <DashboardSkeleton />;
   }
 
   return (

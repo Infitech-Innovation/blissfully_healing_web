@@ -2,7 +2,6 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import {
   ArrowLeft,
-  ArrowRight,
   CalendarDays,
   CheckCircle2,
   Clock,
@@ -15,6 +14,8 @@ import {
 } from "lucide-react";
 import { SupportGroup } from "@/types/groups.definations";
 import { StatusBadge } from "./statusBadge";
+import { formatDate } from "@/utils/utils";
+import CheckOutButton from "@/components/common/checkoutBtn";
 
 interface SupportProps {
   group: SupportGroup;
@@ -59,6 +60,16 @@ export default function SupportGroupsDetails({ group }: SupportProps) {
       .map((name) => name[0])
       .join("")
       .toUpperCase();
+
+  const price = Number(group.price ?? 0);
+
+  const formattedPrice = new Intl.NumberFormat("en-KE", {
+    style: "currency",
+    currency: "KES",
+    maximumFractionDigits: 0,
+  }).format(isNaN(price) ? 0 : price);
+
+
 
   return (
     <main className="min-h-screen bg-[#fffaf6] pb-16 text-[#2f251f]">
@@ -108,7 +119,7 @@ export default function SupportGroupsDetails({ group }: SupportProps) {
                   Next Session
                 </span>
                 <span className="text-sm font-semibold text-[#2f251f]">
-                  {group.next_session_date}
+                  {formatDate(group.next_session_date)}
                 </span>
               </div>
               <div className="flex items-center justify-between gap-4">
@@ -116,16 +127,21 @@ export default function SupportGroupsDetails({ group }: SupportProps) {
                   Price
                 </span>
                 <span className="text-sm font-semibold text-[#2f251f]">
-                  {group.price}
+                  {formattedPrice}
                 </span>
               </div>
-              <Link
+              <CheckOutButton
+                id={group.id}
+                type="Support_group"
+                btnName={"Register Now"}
+              />
+              {/* <Link
                 href={`/support-groups/${group.slug}/register`}
                 className="mt-2 inline-flex items-center justify-center gap-2 rounded-sm bg-[#8f6249] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#744d39]"
               >
                 Register Now
                 <ArrowRight className="h-4 w-4" />
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>
@@ -292,16 +308,21 @@ export default function SupportGroupsDetails({ group }: SupportProps) {
                     Cost
                   </span>
                   <span className="font-serif text-2xl font-semibold text-[#2f251f]">
-                    {group.price}
+                    {formattedPrice}
                   </span>
                 </div>
-                <Link
+                <CheckOutButton
+                  id={group.id}
+                  type="support_group"
+                  btnName={"Register Now"}
+                />
+                {/* <Link
                   href={`/support-groups/${group.slug}/register`}
                   className="flex w-full items-center justify-center gap-2 rounded-sm bg-[#8f6249] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#744d39]"
                 >
                   Register Now
                   <ArrowRight className="h-4 w-4" />
-                </Link>
+                </Link> */}
               </div>
             </div>
           </div>

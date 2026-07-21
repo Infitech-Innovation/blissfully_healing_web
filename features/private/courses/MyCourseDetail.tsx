@@ -16,6 +16,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { useEnrolledCoursesDetails } from "@/services/businessservices/courses.services";
+import MyRegisteredCourse from "@/components/skeleton/MyRegisteredCourse";
 
 interface PageProps {
   id: string;
@@ -30,7 +31,7 @@ export default function MyCourseDetail({ id }: PageProps) {
     return [enrolledData.course.chapters[0].id];
   });
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <MyRegisteredCourse/>;
   if (!enrolledData) {
     return (
       <div className="flex h-screen flex-col items-center justify-center gap-4 bg-[#fffaf6] px-4 text-center">

@@ -3,9 +3,18 @@
 import EbookDetailSkeleton from "@/components/skeleton/EbookDetails";
 import EbookDetailsView from "@/features/public/ebooks/EbookDetailsView";
 import { useEbookDetails } from "@/services/businessservices/ebook.services";
+// import { getEbooks } from "@/services/endpoints/ebooks.endpoints";
 import { useParams, notFound } from "next/navigation";
 
-export default function RetreatDetailPage() {
+// export async function generateStaticParams() {
+//     const { results } = await getEbooks(1);
+
+//     return results.map((book) => ({
+//         slug: book.slug,
+//     }));
+// }
+
+export default function EbookDetailsPage() {
     const { slug } = useParams() as { slug: string };
     const { data: ebook, isLoading, error } = useEbookDetails(slug);
 

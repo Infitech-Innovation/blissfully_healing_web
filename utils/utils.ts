@@ -1,12 +1,10 @@
-export function formatDate(dateInput: string | Date): string {
-  const date = typeof dateInput === "string" ? new Date(dateInput) : dateInput;
-  
-  return date.toLocaleDateString("en-KE", {
-    weekday: "long",
+export const formatDate = (date: string | Date) =>
+  new Intl.DateTimeFormat("en-GB", {
     day: "numeric",
     month: "long",
-  });
-}
+    year: "numeric",
+  }).format(new Date(date));
+
 
 export function getTimeUntil(dateInput: string | Date): string {
   const targetDate = typeof dateInput === "string" ? new Date(dateInput) : dateInput;

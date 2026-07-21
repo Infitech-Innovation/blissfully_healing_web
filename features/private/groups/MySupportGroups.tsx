@@ -6,6 +6,8 @@ import { getTimeUntil } from "@/utils/utils";
 import { useAuthStore } from "@/store/useAuthStore";
 import { MyGroupMembership } from "@/types/groups.definations";
 import { useMyGroups } from "@/services/businessservices/groups.services";
+import { GroupCard } from "./GroupCard";
+import MyJoinedGroup from "@/components/skeleton/MyJoinedGroup";
 
 const EMPTY_LIST: MyGroupMembership[] = [];
 
@@ -57,14 +59,6 @@ export default function MySupportGroupsDashboard() {
   // const nextGroup = sortedGroups[0];
   // const nextSessionDate = nextGroup?.next_session_date ?? null;
   // const nextGroupTitle = nextGroup?.title ?? "No upcoming circles";
-
-  if (isLoading) {
-    return (
-      <div className="flex min-h-[40vh] items-center justify-center">
-        Loading...
-      </div>
-    );
-  }
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#fffaf6] text-[#2f251f]">
@@ -163,7 +157,18 @@ export default function MySupportGroupsDashboard() {
 
         {/* Groups */}
         <div className="space-y-3">
-          {groups.length === 0 ? (
+          {isLoading ? (
+            <MyJoinedGroup />
+          ) : (groups?.length ?? 0) > 0 ? (
+            groups.map((group) => (
+              <GroupCard
+                key={group.id}
+                group={group}
+                isExpanded={expandedId === group.id}
+                onToggle={() => toggle(group.id)}
+              />
+            ))
+          ) : (
             <div className="rounded-xl border border-dashed border-[#eadfd4] bg-white p-12 text-center">
               <h3 className="font-serif text-2xl font-semibold">
                 No support groups yet
@@ -180,18 +185,6 @@ export default function MySupportGroupsDashboard() {
                 Browse Support Groups
               </Link>
             </div>
-          ) : (
-            <div>
-              The Group Cards Are Under Development
-            </div>
-            // groups.map((group) => (
-            //   <GroupCard
-            //     key={group.id}
-            //     group={group}
-            //     isExpanded={expandedId === group.id}
-            //     onToggle={() => toggle(group.id)}
-            //   />
-            // ))
           )}
         </div>
 
