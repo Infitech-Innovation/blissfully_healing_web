@@ -1,19 +1,23 @@
 "use client";
 
 import Link from "next/link";
+import Pagination from "@/components/custom/Pagination";
 import { useCancelRetreat, useMyRetreats } from "@/hooks/useRetreats";
 import { MyRetreatSkeleton } from "@/components/skeleton/MyRetreats";
 import RetreatCard from "./ReatreatCard";
 import { useState } from "react";
 import CancelRetreatModal from "./CancelRetreat";
+import { getPaginationPageSize } from "@/lib/pagination";
 import { RegisteredRetreats } from "@/types/retreats.definations";
 
 const EMPTY_LIST: RegisteredRetreats[] = [];
 
 export function MyReatreatsSection() {
+    const [page, setPage] = useState(1);
 
-    const { data: reatreatResponse, isLoading } = useMyRetreats();
+    const { data: reatreatResponse, isLoading, isFetching } = useMyRetreats(page);
     const myretreats = reatreatResponse?.results ?? EMPTY_LIST;
+    const pageSize = getPaginationPageSize(reatreatResponse, page, myretreats.length);
 
     const cancelRetreatMutation = useCancelRetreat();
 
@@ -80,6 +84,13 @@ export function MyReatreatsSection() {
                         </p>
                     </div>
                 )}
+                <Pagination
+                    currentPage={page}
+                    totalItems={reatreatResponse?.count ?? myretreats.length}
+                    pageSize={pageSize}
+                    onPageChange={setPage}
+                    disabled={isFetching}
+                />
             </div>
             {activeRetreatToCancel && (
                 <CancelRetreatModal

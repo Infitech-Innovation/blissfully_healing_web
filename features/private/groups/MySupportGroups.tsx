@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Pagination from "@/components/custom/Pagination";
 import { getTimeUntil } from "@/utils/utils";
 import { useAuthStore } from "@/store/useAuthStore";
 import { MyGroupMembership } from "@/types/groups.definations";
@@ -9,6 +10,7 @@ import { useLeaveGroup, useMyGroups } from "@/hooks/useGroups";
 import { GroupCard } from "./GroupCard";
 import MyJoinedGroup from "@/components/skeleton/MyJoinedGroup";
 import LeaveGroupModal from "./LeaveGroupModal";
+import { getPaginationPageSize } from "@/lib/pagination";
 
 const EMPTY_LIST: MyGroupMembership[] = [];
 
@@ -19,14 +21,16 @@ export default function MySupportGroupsDashboard() {
     slug: string;
     title: string;
   } | null>(null);
+  const [page, setPage] = useState(1);
 
   const toggle = (id: number) =>
     setExpandedId((prev) => (prev === id ? null : id));
 
-  const { data: myGroupResponse, isLoading } = useMyGroups();
+  const { data: myGroupResponse, isLoading, isFetching } = useMyGroups(page);
   const leaveGroupMutation = useLeaveGroup();
 
   const memberships = myGroupResponse?.results ?? EMPTY_LIST;
+  const pageSize = getPaginationPageSize(myGroupResponse, page, memberships.length);
 
   // Extract the groups from the memberships
   const groups = memberships.map((membership) => ({
@@ -204,6 +208,13 @@ export default function MySupportGroupsDashboard() {
             </div>
           )}
         </div>
+        <Pagination
+          currentPage={page}
+          totalItems={myGroupResponse?.count ?? memberships.length}
+          pageSize={pageSize}
+          onPageChange={setPage}
+          disabled={isFetching}
+        />
 
         {/* CTA */}
         <div className="relative overflow-hidden rounded-[14px] border border-dashed border-[#d4c4b5]/70 bg-gradient-to-br from-white via-[#fffaf6] to-white p-8 shadow-[0_8px_40px_rgba(63,52,44,0.04)] sm:flex sm:items-center sm:justify-between">

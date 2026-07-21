@@ -7,6 +7,7 @@ import CourseCard from "./CourseCard";
 import CourseHero from "./CourseHero";
 import { Course } from "@/types/course.definations";
 import { useGetCourses } from "@/hooks/useCourses";
+import { getPaginationPageSize } from "@/lib/pagination";
 
 const EMPTY_COURSES: Course[] = [];
 
@@ -17,7 +18,7 @@ export default function CourseSection() {
 
   const { data: coursesData, isFetching } = useGetCourses(page);
   const courses = coursesData?.results ?? EMPTY_COURSES;
-  const pageSize = Math.max(courses.length, 1);
+  const pageSize = getPaginationPageSize(coursesData, page, courses.length);
 
   const categories = useMemo(
     () => [

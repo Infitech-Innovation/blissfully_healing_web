@@ -2,20 +2,24 @@
 
 import { useState, useMemo } from "react";
 import { Search } from "lucide-react";
+import Pagination from "@/components/custom/Pagination";
 import PurchaseCard from "./PurchaseCard";
 import { usePayments } from "@/hooks/usePayments";
 import { ProductType, Transaction } from "@/types/payments.definations";
 import PurchaseCardSkeleton from "@/components/skeleton/PurchaseHistory";
+import { getPaginationPageSize } from "@/lib/pagination";
 
 const EMPTY_LIST: Transaction[] = [];
 
 
 export default function PurchaseHist() {
-  const { data: purschaseResponse, isLoading, isError } = usePayments();
+  const [page, setPage] = useState(1);
+  const { data: purschaseResponse, isLoading, isError, isFetching } = usePayments(page);
   const [filter, setFilter] = useState<"all" | ProductType>("all");
   const [searchQuery, setSearchQuery] = useState("");
 
   const purschases = purschaseResponse?.results ?? EMPTY_LIST;
+  const pageSize = getPaginationPageSize(purschaseResponse, page, purschases.length);
 
   // 1. Safe array translation fallback to handle variant API return payloads
   const transactionsList = useMemo<Transaction[]>(() => {
@@ -108,7 +112,10 @@ export default function PurchaseHist() {
               <button
                 type="button"
                 key={type}
-                onClick={() => setFilter(type)}
+                onClick={() => {
+                  setFilter(type);
+                  setPage(1);
+                }}
                 className={`rounded-[6px] px-4 py-2 text-xs font-bold uppercase tracking-wider transition ${filter === type
                   ? "bg-[#8f6249] text-white"
                   : "border border-[#eadfd4] bg-white text-[#6f5c4f] hover:border-[#8f6249] hover:text-[#8f6249]"
@@ -126,7 +133,10 @@ export default function PurchaseHist() {
               <input
                 type="text"
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                  setPage(1);
+                }}
                 placeholder="Search transaction ID, status, type..."
                 className="h-11 w-full rounded-[8px] border border-[#eadfd4] bg-white pl-11 pr-4 text-sm text-[#2f251f] outline-none transition placeholder:text-[#b39c8c] focus:border-[#8f6249] focus:ring-4 focus:ring-[#8f6249]/10"
               />
@@ -166,6 +176,13 @@ export default function PurchaseHist() {
             </p>
           </div>
         )}
+        <Pagination
+          currentPage={page}
+          totalItems={purschaseResponse?.count ?? purschases.length}
+          pageSize={pageSize}
+          onPageChange={setPage}
+          disabled={isFetching}
+        />
       </div>
     </section>
   );

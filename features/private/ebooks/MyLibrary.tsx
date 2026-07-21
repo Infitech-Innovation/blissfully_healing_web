@@ -2,18 +2,27 @@
 
 
 import Link from "next/link";
+import Pagination from "@/components/custom/Pagination";
 import LibraryCard from "./LibraryCard";
 import { useMyEbooks } from "@/hooks/useEbooks";
 import LibrarySkeleton from "@/components/skeleton/LibraryCard";
+import { getPaginationPageSize } from "@/lib/pagination";
 import { OwnedEbooks } from "@/types/ebooks.definations";
+import { useState } from "react";
 
 const EMPTY_LIST: OwnedEbooks[] = [];
 
 
 export default function LibrarySection() {
+    const [page, setPage] = useState(1);
 
-    const { data: purchasedEBooksResponse, isLoading } = useMyEbooks()
+    const { data: purchasedEBooksResponse, isLoading, isFetching } = useMyEbooks(page)
     const purchasedEBooks = purchasedEBooksResponse?.results ?? EMPTY_LIST;
+    const pageSize = getPaginationPageSize(
+        purchasedEBooksResponse,
+        page,
+        purchasedEBooks.length,
+    );
 
     return (
         <section className="bg-[#fffaf6] px-6 py-8 min-h-screen">
@@ -71,6 +80,13 @@ export default function LibrarySection() {
                         </Link>
                     </div>
                 )}
+                <Pagination
+                    currentPage={page}
+                    totalItems={purchasedEBooksResponse?.count ?? purchasedEBooks.length}
+                    pageSize={pageSize}
+                    onPageChange={setPage}
+                    disabled={isFetching}
+                />
             </div>
         </section>
     );

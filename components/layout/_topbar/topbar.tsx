@@ -1,8 +1,9 @@
 "use client";
 
 import { useMemo } from "react";
-import { Bell, Menu, Search } from "lucide-react";
+import { Bell, Home, Menu, Search } from "lucide-react";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Suspense } from "react";
 import UserMenu from "./user_menu";
@@ -76,6 +77,20 @@ export function Topbar({ onMenuClick }: TopbarProps) {
       </div>
 
       <div className="ml-auto flex items-center gap-2">
+        <Button
+          asChild
+          variant="ghost"
+          size="sm"
+          className="h-9 gap-2 rounded-[8px] px-2.5 text-[#6f5c4f] hover:bg-[#f3e8df] hover:text-[#3f342c] sm:px-3"
+        >
+          <Link href="/homepage" aria-label="Go to homepage">
+            <Home className="h-4 w-4" />
+            <span className="hidden text-xs font-semibold sm:inline">
+             Return Home
+            </span>
+          </Link>
+        </Button>
+
         <Button
           type="button"
           variant="ghost"

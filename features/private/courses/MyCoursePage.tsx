@@ -2,19 +2,23 @@
 
 import { Search } from "lucide-react";
 import { useMemo, useState } from "react";
+import Pagination from "@/components/custom/Pagination";
 import MyCourseCard from "./MyCourseCard";
 import Link from "next/link";
 import { useEnrolledCourses } from "@/hooks/useCourses";
 import MyCourseCardSkeleton from "../../../components/skeleton/MySkeletonCard";
+import { getPaginationPageSize } from "@/lib/pagination";
 import {  EnrolledCourse } from "@/types/course.definations";
 
 const EMPTY_COURSES: EnrolledCourse[] = [];
 
 export default function MyCoursePage() {
-  const { data: enrollmentResponse, isLoading } = useEnrolledCourses();
+  const [page, setPage] = useState(1);
+  const { data: enrollmentResponse, isLoading, isFetching } = useEnrolledCourses(page);
   const [query, setQuery] = useState("");
 
   const enrollments = enrollmentResponse?.results ?? EMPTY_COURSES;
+  const pageSize = getPaginationPageSize(enrollmentResponse, page, enrollments.length);
 
   const visibleEnrollments = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
@@ -77,7 +81,10 @@ export default function MyCoursePage() {
             <input
               type="text"
               value={query}
-              onChange={(event) => setQuery(event.target.value)}
+              onChange={(event) => {
+                setQuery(event.target.value);
+                setPage(1);
+              }}
               placeholder="Search courses & lessons..."
               className="h-12 w-full rounded-[8px] border border-[#eadfd4] bg-white pl-11 pr-4 text-sm text-[#2f251f] outline-none transition placeholder:text-[#b39c8c] focus:border-[#8f6249] focus:ring-4 focus:ring-[#8f6249]/10"
             />
@@ -116,6 +123,13 @@ export default function MyCoursePage() {
             </Link>
           </div>
         )}
+        <Pagination
+          currentPage={page}
+          totalItems={enrollmentResponse?.count ?? enrollments.length}
+          pageSize={pageSize}
+          onPageChange={setPage}
+          disabled={isFetching}
+        />
       </div>
     </section>
   );

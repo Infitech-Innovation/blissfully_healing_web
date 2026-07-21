@@ -1,20 +1,25 @@
 "use client";
 
+import Pagination from "@/components/custom/Pagination";
 import { RetreatSkeleton } from "@/components/skeleton/Retreats";
 import { useGetRetreats } from "@/hooks/useRetreats";
+import { getPaginationPageSize } from "@/lib/pagination";
 import { RetreatList } from "@/types/retreats.definations";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import { useState } from "react";
 
 import Link from "next/link";
 
 const EMPTY_COURSES: RetreatList[] = [];
 
 export function AccommodationsSection() {
+  const [page, setPage] = useState(1);
 
-  const { data: staysData, isLoading
-  } = useGetRetreats();
+  const { data: staysData, isLoading, isFetching
+  } = useGetRetreats(page);
   const stays = staysData?.results ?? EMPTY_COURSES;
+  const pageSize = getPaginationPageSize(staysData, page, stays.length);
   // 1. Optional Loading state (using the skeleton we made earlier)
   console.log("retreat data", stays)
   if (isLoading) return <RetreatSkeleton />;
@@ -92,6 +97,13 @@ export function AccommodationsSection() {
                   </article>
                 ))}
               </div>
+              <Pagination
+                currentPage={page}
+                totalItems={staysData?.count ?? stays.length}
+                pageSize={pageSize}
+                onPageChange={setPage}
+                disabled={isFetching}
+              />
             </div>
           </section>
         )

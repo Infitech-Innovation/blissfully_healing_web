@@ -3,21 +3,25 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { CalendarDays, HeartHandshake, Search, Users } from "lucide-react";
+import Pagination from "@/components/custom/Pagination";
 import { GroupCard } from "./GroupCard";
 import { GroupSkeleton } from "../../../components/skeleton/GroupSkeleton";
 import { SupportGrouplist } from "@/types/groups.definations";
 import { useGroups } from "@/hooks/useGroups";
+import { getPaginationPageSize } from "@/lib/pagination";
 
 const EMPTY_List: SupportGrouplist[] = [];
 const ALL_CATEGORIES = { label: "All", value: "all" };
 
 export default function SupportGroups() {
   const [activeCategory, setActiveCategory] = useState(ALL_CATEGORIES.value);
-  const { data: groupsData, isLoading } = useGroups();
+  const [page, setPage] = useState(1);
+  const { data: groupsData, isLoading, isFetching } = useGroups(page);
   const [query, setQuery] = useState("");
 
 
   const groups = groupsData?.results ?? EMPTY_List;
+  const pageSize = getPaginationPageSize(groupsData, page, groups.length);
 
   const categories = useMemo(
     () => {
@@ -132,7 +136,10 @@ export default function SupportGroups() {
             <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#9a6b4f]" />
             <input
               value={query}
-              onChange={(event) => setQuery(event.target.value)}
+              onChange={(event) => {
+                setQuery(event.target.value);
+                setPage(1);
+              }}
               placeholder="Search groups"
               className="h-12 w-full rounded-sm border border-[#eadfd4] bg-white pl-11 pr-4 text-sm text-[#2f251f] outline-none transition placeholder:text-[#b39c8c] focus:border-[#8f6249] focus:ring-4 focus:ring-[#8f6249]/10"
             />
@@ -144,7 +151,10 @@ export default function SupportGroups() {
             <button
               key={cat.value}
               type="button"
-              onClick={() => setActiveCategory(cat.value)}
+              onClick={() => {
+                setActiveCategory(cat.value);
+                setPage(1);
+              }}
               className={`shrink-0 rounded-full border px-4 py-2 text-sm font-semibold transition ${activeCategory === cat.value
                 ? "border-[#2f251f] bg-[#2f251f] text-[#fffaf6]"
                 : "border-[#eadfd4] bg-white text-[#6f5c4f] hover:border-[#8f6249] hover:text-[#2f251f]"
@@ -171,6 +181,14 @@ export default function SupportGroups() {
             </p>
           </div>
         )}
+
+        <Pagination
+          currentPage={page}
+          totalItems={groupsData?.count ?? groups.length}
+          pageSize={pageSize}
+          onPageChange={setPage}
+          disabled={isFetching}
+        />
 
         <div className="mt-12 rounded-[8px] border border-[#eadfd4] bg-white p-8 shadow-[0_18px_45px_rgba(63,52,44,0.06)] md:flex md:items-center md:justify-between md:gap-8">
           <div>
