@@ -5,6 +5,7 @@ import "@/styles/globals.css"
 import QueryProvider from "@/lib/query-provider";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { siteName, siteUrl } from "./seo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,9 +30,66 @@ const baskervville = Baskervville({
 });
 
 export const metadata: Metadata = {
-  title: "Blissfully Healing",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: siteName,
+    template: `%s | ${siteName}`,
+  },
   description:
-    "A digital wellness platform focused on spiritual healing, mental health and personal reconnection",
+    "Blissfully Healing is a digital wellness sanctuary for courses, retreats, support groups, healing videos, and guided resources for emotional and spiritual care.",
+  keywords: [
+    "Blissfully Healing",
+    "wellness courses",
+    "healing retreats",
+    "support groups",
+    "mental wellness",
+    "spiritual healing",
+    "somatic healing",
+    "digital wellness",
+  ],
+  authors: [{ name: siteName }],
+  creator: siteName,
+  publisher: siteName,
+  icons: {
+    icon: "/icon1.png",
+    apple: "/apple-icon.png",
+  },
+  openGraph: {
+    title: siteName,
+    description:
+      "Courses, retreats, support groups, healing videos, and guided resources for emotional and spiritual care.",
+    url: "/",
+    siteName,
+    images: [
+      {
+        url: "/opengraph-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: siteName,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteName,
+    description:
+      "Courses, retreats, support groups, healing videos, and guided resources for emotional and spiritual care.",
+    images: ["/opengraph-image.jpg"],
+  },
+  // robots: {
+  //   index: true,
+  //   nocache: false,
+  //   follow: true,
+  //   googleBot: {
+  //     index: true,
+  //     follow: true,
+  //     "max-snippet": -1,
+  //     "max-image-preview": "large",
+  //     "max-video-preview": -1
+  //   }
+  // }
 };
 
 export default function RootLayout({

@@ -1,9 +1,17 @@
+import type { Metadata } from "next";
+import { createMetadata } from "@/app/seo";
 import MySupportGroupsDashboard from "@/features/private/groups/MySupportGroups";
 import { getServerApi } from "@/lib/axios.server";
 import { groupKeys } from "@/hooks/useGroups";
 import { getMyGroups } from "@/services/groups.endpoints";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 
+export const metadata: Metadata = createMetadata({
+    title: "My Support Groups",
+    description: "View and manage your Blissfully Healing support group memberships.",
+    path: "/user/support-groups",
+    noIndex: true,
+});
 
 export default async function SupportGroupsPage() {
 

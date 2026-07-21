@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import {
   dehydrate,
   HydrationBoundary,
@@ -6,6 +7,14 @@ import {
 import CourseSection from "@/features/public/courses/CoursePage";
 import { coursekeys } from "@/hooks/useCourses";
 import { getCourses, getFeaturedCourses } from "@/services/courses.endpoints";
+import { createMetadata } from "@/app/seo";
+
+export const metadata: Metadata = createMetadata({
+  title: "Courses",
+  description:
+    "Explore Blissfully Healing courses and guided programs for emotional wellness, somatic practice, and spiritual growth.",
+  path: "/courses",
+});
 
 export default async function CoursesPage() {
   const queryClient = new QueryClient({

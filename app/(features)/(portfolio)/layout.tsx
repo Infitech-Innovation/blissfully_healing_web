@@ -1,23 +1,14 @@
-"use client";
+import type { Metadata } from "next";
+import { createMetadata } from "@/app/seo";
+import PortfolioShell from "./PortfolioShell";
 
-import FooterSection from "../../../components/layout/_footer/footer";
-import { Navbar } from "../../../components/layout/_navbar/navbar";
-import { usePathname } from "next/navigation";
+export const metadata: Metadata = createMetadata({
+  title: "Blissfully Healing Wellness Sanctuary",
+  description:
+    "Explore Blissfully Healing courses, retreats, support groups, videos, and digital guides for emotional and spiritual care.",
+  path: "/homepage",
+});
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname();
-  const isCourseDetail =
-    pathname.startsWith("/courses/") && !pathname.startsWith("/courses/learn/");
-
-  if (isCourseDetail) {
-    return <>{children}</>;
-  }
-
-  return (
-    <div className="min-h-screen bg-[#fffaf6] text-[#3f342c]">
-      <Navbar />
-      <main>{children}</main>
-      <FooterSection />
-    </div>
-  );
+  return <PortfolioShell>{children}</PortfolioShell>;
 }

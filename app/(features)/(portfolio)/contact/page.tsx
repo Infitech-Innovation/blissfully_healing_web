@@ -1,7 +1,16 @@
+import type { Metadata } from "next";
+import { createMetadata } from "@/app/seo";
 import ContactCards from "@/features/public/contact/ContactCards";
 import ContactForm from "@/features/public/contact/ContactForm";
 import ContactHero from "@/features/public/contact/ContactHero";
 import ContactSidebar from "@/features/public/contact/ContactSidebar";
+
+export const metadata: Metadata = createMetadata({
+  title: "Contact",
+  description:
+    "Contact Blissfully Healing for support, guidance, partnerships, and wellness program questions.",
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (

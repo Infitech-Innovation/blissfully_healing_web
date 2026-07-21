@@ -1,7 +1,16 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import LoginForm from "./form/login-form";
 import Image from "next/image";
 import Link from "next/link";
+import { createMetadata } from "@/app/seo";
+
+export const metadata: Metadata = createMetadata({
+  title: "Login",
+  description: "Sign in to your private Blissfully Healing account.",
+  path: "/login",
+  noIndex: true,
+});
 
 export default function LoginPage() {
   return (

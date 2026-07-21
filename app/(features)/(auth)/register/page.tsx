@@ -1,7 +1,16 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import RegisterForm from "./form/register-form";
+import { createMetadata } from "@/app/seo";
+
+export const metadata: Metadata = createMetadata({
+  title: "Create Account",
+  description: "Create a private Blissfully Healing account to access your wellness resources.",
+  path: "/register",
+  noIndex: true,
+});
 
 export default function RegisterPage() {
   return (

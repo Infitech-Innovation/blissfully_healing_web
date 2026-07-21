@@ -1,9 +1,11 @@
+import type { Metadata } from "next";
 import {
   dehydrate,
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
 import { BLOGS_KEYS } from "@/hooks/useBlogs";
+import { createMetadata } from "@/app/seo";
 import { getBlogDetails, getBlogs } from "@/services/blogs.endpoints";
 import BlogDetailsPage from "@/features/public/blogs/blogs_details";
 
@@ -20,6 +22,27 @@ export async function generateStaticParams() {
   return results.map((blog) => ({
     slug: blog.slug,
   }));
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+
+  try {
+    const blog = await getBlogDetails(slug);
+
+    return createMetadata({
+      title: blog.seo_title || blog.title,
+      description: blog.seo_description || blog.excerpt || "Read this Blissfully Healing journal article.",
+      path: `/blogs/${slug}`,
+      image: blog.cover_image || "/opengraph-image.jpg",
+    });
+  } catch {
+    return createMetadata({
+      title: "Healing Journal Article",
+      description: "Read this Blissfully Healing journal article.",
+      path: `/blogs/${slug}`,
+    });
+  }
 }
 
 export default async function BlogDetailsRoute({ params }: PageProps) {

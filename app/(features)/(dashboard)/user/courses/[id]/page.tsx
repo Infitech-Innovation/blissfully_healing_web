@@ -1,9 +1,18 @@
+import type { Metadata } from "next";
+import { createMetadata } from "@/app/seo";
 
 import MyCourseDetail from "@/features/private/courses/MyCourseDetail";
 // import { getCourses } from "@/services/endpoints/courses.endpoints";
 interface PageProps {
   params: Promise<{ id: string }>;
 }
+
+export const metadata: Metadata = createMetadata({
+  title: "My Course Details",
+  description: "View your private Blissfully Healing course details.",
+  path: "/user/courses/details",
+  noIndex: true,
+});
 
 // export async function generateStaticParams() {
 //   const { results } = await getCourses(1);

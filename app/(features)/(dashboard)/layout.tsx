@@ -1,41 +1,19 @@
-"use client";
+import type { Metadata } from "next";
+import DashboardShell from "./DashboardShell";
 
-import { useState } from "react";
-import { Sidebar } from "@/components/layout/_sidebar/sidebar";
-import { Topbar } from "@/components/layout/_topbar/topbar";
-import { useProfile } from "@/hooks/useAuthenication";
+export const metadata: Metadata = {
+  title: "Dashboard",
+  description: "Private Blissfully Healing dashboard workspace.",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default function MainLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [collapsed, setCollapsed] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  useProfile();
-
-  return (
-    <div className="flex h-screen bg-background overflow-hidden">
-      {/* Sidebar */}
-      <div className="fixed">
-        <Sidebar
-          collapsed={collapsed}
-          onToggle={() => setCollapsed((c) => !c)}
-          mobileOpen={mobileOpen}
-          onMobileOpenChange={setMobileOpen}
-        />
-      </div>
-
-      <div
-        className={`flex min-w-0 flex-1 flex-col overflow-hidden transition-[margin-left] duration-300 ${
-          collapsed ? "md:ml-16" : "md:ml-64"
-        }`}
-      >
-        <Topbar onMenuClick={() => setMobileOpen((open) => !open)} />
-
-        {/* Main content */}
-        <main className="flex-1 overflow-y-auto">{children}</main>
-      </div>
-    </div>
-  );
+  return <DashboardShell>{children}</DashboardShell>;
 }
