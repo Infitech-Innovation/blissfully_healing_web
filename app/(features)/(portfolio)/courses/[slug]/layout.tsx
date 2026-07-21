@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: CourseLayoutProps): Promise<M
       title: course.title,
       description: course.short_description || course.full_description || "Explore this Blissfully Healing course.",
       path: `/courses/${slug}`,
-      image: course.image || "/opengraph-image.jpg",
+      image: course.image || "/opengraph-image.png",
     });
   } catch {
     return createMetadata({

@@ -5,12 +5,21 @@ export const siteUrl = (
 ).replace(/\/$/, "");
 
 export const siteName = "Blissfully Healing";
+const titleSuffix = ` | ${siteName}`;
+
+function getBrandedTitle(title: string) {
+  if (title === siteName || title.endsWith(titleSuffix)) {
+    return title;
+  }
+
+  return `${title}${titleSuffix}`;
+}
 
 export function createMetadata({
   title,
   description,
   path = "",
-  image = "/opengraph-image.jpg",
+  image = "/opengraph-image.png",
   noIndex = false,
 }: {
   title: string;
@@ -19,8 +28,12 @@ export function createMetadata({
   image?: string;
   noIndex?: boolean;
 }): Metadata {
+  const brandedTitle = getBrandedTitle(title);
+
   return {
-    title,
+    title: {
+      absolute: brandedTitle,
+    },
     description,
     alternates: {
       canonical: path,
@@ -30,7 +43,7 @@ export function createMetadata({
       follow: !noIndex,
     },
     openGraph: {
-      title,
+      title: brandedTitle,
       description,
       url: path,
       siteName,
@@ -39,7 +52,7 @@ export function createMetadata({
           url: image,
           width: 1200,
           height: 630,
-          alt: title,
+          alt: brandedTitle,
         },
       ],
       locale: "en_US",
@@ -47,7 +60,7 @@ export function createMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: brandedTitle,
       description,
       images: [image],
     },

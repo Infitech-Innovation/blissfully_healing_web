@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: GroupLayoutProps): Promise<Me
       title: group.title,
       description: group.short_description || "Explore this Blissfully Healing support group.",
       path: `/support-groups/${slug}`,
-      image: group.icon_image || "/opengraph-image.jpg",
+      image: group.icon_image || "/opengraph-image.png",
     });
   } catch {
     return createMetadata({

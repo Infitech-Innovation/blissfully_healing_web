@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: EbookLayoutProps): Promise<Me
       title: ebook.title,
       description: ebook.short_description || `Explore ${ebook.title} by ${ebook.author}.`,
       path: `/shop/${slug}`,
-      image: ebook.cover_image || "/opengraph-image.jpg",
+      image: ebook.cover_image || "/opengraph-image.png",
     });
   } catch {
     return createMetadata({

@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default: siteName,
-    template: `%s | ${siteName}`,
+    template: "%s | Blissfully Healing",
   },
   description:
     "Blissfully Healing is a digital wellness sanctuary for courses, retreats, support groups, healing videos, and guided resources for emotional and spiritual care.",
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     siteName,
     images: [
       {
-        url: "/opengraph-image.jpg",
+        url: "/opengraph-image.png",
         width: 1200,
         height: 630,
         alt: siteName,
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     title: siteName,
     description:
       "Courses, retreats, support groups, healing videos, and guided resources for emotional and spiritual care.",
-    images: ["/opengraph-image.jpg"],
+    images: ["/opengraph-image.png"],
   },
   // robots: {
   //   index: true,

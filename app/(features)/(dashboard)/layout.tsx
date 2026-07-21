@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
+import { createMetadata } from "@/app/seo";
 import DashboardShell from "./DashboardShell";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createMetadata({
   title: "Dashboard",
   description: "Private Blissfully Healing dashboard workspace.",
-  robots: {
-    index: false,
-    follow: false,
-  },
-};
+  path: "/dashboard",
+  noIndex: true,
+});
 
 export default function MainLayout({
   children,

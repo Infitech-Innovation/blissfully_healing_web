@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: blog.seo_title || blog.title,
       description: blog.seo_description || blog.excerpt || "Read this Blissfully Healing journal article.",
       path: `/blogs/${slug}`,
-      image: blog.cover_image || "/opengraph-image.jpg",
+      image: blog.cover_image || "/opengraph-image.png",
     });
   } catch {
     return createMetadata({

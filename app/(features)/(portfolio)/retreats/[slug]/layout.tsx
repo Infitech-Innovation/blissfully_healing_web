@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: RetreatLayoutProps): Promise<
       title: retreat.title,
       description: retreat.short_description || "Explore this Blissfully Healing retreat.",
       path: `/retreats/${slug}`,
-      image: retreat.cover_image || "/opengraph-image.jpg",
+      image: retreat.cover_image || "/opengraph-image.png",
     });
   } catch {
     return createMetadata({
