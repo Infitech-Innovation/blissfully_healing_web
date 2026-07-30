@@ -1,6 +1,6 @@
 "use client";
 
-import FooterSection from "../../../components/layout/_footer/footer";
+import NewFooter from "@/components/layout/_footer/new-footer";
 import { Navbar } from "../../../components/layout/_navbar/navbar";
 import { usePathname } from "next/navigation";
 
@@ -21,7 +21,8 @@ export default function PortfolioShell({
     <div className="min-h-screen bg-[#fffaf6] text-[#3f342c]">
       <Navbar />
       <main>{children}</main>
-      <FooterSection />
+      {/* <FooterSection /> */}
+      <NewFooter/>
     </div>
   );
 }

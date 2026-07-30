@@ -10,13 +10,9 @@ import { Suspense, useState } from "react";
 import UserMenu from "../_topbar/user_menu";
 
 const navLinks = [
-  { label: "Home", href: "/homepage" },
+  { label: "The Journey", href: "/homepage" },
   { label: "About", href: "/about" },
-  { label: "Courses", href: "/courses" },
-  { label: "Retreats", href: "/retreats" },
-  { label: "Blog", href: "/blogs" },
-  { label: "Support Groups", href: "/support-groups" },
-  { label: "Shop", href: "/shop" },
+  { label: "Temples", href: "/courses" },
 ];
 
 export function Navbar() {
