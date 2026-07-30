@@ -45,6 +45,7 @@ export default function HeroSection() {
   return (
     <section
       className={`${manrope.className} bliss-hero relative isolate grid min-h-[100svh] place-items-center overflow-hidden px-[6vw] pb-20 pt-32 text-[#2a211c]`}
+      id="top"
     >
       <div className="grid w-[min(1180px,100%)] items-center gap-10 text-center lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:text-left">
         <div>
