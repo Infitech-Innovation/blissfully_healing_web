@@ -1,12 +1,13 @@
 import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { createParticles, eyebrowClass, fontDisplay } from "./styles";
+import { WaterLotusScene } from "./WaterLotusScene";
 
 export function ArrivalSection() {
   const particles = useMemo(() => createParticles(), []);
 
   return (
-    <section className="relative isolate min-h-svh overflow-hidden bg-[radial-gradient(circle_at_50%_43%,rgba(198,161,91,0.13),transparent_24rem),linear-gradient(#050505,#0b0907_68%,#050505)]">
+    <section className="relative isolate min-h-svh overflow-hidden bg-[radial-gradient(circle_at_50%_43%,rgba(198,161,91,0.13),transparent_24rem),linear-gradient(#050505,#070706_52%,#020303)]">
       <div className="pointer-events-none absolute inset-0 z-[1] overflow-hidden">
         {particles.map((particle) => (
           <motion.span
@@ -28,8 +29,10 @@ export function ArrivalSection() {
         ))}
       </div>
 
+
+
       <motion.div
-        className="pointer-events-none relative z-[3] mx-auto w-[min(780px,90vw)] pt-[18vh] text-center max-[620px]:pt-[16vh]"
+        className="pointer-events-none relative z-[3] mx-auto w-[min(780px,90vw)] pt-[13vh] text-center max-[620px]:pt-[12vh]"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.9, duration: 1.7 }}
@@ -44,6 +47,10 @@ export function ArrivalSection() {
           Enter quietly.
         </small>
       </motion.div>
+
+      <div className="pointer-events-none absolute inset-0 z-[2]">
+        <WaterLotusScene />
+      </div>
 
       <a
         className="absolute bottom-7 left-1/2 z-[4] flex -translate-x-1/2 flex-col items-center gap-2.5 text-[0.55rem] uppercase tracking-[0.18em] text-[#887d6d]"

@@ -44,7 +44,7 @@ export default function HeroSection() {
 
   return (
     <section
-      className={`${manrope.className} bliss-hero relative isolate grid h-[90vh] place-items-center overflow-hidden px-[6vw] pb-8 text-[#2a211c]`}
+      className={`${manrope.className} bliss-hero relative isolate grid h-[85vh] place-items-center overflow-hidden px-[6vw] pb-8 text-[#2a211c]`}
       id="top"
     >
       <div className="grid w-[min(1180px,100%)] items-center gap-4 text-center lg:grid-cols-[1.05fr_0.95fr] lg:gap-8 lg:text-left">
@@ -53,7 +53,7 @@ export default function HeroSection() {
             A private sanctuary for transformation
           </div>
           <h1
-            className={`${cormorantGaramond.className} my-6 text-[3rem] font-medium leading-[0.84] tracking-[-0.035em] sm:text-[4.6rem] lg:text-[6.2rem] xl:text-[7rem]`}
+            className={`${cormorantGaramond.className} my-4 text-[3rem] font-medium leading-[0.84] tracking-[-0.035em] sm:text-[4.6rem] lg:text-[6.2rem] xl:text-[6rem]`}
           >
             Return to the wisdom within.
           </h1>
