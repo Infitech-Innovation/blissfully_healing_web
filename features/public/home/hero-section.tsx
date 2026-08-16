@@ -44,25 +44,25 @@ export default function HeroSection() {
 
   return (
     <section
-      className={`${manrope.className} bliss-hero relative isolate grid min-h-[100svh] place-items-center overflow-hidden px-[6vw] pb-20 pt-32 text-[#2a211c]`}
+      className={`${manrope.className} bliss-hero relative isolate grid h-[90vh] place-items-center overflow-hidden px-[6vw] pb-8 text-[#2a211c]`}
       id="top"
     >
-      <div className="grid w-[min(1180px,100%)] items-center gap-10 text-center lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:text-left">
+      <div className="grid w-[min(1180px,100%)] items-center gap-4 text-center lg:grid-cols-[1.05fr_0.95fr] lg:gap-8 lg:text-left">
         <div>
           <div className="text-[0.72rem] font-semibold uppercase tracking-[0.36em] text-[#5b473b]">
             A private sanctuary for transformation
           </div>
           <h1
-            className={`${cormorantGaramond.className} my-6 text-[4rem] font-medium leading-[0.84] tracking-[-0.035em] sm:text-[5.6rem] lg:text-[7.2rem] xl:text-[8rem]`}
+            className={`${cormorantGaramond.className} my-6 text-[3rem] font-medium leading-[0.84] tracking-[-0.035em] sm:text-[4.6rem] lg:text-[6.2rem] xl:text-[7rem]`}
           >
             Return to the wisdom within.
           </h1>
-          <p className="mx-auto max-w-[630px] text-base font-light leading-[1.85] text-[#67584f] sm:text-lg lg:mx-0">
+          <p className="mx-auto max-w-[630px] text-base font-light leading-[1.85] text-[#67584f] sm:text-md lg:mx-0">
             Blissfully Healing is a luxurious digital sanctuary created for
             those seeking deeper restoration, meaningful self-discovery and a
             more intentional way of living.
           </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-5 lg:justify-start">
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-5 lg:justify-start">
             <Link
               href="#journey"
               className="rounded-full border border-[#2a211c] bg-[#2a211c] px-6 py-4 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_34px_rgba(42,33,28,0.12)]"
@@ -85,7 +85,7 @@ export default function HeroSection() {
           onPointerMove={handlePointerMove}
         >
           <div
-            className="relative h-[min(680px,92vw)] w-[min(620px,86vw)] transition-transform duration-200 ease-out [transform-style:preserve-3d] lg:h-[min(760px,54vw)] lg:w-[min(700px,48vw)]"
+            className="relative h-[min(680px,84vw,78vh)] w-[min(640px,86vw)] transition-transform duration-200 ease-out [transform-style:preserve-3d] lg:h-[min(760px,52vw,82vh)] lg:w-[min(720px,50vw)]"
             id="artifact"
             ref={artifactRef}
           >
@@ -94,12 +94,12 @@ export default function HeroSection() {
             <div className="bliss-ring bliss-r3" />
             <div className="bliss-lotus-real" aria-hidden="true">
               <Image
-                src="/images/hero-lotus-real.png"
+                src="/images/hero-lotus-cutout.png"
                 alt=""
                 fill
                 priority
                 sizes="(min-width: 1024px) 48vw, 86vw"
-                className="object-contain"
+                className="bliss-lotus-image object-contain"
               />
               <span className="bliss-stem" />
               {petals.map((petal) => (
@@ -175,13 +175,20 @@ export default function HeroSection() {
 
         .bliss-lotus-real {
           position: absolute;
-          inset: -3% -8% -6%;
-          transform: translateZ(95px) rotateY(-7deg) rotateX(2deg);
+          inset: -9% -15% -12%;
+          transform: translateZ(95px) rotateY(-7deg) rotateX(2deg) scale(1.08);
+          transform-origin: 50% 55%;
           transform-style: preserve-3d;
           filter:
             drop-shadow(0 34px 34px rgba(91, 71, 59, 0.26))
             drop-shadow(0 0 42px rgba(255, 132, 38, 0.3));
-          animation: bliss-real-lotus-float 6s ease-in-out infinite;
+          animation: bliss-real-lotus-float 4.8s ease-in-out infinite;
+        }
+
+        .bliss-lotus-image {
+          transform-origin: 50% 70%;
+          animation: bliss-petal-bloom 4.8s ease-in-out infinite;
+          will-change: transform, filter;
         }
 
         .bliss-lotus-real > span {
@@ -367,8 +374,32 @@ export default function HeroSection() {
         }
 
         @keyframes bliss-real-lotus-float {
+          0%,
+          100% {
+            transform: translateZ(95px) rotateY(-7deg) rotateX(2deg) scale(1.08);
+            filter:
+              drop-shadow(0 34px 34px rgba(91, 71, 59, 0.26))
+              drop-shadow(0 0 42px rgba(255, 132, 38, 0.3));
+          }
+
           50% {
-            transform: translateY(-14px) translateZ(115px) rotateY(-4deg) rotateX(2deg) rotateZ(1deg);
+            transform: translateY(-14px) translateZ(115px) rotateY(-4deg) rotateX(2deg) rotateZ(1deg) scale(1.08);
+            filter:
+              drop-shadow(0 38px 38px rgba(91, 71, 59, 0.3))
+              drop-shadow(0 0 58px rgba(255, 132, 38, 0.42));
+          }
+        }
+
+        @keyframes bliss-petal-bloom {
+          0%,
+          100% {
+            transform: translateY(8px) scaleX(0.94) scaleY(1.04);
+            filter: brightness(0.96) saturate(0.98);
+          }
+
+          50% {
+            transform: translateY(-4px) scaleX(1.08) scaleY(0.97);
+            filter: brightness(1.08) saturate(1.1);
           }
         }
 
@@ -398,8 +429,8 @@ export default function HeroSection() {
           }
 
           .bliss-lotus-real {
-            inset: -1% -12% -8%;
-            transform: translateZ(80px) rotateY(-7deg) rotateX(2deg) scale(0.9);
+            inset: -6% -18% -12%;
+            transform: translateZ(80px) rotateY(-7deg) rotateX(2deg) scale(1);
           }
 
           @keyframes bliss-lotus-float {
@@ -409,8 +440,26 @@ export default function HeroSection() {
           }
 
           @keyframes bliss-real-lotus-float {
+            0%,
+            100% {
+              transform: translateZ(80px) rotateY(-7deg) rotateX(2deg) scale(1);
+            }
+
             50% {
-              transform: translateY(-10px) translateZ(90px) rotateY(-4deg) rotateX(2deg) rotateZ(1deg) scale(0.9);
+              transform: translateY(-10px) translateZ(90px) rotateY(-4deg) rotateX(2deg) rotateZ(1deg) scale(1.07);
+            }
+          }
+
+          @keyframes bliss-petal-bloom {
+            0%,
+            100% {
+              transform: translateY(6px) scaleX(0.95) scaleY(1.03);
+              filter: brightness(0.96) saturate(0.98);
+            }
+
+            50% {
+              transform: translateY(-3px) scaleX(1.06) scaleY(0.98);
+              filter: brightness(1.08) saturate(1.1);
             }
           }
         }
@@ -419,7 +468,8 @@ export default function HeroSection() {
           .bliss-hero::before,
           .bliss-ring,
           .bliss-lotus,
-          .bliss-lotus-real {
+          .bliss-lotus-real,
+          .bliss-lotus-image {
             animation: none;
           }
         }

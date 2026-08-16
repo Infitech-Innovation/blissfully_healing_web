@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import {
   dehydrate,
-  HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
 import { getBlogs, getCategory } from "@/services/blogs.endpoints";
 import { BLOGS_KEYS, CAT_KEYS } from "@/hooks/useBlogs";
 import BlogSection from "@/features/public/blogs/blogs_page";
 import { createMetadata } from "@/app/seo";
+import HydrationProvider from "@/lib/hydration-provider";
 
 export const metadata: Metadata = createMetadata({
   title: "Healing Journal",
@@ -33,8 +33,8 @@ export default async function BlogPage() {
     }),
   ]);
   return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
+    <HydrationProvider state={dehydrate(queryClient)}>
       <BlogSection />
-    </HydrationBoundary>
+    </HydrationProvider>
   );
 }

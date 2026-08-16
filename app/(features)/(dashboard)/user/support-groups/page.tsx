@@ -3,8 +3,9 @@ import { createMetadata } from "@/app/seo";
 import MySupportGroupsDashboard from "@/features/private/groups/MySupportGroups";
 import { getServerApi } from "@/lib/axios.server";
 import { groupKeys } from "@/hooks/useGroups";
+import HydrationProvider from "@/lib/hydration-provider";
 import { getMyGroups } from "@/services/groups.endpoints";
-import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
+import { dehydrate, QueryClient } from "@tanstack/react-query";
 
 export const metadata: Metadata = createMetadata({
     title: "My Support Groups",
@@ -30,8 +31,8 @@ export default async function SupportGroupsPage() {
     });
 
     return (
-        <HydrationBoundary state={dehydrate(queryClient)}>
+        <HydrationProvider state={dehydrate(queryClient)}>
             <MySupportGroupsDashboard />
-        </HydrationBoundary>
+        </HydrationProvider>
     );
 }

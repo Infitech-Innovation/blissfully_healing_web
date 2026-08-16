@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { createMetadata } from "@/app/seo";
 import LibrarySection from "@/features/public/ebooks/LibarySection";
 import { ebookKeys } from "@/hooks/useEbooks";
+import HydrationProvider from "@/lib/hydration-provider";
 import { getEbooks, getFeaturedEbooks } from "@/services/ebooks.endpoints";
-import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
+import { dehydrate, QueryClient } from "@tanstack/react-query";
 
 export const metadata: Metadata = createMetadata({
     title: "E-Book Library",
@@ -34,8 +35,8 @@ export default async function EbooksPage() {
 
     return (
 
-        <HydrationBoundary state={dehydrate(queryClient)}>
+        <HydrationProvider state={dehydrate(queryClient)}>
             <LibrarySection />
-        </HydrationBoundary>
+        </HydrationProvider>
     );
 }

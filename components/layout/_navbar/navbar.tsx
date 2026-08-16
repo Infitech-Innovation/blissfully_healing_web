@@ -18,12 +18,12 @@ import UserMenu from "../_topbar/user_menu";
 // ];
 
 const templeLinks = [
-  { label: "Stillness", href: "/blogs", color: "bg-[#111111]" },
+  { label: "Stillness", href: "/temples/stillness", color: "bg-[#111111]" },
   { label: "Purification", href: "/temples/purification", color: "bg-[#8a6a4d]" },
   { label: "Return", href: "/temples/return", color: "bg-[#d4af37]" },
-  { label: "Voyage", href: "/retreats", color: "bg-[#047857]" },
-  { label: "Remembrance", href: "/courses", color: "bg-[#6d28d9]" },
-  { label: "Belonging", href: "/support-groups", color: "bg-[#1d4ed8]" },
+  { label: "Voyage", href: "/temples/voyage", color: "bg-[#047857]" },
+  { label: "Remembrance", href: "/temples/remembrance", color: "bg-[#6d28d9]" },
+  { label: "Belonging", href: "/temples/belonging", color: "bg-[#1d4ed8]" },
 ];
 
 export function Navbar() {
@@ -69,7 +69,7 @@ export function Navbar() {
             aria-current={isActive("/homepage#journey") ? "page" : undefined}
             className={`transition hover:text-[#8f6249] ${isActive("/homepage#journey") ? "text-[#8f6249]" : ""}`}
           >
-            The Journey
+            The Threshold
           </Link>
 
           <div
@@ -83,7 +83,7 @@ export function Navbar() {
               aria-expanded={templeMenuOpen}
               aria-current={templesActive ? "page" : undefined}
               className={`inline-flex items-center gap-1.5 transition hover:text-[#8f6249] ${templesActive ? "text-[#8f6249]" : ""}`}
-              onClick={() => setTempleMenuOpen(true)}
+              onClick={() => setTempleMenuOpen((value) => !value)}
               onBlur={(event) => {
                 if (!event.currentTarget.parentElement?.contains(event.relatedTarget)) {
                   setTempleMenuOpen(false);
@@ -95,6 +95,8 @@ export function Navbar() {
                 className={`h-3.5 w-3.5 transition ${templeMenuOpen ? "rotate-180" : ""}`}
               />
             </button>
+
+            <div className="absolute left-0 top-full h-3 w-full" />
 
             <div
               className={`absolute right-1/2 top-full z-50 mt-3 w-[430px] translate-x-1/2 rounded-[26px] border border-[#dac69c]/45 bg-[#fffaf6]/95 p-3 shadow-[0_24px_70px_rgba(42,33,28,0.14)] backdrop-blur-xl transition ${
@@ -192,7 +194,7 @@ export function Navbar() {
               onClick={() => setOpen(false)}
               className={`rounded-md px-3 py-2 transition hover:bg-[#f8f0e8] hover:text-[#8f6249] ${isActive("/homepage#journey") ? "bg-[#f8f0e8] text-[#8f6249]" : ""}`}
             >
-              The Journey
+              The Threshold
             </Link>
 
             <details className="group rounded-[18px] px-3 py-2">

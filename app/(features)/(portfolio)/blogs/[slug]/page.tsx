@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import {
   dehydrate,
-  HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
 import { BLOGS_KEYS } from "@/hooks/useBlogs";
 import { createMetadata } from "@/app/seo";
+import HydrationProvider from "@/lib/hydration-provider";
 import { getBlogDetails, getBlogs } from "@/services/blogs.endpoints";
 import BlogDetailsPage from "@/features/public/blogs/blogs_details";
 
@@ -56,8 +56,8 @@ export default async function BlogDetailsRoute({ params }: PageProps) {
   });
 
   return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
+    <HydrationProvider state={dehydrate(queryClient)}>
       <BlogDetailsPage slug={slug} />
-    </HydrationBoundary>
+    </HydrationProvider>
   );
 }

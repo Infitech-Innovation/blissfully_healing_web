@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import {
   dehydrate,
-  HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
 import { createMetadata } from "@/app/seo";
@@ -9,6 +8,7 @@ import MyCoursePage from "@/features/private/courses/MyCoursePage";
 import { coursekeys } from "@/hooks/useCourses";
 import { getMyEnrollments } from "@/services/courses.endpoints";
 import { getServerApi } from "@/lib/axios.server";
+import HydrationProvider from "@/lib/hydration-provider";
 
 export const metadata: Metadata = createMetadata({
   title: "My Courses",
@@ -33,8 +33,8 @@ export default async function CoursesPage() {
   });
 
   return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
+    <HydrationProvider state={dehydrate(queryClient)}>
       <MyCoursePage />
-    </HydrationBoundary>
+    </HydrationProvider>
   );
 }

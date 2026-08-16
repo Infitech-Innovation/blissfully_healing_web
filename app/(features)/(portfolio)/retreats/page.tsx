@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { createMetadata } from "@/app/seo";
 import RetreatSectionPage from "@/features/public/retreats/RetreatPage";
 import { retreatKeys } from "@/hooks/useRetreats";
+import HydrationProvider from "@/lib/hydration-provider";
 import { getRetreats } from "@/services/retreats.endpoints";
-import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
+import { dehydrate, QueryClient } from "@tanstack/react-query";
 
 export const metadata: Metadata = createMetadata({
   title: "Retreats",
@@ -28,8 +29,8 @@ export default async function RetreatsPage() {
 
   return (
 
-    <HydrationBoundary state={dehydrate(queryClient)}>
+    <HydrationProvider state={dehydrate(queryClient)}>
       <RetreatSectionPage />
-    </HydrationBoundary>
+    </HydrationProvider>
   );
 }

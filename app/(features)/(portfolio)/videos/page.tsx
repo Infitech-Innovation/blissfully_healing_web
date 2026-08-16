@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { createMetadata } from "@/app/seo";
-import PageUnderDevelopment from '@/components/common/comming-soon';
+import PublicVideosPage from "@/features/public/videos/VideosPage";
 
 export const metadata: Metadata = createMetadata({
   title: "Healing Videos",
@@ -10,5 +10,5 @@ export const metadata: Metadata = createMetadata({
 });
 
 export default function VideosPage() {
- return <PageUnderDevelopment title="Videos Page" />;
+  return <PublicVideosPage />;
 }

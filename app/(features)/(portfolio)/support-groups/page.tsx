@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { createMetadata } from "@/app/seo";
 import SupportGroups from "@/features/public/groups/supportGroups";
 import { groupKeys } from "@/hooks/useGroups";
+import HydrationProvider from "@/lib/hydration-provider";
 import { getGroups } from "@/services/groups.endpoints";
-import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
+import { dehydrate, QueryClient } from "@tanstack/react-query";
 
 export const metadata: Metadata = createMetadata({
   title: "Support Groups",
@@ -28,9 +29,9 @@ export default async function Page() {
   })
   return (
 
-    <HydrationBoundary state={dehydrate(queryClient)}>
+    <HydrationProvider state={dehydrate(queryClient)}>
       <SupportGroups />
-    </HydrationBoundary>
+    </HydrationProvider>
   );
 
 
