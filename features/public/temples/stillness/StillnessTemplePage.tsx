@@ -34,6 +34,25 @@ export default function StillnessTemplePage() {
     return () => clearInterval(timer);
   }, []);
 
+  const handleToggleMeditationMode = () => {
+    const nextQuiet = !quiet;
+    const audio = audioRef.current;
+
+    setQuiet(nextQuiet);
+    setSoundOn(nextQuiet);
+
+    if (!audio) {
+      return;
+    }
+
+    if (nextQuiet) {
+      audio.volume = 0.18;
+      audio.play().catch(() => undefined);
+    } else {
+      audio.pause();
+    }
+  };
+
   return (
     <main className="relative overflow-x-hidden bg-[#050505] text-[#f1eadf]">
       <audio ref={audioRef} src="/audio/temple-ambience.mp3" loop />
@@ -66,7 +85,7 @@ export default function StillnessTemplePage() {
         <WisdomSection quoteIndex={quoteIndex} />
         <MeditationBellSection
           quiet={quiet}
-          onToggleQuiet={() => setQuiet((value) => !value)}
+          onToggleQuiet={handleToggleMeditationMode}
         />
         <FinalPassageSection />
       </div>
