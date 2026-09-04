@@ -1,0 +1,1270 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Blissfully Healing — The Journey Home Begins Within</title>
+    <meta
+      name="description"
+      content="A cinematic digital sanctuary for healing, remembrance and belonging."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #0d0b09;
+        --ink2: #15100c;
+        --brown: #2a1b11;
+        --gold: #c9a15b;
+        --gold2: #f2cf83;
+        --champagne: #eeddb7;
+        --cream: #f4ead7;
+        --muted: #c9bda9;
+        --line: rgba(226, 180, 95, 0.28);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        background: var(--ink);
+      }
+      body {
+        margin: 0;
+        color: var(--cream);
+        background: #0d0b09;
+        font-family: "Manrope", sans-serif;
+        overflow-x: hidden;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button {
+        font: inherit;
+      }
+      .grain {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        pointer-events: none;
+        opacity: 0.04;
+        mix-blend-mode: screen;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.86' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.85'/%3E%3C/svg%3E");
+      }
+      .nav {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        z-index: 40;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px clamp(20px, 4vw, 64px);
+        transition: 0.45s ease;
+      }
+      .nav.scrolled {
+        background: rgba(10, 8, 6, 0.72);
+        backdrop-filter: blur(18px);
+        border-bottom: 1px solid rgba(226, 180, 95, 0.16);
+        padding-top: 13px;
+        padding-bottom: 13px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .brand-mark {
+        width: 34px;
+        height: 34px;
+        border: 1px solid var(--gold);
+        transform: rotate(45deg);
+        display: grid;
+        place-items: center;
+      }
+      .brand-mark::after {
+        content: "✦";
+        transform: rotate(-45deg);
+        color: var(--gold2);
+      }
+      .brand-copy {
+        font-family: "Cormorant Garamond", serif;
+        line-height: 0.85;
+        letter-spacing: 0.08em;
+        font-size: 1.35rem;
+      }
+      .brand-copy small {
+        display: block;
+        font-family: "Manrope";
+        font-size: 0.48rem;
+        letter-spacing: 0.26em;
+        margin-top: 7px;
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        font-size: 0.68rem;
+        text-transform: uppercase;
+        letter-spacing: 0.17em;
+      }
+      .nav-cta,
+      .outline-btn {
+        border: 1px solid rgba(226, 180, 95, 0.52);
+        padding: 13px 18px;
+        background: rgba(18, 13, 9, 0.34);
+        transition: 0.3s ease;
+      }
+      .nav-cta:hover,
+      .outline-btn:hover {
+        background: var(--gold);
+        color: #130d07;
+        box-shadow: 0 0 35px rgba(226, 180, 95, 0.22);
+      }
+      .menu {
+        display: none;
+        background: transparent;
+        border: 0;
+        color: var(--cream);
+        font-size: 1.4rem;
+      }
+
+      .hero {
+        position: relative;
+        min-height: 100svh;
+        display: grid;
+        align-items: center;
+        overflow: hidden;
+        isolation: isolate;
+        padding: 120px 5vw 60px;
+        background:
+          radial-gradient(
+            circle at 68% 47%,
+            rgba(229, 168, 72, 0.2),
+            transparent 25rem
+          ),
+          linear-gradient(
+            90deg,
+            rgba(8, 6, 4, 0.96) 0%,
+            rgba(17, 10, 5, 0.76) 37%,
+            rgba(17, 10, 5, 0.26) 67%,
+            rgba(8, 6, 4, 0.82) 100%
+          ),
+          linear-gradient(180deg, #1f1209 0%, #100b07 65%, #090807 100%);
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -3;
+        background:
+          repeating-linear-gradient(
+            90deg,
+            transparent 0 10%,
+            rgba(201, 161, 91, 0.035) 10.2% 10.5%,
+            transparent 10.7% 20%
+          ),
+          radial-gradient(
+            ellipse at 72% 5%,
+            rgba(255, 221, 151, 0.22),
+            transparent 35%
+          );
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 33%;
+        z-index: -1;
+        background:
+          linear-gradient(180deg, transparent, rgba(7, 6, 5, 0.45)),
+          repeating-radial-gradient(
+            ellipse at 69% 100%,
+            rgba(222, 173, 87, 0.2) 0 1px,
+            transparent 2px 18px
+          );
+        opacity: 0.7;
+        filter: blur(0.2px);
+      }
+      #lotus-canvas {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+      .light-rays {
+        position: absolute;
+        inset: -10%;
+        z-index: -2;
+        pointer-events: none;
+        background:
+          linear-gradient(
+            105deg,
+            transparent 46%,
+            rgba(255, 218, 150, 0.14) 51%,
+            transparent 57%
+          ),
+          linear-gradient(
+            78deg,
+            transparent 55%,
+            rgba(255, 218, 150, 0.1) 60%,
+            transparent 66%
+          );
+        filter: blur(8px);
+        animation: rays 12s ease-in-out infinite alternate;
+      }
+      .embers {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      .ember {
+        position: absolute;
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: var(--gold2);
+        box-shadow: 0 0 10px var(--gold2);
+        opacity: 0.5;
+        animation: rise linear infinite;
+      }
+      .hero-content {
+        width: min(560px, 92vw);
+        position: relative;
+        z-index: 2;
+        margin-top: 4vh;
+      }
+      .eyebrow {
+        font-size: 0.67rem;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--gold2);
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 400;
+      }
+      h1 {
+        font-size: clamp(4rem, 7.1vw, 7.6rem);
+        line-height: 0.85;
+        margin: 20px 0 26px;
+        letter-spacing: -0.035em;
+      }
+      h1 em {
+        display: block;
+        color: var(--gold2);
+        font-weight: 400;
+      }
+      .hero-copy {
+        max-width: 400px;
+        color: #d6c9b6;
+        line-height: 1.8;
+        font-size: 0.92rem;
+      }
+      .ornament {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 25px 0;
+        color: var(--gold);
+      }
+      .ornament::before,
+      .ornament::after {
+        content: "";
+        height: 1px;
+        width: 66px;
+        background: linear-gradient(90deg, transparent, var(--gold));
+      }
+      .ornament::after {
+        transform: scaleX(-1);
+      }
+      .hero-actions {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+        margin-top: 28px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        border: 1px solid rgba(226, 180, 95, 0.55);
+        padding: 15px 22px;
+        text-transform: uppercase;
+        letter-spacing: 0.13em;
+        font-size: 0.67rem;
+        background: rgba(17, 12, 8, 0.54);
+        transition: 0.3s ease;
+      }
+      .btn:hover {
+        background: var(--gold);
+        color: #130d07;
+        transform: translateY(-2px);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+      }
+      .scroll-cue {
+        position: absolute;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%);
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        font-size: 0.58rem;
+        color: #c8b9a3;
+        text-align: center;
+      }
+      .scroll-cue span {
+        display: block;
+        width: 23px;
+        height: 36px;
+        border: 1px solid rgba(242, 207, 131, 0.55);
+        border-radius: 15px;
+        margin: 0 auto 8px;
+        position: relative;
+      }
+      .scroll-cue span::before {
+        content: "";
+        position: absolute;
+        top: 7px;
+        left: 50%;
+        width: 2px;
+        height: 7px;
+        background: var(--gold2);
+        transform: translateX(-50%);
+        animation: wheel 1.8s infinite;
+      }
+
+      .temples-head {
+        text-align: center;
+        padding: 115px 5vw 60px;
+        background: #0b0a08;
+      }
+      .temples-head h2 {
+        font-size: clamp(3.4rem, 6vw, 6.5rem);
+        line-height: 0.9;
+        margin: 18px 0 0;
+      }
+      .temples-head h2 em {
+        color: var(--gold2);
+      }
+
+      .temple {
+        min-height: 92svh;
+        position: relative;
+        display: grid;
+        align-items: center;
+        overflow: hidden;
+        isolation: isolate;
+        padding: 100px 6vw;
+        border-top: 1px solid rgba(226, 180, 95, 0.12);
+      }
+      .temple-bg {
+        position: absolute;
+        inset: 0;
+        z-index: -3;
+        transform: scale(1.06);
+        transition: transform 1.6s ease;
+        background-size: cover;
+        background-position: center;
+      }
+      .temple.in-view .temple-bg {
+        transform: scale(1);
+      }
+      .temple::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        background: linear-gradient(
+          90deg,
+          rgba(9, 7, 5, 0.96) 0%,
+          rgba(9, 7, 5, 0.74) 42%,
+          rgba(9, 7, 5, 0.18) 74%,
+          rgba(9, 7, 5, 0.6) 100%
+        );
+      }
+      .temple:nth-of-type(even)::before {
+        background: linear-gradient(
+          270deg,
+          rgba(9, 7, 5, 0.95) 0%,
+          rgba(9, 7, 5, 0.72) 42%,
+          rgba(9, 7, 5, 0.16) 74%,
+          rgba(9, 7, 5, 0.62) 100%
+        );
+      }
+      .temple::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background: radial-gradient(
+          circle at 72% 50%,
+          rgba(223, 166, 75, 0.18),
+          transparent 25rem
+        );
+        mix-blend-mode: screen;
+      }
+      .temple:nth-of-type(even)::after {
+        background: radial-gradient(
+          circle at 28% 50%,
+          rgba(223, 166, 75, 0.18),
+          transparent 25rem
+        );
+      }
+      .temple-content {
+        width: min(560px, 90vw);
+      }
+      .temple:nth-of-type(even) .temple-content {
+        margin-left: auto;
+      }
+      .temple-index {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 6.8rem;
+        color: rgba(226, 180, 95, 0.26);
+        line-height: 0.75;
+      }
+      .temple h3 {
+        font-size: clamp(4rem, 7vw, 7.2rem);
+        line-height: 0.86;
+        margin: 6px 0 24px;
+      }
+      .temple p {
+        max-width: 480px;
+        line-height: 1.9;
+        color: #d0c3b0;
+      }
+      .temple .meta {
+        font-size: 0.64rem;
+        text-transform: uppercase;
+        letter-spacing: 0.24em;
+        color: var(--gold2);
+        margin: 26px 0;
+      }
+      .temple-symbol {
+        position: absolute;
+        right: 9vw;
+        top: 50%;
+        transform: translateY(-50%);
+        width: min(33vw, 380px);
+        aspect-ratio: 1;
+        border: 1px solid rgba(226, 180, 95, 0.21);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        color: rgba(242, 207, 131, 0.3);
+        font-family: "Cormorant Garamond";
+        font-size: 9rem;
+        animation: slowSpin 55s linear infinite;
+      }
+      .temple:nth-of-type(even) .temple-symbol {
+        right: auto;
+        left: 9vw;
+      }
+
+      .t1 .temple-bg {
+        background:
+          radial-gradient(
+            circle at 73% 45%,
+            rgba(247, 202, 115, 0.36),
+            transparent 18rem
+          ),
+          linear-gradient(115deg, #120d09, #3d2716 60%, #9e7341);
+      }
+      .t2 .temple-bg {
+        background:
+          radial-gradient(
+            ellipse at 73% 26%,
+            rgba(221, 235, 240, 0.18),
+            transparent 20rem
+          ),
+          repeating-linear-gradient(
+            100deg,
+            transparent 0 7%,
+            rgba(255, 255, 255, 0.025) 7.2% 7.5%,
+            transparent 7.7% 14%
+          ),
+          linear-gradient(140deg, #0c1011, #1e2524 57%, #684d2d);
+      }
+      .t3 .temple-bg {
+        background:
+          radial-gradient(
+            circle at 74% 48%,
+            rgba(242, 196, 103, 0.33),
+            transparent 16rem
+          ),
+          repeating-radial-gradient(
+            circle at 74% 48%,
+            transparent 0 55px,
+            rgba(242, 196, 103, 0.08) 57px 58px,
+            transparent 60px 105px
+          ),
+          linear-gradient(135deg, #0c0907, #27160c 60%, #754c24);
+      }
+      .t4 .temple-bg {
+        background:
+          radial-gradient(
+            ellipse at 70% 68%,
+            rgba(240, 177, 77, 0.28),
+            transparent 17rem
+          ),
+          linear-gradient(160deg, #070b0e, #1b2a31 55%, #835a2c);
+      }
+      .t5 .temple-bg {
+        background:
+          repeating-conic-gradient(
+            from 0deg at 72% 50%,
+            rgba(226, 180, 95, 0.08) 0 5deg,
+            transparent 5deg 15deg
+          ),
+          radial-gradient(
+            circle at 72% 50%,
+            rgba(226, 180, 95, 0.25),
+            transparent 18rem
+          ),
+          linear-gradient(135deg, #0c0907, #27180f 65%, #6e4927);
+      }
+      .t6 .temple-bg {
+        background:
+          radial-gradient(
+            circle at 73% 48%,
+            rgba(244, 197, 103, 0.28),
+            transparent 18rem
+          ),
+          radial-gradient(
+            circle at 80% 30%,
+            rgba(77, 116, 66, 0.16),
+            transparent 18rem
+          ),
+          linear-gradient(135deg, #080907, #182016 62%, #6e4e27);
+      }
+
+      .journey {
+        min-height: 82svh;
+        display: grid;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        padding: 110px 6vw;
+        color: #241507;
+        background:
+          radial-gradient(
+            circle at 68% 44%,
+            rgba(255, 248, 218, 0.95),
+            transparent 9rem
+          ),
+          repeating-radial-gradient(
+            circle at 68% 44%,
+            transparent 0 55px,
+            rgba(116, 72, 19, 0.1) 56px 58px,
+            transparent 60px 98px
+          ),
+          linear-gradient(150deg, #d3a14f 0%, #f1cf83 48%, #8e5e24 100%);
+      }
+      .journey::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 38%;
+        background:
+          linear-gradient(180deg, transparent, rgba(64, 37, 9, 0.28)),
+          repeating-radial-gradient(
+            ellipse at 68% 100%,
+            rgba(95, 56, 16, 0.18) 0 1px,
+            transparent 2px 18px
+          );
+      }
+      .journey-content {
+        width: min(520px, 90vw);
+        position: relative;
+        z-index: 2;
+      }
+      .journey h2 {
+        font-size: clamp(4rem, 7vw, 7rem);
+        line-height: 0.84;
+        margin: 18px 0 25px;
+      }
+      .journey h2 em {
+        display: block;
+      }
+      .journey p {
+        line-height: 1.85;
+        max-width: 430px;
+        color: #4e351a;
+      }
+      .mandala {
+        position: absolute;
+        right: 14vw;
+        top: 50%;
+        transform: translateY(-50%);
+        width: min(36vw, 450px);
+        aspect-ratio: 1;
+        border-radius: 50%;
+        border: 1px solid rgba(92, 55, 13, 0.26);
+        display: grid;
+        place-items: center;
+        animation: slowSpin 70s linear infinite;
+      }
+      .mandala::before,
+      .mandala::after {
+        content: "";
+        position: absolute;
+        inset: 14%;
+        border: 1px solid rgba(92, 55, 13, 0.24);
+        transform: rotate(45deg);
+      }
+      .mandala::after {
+        inset: 29%;
+        transform: rotate(22.5deg);
+        box-shadow: 0 0 45px rgba(255, 244, 199, 0.5);
+      }
+      .mandala span {
+        font-size: 6rem;
+        color: #7a4f1d;
+        text-shadow: 0 0 25px rgba(255, 248, 210, 0.75);
+      }
+
+      footer {
+        background: #0b0907;
+        padding: 58px 6vw 30px;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+        padding-bottom: 44px;
+        border-bottom: 1px solid rgba(226, 180, 95, 0.17);
+      }
+      .footer-item {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 15px;
+      }
+      .footer-icon {
+        font-size: 1.9rem;
+        color: var(--gold2);
+      }
+      .footer-item h4 {
+        font-size: 0.68rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--gold2);
+        margin: 0 0 8px;
+      }
+      .footer-item p {
+        font-size: 0.78rem;
+        color: #a99d8c;
+        line-height: 1.6;
+        margin: 0;
+      }
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        padding-top: 28px;
+        color: #807568;
+        font-size: 0.68rem;
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: none;
+      }
+
+      @keyframes rise {
+        from {
+          transform: translateY(110vh) scale(0.6);
+        }
+        to {
+          transform: translateY(-15vh) scale(1.2);
+        }
+      }
+      @keyframes wheel {
+        0% {
+          opacity: 0;
+          transform: translate(-50%, 0);
+        }
+        30% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+          transform: translate(-50%, 13px);
+        }
+      }
+      @keyframes rays {
+        to {
+          transform: translateX(4%) rotate(0.5deg);
+        }
+      }
+      @keyframes slowSpin {
+        to {
+          transform: translateY(-50%) rotate(360deg);
+        }
+      }
+
+      @media (max-width: 900px) {
+        .nav-links {
+          display: none;
+        }
+        .menu {
+          display: block;
+        }
+        .hero {
+          padding-top: 145px;
+          align-items: end;
+          padding-bottom: 120px;
+        }
+        .hero-content {
+          margin: 0;
+        }
+        #lotus-canvas {
+          opacity: 0.83;
+          transform: translateX(10%);
+        }
+        .temple,
+        .temple:nth-of-type(even) {
+          padding: 90px 7vw;
+          align-items: end;
+        }
+        .temple::before,
+        .temple:nth-of-type(even)::before {
+          background: linear-gradient(
+            180deg,
+            rgba(8, 7, 5, 0.28),
+            rgba(8, 7, 5, 0.96) 73%
+          );
+        }
+        .temple-content,
+        .temple:nth-of-type(even) .temple-content {
+          margin: 0;
+        }
+        .temple-symbol {
+          right: 5vw !important;
+          left: auto !important;
+          top: 30%;
+          width: 48vw;
+          font-size: 5rem;
+        }
+        .mandala {
+          right: -14vw;
+          top: 30%;
+          width: 65vw;
+          opacity: 0.5;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 560px) {
+        h1 {
+          font-size: 4rem;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+        .footer-bottom {
+          flex-direction: column;
+        }
+        .temple h3 {
+          font-size: 4rem;
+        }
+        .journey {
+          align-items: end;
+        }
+        .mandala {
+          top: 25%;
+          width: 78vw;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation: none !important;
+          scroll-behavior: auto !important;
+          transition: none !important;
+        }
+        .reveal {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grain"></div>
+
+    <nav class="nav">
+      <a class="brand" href="#home">
+        <span class="brand-mark"></span>
+        <span class="brand-copy">BLISSFULLY<small>HEALING</small></span>
+      </a>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#temples">The Temples</a>
+        <a href="#journey">Experiences</a>
+        <a href="#journey">About</a>
+        <a href="#journey">Journal</a>
+        <a href="#footer">Contact</a>
+        <a class="nav-cta" href="#temples">Enter the Sanctuary ✦</a>
+      </div>
+      <button class="menu" aria-label="Open navigation">☰</button>
+    </nav>
+
+    <main>
+      <section class="hero" id="home">
+        <canvas
+          id="lotus-canvas"
+          aria-label="Animated three-dimensional crystal lotus"
+        ></canvas>
+        <div class="light-rays"></div>
+        <div class="embers" id="embers"></div>
+
+        <div class="hero-content reveal">
+          <div class="eyebrow">A sanctuary for soul & spirit</div>
+          <h1>The journey <em>home</em> begins within</h1>
+          <div class="ornament">✦</div>
+          <p class="hero-copy">
+            Ancient wisdom. Modern healing. Timeless transformation.
+          </p>
+          <div class="hero-actions">
+            <a class="btn" href="#temples">Begin your journey ✦</a>
+          </div>
+        </div>
+
+        <div class="scroll-cue"><span></span>Scroll to begin</div>
+      </section>
+
+      <section class="temples-head" id="temples">
+        <div class="eyebrow">✦ &nbsp; The six temples &nbsp; ✦</div>
+        <h2>Six sacred spaces.<br />One <em>profound</em> journey.</h2>
+      </section>
+
+      <section class="temple t1">
+        <div class="temple-bg"></div>
+        <div class="temple-content reveal">
+          <div class="temple-index">01</div>
+          <div class="eyebrow">Temple of</div>
+          <h3>Stillness</h3>
+          <p>
+            Enter into deep stillness and reconnect with your inner sanctuary. A
+            place to breathe, soften and hear what has been waiting beneath the
+            noise.
+          </p>
+          <div class="meta">Stillness • Meditation • Breath</div>
+          <a class="btn" href="#">Enter Sanctuary ✦</a>
+        </div>
+        <div class="temple-symbol">☉</div>
+      </section>
+
+      <section class="temple t2">
+        <div class="temple-bg"></div>
+        <div class="temple-content reveal">
+          <div class="temple-index">02</div>
+          <div class="eyebrow">Temple of</div>
+          <h3>Purification</h3>
+          <p>
+            Release, cleanse and renew through sacred rituals and practices. Let
+            the old dissolve so your spirit can move with greater ease.
+          </p>
+          <div class="meta">Release • Renewal • Cleansing</div>
+          <a class="btn" href="#">Enter Sanctuary ✦</a>
+        </div>
+        <div class="temple-symbol">◌</div>
+      </section>
+
+      <section class="temple t3">
+        <div class="temple-bg"></div>
+        <div class="temple-content reveal">
+          <div class="temple-index">03</div>
+          <div class="eyebrow">Temple of</div>
+          <h3>Return</h3>
+          <p>
+            Return to your essence and remember who you truly are. Come home to
+            the self beneath expectation, fear and performance.
+          </p>
+          <div class="meta">Alignment • Wholeness • Truth</div>
+          <a class="btn" href="#">Enter Sanctuary ✦</a>
+        </div>
+        <div class="temple-symbol">✧</div>
+      </section>
+
+      <section class="temple t4">
+        <div class="temple-bg"></div>
+        <div class="temple-content reveal">
+          <div class="temple-index">04</div>
+          <div class="eyebrow">Temple of</div>
+          <h3>Voyage</h3>
+          <p>
+            Embark on a journey of exploration, growth and expansion. Move
+            toward the horizon with curiosity, courage and trust.
+          </p>
+          <div class="meta">Discovery • Growth • Transformation</div>
+          <a class="btn" href="#">Enter Sanctuary ✦</a>
+        </div>
+        <div class="temple-symbol">△</div>
+      </section>
+
+      <section class="temple t5">
+        <div class="temple-bg"></div>
+        <div class="temple-content reveal">
+          <div class="temple-index">05</div>
+          <div class="eyebrow">Temple of</div>
+          <h3>Remembrance</h3>
+          <p>
+            Remember the wisdom of your soul and the ancient truths within.
+            Reconnect with the strengths, knowing and stories that shaped you.
+          </p>
+          <div class="meta">Wisdom • Identity • Reconnection</div>
+          <a class="btn" href="#">Enter Sanctuary ✦</a>
+        </div>
+        <div class="temple-symbol">✺</div>
+      </section>
+
+      <section class="temple t6">
+        <div class="temple-bg"></div>
+        <div class="temple-content reveal">
+          <div class="temple-index">06</div>
+          <div class="eyebrow">Temple of</div>
+          <h3>Belonging</h3>
+          <p>
+            Belong to yourself, to others and to the sacred whole. Healing is
+            not a solitary path; it is a return to connection.
+          </p>
+          <div class="meta">Connection • Community • Belonging</div>
+          <a class="btn" href="#">Enter Sanctuary ✦</a>
+        </div>
+        <div class="temple-symbol">◎</div>
+      </section>
+
+      <section class="journey" id="journey">
+        <div class="journey-content reveal">
+          <div class="eyebrow" style="color: #6a4216">
+            You are already whole
+          </div>
+          <h2>The journey<br />home begins<br /><em>within</em></h2>
+          <div class="ornament" style="color: #6a4216">✦</div>
+          <p>
+            Blissfully Healing is your sanctuary for transformation, healing and
+            awakening. Step into the sacred. You belong here.
+          </p>
+          <a
+            class="btn"
+            style="
+              border-color: #55330f;
+              color: #241507;
+              background: rgba(255, 244, 211, 0.16);
+            "
+            href="#temples"
+            >Enter the Sanctuary ✦</a
+          >
+        </div>
+        <div class="mandala"><span>✺</span></div>
+      </section>
+    </main>
+
+    <footer id="footer">
+      <div class="footer-grid">
+        <div class="footer-item">
+          <div class="footer-icon">✺</div>
+          <div>
+            <h4>Sacred Wisdom</h4>
+            <p>Timeless teachings for modern life.</p>
+          </div>
+        </div>
+        <div class="footer-item">
+          <div class="footer-icon">♧</div>
+          <div>
+            <h4>Holistic Healing</h4>
+            <p>Mind, body and spirit in harmony.</p>
+          </div>
+        </div>
+        <div class="footer-item">
+          <div class="footer-icon">◇</div>
+          <div>
+            <h4>Luxury Experience</h4>
+            <p>Thoughtfully curated transformations.</p>
+          </div>
+        </div>
+        <div class="footer-item">
+          <div class="footer-icon">◎</div>
+          <div>
+            <h4>Global Community</h4>
+            <p>You are not alone on this journey.</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Blissfully Healing. All rights reserved.</span>
+        <span
+          >Privacy Policy &nbsp;&nbsp; Terms of Service &nbsp;&nbsp; Instagram
+          &nbsp; Facebook</span
+        >
+      </div>
+    </footer>
+
+    <script type="module">
+      import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.169.0/+esm";
+
+      const canvas = document.getElementById("lotus-canvas");
+      const renderer = new THREE.WebGLRenderer({
+        canvas,
+        alpha: true,
+        antialias: true,
+      });
+      renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.45;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 100);
+      camera.position.set(0, 1.05, 8.2);
+
+      const lotus = new THREE.Group();
+      lotus.position.set(2.1, -0.35, 0);
+      scene.add(lotus);
+
+      const crystalMat = new THREE.MeshPhysicalMaterial({
+        color: 0xffd789,
+        emissive: 0x6b2d05,
+        emissiveIntensity: 0.5,
+        metalness: 0,
+        roughness: 0.12,
+        transmission: 0.72,
+        thickness: 1.2,
+        transparent: true,
+        opacity: 0.96,
+        ior: 1.52,
+        clearcoat: 1,
+        clearcoatRoughness: 0.08,
+        side: THREE.DoubleSide,
+      });
+
+      const goldMat = new THREE.MeshStandardMaterial({
+        color: 0xb97924,
+        emissive: 0x5b2500,
+        emissiveIntensity: 0.35,
+        metalness: 0.68,
+        roughness: 0.22,
+      });
+
+      function petalGeometry() {
+        const shape = new THREE.Shape();
+        shape.moveTo(0, -1.25);
+        shape.bezierCurveTo(-0.72, -0.55, -0.82, 0.62, 0, 1.55);
+        shape.bezierCurveTo(0.82, 0.62, 0.72, -0.55, 0, -1.25);
+        const geo = new THREE.ExtrudeGeometry(shape, {
+          depth: 0.1,
+          bevelEnabled: true,
+          bevelSegments: 4,
+          steps: 1,
+          bevelSize: 0.055,
+          bevelThickness: 0.055,
+          curveSegments: 18,
+        });
+        geo.center();
+        return geo;
+      }
+
+      const petals = [];
+      const geo = petalGeometry();
+
+      function addRing(count, radius, scale, tilt, y, phase) {
+        for (let i = 0; i < count; i++) {
+          const p = new THREE.Mesh(geo, crystalMat.clone());
+          const a = (i / count) * Math.PI * 2 + phase;
+          p.position.set(Math.cos(a) * radius, y, Math.sin(a) * radius);
+          p.scale.set(scale * 0.72, scale, scale * 0.52);
+          p.rotation.order = "YXZ";
+          p.rotation.y = -a + Math.PI / 2;
+          p.rotation.x = tilt;
+          p.userData = { a, radius, baseTilt: tilt, phase: phase, y, open: 1 };
+          lotus.add(p);
+          petals.push(p);
+        }
+      }
+
+      addRing(12, 1.38, 0.82, -0.82, -0.1, 0);
+      addRing(10, 0.92, 0.92, -0.55, 0.12, 0.17);
+      addRing(8, 0.52, 0.97, -0.25, 0.32, 0.33);
+      addRing(5, 0.18, 0.82, 0.02, 0.48, 0.13);
+
+      const core = new THREE.Mesh(
+        new THREE.IcosahedronGeometry(0.42, 3),
+        goldMat,
+      );
+      core.position.y = 0.35;
+      lotus.add(core);
+
+      const glow = new THREE.PointLight(0xffb843, 16, 12, 2);
+      glow.position.set(0, 0.55, 0.2);
+      lotus.add(glow);
+      scene.add(new THREE.AmbientLight(0x8b5b32, 2.1));
+      const key = new THREE.DirectionalLight(0xffe2ae, 5.5);
+      key.position.set(-3, 6, 5);
+      scene.add(key);
+      const rim = new THREE.DirectionalLight(0xff8f32, 3.5);
+      rim.position.set(4, 1, -4);
+      scene.add(rim);
+
+      const water = new THREE.Mesh(
+        new THREE.CircleGeometry(4.6, 96),
+        new THREE.MeshPhysicalMaterial({
+          color: 0x3b1c09,
+          roughness: 0.16,
+          metalness: 0.35,
+          transmission: 0.16,
+          transparent: true,
+          opacity: 0.72,
+        }),
+      );
+      water.rotation.x = -Math.PI / 2;
+      water.position.set(2.1, -1.35, 0);
+      scene.add(water);
+
+      let targetOpen = 1;
+      let currentOpen = 1;
+      let targetGlow = 1;
+      let scrollDirection = 0;
+      let lastY = scrollY;
+
+      addEventListener(
+        "scroll",
+        () => {
+          const y = scrollY;
+          scrollDirection = y > lastY ? 1 : -1;
+          lastY = y;
+          const heroProgress = Math.min(1, Math.max(0, y / innerHeight));
+          if (scrollDirection > 0) {
+            targetOpen = Math.max(0.12, 1 - heroProgress * 0.9);
+            targetGlow = Math.max(0.18, 1 - heroProgress * 0.85);
+          } else {
+            targetOpen = Math.min(1, 0.35 + (1 - heroProgress) * 0.85);
+            targetGlow = Math.min(1.25, 0.5 + (1 - heroProgress));
+          }
+          document.querySelector(".nav").classList.toggle("scrolled", y > 35);
+        },
+        { passive: true },
+      );
+
+      let pointerX = 0,
+        pointerY = 0;
+      addEventListener("pointermove", (e) => {
+        pointerX = e.clientX / innerWidth - 0.5;
+        pointerY = e.clientY / innerHeight - 0.5;
+      });
+
+      function resize() {
+        const w = canvas.clientWidth,
+          h = canvas.clientHeight;
+        renderer.setSize(w, h, false);
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        lotus.scale.setScalar(w < 720 ? 0.73 : 1.05);
+        lotus.position.x = w < 720 ? 1.25 : 2.1;
+        lotus.position.y = w < 720 ? 0.15 : -0.35;
+      }
+      addEventListener("resize", resize);
+      resize();
+
+      const clock = new THREE.Clock();
+      function animate() {
+        const t = clock.getElapsedTime();
+        currentOpen += (targetOpen - currentOpen) * 0.045;
+        glow.intensity += (7 + targetGlow * 14 - glow.intensity) * 0.04;
+        core.scale.setScalar(1 + Math.sin(t * 1.7) * 0.045 * targetGlow);
+        core.rotation.y = t * 0.35;
+        lotus.rotation.y += (pointerX * 0.16 - lotus.rotation.y) * 0.025;
+        lotus.rotation.x += (pointerY * 0.06 - lotus.rotation.x) * 0.025;
+        lotus.position.y +=
+          (Math.sin(t * 0.8) * 0.04 +
+            (innerWidth < 720 ? 0.15 : -0.35) -
+            lotus.position.y) *
+          0.03;
+
+        petals.forEach((p, idx) => {
+          const d = p.userData;
+          const closedTilt = 0.42;
+          const desiredTilt = THREE.MathUtils.lerp(
+            closedTilt,
+            d.baseTilt,
+            currentOpen,
+          );
+          p.rotation.x += (desiredTilt - p.rotation.x) * 0.055;
+          const desiredR = THREE.MathUtils.lerp(
+            d.radius * 0.26,
+            d.radius,
+            currentOpen,
+          );
+          p.position.x += (Math.cos(d.a) * desiredR - p.position.x) * 0.05;
+          p.position.z += (Math.sin(d.a) * desiredR - p.position.z) * 0.05;
+          p.position.y +=
+            (d.y +
+              Math.sin(t * 1.2 + idx) * 0.018 * currentOpen -
+              p.position.y) *
+            0.05;
+          p.material.emissiveIntensity = 0.18 + targetGlow * 0.5;
+        });
+
+        water.material.opacity = 0.58 + Math.sin(t * 0.7) * 0.035;
+        renderer.render(scene, camera);
+        requestAnimationFrame(animate);
+      }
+      animate();
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              entry.target.closest(".temple")?.classList.add("in-view");
+            }
+          });
+        },
+        { threshold: 0.16 },
+      );
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => observer.observe(el));
+
+      document.querySelector(".menu").addEventListener("click", () => {
+        document
+          .querySelector("#temples")
+          .scrollIntoView({ behavior: "smooth" });
+      });
+    </script>
+
+    <script>
+      const embers = document.getElementById("embers");
+      for (let i = 0; i < 32; i++) {
+        const e = document.createElement("span");
+        e.className = "ember";
+        e.style.left = Math.random() * 100 + "%";
+        e.style.animationDuration = 8 + Math.random() * 12 + "s";
+        e.style.animationDelay = -Math.random() * 14 + "s";
+        e.style.opacity = 0.15 + Math.random() * 0.55;
+        embers.appendChild(e);
+      }
+    </script>
+  </body>
+</html>

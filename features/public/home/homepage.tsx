@@ -1,11 +1,12 @@
 import HeroSection from "./hero-section";
-import Temples from "./temples";
+import TemplesSection from "./temples-section";
 
 export default function HomePage() {
   return (
     <div>
       <HeroSection />
-      <Temples />
+      {/* <Temples /> */}
+      <TemplesSection/>
     </div>
   );
 }

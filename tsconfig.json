@@ -38,7 +38,7 @@
     "**/*.mts",
     "../Test/ff/validator.ts",
     "../Test/ff/routes.d.ts"
-  ],
+, "features/public/.trash/sanctuary-section.tsx", "features/public/.trash/SanctuaryTemples.tsx", "features/public/.trash/section-hero.tsx", "features/public/.trash/TempleDome.tsx", "features/public/.trash/section-data.ts", "features/public/.trash/temples.tsx"  ],
   "exclude": [
     "node_modules"
   ]
