@@ -1,19 +1,8 @@
 import Link from "next/link";
-import { Cormorant_Garamond, Manrope } from "next/font/google";
-
-const cormorantGaramond = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-});
-
-const manrope = Manrope({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
 
 export default function NewFooter() {
   return (
-    <div className={manrope.className}>
+    <div>
       <section
         className="relative grid min-h-[80svh] place-items-center overflow-hidden bg-[#171a16] px-[7vw] py-24 text-center text-white sm:py-28"
         id="begin"
@@ -27,7 +16,7 @@ export default function NewFooter() {
           <div className="text-xs font-semibold uppercase tracking-[0.22em] text-[#dac69c]">
             Your sanctuary is waiting
           </div>
-          <h2 className={`${cormorantGaramond.className} my-5 text-[3.5rem] font-semibold leading-[0.9] sm:text-[5rem] lg:text-[7rem]`}>
+          <h2 className="my-5 text-[3.5rem] font-semibold leading-[0.9] sm:text-[5rem] lg:text-[7rem]">
             The journey home begins within.
           </h2>
           <p className="mx-auto mb-8 max-w-[640px] text-base leading-8 text-[#d5ccbf] sm:text-lg">

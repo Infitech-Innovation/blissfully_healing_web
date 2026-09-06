@@ -30,7 +30,7 @@ export default function RegisterPage() {
                 priority
               />
             </div>
-            <h1 className="mt-3 font-[family-name:var(--font-great-vibes)] text-4xl text-[#b28b67] tracking-wide">
+            <h1 className="mt-3 font-[family-name:var(--font-moriah-riona)] text-4xl text-[#b28b67] tracking-wide">
               Blissfully Healing
             </h1>
             <p className="mt-3 hidden font-serif text-sm text-[#7a6658] md:block max-w-[240px]">

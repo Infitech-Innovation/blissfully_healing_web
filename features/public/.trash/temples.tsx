@@ -1,17 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Cormorant_Garamond, Manrope } from "next/font/google";
 import type { CSSProperties } from "react";
-
-const cormorantGaramond = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-});
-
-const manrope = Manrope({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
 
 const temples = [
   {
@@ -90,7 +79,7 @@ const temples = [
 
 export default function Temples() {
   return (
-    <div className={`${manrope.className} bg-[#fbf7ef] text-[#2a211c]`}>
+    <div className="bg-[#fbf7ef] text-[#2a211c]">
       <section
         className="mx-auto max-w-[1100px] px-[6vw] pb-16 pt-28 text-center md:pb-20 md:pt-32"
         id="journey"
@@ -99,7 +88,7 @@ export default function Temples() {
           The path inward
         </div>
         <h2
-          className={`${cormorantGaramond.className} mx-auto mt-4 max-w-[950px] text-[3rem] font-semibold leading-[0.98] md:text-[5.8rem]`}
+          className="mx-auto mt-4 max-w-[950px] text-[3rem] font-semibold leading-[0.98] md:text-[5.8rem]"
         >
           Six temples. One transformative return to self.
         </h2>
@@ -127,13 +116,13 @@ export default function Temples() {
             >
               <div className={reverse ? "md:order-2" : ""}>
                 <div
-                  className={`${cormorantGaramond.className} text-[4rem] font-semibold leading-none opacity-20 md:text-[4.5rem]`}
+                  className="text-[4rem] font-semibold leading-none opacity-20 md:text-[4.5rem]"
                   style={{ color: temple.romanColor }}
                 >
                   {temple.number}
                 </div>
                 <h3
-                  className={`${cormorantGaramond.className} -mt-4 max-w-[660px] text-[3rem] font-semibold leading-[0.95] md:text-[4.8rem]`}
+                  className="-mt-4 max-w-[660px] text-[3rem] font-semibold leading-[0.95] md:text-[4.8rem]"
                 >
                   {temple.name}
                 </h3>
@@ -191,18 +180,9 @@ export default function Temples() {
 
 // import Image from "next/image";
 // import Link from "next/link";
-// import { Cormorant_Garamond, Manrope } from "next/font/google";
+// Archived typography uses the global Moriah Riona font.
 // import type { CSSProperties } from "react";
 
-// const cormorantGaramond = Cormorant_Garamond({
-//   subsets: ["latin"],
-//   weight: ["500", "600", "700"],
-// });
-
-// const manrope = Manrope({
-//   subsets: ["latin"],
-//   weight: ["400", "500", "600", "700"],
-// });
 
 // const temples = [
 //   {
@@ -281,7 +261,7 @@ export default function Temples() {
 
 // export default function Temples() {
 //   return (
-//     <div className={`${manrope.className} bg-[#fbf7ef] text-[#2a211c]`}>
+//     <div className="bg-[#fbf7ef] text-[#2a211c]">
 //       <section
 //         className="mx-auto max-w-[1100px] px-[6vw] pb-16 pt-28 text-center md:pb-20 md:pt-32"
 //         id="journey"
@@ -290,7 +270,7 @@ export default function Temples() {
 //           The path inward
 //         </div>
 //         <h2
-//           className={`${cormorantGaramond.className} mx-auto mt-4 max-w-[950px] text-[3rem] font-semibold leading-[0.98] md:text-[5.8rem]`}
+//           className="mx-auto mt-4 max-w-[950px] text-[3rem] font-semibold leading-[0.98] md:text-[5.8rem]"
 //         >
 //           Six temples. One transformative return to self.
 //         </h2>
@@ -319,13 +299,13 @@ export default function Temples() {
 //             >
 //               <div className={reverse ? "md:order-2" : ""}>
 //                 <div
-//                   className={`${cormorantGaramond.className} text-[5rem] font-semibold leading-none opacity-20`}
+//                   className="text-[5rem] font-semibold leading-none opacity-20"
 //                   style={{ color: temple.romanColor }}
 //                 >
 //                   {temple.number}
 //                 </div>
 //                 <h3
-//                   className={`${cormorantGaramond.className} -mt-5 max-w-[660px] text-[3rem] font-semibold leading-[0.95] md:text-[5.5rem]`}
+//                   className="-mt-5 max-w-[660px] text-[3rem] font-semibold leading-[0.95] md:text-[5.5rem]"
 //                 >
 //                   {temple.name}
 //                 </h3>

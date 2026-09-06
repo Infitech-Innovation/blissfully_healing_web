@@ -2,18 +2,9 @@
 
 // import Link from "next/link";
 // import Image from "next/image";
-// import { Cormorant_Garamond, Manrope } from "next/font/google";
+// Archived component uses the global Moriah Riona font.
 // import { useRef } from "react";
 
-// const cormorantGaramond = Cormorant_Garamond({
-//   subsets: ["latin"],
-//   weight: ["500", "600", "700"],
-// });
-
-// const manrope = Manrope({
-//   subsets: ["latin"],
-//   weight: ["300", "400", "500", "600", "700"],
-// });
 
 // const petals: string[] = [];
 
@@ -44,7 +35,7 @@
 
 //   return (
 //     <section
-//       className={`${manrope.className} bliss-hero relative isolate grid h-[85vh] place-items-center overflow-hidden px-[6vw] pb-8 text-[#2a211c]`}
+//       className="bliss-hero relative isolate grid h-[85vh] place-items-center overflow-hidden px-[6vw] pb-8 text-[#2a211c]"
 //       id="top"
 //     >
 //       <div className="grid w-[min(1180px,100%)] items-center gap-4 text-center lg:grid-cols-[1.05fr_0.95fr] lg:gap-8 lg:text-left">
@@ -53,7 +44,7 @@
 //             A private sanctuary for transformation
 //           </div>
 //           <h1
-//             className={`${cormorantGaramond.className} my-4 text-[3rem] font-medium leading-[0.84] tracking-[-0.035em] sm:text-[4.6rem] lg:text-[6.2rem] xl:text-[6rem]`}
+//             className="my-4 text-[3rem] font-medium leading-[0.84] tracking-[-0.035em] sm:text-[4.6rem] lg:text-[6.2rem] xl:text-[6rem]"
 //           >
 //             Return to the wisdom within.
 //           </h1>

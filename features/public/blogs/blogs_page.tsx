@@ -9,7 +9,7 @@ import { BlogCardItem } from "@/types/blogs.definations";
 import { BlogSectionSkeleton } from "./blogs_skeleton";
 import { cn } from "@/lib/utils";
 
-const fontDisplay = "font-[family-name:var(--font-baskervville)]";
+const fontDisplay = "font-[family-name:var(--font-moriah-riona)]";
 
 export default function BlogSection() {
   const { data: categoryData, isLoading: categoriesLoading } = useCategory();

@@ -1,4 +1,4 @@
-export const fontDisplay = "font-[family-name:var(--font-baskervville)]";
+export const fontDisplay = "font-[family-name:var(--font-moriah-riona)]";
 
 export const eyebrowClass =
   "text-[0.66rem] uppercase tracking-[0.28em] text-[#c6a15b]";

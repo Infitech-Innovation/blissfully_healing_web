@@ -93,7 +93,7 @@ export default function HomeOverviewPage() {
               className="mx-auto animate-pulse"
             />
 
-            <h1 className="mt-4 font-[family-name:var(--font-great-vibes)] text-4xl text-[#d4af37]">
+            <h1 className="mt-4 font-[family-name:var(--font-moriah-riona)] text-4xl text-[#d4af37]">
               Blissfully Healing
             </h1>
           </div>

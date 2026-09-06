@@ -2,18 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Cormorant_Garamond, Manrope } from "next/font/google";
 import type { CSSProperties } from "react";
-
-const cormorantGaramond = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-});
-
-const manrope = Manrope({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-});
 
 const temples = [
   {
@@ -99,9 +88,9 @@ const temples = [
 
 export default function TemplesSection() {
   return (
-    <div className={`${manrope.className} temples-wrap text-[#f4ead7]`}>
+    <div className="temples-wrap text-[#f4ead7]">
       <section className="temples-head" id="temples">
-        <h2 className={cormorantGaramond.className}>
+        <h2>
           Six sacred spaces.
           <br />
           One <em>profound</em> journey.
@@ -130,11 +119,11 @@ export default function TemplesSection() {
             />
           </div>
           <div className="temple-content">
-            <div className={`${cormorantGaramond.className} temple-index`}>
+            <div className="temple-index">
               {temple.index}
             </div>
             <div className="temple-eyebrow">{temple.eyebrow}</div>
-            <h3 className={cormorantGaramond.className}>{temple.title}</h3>
+            <h3>{temple.title}</h3>
             <p>{temple.description}</p>
             <div className="temple-meta">{temple.meta}</div>
             <Link className="temple-btn" href={temple.href}>

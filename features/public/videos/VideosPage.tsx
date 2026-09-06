@@ -19,7 +19,7 @@ import {
   type VideoCategory,
 } from "./video-data";
 
-const fontDisplay = "font-[family-name:var(--font-baskervville)]";
+const fontDisplay = "font-[family-name:var(--font-moriah-riona)]";
 const textLinkClass =
   "h-auto cursor-pointer rounded-none border-0 border-b border-[#c6a15b8c] bg-transparent px-0 pb-1.5 text-[0.61rem] uppercase tracking-[0.16em] text-[#f1d79b] shadow-none hover:bg-transparent hover:text-[#f1d79b]";
 const reflectionStyles = [

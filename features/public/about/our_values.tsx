@@ -119,7 +119,7 @@ export default function ValuesSection() {
 
   return (
     <>
-      {/* Google Fonts — move to layout.tsx <head> via next/font for production */}
+      {/* Typography is provided globally by the Moriah Riona font. */}
       <style>{`
         [data-animate] {
           opacity: 0;

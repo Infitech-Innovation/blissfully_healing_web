@@ -1,17 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { Cormorant_Garamond, Manrope } from "next/font/google";
-
-const cormorantGaramond = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-});
-
-const manrope = Manrope({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-});
 
 const embers = Array.from({ length: 32 }, (_, index) => ({
   id: index,
@@ -24,7 +13,7 @@ const embers = Array.from({ length: 32 }, (_, index) => ({
 export default function HeroSection() {
   return (
     <section
-      className={`${manrope.className} bliss-hero relative isolate grid h-screen min-h-[100svh] items-center overflow-hidden px-[5vw] py-[120px] text-[#f4ead7]`}
+      className="bliss-hero relative isolate grid h-screen min-h-[100svh] items-center overflow-hidden px-[5vw] py-[120px] text-[#f4ead7]"
       id="top"
     >
       <video
@@ -56,7 +45,7 @@ export default function HeroSection() {
 
       <div className="hero-content">
         <div className="hero-eyebrow">A sanctuary for soul and spirit</div>
-        <h1 className={cormorantGaramond.className}>
+        <h1>
           The journey <em>home</em> begins within
         </h1>
         <div className="hero-ornament" aria-hidden="true">

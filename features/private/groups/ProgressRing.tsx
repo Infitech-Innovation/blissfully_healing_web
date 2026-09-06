@@ -92,7 +92,7 @@ export function ProgressRing({ attended, total, color }: ProgressProp) {
           fill="#2f251f"
           fontSize="15"
           fontWeight="600"
-          fontFamily="'Cormorant Garamond', Georgia, serif"
+          fontFamily="'Moriah Riona', Georgia, serif"
           style={{
             transform: "rotate(90deg)",
             transformOrigin: "44px 44px",
