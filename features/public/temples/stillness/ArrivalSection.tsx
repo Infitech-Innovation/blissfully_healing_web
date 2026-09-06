@@ -1,9 +1,15 @@
 import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { createParticles, eyebrowClass, fontDisplay } from "./styles";
-import { WaterLotusScene } from "./WaterLotusScene";
+import { MeditationBellButton } from "./MeditationBellSection";
 
-export function ArrivalSection() {
+export function ArrivalSection({
+  quiet,
+  onToggleQuiet,
+}: {
+  quiet: boolean;
+  onToggleQuiet: () => void;
+}) {
   const particles = useMemo(() => createParticles(), []);
 
   return (
@@ -46,11 +52,13 @@ export function ArrivalSection() {
         <small className="mt-2.5 block text-[0.62rem] uppercase tracking-[0.2em] text-[#796f61]">
           Enter quietly.
         </small>
+        <div className="pointer-events-auto mt-8 flex justify-center">
+          <MeditationBellButton
+            quiet={quiet}
+            onToggleQuiet={onToggleQuiet}
+          />
+        </div>
       </motion.div>
-
-      <div className="pointer-events-none absolute inset-0 z-[2]">
-        <WaterLotusScene />
-      </div>
 
       <a
         className="absolute bottom-7 left-1/2 z-[4] flex -translate-x-1/2 flex-col items-center gap-2.5 text-[0.55rem] uppercase tracking-[0.18em] text-[#887d6d]"

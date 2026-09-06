@@ -13,6 +13,14 @@ const manrope = Manrope({
   weight: ["300", "400", "500", "600"],
 });
 
+const embers = Array.from({ length: 32 }, (_, index) => ({
+  id: index,
+  left: `${(index * 37) % 100}%`,
+  duration: `${8 + (index % 12)}s`,
+  delay: `${-(index % 14)}s`,
+  opacity: 0.15 + (index % 7) * 0.07,
+}));
+
 export default function HeroSection() {
   return (
     <section
@@ -31,13 +39,29 @@ export default function HeroSection() {
         <source src="/video/walking_hb.mp4" type="video/mp4" />
       </video>
 
-      <div className="light-rays" aria-hidden="true" />
+      <div className="embers" aria-hidden="true">
+        {embers.map((ember) => (
+          <span
+            className="ember"
+            key={ember.id}
+            style={{
+              animationDelay: ember.delay,
+              animationDuration: ember.duration,
+              left: ember.left,
+              opacity: ember.opacity,
+            }}
+          />
+        ))}
+      </div>
 
       <div className="hero-content">
         <div className="hero-eyebrow">A sanctuary for soul and spirit</div>
         <h1 className={cormorantGaramond.className}>
           The journey <em>home</em> begins within
         </h1>
+        <div className="hero-ornament" aria-hidden="true">
+          &#10022;
+        </div>
         <p>
           Ancient wisdom. Modern healing. Timeless transformation.
         </p>
@@ -77,18 +101,11 @@ export default function HeroSection() {
         }
 
         .bliss-hero::before {
-          background:
-            repeating-linear-gradient(
-              90deg,
-              transparent 0 10%,
-              rgba(201, 161, 91, 0.035) 10.2% 10.5%,
-              transparent 10.7% 20%
-            ),
-            radial-gradient(
-              ellipse at 72% 5%,
-              rgba(255, 221, 151, 0.22),
-              transparent 35%
-            );
+          background: radial-gradient(
+            ellipse at 72% 5%,
+            rgba(255, 221, 151, 0.22),
+            transparent 35%
+          );
           content: "";
           inset: 0;
           position: absolute;
@@ -111,29 +128,27 @@ export default function HeroSection() {
           z-index: -2;
         }
 
-        .light-rays {
-          background:
-            linear-gradient(
-              105deg,
-              transparent 46%,
-              rgba(255, 218, 150, 0.14) 51%,
-              transparent 57%
-            ),
-            linear-gradient(
-              78deg,
-              transparent 55%,
-              rgba(255, 218, 150, 0.1) 60%,
-              transparent 66%
-            );
-          filter: blur(8px);
-          inset: -10%;
+        .embers {
+          inset: 0;
+          overflow: hidden;
           pointer-events: none;
           position: absolute;
           z-index: -1;
         }
 
+        .ember {
+          animation: rise linear infinite;
+          background: #f2cf83;
+          border-radius: 999px;
+          box-shadow: 0 0 10px #f2cf83;
+          height: 3px;
+          position: absolute;
+          top: 0;
+          width: 3px;
+        }
+
         .hero-content {
-          margin-top: 1vh;
+          margin-top: 4vh;
           max-width: min(560px, 92vw);
           position: relative;
           z-index: 2;
@@ -248,6 +263,7 @@ export default function HeroSection() {
         }
 
         .scroll-cue span::before {
+          animation: wheel 1.8s infinite;
           background: #f2cf83;
           content: "";
           height: 7px;
@@ -256,6 +272,32 @@ export default function HeroSection() {
           top: 7px;
           transform: translateX(-50%);
           width: 2px;
+        }
+
+        @keyframes rise {
+          from {
+            transform: translateY(110vh) scale(0.6);
+          }
+
+          to {
+            transform: translateY(-15vh) scale(1.2);
+          }
+        }
+
+        @keyframes wheel {
+          0% {
+            opacity: 0;
+            transform: translate(-50%, 0);
+          }
+
+          30% {
+            opacity: 1;
+          }
+
+          100% {
+            opacity: 0;
+            transform: translate(-50%, 13px);
+          }
         }
 
         @media (max-width: 900px) {

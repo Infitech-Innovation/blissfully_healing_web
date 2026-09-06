@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils";
 import { ArchiveSection } from "./ArchiveSection";
 import { ArrivalSection } from "./ArrivalSection";
 import { FinalPassageSection } from "./FinalPassageSection";
-import { MeditationBellSection } from "./MeditationBellSection";
 import { ReflectionPoolSection } from "./ReflectionPoolSection";
 import { SilenceSection } from "./SilenceSection";
 import { TempleHeader } from "./TempleHeader";
@@ -64,6 +63,7 @@ export default function StillnessTemplePage() {
       <TempleHeader
         quiet={quiet}
         soundOn={soundOn}
+        onToggleMeditation={handleToggleMeditationMode}
         onToggleSound={() => setSoundOn((value) => !value)}
       />
 
@@ -73,7 +73,10 @@ export default function StillnessTemplePage() {
           quiet && "brightness-[0.84] saturate-[0.72]"
         )}
       >
-        <ArrivalSection />
+        <ArrivalSection
+          quiet={quiet}
+          onToggleQuiet={handleToggleMeditationMode}
+        />
         <SilenceSection />
         <ReflectionPoolSection
           activeReflection={activeReflection}
@@ -83,10 +86,6 @@ export default function StillnessTemplePage() {
         />
         <ArchiveSection />
         <WisdomSection quoteIndex={quoteIndex} />
-        <MeditationBellSection
-          quiet={quiet}
-          onToggleQuiet={handleToggleMeditationMode}
-        />
         <FinalPassageSection />
       </div>
     </main>
