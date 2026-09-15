@@ -48,8 +48,10 @@ const SidebarBody = ({
   // const logout = useAuthStore((state) => state.logout);
 
   const role: ROLE = user?.role ?? "user";
-  const mainMenu = links[role];
-  const bottomMenu = helpLinks[role];
+  // const mainMenu = links[role];
+  // const bottomMenu = helpLinks[role];
+  const mainMenu = links[role] ?? links.user;
+  const bottomMenu = helpLinks[role] ?? helpLinks.user;
   const isActive = (href: string) =>
     pathname === href || pathname.startsWith(`${href}/`);
 
@@ -59,11 +61,11 @@ const SidebarBody = ({
 
   const initials = name
     ? name
-        .split(" ")
-        .map((n) => n[0])
-        .join("")
-        .toUpperCase()
-        .slice(0, 2)
+      .split(" ")
+      .map((n) => n[0])
+      .join("")
+      .toUpperCase()
+      .slice(0, 2)
     : "?";
 
   return (

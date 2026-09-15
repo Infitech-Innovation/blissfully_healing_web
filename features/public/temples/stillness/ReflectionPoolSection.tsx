@@ -22,7 +22,14 @@ export function ReflectionPoolSection({
     activeVideo !== null ? (activeVideo + 1) % reflections.length : 0;
 
   return (
-    <section className="min-h-svh bg-[repeating-radial-gradient(ellipse_at_50%_100%,rgba(198,161,91,0.08)_0_1px,transparent_2px_24px),linear-gradient(#070707,#0c0907_60%,#050505)] px-[6vw] pb-40 pt-32">
+    <section
+      className="min-h-svh px-[6vw] pb-40 pt-32"
+      style={{
+        background:
+          'linear-gradient(rgba(4, 4, 4, 0.2), rgba(4, 4, 4, 0.34)), url("https://images.unsplash.com/photo-1637750586228-179a1a7aef84?w=600&auto=format&fit=crop&q=60") center top / cover repeat-y',
+        isolation: "isolate",
+      }}
+    >
       <div className="mx-auto mb-16 max-w-[46rem] text-center">
         <p className={eyebrowClass}>The Reflection Pool</p>
         <h2

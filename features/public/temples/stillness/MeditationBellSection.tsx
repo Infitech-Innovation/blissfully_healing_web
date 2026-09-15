@@ -17,13 +17,13 @@ export function MeditationBellButton({
       }
       aria-pressed={quiet}
       className={cn(
-        "relative grid aspect-square w-40 cursor-pointer place-items-center rounded-full border border-[#c6a15b59] bg-transparent text-[#f1d79b]",
+        "relative grid aspect-square w-40 cursor-pointer place-items-center rounded-full border border-[#c6a15b59] bg-transparent text-[#f1d79b] md:w-48",
         quiet && "[&>i]:scale-[1.6] [&>i]:opacity-0"
       )}
       onClick={onToggleQuiet}
       animate={{ scale: quiet ? 1.06 : 1 }}
     >
-      <Bell className="size-16" />
+      <Bell className="size-16 md:size-20 sm:size-48" />
       <i className="absolute inset-[15%] rounded-full border border-[#c6a15b2e] transition duration-[1200ms]" />
     </motion.button>
   );
