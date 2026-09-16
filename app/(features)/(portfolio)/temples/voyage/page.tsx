@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { createMetadata } from "@/app/seo";
 import VoyageWorld from "@/features/public/temples/voyage/VoyageWorld";
 import StorySync from "@/features/public/temples/voyage/StorySync";
+import { VoyagePassageSection } from "@/features/public/temples/voyage/FinalPassageSection";
 
 export const metadata: Metadata = createMetadata({
   title: "Temple of Voyage",
@@ -114,6 +115,8 @@ export default function VoyagePage() {
             <span className="voyage-signature">TEMPLE OF VOYAGE · BLISSFULLY HEALING</span>
           </div>
         </section>
+
+        <VoyagePassageSection />
       </div>
     </div>
   );
