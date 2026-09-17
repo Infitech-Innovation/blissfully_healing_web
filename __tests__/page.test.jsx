@@ -1,6 +1,7 @@
 import { render, screen, act, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import HomeOverviewPage from "../app/_home/overviewpage";
+import PurificationPage from "../app/(features)/(portfolio)/temples/purification/page";
 
 // --- Mocks ---
 
@@ -203,6 +204,16 @@ describe("HomeOverviewPage", () => {
   });
 
   // Cleanup coverage — unmount mid-animation
+  describe("PurificationPage", () => {
+    it("opens the temple veil immediately so the page is visible on load", () => {
+      render(<PurificationPage />);
+
+      expect(
+        screen.getByRole("button", { name: /enter temple of purification/i }),
+      ).toHaveClass("purity-parted");
+    });
+  });
+
   describe("cleanup", () => {
     // eslint-disable-next-line jest/expect-expect
     it("clears the opening timeout if unmounted mid-animation", async () => {

@@ -1116,7 +1116,6 @@ footer > div {
   }
 }
 
-
 /* Temple of Return */
 
 .returnTemple,
@@ -1904,5 +1903,849 @@ footer > div {
   * {
     animation: none !important;
     transition: none !important;
+  }
+}
+
+/* Purification Temple */
+
+.purity-purification {
+  overflow: hidden;
+}
+.purity-exitMark {
+  position: fixed;
+  z-index: 80;
+  right: 28px;
+  top: 25px;
+  width: 38px;
+  height: 38px;
+  border: 1px solid #82918e4d;
+  border-radius: 50%;
+  background: #f8f8f32b;
+  backdrop-filter: blur(12px);
+  color: #657673;
+  cursor: pointer;
+}
+.purity-veil {
+  position: fixed;
+  z-index: 200;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  padding: 0;
+  background: #f8f7f2;
+  cursor: pointer;
+  overflow: hidden;
+  transition: visibility 1s 1.4s;
+}
+.purity-veil.purity-parted {
+  visibility: hidden;
+}
+.purity-veilLeft,
+.purity-veilRight {
+  position: absolute;
+  top: -5%;
+  bottom: -5%;
+  width: 54%;
+  background: repeating-linear-gradient(
+    96deg,
+    #fbfaf6 0 8%,
+    #d8ddda 12%,
+    #fff 18%,
+    #c8d0cd 24%,
+    #faf9f4 32%
+  );
+  filter: drop-shadow(0 0 35px #82908b33);
+  transition: transform 1.5s cubic-bezier(0.7, 0, 0.2, 1);
+}
+.purity-veilLeft {
+  left: -2%;
+  transform: translate(var(--mx, 0), var(--my, 0));
+}
+.purity-veilRight {
+  right: -2%;
+  transform: scaleX(-1) translate(calc(var(--mx, 0) * -1), var(--my, 0));
+}
+.purity-parted .purity-veilLeft {
+  transform: translateX(-108%) skewX(-4deg);
+}
+.purity-parted .purity-veilRight {
+  transform: scaleX(-1) translateX(-108%) skewX(-4deg);
+}
+.purity-veilText {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #35403d;
+  transition: 0.7s;
+}
+.purity-parted .purity-veilText {
+  opacity: 0;
+}
+.purity-veilText small {
+  font-size: 8px;
+  letter-spacing: 0.35em;
+}
+.purity-veilText b {
+  font:
+    400 clamp(64px, 10vw, 160px)/0.85 "Cormorant Garamond",
+    serif;
+  letter-spacing: -0.04em;
+}
+.purity-veilText em {
+  margin-top: 32px;
+  font-style: normal;
+  font-size: 8px;
+  letter-spacing: 0.28em;
+  color: #82908d;
+}
+.purity-arrival {
+  height: 120vh;
+  min-height: 900px;
+  position: relative;
+  padding: 12vh 7vw;
+  display: flex;
+  align-items: center;
+  background:
+    radial-gradient(
+      circle at 72% 44%,
+      #fff 0 12%,
+      #e7eeeb 31%,
+      transparent 53%
+    ),
+    linear-gradient(125deg, #efeee8, #fbfaf6 52%, #dce6e3);
+}
+.purity-silkLight {
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+  background: repeating-linear-gradient(
+    101deg,
+    transparent 0 10%,
+    #fff 14%,
+    #bfcac633 20%,
+    #fff9 25%,
+    transparent 32%
+  );
+}
+.purity-world {
+  position: absolute;
+  z-index: 3;
+  right: 2vw;
+  top: 11vh;
+  width: 50vw;
+  height: 76vh;
+}
+.purity-arrivalCopy {
+  position: relative;
+  z-index: 5;
+  width: 60%;
+}
+.purity-arrivalCopy > p,
+.purity-pourCopy small,
+.purity-releaseWords small,
+.purity-reflectionCopy small,
+.purity-ritualCopy small {
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  color: #71817e;
+}
+.purity-arrivalCopy h1 {
+  font:
+    400 clamp(68px, 7.5vw, 120px)/0.82 "Cormorant Garamond",
+    serif;
+  letter-spacing: -0.045em;
+  margin: 24px 0;
+}
+.purity-arrivalCopy h1 em {
+  color: #819693;
+}
+.purity-arrivalCopy > span {
+  font:
+    400 18px/1.65 "Cormorant Garamond",
+    serif;
+  color: #64716e;
+}
+.purity-stillWater {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 25vh;
+  background:
+    linear-gradient(transparent, #c6d8d42e),
+    repeating-linear-gradient(180deg, transparent 0 9px, #a9bfba18 10px 11px);
+}
+.purity-wordReflection {
+  position: absolute;
+  z-index: 1;
+  bottom: 8vh;
+  left: 8vw;
+  font:
+    400 12vw/0.8 "Cormorant Garamond",
+    serif;
+  color: #819b9610;
+  transform: scaleY(-1);
+  filter: blur(1px);
+}
+.purity-scrollCue {
+  position: absolute;
+  z-index: 6;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 7px;
+  letter-spacing: 0.28em;
+  color: #778985;
+}
+.purity-scrollCue b {
+  margin-left: 10px;
+}
+.purity-pourScene {
+  height: 130vh;
+  position: relative;
+  background: linear-gradient(#eef1ec, #dfe9e6 55%, #f8f7f2);
+  display: flex;
+  align-items: center;
+  padding: 10vh 8vw;
+}
+.purity-pourLine {
+  position: absolute;
+  left: 64%;
+  top: 0;
+  width: 2px;
+  height: 52%;
+  background: linear-gradient(#fff0, #a5c4be 18%, #faffff 70%, #9eb9b4);
+  transform-origin: top;
+  transform: scaleY(var(--pour, 0));
+  filter: blur(0.2px);
+  box-shadow: 0 0 12px #9fbdb966;
+}
+.purity-impact {
+  position: absolute;
+  left: 64%;
+  top: 52%;
+  width: 1px;
+  height: 1px;
+}
+.purity-impact i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 120px;
+  height: 32px;
+  border: 1px solid #829d9850;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(calc(0.2 + var(--pour, 0) * 2.4));
+  opacity: var(--pour, 0);
+  transition: 0.1s;
+}
+.purity-impact i:nth-child(2) {
+  width: 230px;
+  height: 60px;
+  opacity: calc(var(--pour, 0) * 0.55);
+}
+.purity-impact i:nth-child(3) {
+  width: 390px;
+  height: 100px;
+  opacity: calc(var(--pour, 0) * 0.28);
+}
+.purity-pourCopy {
+  position: relative;
+  z-index: 3;
+}
+.purity-pourCopy h2,
+.purity-releaseWords h2 {
+  font:
+    400 clamp(70px, 8vw, 125px)/0.85 "Cormorant Garamond",
+    serif;
+  margin: 20px 0;
+}
+.purity-pourCopy h2 em,
+.purity-releaseWords h2 em {
+  color: #829a95;
+}
+.purity-releaseWords {
+  min-height: 140vh;
+  background: #f8f7f2;
+  padding: 14vh 8vw;
+  position: relative;
+}
+.purity-releaseWords header {
+  position: sticky;
+  top: 14vh;
+}
+.purity-sinkingWords {
+  margin: 15vh 0 0 52%;
+  display: flex;
+  flex-direction: column;
+}
+.purity-sinkingWords span {
+  font:
+    italic 400 clamp(48px, 6vw, 95px)/1.15 "Cormorant Garamond",
+    serif;
+  color: #60736e;
+  opacity: calc(1 - (var(--i) * 0.11));
+  filter: blur(calc(var(--i) * 0.35px));
+  transform: translateY(calc(var(--i) * 9px));
+}
+.purity-breath {
+  height: 100vh;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+.purity-breath p {
+  font:
+    400 clamp(52px, 6vw, 90px)/0.9 "Cormorant Garamond",
+    serif;
+  color: #3a4441;
+}
+.purity-breath p em {
+  color: #92a5a1;
+}
+.purity-singleDrop {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  width: 12px;
+  height: 18px;
+  border-radius: 60% 60% 70% 70%;
+  background: linear-gradient(145deg, #fff, #9eb7b2);
+  animation: fall 4.8s ease-in infinite;
+}
+.purity-breathRipple {
+  position: absolute;
+  top: 37%;
+  left: 50%;
+  width: 150px;
+  height: 35px;
+  border: 1px solid #9cb3ae55;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: ripple 4.8s ease-out infinite;
+}
+.purity-reflection {
+  height: 130vh;
+  position: relative;
+  background: linear-gradient(#faf9f4 0%, #d9e0df 38%, #596767 78%, #1b2425);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.purity-moonReflection {
+  position: absolute;
+  bottom: 13vh;
+  width: 32vw;
+  height: 10vh;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse,
+    #f3f4ed77,
+    #c9d3d11e 50%,
+    transparent 70%
+  );
+  filter: blur(9px);
+}
+.purity-realMoon {
+  position: absolute;
+  top: 18vh;
+  width: 25vw;
+  height: 25vw;
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 28%, #fff, #e3e5df 48%, #bac3c0);
+  box-shadow: 0 0 100px #f7fff899;
+}
+.purity-reflectionCopy {
+  position: absolute;
+  left: 8vw;
+  bottom: 18vh;
+  color: #e7ece8;
+}
+.purity-reflectionCopy small {
+  color: #c1cdca;
+}
+.purity-reflectionCopy p {
+  font:
+    400 clamp(40px, 5vw, 72px)/0.92 "Cormorant Garamond",
+    serif;
+  margin: 18px 0;
+}
+.purity-lunarChamber {
+  height: 120vh;
+  min-height: 900px;
+  position: relative;
+  background:
+    radial-gradient(circle at 37% 38%, #65717044, transparent 25%),
+    linear-gradient(#172021, #090f10);
+  color: #eef0ea;
+  display: flex;
+  align-items: center;
+  padding: 10vh 8vw;
+}
+.purity-lunarWater {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 34%;
+  background: repeating-linear-gradient(
+    180deg,
+    #1b2829 0 8px,
+    #0e1718 9px 11px
+  );
+}
+.purity-moonInstallation {
+  position: relative;
+  width: 54%;
+  height: 72vh;
+  display: grid;
+  place-items: center;
+}
+.purity-moonBody {
+  width: min(34vw, 470px);
+  height: min(34vw, 470px);
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 28%, #fff, #d9dcd5 48%, #9fa9a5);
+  box-shadow: 0 0 110px #eafff55a;
+}
+.purity-moonHalo {
+  position: absolute;
+  width: 72%;
+  height: 72%;
+  border: 1px solid #cdd8d34a;
+  border-radius: 50%;
+  animation: spin 25s linear infinite;
+}
+.purity-phaseRing {
+  position: absolute;
+  width: 92%;
+  height: 92%;
+  border-radius: 50%;
+  animation: spin 32s linear infinite reverse;
+}
+.purity-phaseRing span {
+  position: absolute;
+  top: -15px;
+  left: 22%;
+  font-size: 7px;
+  letter-spacing: 0.32em;
+  color: #aab9b5;
+  white-space: nowrap;
+}
+.purity-ritualCopy {
+  position: relative;
+  z-index: 3;
+  width: 42%;
+}
+.purity-ritualCopy small {
+  color: #aab8b4;
+}
+.purity-ritualCopy h2 {
+  font:
+    400 clamp(80px, 9vw, 145px)/0.75 "Cormorant Garamond",
+    serif;
+  margin: 20px 0;
+}
+.purity-ritualCopy h2 em {
+  color: #a9bbb6;
+}
+.purity-ritualCopy p {
+  font:
+    400 19px/1.65 "Cormorant Garamond",
+    serif;
+  color: #aab6b2;
+  max-width: 430px;
+}
+.purity-ritualCopy > b {
+  display: inline-block;
+  margin-top: 30px;
+  border: 1px solid #aab8b44f;
+  padding: 15px 21px;
+  font-size: 8px;
+  letter-spacing: 0.3em;
+}
+.purity-ending {
+  height: 100vh;
+  background: linear-gradient(#101819, #e8ece8 72%, #faf9f4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.purity-ending p {
+  font:
+    400 clamp(56px, 7vw, 105px)/0.87 "Cormorant Garamond",
+    serif;
+  color: #394642;
+}
+.purity-ending p em {
+  color: #849994;
+}
+.purity-ending span {
+  margin-top: 12vh;
+  font-size: 8px;
+  letter-spacing: 0.35em;
+  color: #7d8d89;
+}
+@keyframes fall {
+  0%,
+  60% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+  }
+  90%,
+  100% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+}
+@keyframes ripple {
+  0%,
+  78% {
+    transform: translate(-50%, -50%) scale(0.2);
+    opacity: 0;
+  }
+  83% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.6);
+    opacity: 0;
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (max-width: 850px) {
+  .purity-world {
+    width: 94vw;
+    height: 52vh;
+    right: 3vw;
+    top: 38vh;
+    opacity: 0.8;
+  }
+  .purity-arrival {
+    align-items: flex-start;
+    padding-top: 14vh;
+  }
+  .purity-arrivalCopy {
+    width: 100%;
+  }
+  .purity-arrivalCopy h1 {
+    font-size: clamp(55px, 14vw, 82px);
+  }
+  .purity-sinkingWords {
+    margin-left: 15%;
+  }
+  .purity-lunarChamber {
+    height: auto;
+    min-height: 120vh;
+    flex-direction: column;
+    padding-top: 12vh;
+  }
+  .purity-moonInstallation {
+    width: 100%;
+    height: 55vh;
+  }
+  .purity-moonBody {
+    width: 64vw;
+    height: 64vw;
+  }
+  .purity-ritualCopy {
+    width: 100%;
+    padding-bottom: 15vh;
+  }
+  .purity-reflection .purity-realMoon {
+    width: 55vw;
+    height: 55vw;
+  }
+  .purity-moonReflection {
+    width: 65vw;
+  }
+  .purity-pourLine,
+  .purity-impact {
+    left: 74%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* WATERFALL REVISION */
+.purity-waterfallCanvas {
+  position: fixed;
+  z-index: 2;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  opacity: 0.78;
+}
+.purity-waterfallArrival .purity-arrivalCopy {
+  z-index: 8;
+}
+.purity-heroFalls {
+  position: absolute;
+  z-index: 3;
+  right: 4vw;
+  top: -4vh;
+  width: 43vw;
+  height: 96vh;
+  overflow: hidden;
+  filter: drop-shadow(0 22px 35px #8eaaa43b);
+}
+.purity-heroFalls:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0 5%,
+    #d9ebe833 10%,
+    #fff9 18%,
+    #a9cbc56b 23%,
+    #faffffbb 31%,
+    #b6d4cf5e 38%,
+    #fff9 47%,
+    #9bbeb75c 55%,
+    #faffffb5 67%,
+    #afcec87d 78%,
+    #fff8 88%,
+    transparent
+  );
+  clip-path: polygon(8% 0, 95% 0, 100% 100%, 0 100%);
+  filter: blur(2px);
+}
+.purity-heroFalls:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 22%;
+  background: radial-gradient(
+    ellipse at center,
+    #fff 0,
+    #d7e9e68f 28%,
+    transparent 68%
+  );
+  filter: blur(12px);
+}
+.purity-heroFalls i {
+  position: absolute;
+  top: -10%;
+  height: 112%;
+  width: 2px;
+  background: linear-gradient(#fff0, #fff, #8fb7b0, #fff0);
+  opacity: 0.65;
+  animation: waterThread 2.4s linear infinite;
+}
+.purity-heroFalls i:nth-child(1) {
+  left: 17%;
+  animation-delay: -0.4s;
+}
+.purity-heroFalls i:nth-child(2) {
+  left: 35%;
+  width: 4px;
+  animation-delay: -1.2s;
+}
+.purity-heroFalls i:nth-child(3) {
+  left: 53%;
+  animation-delay: -0.7s;
+}
+.purity-heroFalls i:nth-child(4) {
+  left: 72%;
+  width: 3px;
+  animation-delay: -1.8s;
+}
+.purity-heroFalls i:nth-child(5) {
+  left: 88%;
+  animation-delay: -0.2s;
+}
+.purity-splashMist {
+  position: absolute;
+  z-index: 4;
+  right: 2vw;
+  bottom: 9vh;
+  width: 48vw;
+  height: 18vh;
+  background: radial-gradient(ellipse, #fff9, #d7e8e55c 34%, transparent 70%);
+  filter: blur(16px);
+}
+.purity-waterfallChapter {
+  overflow: hidden;
+}
+.purity-waterColumn {
+  position: absolute;
+  z-index: 1;
+  right: 9vw;
+  top: -8vh;
+  width: 34vw;
+  height: 110%;
+  background: repeating-linear-gradient(
+    92deg,
+    #fff0 0 4%,
+    #e7f4f16b 6%,
+    #9fc3bd55 8%,
+    #fff9 10%,
+    #fff0 14%
+  );
+  filter: blur(1.4px);
+  opacity: 0.72;
+  clip-path: polygon(12% 0, 94% 0, 100% 100%, 0 100%);
+}
+.purity-waterfallChapter .purity-pourCopy {
+  z-index: 5;
+}
+.purity-waterfallChapter .purity-impact {
+  left: auto;
+  right: 25vw;
+  top: 78%;
+}
+.purity-templeComing {
+  min-height: 120vh;
+  position: relative;
+  z-index: 4;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(
+    180deg,
+    #e7ece8 0%,
+    #c8d4d2 18%,
+    #606e6d 55%,
+    #11191a 100%
+  );
+  color: #f3f3ed;
+}
+.purity-templeComing:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 43%, #fff5 0 12%, transparent 35%);
+}
+.purity-comingWater {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 38%;
+  background: repeating-linear-gradient(
+    180deg,
+    #172324 0 7px,
+    #263435 8px 9px,
+    #111b1c 11px 14px
+  );
+  opacity: 0.92;
+}
+.purity-comingMoon {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(30vw, 430px);
+  height: min(30vw, 430px);
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 28%, #fff, #e1e4de 48%, #9ca7a4);
+  box-shadow: 0 0 120px #effff477;
+}
+.purity-comingEyebrow {
+  position: relative;
+  z-index: 3;
+  margin-top: 12vh;
+  font-size: 8px;
+  letter-spacing: 0.34em;
+  color: #d7e0dc;
+}
+.purity-templeComing h2 {
+  position: relative;
+  z-index: 3;
+  font:
+    400 clamp(110px, 18vw, 285px)/0.63 "Cormorant Garamond",
+    serif;
+  letter-spacing: -0.06em;
+  margin: 35px 0;
+  color: #f8f7f0;
+  text-shadow: 0 10px 45px #1017185c;
+}
+.purity-templeComing h2 em {
+  font-weight: 400;
+  color: #c6d4d0;
+}
+.purity-comingStatement {
+  position: relative;
+  z-index: 3;
+  max-width: 520px;
+  font:
+    400 20px/1.55 "Cormorant Garamond",
+    serif;
+  color: #d1dcda;
+}
+.purity-lunarChamber {
+  z-index: 4;
+}
+.purity-ritualCopy > b {
+  display: none;
+}
+@keyframes waterThread {
+  0% {
+    transform: translateY(-12%);
+    opacity: 0;
+  }
+  18% {
+    opacity: 0.75;
+  }
+  80% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(14%);
+    opacity: 0;
+  }
+}
+@media (max-width: 850px) {
+  .purity-heroFalls {
+    right: -10vw;
+    width: 62vw;
+    opacity: 0.68;
+  }
+  .purity-splashMist {
+    right: -8vw;
+    width: 65vw;
+  }
+  .purity-waterfallCanvas {
+    opacity: 0.55;
+  }
+  .purity-waterColumn {
+    right: -7vw;
+    width: 55vw;
+  }
+  .purity-comingMoon {
+    width: 58vw;
+    height: 58vw;
+  }
+  .purity-templeComing h2 {
+    font-size: clamp(92px, 25vw, 170px);
   }
 }

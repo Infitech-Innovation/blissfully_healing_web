@@ -23,7 +23,7 @@ const templeLinks = [
   { label: "Return", href: "/temples/return", color: "bg-[#d4af37]" },
   { label: "Voyage", href: "/temples/voyage", color: "bg-[#047857]" },
   { label: "Remembrance", href: "/temples/remembrance", color: "bg-[#6d28d9]" },
-  { label: "Belonging", href: "/temples/belonging", color: "bg-[#1d4ed8]" },
+  // { label: "Belonging", href: "/temples/belonging", color: "bg-[#1d4ed8]" },
 ];
 
 export function Navbar() {
