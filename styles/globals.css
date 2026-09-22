@@ -86,6 +86,16 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* threshold added roots */
+  --black: #050505;
+  --ink: #0a0908;
+  --gold: #c7a05d;
+  --pale: #ead8b5;
+  --muted: #8f8577;
+  --display: "Cormorant Garamond", Georgia, serif;
+  --sans: "Inter", "Segoe UI", sans-serif;
+  --font-moriah-riona: "Cormorant Garamond", Georgia, serif;
 }
 
 .dark {
@@ -139,18 +149,7 @@
   }
 }
 
-:root {
-  --black: #050505;
-  --ink: #0a0908;
-  --gold: #c7a05d;
-  --pale: #ead8b5;
-  --muted: #8f8577;
-  --display: "Cormorant Garamond", Georgia, serif;
-  --sans: "Inter", "Segoe UI", sans-serif;
-  --font-moriah-riona: "Cormorant Garamond", Georgia, serif;
-}
-
-* {
+/* * {
   box-sizing: border-box;
 }
 
@@ -163,7 +162,7 @@ body {
   background: #050505;
   color: #f4eee4;
   font-family: var(--sans), sans-serif;
-}
+} */
 
 a {
   color: inherit;
@@ -172,10 +171,15 @@ a {
 button {
   font: inherit;
 }
-main {
+/* main {
   overflow: hidden;
+} */
+main {
+  overflow-x: hidden;
+  overflow-y: auto;
 }
-nav {
+
+/* nav {
   height: 78px;
   position: absolute;
   z-index: 30;
@@ -185,7 +189,7 @@ nav {
   display: flex;
   align-items: center;
   border-bottom: 1px solid #ffffff10;
-}
+} */
 .brand {
   font-family: var(--display);
   font-size: 18px;
@@ -207,7 +211,7 @@ nav {
 .links a:hover {
   color: var(--pale);
 }
-nav button {
+/* nav button {
   border: 1px solid #c7a05d55;
   color: var(--pale);
   background: #0000;
@@ -215,7 +219,7 @@ nav button {
   text-transform: uppercase;
   font-size: 9px;
   letter-spacing: 0.18em;
-}
+} */
 .hero {
   min-height: 100svh;
   position: relative;
@@ -2004,10 +2008,11 @@ footer > div {
   color: #82908d;
 }
 .purity-arrival {
-  height: 120vh;
+  height: 100vh;
   min-height: 900px;
   position: relative;
-  padding: 12vh 7vw;
+  isolation: isolate;
+  padding: 6vh 7vw;
   display: flex;
   align-items: center;
   background:
@@ -2021,6 +2026,7 @@ footer > div {
 }
 .purity-silkLight {
   position: absolute;
+  z-index: 1;
   inset: 0;
   opacity: 0.5;
   background: repeating-linear-gradient(
@@ -2042,8 +2048,25 @@ footer > div {
 }
 .purity-arrivalCopy {
   position: relative;
-  z-index: 5;
+  z-index: 18;
   width: 60%;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.72),
+    0 14px 44px rgba(86, 112, 106, 0.16);
+}
+.purity-waterfallArrival .purity-arrivalCopy:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -7vh -5vw -6vh -4vw;
+  background: radial-gradient(
+    ellipse at 34% 44%,
+    rgba(248, 247, 242, 0.82),
+    rgba(248, 247, 242, 0.54) 42%,
+    rgba(248, 247, 242, 0) 72%
+  );
+  filter: blur(12px);
+  pointer-events: none;
 }
 .purity-arrivalCopy > p,
 .purity-pourCopy small,
@@ -2072,6 +2095,7 @@ footer > div {
 }
 .purity-stillWater {
   position: absolute;
+  z-index: 7;
   left: 0;
   right: 0;
   bottom: 0;
@@ -2082,7 +2106,7 @@ footer > div {
 }
 .purity-wordReflection {
   position: absolute;
-  z-index: 1;
+  z-index: 8;
   bottom: 8vh;
   left: 8vw;
   font:
@@ -2094,7 +2118,7 @@ footer > div {
 }
 .purity-scrollCue {
   position: absolute;
-  z-index: 6;
+  z-index: 20;
   bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
@@ -2489,28 +2513,134 @@ footer > div {
 }
 
 /* WATERFALL REVISION */
-.purity-waterfallCanvas {
+.purity-pencilWaterfall {
   position: fixed;
-  z-index: 2;
+  z-index: 1;
   inset: 0;
   width: 100vw;
   height: 100vh;
   pointer-events: none;
+  overflow: hidden;
+  opacity: 0.58;
+}
+.purity-pencilWaterfallArt,
+.purity-pencilWaterfallTexture,
+.purity-waterfallCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.purity-pencilWaterfallArt {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(248, 247, 242, 1) 0 42%,
+      rgba(248, 247, 242, 0.74) 58%,
+      rgba(248, 247, 242, 0.18) 78%,
+      rgba(248, 247, 242, 0) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(248, 247, 242, 0.18),
+      rgba(212, 226, 222, 0.28) 68%,
+      rgba(138, 163, 158, 0.18)
+    ),
+    url("/images/purification-waterfall-pencil.png");
+  background-position:
+    center,
+    center,
+    79% 50%;
+  background-repeat: no-repeat;
+  background-size:
+    cover,
+    cover,
+    auto 112vh;
+  filter: saturate(0.96) contrast(1.08) brightness(1.02);
+  transform: scale(1.02);
+  transform-origin: 78% 52%;
+  animation: pencilWaterfallDrift 14s ease-in-out infinite alternate;
+}
+.purity-pencilWaterfallArt:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse at 73% 78%,
+      rgba(255, 255, 255, 0.58),
+      rgba(220, 236, 232, 0.25) 24%,
+      transparent 56%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(250, 250, 246, 0.06),
+      rgba(232, 239, 236, 0.34)
+    );
+}
+.purity-pencilWaterfallTexture {
+  background:
+    repeating-linear-gradient(
+      110deg,
+      rgba(82, 107, 101, 0.05) 0 1px,
+      transparent 1px 7px
+    ),
+    repeating-linear-gradient(
+      18deg,
+      rgba(255, 255, 255, 0.11) 0 1px,
+      transparent 1px 9px
+    );
   mix-blend-mode: multiply;
-  opacity: 0.78;
+  opacity: 0.34;
+}
+.purity-waterfallCanvas {
+  mix-blend-mode: screen;
+  opacity: 0.42;
 }
 .purity-waterfallArrival .purity-arrivalCopy {
-  z-index: 8;
+  z-index: 18;
 }
 .purity-heroFalls {
   position: absolute;
-  z-index: 3;
-  right: 4vw;
-  top: -4vh;
-  width: 43vw;
-  height: 96vh;
+  z-index: 5;
+  right: -3vw;
+  top: -6vh;
+  width: min(64vw, 920px);
+  height: 106vh;
   overflow: hidden;
-  filter: drop-shadow(0 22px 35px #8eaaa43b);
+  background:
+    linear-gradient(
+      90deg,
+      rgba(248, 247, 242, 0.98) 0 16%,
+      rgba(248, 247, 242, 0.44) 34%,
+      rgba(248, 247, 242, 0.08) 58%,
+      rgba(248, 247, 242, 0.22) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(248, 247, 242, 0.18),
+      rgba(216, 230, 226, 0.1) 48%,
+      rgba(248, 247, 242, 0.3) 100%
+    ),
+    url("/images/purification-waterfall-pencil.png") 58% 48% / cover no-repeat;
+  filter: drop-shadow(0 24px 42px #8eaaa42e) saturate(0.86) contrast(1.02)
+    brightness(1.06);
+  opacity: 0.82;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 4% 100%);
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 18%,
+    #000 92%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 18%,
+    #000 92%,
+    transparent 100%
+  );
 }
 .purity-heroFalls:before {
   content: "";
@@ -2533,6 +2663,8 @@ footer > div {
   );
   clip-path: polygon(8% 0, 95% 0, 100% 100%, 0 100%);
   filter: blur(2px);
+  mix-blend-mode: screen;
+  opacity: 0.42;
 }
 .purity-heroFalls:after {
   content: "";
@@ -2548,6 +2680,7 @@ footer > div {
     transparent 68%
   );
   filter: blur(12px);
+  opacity: 0.72;
 }
 .purity-heroFalls i {
   position: absolute;
@@ -2555,7 +2688,7 @@ footer > div {
   height: 112%;
   width: 2px;
   background: linear-gradient(#fff0, #fff, #8fb7b0, #fff0);
-  opacity: 0.65;
+  opacity: 0.34;
   animation: waterThread 2.4s linear infinite;
 }
 .purity-heroFalls i:nth-child(1) {
@@ -2609,7 +2742,7 @@ footer > div {
     #fff0 14%
   );
   filter: blur(1.4px);
-  opacity: 0.72;
+  opacity: 0.38;
   clip-path: polygon(12% 0, 94% 0, 100% 100%, 0 100%);
 }
 .purity-waterfallChapter .purity-pourCopy {
@@ -2724,18 +2857,75 @@ footer > div {
     opacity: 0;
   }
 }
+@keyframes pencilWaterfallDrift {
+  0% {
+    background-position:
+      center,
+      center,
+      79% 48.5%;
+    transform: scale(1.02);
+  }
+  100% {
+    background-position:
+      center,
+      center,
+      79.5% 51%;
+    transform: scale(1.045);
+  }
+}
 @media (max-width: 850px) {
+  .purity-pencilWaterfall {
+    opacity: 0.42;
+  }
+  .purity-pencilWaterfallArt {
+    background-position:
+      center,
+      center,
+      68% 54%;
+    background-size:
+      cover,
+      cover,
+      auto 92vh;
+  }
   .purity-heroFalls {
-    right: -10vw;
-    width: 62vw;
-    opacity: 0.68;
+    right: -26vw;
+    top: 20vh;
+    width: 96vw;
+    height: 74vh;
+    opacity: 0.48;
+    mask-image: linear-gradient(
+      90deg,
+      transparent 0,
+      #000 24%,
+      #000 88%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent 0,
+      #000 24%,
+      #000 88%,
+      transparent 100%
+    );
+  }
+  .purity-waterfallArrival .purity-arrivalCopy {
+    z-index: 24;
+  }
+  .purity-waterfallArrival .purity-arrivalCopy:before {
+    inset: -4vh -6vw -5vh -6vw;
+    background: linear-gradient(
+      90deg,
+      rgba(248, 247, 242, 0.94),
+      rgba(248, 247, 242, 0.76) 62%,
+      rgba(248, 247, 242, 0.2)
+    );
   }
   .purity-splashMist {
     right: -8vw;
     width: 65vw;
   }
   .purity-waterfallCanvas {
-    opacity: 0.55;
+    opacity: 0.5;
   }
   .purity-waterColumn {
     right: -7vw;

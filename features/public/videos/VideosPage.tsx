@@ -68,83 +68,88 @@ export default function PublicVideosPage() {
         <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#050505] to-transparent" />
 
         <div className="relative mx-auto flex min-h-[72svh] max-w-4xl flex-col items-center justify-center text-center">
-              <p className="mb-5 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-[#dac69c]">
-                <Radio className="size-4 animate-pulse" />
-                Healing Videos
-              </p>
-              <h1
-                className={`${fontDisplay} text-[clamp(4rem,9vw,8.5rem)] font-normal leading-[0.82]`}
-              >
-                Video Sanctuary
-              </h1>
-              <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-[#d5ccbf] sm:text-lg">
-                Guided teachings, reflections, and grounding practices for the
-                moments when your body asks for a softer way back.
-              </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                href="#video-sanctuary"
-                className="inline-flex items-center gap-2 rounded-full border border-[#dac69c] px-6 py-3 text-xs font-bold uppercase tracking-[0.16em] text-white transition hover:bg-white/10"
-              >
-                Begin Watching
-                <ArrowRight className="size-4" />
-              </a>
-              <Link
-                href="/temples/stillness"
-                className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-xs font-bold uppercase tracking-[0.16em] text-[#d5ccbf] transition hover:bg-white/10 hover:text-white"
-              >
-                Temple of Stillness
-              </Link>
-            </div>
+          <p className="mb-5 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-[#dac69c]">
+            <Radio className="size-4 animate-pulse" />
+            Healing Videos
+          </p>
+          <h1
+            className={`${fontDisplay} text-[clamp(4rem,9vw,8.5rem)] font-normal leading-[0.82]`}
+          >
+            Video Sanctuary
+          </h1>
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-[#d5ccbf] sm:text-lg">
+            Guided teachings, reflections, and grounding practices for the
+            moments when your body asks for a softer way back.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a
+              href="#video-sanctuary"
+              className="inline-flex items-center gap-2 rounded-full border border-[#dac69c] px-6 py-3 text-xs font-bold uppercase tracking-[0.16em] text-white transition hover:bg-white/10"
+            >
+              Begin Watching
+              <ArrowRight className="size-4" />
+            </a>
+            <Link
+              href="/temples/stillness"
+              className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-xs font-bold uppercase tracking-[0.16em] text-[#d5ccbf] transition hover:bg-white/10 hover:text-white"
+            >
+              Temple of Stillness
+            </Link>
+          </div>
         </div>
       </section>
 
       <section
         id="video-sanctuary"
-        className="bg-[repeating-radial-gradient(ellipse_at_50%_100%,rgba(198,161,91,0.08)_0_1px,transparent_2px_24px),linear-gradient(#050505,#0c0907_60%,#050505)] px-4 py-20 sm:px-6 lg:px-8"
+        className="px-4 py-20 sm:px-6 lg:px-8"
+        style={{
+          background:
+            'linear-gradient(rgba(4, 4, 4, 0.2), rgba(4, 4, 4, 0.34)), url("https://images.unsplash.com/photo-1637750586228-179a1a7aef84?w=600&auto=format&fit=crop&q=60") center top / cover repeat-y',
+          isolation: "isolate",
+        }}
       >
         <div className="mx-auto max-w-7xl">
-              <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#c6a15b]">
-                    Browse Library
-                  </p>
-                  <h3
-                    className={`${fontDisplay} mt-2 text-[clamp(3rem,6vw,5.7rem)] font-normal leading-[0.94] text-[#f1eadf]`}
-                  >
-                    Practices for the moment you are in.
-                  </h3>
-                </div>
-              </div>
+          <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#c6a15b]">
+                Browse Library
+              </p>
+              <h3
+                className={`${fontDisplay} mt-2 text-[clamp(3rem,6vw,5.7rem)] font-normal leading-[0.94] text-[#f1eadf]`}
+              >
+                Practices for the moment you are in.
+              </h3>
+            </div>
+          </div>
 
-              <div className="mb-6 flex flex-wrap gap-2">
-                {videoCategories.map((category) => (
-                  <button
-                    key={category}
-                    type="button"
-                    onClick={() => selectCategory(category)}
-                    className={cn(
-                      "rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] transition",
-                      activeCategory === category
-                        ? "border-[#c6a15b] bg-[#c6a15b] text-[#050505]"
-                        : "border-[#c6a15b3d] bg-transparent text-[#c9bdac] hover:border-[#c6a15b] hover:bg-[#c6a15b14] hover:text-white"
-                    )}
-                  >
-                    {category}
-                  </button>
-                ))}
-              </div>
+          <div className="mb-6 flex flex-wrap gap-2">
+            {videoCategories.map((category) => (
+              <button
+                key={category}
+                type="button"
+                onClick={() => selectCategory(category)}
+                className={cn(
+                  "rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] transition",
+                  activeCategory === category
+                    ? "border-[#c6a15b] bg-[#c6a15b] text-[#050505]"
+                    : "border-[#c6a15b3d] bg-transparent text-[#c9bdac] hover:border-[#c6a15b] hover:bg-[#c6a15b14] hover:text-white"
+                )}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
 
-              <div className="mx-auto grid max-w-[82rem] grid-cols-3 gap-[clamp(1rem,2.5vw,2.5rem)] [perspective:1200px] max-[900px]:max-w-[34rem] max-[900px]:grid-cols-1">
-                {filteredVideos.map((video) => (
-                  <VideoCard
-                    key={video.id}
-                    video={video}
-                    index={publicVideos.findIndex((item) => item.id === video.id)}
-                    onSelect={() => setActiveVideo(video)}
-                  />
-                ))}
-              </div>
+          <div className="mx-auto grid max-w-[82rem] grid-cols-3 gap-[clamp(1rem,2.5vw,2.5rem)] [perspective:1200px] max-[900px]:max-w-[34rem] max-[900px]:grid-cols-1">
+            {filteredVideos.map((video) => (
+              <VideoCard
+                key={video.id}
+                video={video}
+                index={publicVideos.findIndex((item) => item.id === video.id)}
+                onSelect={() => setActiveVideo(video)}
+              />
+            ))}
+          </div>
         </div>
 
         <AnimatePresence>

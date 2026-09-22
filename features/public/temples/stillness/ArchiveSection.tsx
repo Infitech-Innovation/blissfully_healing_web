@@ -56,7 +56,7 @@ export function ArchiveSection() {
           variant="ghost"
           className="inline-flex h-auto rounded-full border border-[#d8bd8566] bg-[#f0deb812] px-7 py-3 text-[0.68rem] uppercase tracking-[0.18em] text-[#f0d6a0] transition hover:-translate-y-0.5 hover:bg-[#f0deb824] hover:text-white"
         >
-          <Link href="/blogs">
+          <Link href="/temples/stillness/blogs">
             Explore More
             <ArrowRight className="ml-2 size-3.5" />
           </Link>

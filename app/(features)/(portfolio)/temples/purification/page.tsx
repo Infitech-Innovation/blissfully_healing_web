@@ -1,20 +1,23 @@
-import type { Metadata } from "next";
-import { createMetadata } from "@/app/seo";
-import Waterfall from "@/features/public/temples/purification/Waterfall";
+"use client";
 
-export const metadata: Metadata = createMetadata({
-    title: "Temple of Purification",
-    description: "Explore the Blissfully Healing Temple of Purification.",
-    path: "/temples/purification",
-});
+// import type { Metadata } from "next";
+// import { createMetadata } from "@/app/seo";
+import Waterfall from "@/features/public/temples/purification/Waterfall";
+import { PurificationPassageSection } from "@/features/public/temples/purification/FinalPassageSection";
+
+// export const metadata: Metadata = createMetadata({
+//     title: "Temple of Purification",
+//     description: "Explore the Blissfully Healing Temple of Purification.",
+//     path: "/temples/purification",
+// });
 
 export default function PurificationPage() {
     const releases = ["Fear", "Grief", "Expectation", "Control", "Old stories", "What was never yours"];
-    return <main className="purity-purification">
+    return <div className="purity-purification">
         <Waterfall />
 
         <section className="purity-arrival purity-waterfallArrival">
-            <div className="purity-silkLight" />
+            {/* <div className="purity-silkLight" /> */}
             <div className="purity-heroFalls"><i /><i /><i /><i /><i /></div>
             <div className="purity-arrivalCopy"><p>TEMPLE III · PURIFICATION</p><h1>Release what<br />no longer needs<br /><em>to be carried.</em></h1><span>A sacred space for fluid release, renewal<br />and the ritual language of water.</span></div>
             <div className="purity-wordReflection">PURIFICATION</div><div className="purity-stillWater" />
@@ -58,5 +61,6 @@ export default function PurificationPage() {
             <p>What leaves creates space<br /><em>for what is ready to arrive.</em></p>
             <span>BLISSFULLY HEALING</span>
         </section>
-    </main>
+        <PurificationPassageSection/>
+    </div>
 }

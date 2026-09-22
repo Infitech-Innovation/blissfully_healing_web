@@ -113,7 +113,7 @@ export function ReflectionPoolSection({
           variant="ghost"
           className="inline-flex h-auto rounded-full border border-[#c6a15b4d] bg-[#c6a15b12] px-7 py-3 text-[0.68rem] uppercase tracking-[0.18em] text-[#f1d79b] transition hover:-translate-y-0.5 hover:bg-[#c6a15b24] hover:text-white"
         >
-          <Link href="/videos">
+          <Link href="/temples/stillness/videos">
             Explore More
             <ArrowRight className="ml-2 size-3.5" />
           </Link>
