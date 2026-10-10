@@ -1,191 +1,32 @@
-import type { Metadata } from "next";
-import { createMetadata } from "@/app/seo";
-import {
-  ArrowRight,
-  BookOpen,
-  Crown,
-  Feather,
-  Landmark,
-  ScrollText,
-  Shield,
-  Sparkles,
-} from "lucide-react";
+'use client';
+
+import { useEffect, useState } from 'react';
+import { ArrowDown, ArrowUpRight, ArrowLeft, X, Play, BookOpen, Clock3, ChevronDown, MoveUpRight } from 'lucide-react';
 import Image from "next/image";
-import Link from "next/link";
+import { RememberancePassageSection } from '@/features/public/temples/rememberance/RememberancePassageSection';
 
-export const metadata: Metadata = createMetadata({
-  title: "Temple of Remembrance",
-  description:
-    "Enter the Temple of Remembrance for courses rooted in sovereign lineage, ancestry, and spiritual memory.",
-  path: "/temples/remembrance",
-});
-
-const templePractices = [
-  {
-    title: "Ancestral Listening",
-    copy: "Trace the prayers, names, stories, and inherited wisdom that still live in the body.",
-    icon: ScrollText,
-  },
-  {
-    title: "Sovereign Reclamation",
-    copy: "Move from inherited survival patterns into choice, dignity, and grounded self-trust.",
-    icon: Crown,
-  },
-  {
-    title: "Spiritual Memory",
-    copy: "Build rituals that help you remember belonging, guidance, and inner authority.",
-    icon: Sparkles,
-  },
+type Course = { id: number, eyebrow: string, title: string, subtitle: string, category: string, chapters: number, duration: string, image: string, description: string, lessons: string[], outcomes: string[] };
+const courses: Course[] = [
+  { id: 1, eyebrow: 'PHOENIX RISING PART I', title: 'The Art of Remembering', subtitle: 'Return to the parts of you that have always known.', category: 'Self-discovery', chapters: 6, duration: 'Self-paced', image: '/silk-purple.svg', description: 'An invitation to explore the memories, inherited stories and quiet patterns that shape how you see yourself.', lessons: ['The stories we carry', 'Listening to the inner voice', 'Patterns and protection', 'What belongs to you', 'The practice of remembrance', 'Choosing what comes next'], outcomes: ['Recognise personal patterns with greater clarity', 'Create space for reflection and self-inquiry', 'Explore what you wish to carry forward'] },
+  { id: 2, eyebrow: 'PHOENIX RISING PART II', title: 'Inherited Stories', subtitle: 'Understand what was handed down. Choose what remains.', category: 'Ancestry', chapters: 5, duration: 'Self-paced', image: '/silk-rose.svg', description: 'A reflective course about the beliefs and narratives that can travel through families, and the freedom to meet them with curiosity.', lessons: ['Where our stories begin', 'Belonging and identity', 'The language of inheritance', 'Rewriting the narrative', 'A new chapter'], outcomes: ['Reflect on inherited narratives', 'Identify beliefs that no longer serve you', 'Develop a personal reflection practice'] },
+  { id: 3, eyebrow: 'PHOENIX RISING PART III', title: 'Becoming Sovereign', subtitle: 'A quieter kind of power begins within.', category: 'Personal growth', chapters: 7, duration: 'Self-paced', image: '/silk-lilac.svg', description: 'A guided journey into self-trust, personal boundaries and making decisions that reflect who you are becoming.', lessons: ['The self beneath expectations', 'A relationship with your voice', 'Trusting your own knowing', 'Boundaries as care', 'The courage to choose', 'A practice of presence', 'Living from within'], outcomes: ['Strengthen self-reflection', 'Explore personal boundaries', 'Build a more intentional daily practice'] }
 ];
-
-const courseDetails = [
-  "Lineage journaling prompts",
-  "Guided remembrance rituals",
-  "Somatic grounding practices",
-  "Reflection-led integration",
-];
+const filters = ['All courses', 'Self-discovery', 'Ancestry', 'Personal growth'];
 
 export default function RemembrancePage() {
-  return (
-    <section className="bg-[#fffaf6] text-[#2f251f]">
-      <div className="border-b border-[#eadfd4] bg-[#2a0f43]">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 sm:px-6 lg:grid-cols-[1fr_0.88fr] lg:px-8 lg:py-16">
-          <div className="flex flex-col justify-center">
-            <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-[#d6a83f]/45 bg-white/10 px-4 py-2 text-sm font-semibold uppercase tracking-[0.16em] text-[#f3d27a]">
-              <Landmark className="h-4 w-4" />
-              Temple of Remembrance
-            </div>
-
-            <h1 className="max-w-4xl text-4xl font-semibold leading-tight text-[#fff8e8] sm:text-5xl lg:text-6xl">
-              Sovereign lineage, ancestry, and spiritual memory.
-            </h1>
-
-            <p className="mt-6 max-w-2xl text-base leading-8 text-[#ead7ff] sm:text-lg">
-              A purple and gold course temple for learning practices that honor
-              where you come from, restore inner authority, and make inherited
-              wisdom usable in daily life.
-            </p>
-
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/courses"
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-sm bg-[#d6a83f] px-5 text-sm font-semibold text-[#241039] transition hover:bg-[#f0c85d]"
-              >
-                Explore Courses
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href="/homepage#temples"
-                className="inline-flex h-12 items-center justify-center rounded-sm border border-[#f3d27a]/55 px-5 text-sm font-semibold text-[#fff8e8] transition hover:bg-white/10"
-              >
-                View Temples
-              </Link>
-            </div>
-          </div>
-
-          <div className="relative min-h-[340px] overflow-hidden rounded-[8px] border border-[#d6a83f]/35 bg-[#170824] shadow-[0_30px_80px_rgba(0,0,0,0.24)] sm:min-h-[430px]">
-            <Image
-              src="/images/story-img1.webp"
-              alt="Temple of Remembrance ancestral healing visual"
-              fill
-              priority
-              sizes="(min-width: 1024px) 44vw, 100vw"
-              className="object-cover opacity-55"
-            />
-            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(23,8,36,0.2),rgba(23,8,36,0.82))]" />
-            <div className="absolute inset-x-8 top-8 h-40 rounded-t-full border border-[#f3d27a]/50 sm:inset-x-14 sm:h-56" />
-            <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
-              <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-[#d6a83f] text-[#241039]">
-                <Shield className="h-7 w-7" />
-              </div>
-              <p className="max-w-md font-serif text-3xl leading-tight text-[#fff8e8]">
-                Remember the crown your spirit carried before the world named
-                you.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8 lg:py-16">
-        <div className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#7b2cbf]">
-              Course Temple
-            </p>
-            <h2 className="mt-3 text-3xl font-semibold leading-tight text-[#2f251f] sm:text-4xl">
-              Courses for remembering with reverence.
-            </h2>
-            <p className="mt-4 leading-7 text-[#6f5c4f]">
-              This page frames the course library through the Remembrance
-              temple: reflective, ceremonial, body-aware, and rooted in purple
-              sovereignty with gold accents of honor.
-            </p>
-          </div>
-
-          <div className="grid gap-4 md:grid-cols-3">
-            {templePractices.map((practice) => (
-              <article
-                key={practice.title}
-                className="rounded-[8px] border border-[#eadfd4] bg-white p-5 shadow-[0_18px_45px_rgba(63,52,44,0.08)]"
-              >
-                <practice.icon className="h-6 w-6 text-[#7b2cbf]" />
-                <h3 className="mt-4 text-lg font-semibold text-[#2f251f]">
-                  {practice.title}
-                </h3>
-                <p className="mt-2 text-sm leading-6 text-[#6f5c4f]">
-                  {practice.copy}
-                </p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="border-y border-[#eadfd4] bg-[#f8f0e8]">
-        <div className="mx-auto grid max-w-7xl gap-8 px-5 py-12 sm:px-6 lg:grid-cols-[1fr_0.9fr] lg:px-8">
-          <div className="rounded-[8px] bg-[#2a0f43] p-6 text-[#fff8e8] sm:p-8">
-            <div className="mb-5 inline-flex items-center gap-2 text-[#f3d27a]">
-              <Feather className="h-5 w-5" />
-              <span className="text-sm font-semibold uppercase tracking-[0.18em]">
-                What fits here
-              </span>
-            </div>
-            <h2 className="text-3xl font-semibold leading-tight sm:text-4xl">
-              Lessons that feel ceremonial, practical, and personal.
-            </h2>
-            <p className="mt-4 leading-7 text-[#ead7ff]">
-              The Remembrance temple is best for courses on ancestry, grief,
-              inherited patterns, identity, ritual, spiritual connection, and
-              restoring a sense of inner royalty.
-            </p>
-          </div>
-
-          <div className="grid content-center gap-3 sm:grid-cols-2">
-            {courseDetails.map((detail) => (
-              <div
-                key={detail}
-                className="rounded-[8px] border border-[#dec77e] bg-white px-5 py-4 text-sm font-semibold text-[#2f251f]"
-              >
-                {detail}
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="px-5 py-12 text-center sm:px-6 lg:px-8">
-        <p className="mx-auto max-w-2xl text-2xl font-semibold leading-tight text-[#2f251f] sm:text-3xl">
-          Begin with the course that calls your memory forward.
-        </p>
-        <Link
-          href="/courses"
-          className="mt-7 inline-flex h-12 items-center justify-center gap-2 rounded-sm bg-[#8f6249] px-5 text-sm font-semibold text-white transition hover:bg-[#744d39]"
-        >
-          Enter Courses
-          <BookOpen className="h-4 w-4" />
-        </Link>
-      </div>
-    </section>
-  );
+  const [selected, setSelected] = useState<Course | null>(null); const [filter, setFilter] = useState('All courses'); const [expanded, setExpanded] = useState<number | null>(0); const [menu, setMenu] = useState(false);
+  useEffect(() => { document.body.style.overflow = selected ? 'hidden' : ''; return () => { document.body.style.overflow = '' } }, [selected]);
+  useEffect(() => { const io = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target) } }), { threshold: .12 }); document.querySelectorAll('.remember-reveal').forEach(e => io.observe(e)); return () => io.disconnect() }, [filter]);
+  const openCourse = (course: Course) => { setSelected(course); setExpanded(0) };
+  return <main>
+    {menu && <div className="remember-mini-menu"><a href="#remember-collection" onClick={() => setMenu(false)}>Explore courses</a><a href="#remember-experience" onClick={() => setMenu(false)}>The experience</a><a href="#remember-invitation" onClick={() => setMenu(false)}>Begin here</a></div>}
+    <section id="remember-top" className="remember-hero"><div className="remember-hero-art" aria-hidden="true"><div className="remember-hero-halo" /><div className="remember-silk-shape silk-one" /><div className="remember-silk-shape silk-two" /><div className="remember-silk-shape silk-three" /></div><div className="remember-hero-content"><p className="remember-kicker remember-reveal">THE LIVING ARCHIVE</p><h1 className="remember-reveal">Remember<br /><em>who you are.</em></h1><p className="remember-hero-desc remember-reveal">An intimate space for learning, reflection and the stories that shape us. Discover the courses within the Temple of Remembrance.</p><a className="remember-text-link reveal" href="#remember-collection">EXPLORE THE COURSES <ArrowDown size={16} /></a></div><div className="remember-hero-bottom"><span>BLISSFULLY HEALING</span><span>SCROLL TO DISCOVER ↓</span></div></section>
+    <section className="remember-transition"><p className="remember-reveal">Some things are not taught.<br /><em>They are remembered.</em></p><span className="remember-transition-number">01 — THE COLLECTION</span></section>
+    <section id="remember-collection" className="remember-collection"><div className="remember-collection-heading remember-reveal"><div><p className="remember-kicker">THE REMEMBRANCE COLLECTION</p><h2>Enter a deeper<br /><em>understanding.</em></h2></div><p>Thoughtfully created learning experiences for the journey inward. Choose the one that speaks to you.</p></div><div className="remember-filter-row" role="group" aria-label="Filter courses">{filters.map(f => <button key={f} className={filter === f ? 'active' : ''} onClick={() => setFilter(f)}>{f}</button>)}</div><div className="remember-course-grid">{courses.filter(c => filter === 'All courses' || c.category === filter).map((c, i) => <button className="remember-glass-card remember-reveal" key={c.id} onClick={() => openCourse(c)} aria-label={'Explore ' + c.title}><div className="remember-glass-refraction" /><div className="remember-card-top"><span>0{c.id} / 0{courses.length}</span><ArrowUpRight size={19} /></div><div className="remember-card-art"><Image src={c.image} width={400} height={500} alt="Abstract folded silk" /></div><div className="remember-card-body"><p className="remember-card-eyebrow">{c.eyebrow}</p><h3>{c.title}</h3><p className="remember-card-subtitle">{c.subtitle}</p><div className="remember-card-foot"><span>{c.chapters} CHAPTERS</span><span>DISCOVER <ArrowUpRight size={14} /></span></div></div></button>)}</div><p className="remember-collection-note">Course names and details shown are sample content for design review.</p></section>
+    <section id="remember-experience" className="remember-experience"><div className="remember-experience-image" role="img" aria-label="Deep purple folded silk"><div className="remember-experience-silk" /></div><div className="remember-experience-copy reveal"><p className="remember-kicker">BEYOND THE LESSON</p><h2>Learning that<br />stays <em>with you.</em></h2><p>Move at your own pace. Pause when you need to. Return to a lesson, a thought, or a question whenever it calls you back.</p><div className="remember-experience-points"><div><BookOpen size={19} /><span>Thoughtful, chapter-based learning</span></div><div><Play size={19} /><span>Room for reflection and practice</span></div><div><Clock3 size={19} /><span>A journey that moves at your pace</span></div></div></div></section>
+    <section className="remember-statement"><span className="remember-kicker remember-reveal">A MOMENT OF REFLECTION</span><h2 className="remember-reveal">You can honour<br />where you come from<br /><em>without staying there.</em></h2></section>
+    <RememberancePassageSection />
+    {/* <section id="remember-invitation" className="remember-invitation"><div className="remember-invitation-light" /><div className="remember-invitation-inner remember-reveal"><span className="remember-kicker">THE TEMPLE OF REMEMBRANCE</span><h2>Your next chapter<br /><em>begins within.</em></h2><a href="#remember-collection" className="remember-invitation-cta">DISCOVER YOUR COURSE <MoveUpRight size={17} /></a></div><div className="remember-invitation-bottom"><span>BLISSFULLY HEALING</span><span>REMEMBRANCE · THE LIVING ARCHIVE</span></div></section> */}
+    {selected && <div className="remember-modal-backdrop" onMouseDown={e => { if (e.target === e.currentTarget) setSelected(null) }}><section className="remember-course-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><button className="remember-modal-close" onClick={() => setSelected(null)} aria-label="Close course details"><X size={22} /></button><div className="remember-modal-visual"><Image width={400} height={500} src={selected.image} alt="Purple silk course artwork" /><div className="remember-modal-visual-caption">THE LIVING ARCHIVE · VOLUME 0{selected.id}</div></div><div className="remember-modal-content"><span className="remember-kicker">{selected.eyebrow}</span><h2 id="remember-modal-title">{selected.title}</h2><p className="remember-modal-lede">{selected.description}</p><div className="remember-modal-meta"><span><BookOpen size={15} />{selected.chapters} CHAPTERS</span><span><Clock3 size={15} />{selected.duration}</span></div><h3>What you&apos;ll explore</h3><ul className="remember-outcomes">{selected.outcomes.map(o => <li key={o}>{o}</li>)}</ul><h3>Inside the course</h3><div className="remember-chapters">{selected.lessons.map((lesson, i) => <button key={lesson} className="remember-chapter" onClick={() => setExpanded(expanded === i ? null : i)} aria-expanded={expanded === i}><span>0{i + 1}</span><span>{lesson}{expanded === i && <small>Lesson preview. Full content will be available in the learning platform.</small>}</span><ChevronDown size={16} className={expanded === i ? 'rotated' : ''} /></button>)}</div><button className="remember-enroll" onClick={() => alert('Enrolment will be available once the Blissfully Healing course catalogue and payment system are connected.')}>ENROL IN THIS COURSE <ArrowUpRight size={18} /></button><p className="remember-modal-disclaimer">Demo only. Connect this action to the live enrolment flow before launch.</p><button className="remember-back-link" onClick={() => setSelected(null)}><ArrowLeft size={15} /> BACK TO THE COLLECTION</button></div></section></div>}
+  </main>
 }
