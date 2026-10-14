@@ -1,8 +1,8 @@
 "use client";
 
-import LibrarySkeleton from "@/components/skeleton/LibraryCard";
+
 import Pagination from "@/components/custom/Pagination";
-import LibraryCard from "@/features/public/ebooks/LibraryCard";
+import LibraryCard, { LibraryCardSkeleton } from "@/features/public/ebooks/LibraryCard";
 import LibraryHero from "@/features/public/ebooks/LibraryHero";
 import { useGetEbooks, useGetFeaturedEbooks } from "@/hooks/useEbooks";
 import { getPaginationPageSize } from "@/lib/pagination";
@@ -23,7 +23,7 @@ export default function LibrarySection() {
     const pageSize = getPaginationPageSize(eBooksData, page, eBooks.length);
 
     if (isLoading) {
-        return <LibrarySkeleton />;
+        return <div className="mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8 lg:py-16"><LibraryCardSkeleton /></div>;
     }
     return (
         <div className="mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8 lg:py-16">

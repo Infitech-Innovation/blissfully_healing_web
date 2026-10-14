@@ -1,0 +1,42 @@
+﻿.details {
+    --detail-gold: var(--gold, #c7a05d);
+    --detail-pale: var(--pale, #ead8b5);
+    --detail-ink: var(--ink, #0a0908);
+    color: var(--detail-pale);
+}
+.frame {
+    position: relative;
+    border: 3px solid var(--detail-gold);
+    background: radial-gradient(ellipse at top, #201b13, var(--detail-ink) 75%);
+    box-shadow: inset 0 0 0 3px #29241b, inset 0 0 0 7px #806940, 0 24px 45px #000b;
+}
+.frame::before {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    border: 1px solid #c7a05d80;
+    border-radius: 28px;
+    pointer-events: none;
+}
+.coverFrame {
+    border: 3px solid var(--detail-gold);
+    border-radius: 50% 50% 11% 11% / 20% 20% 10% 10%;
+    padding: 22px;
+    background: radial-gradient(ellipse at top, #201b13, var(--detail-ink));
+    box-shadow: 0 0 0 2px #806940, 0 24px 45px #000b;
+}
+.coverFrame img { object-fit: contain; }
+.badge {
+    display: grid;
+    place-items: center;
+    width: 76px;
+    height: 76px;
+    margin: 0 auto -25px;
+    position: relative;
+    z-index: 1;
+    border: 4px solid var(--detail-gold);
+    border-radius: 50%;
+    color: var(--detail-gold);
+    background: radial-gradient(circle, #201b13, var(--detail-ink));
+    box-shadow: 0 0 0 2px #3c3222, inset 0 0 0 2px #806940;
+}

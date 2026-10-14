@@ -4,14 +4,16 @@ import { useCreateTransactionMutation } from "@/hooks/usePayments";
 import { useAuthStore } from "@/store/useAuthStore";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 interface CheckOutProps {
   id: number;
   type: string;
   btnName: string;
+  className?: string;
 }
 
-export default function CheckOutButton({ id, type, btnName }: CheckOutProps) {
+export default function CheckOutButton({ id, type, btnName, className }: CheckOutProps) {
   const router = useRouter();
   const { mutate: createCheckout, isPending } = useCreateTransactionMutation();
 
@@ -47,7 +49,7 @@ export default function CheckOutButton({ id, type, btnName }: CheckOutProps) {
       type="button"
       onClick={handleEnrollment}
       disabled={isPending}
-      className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-[8px] bg-[#8f6249] p-3 text-[15px] font-medium text-white transition hover:bg-[#744d39] disabled:cursor-not-allowed disabled:opacity-70"
+      className={cn("mt-6 inline-flex w-full items-center justify-center gap-2 rounded-[8px] bg-[#8f6249] p-3 text-[15px] font-medium text-white transition hover:bg-[#744d39] disabled:cursor-not-allowed disabled:opacity-70", className)}
     >
       {isPending ? (
         <>

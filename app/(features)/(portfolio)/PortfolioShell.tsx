@@ -43,7 +43,7 @@ export default function PortfolioShell({
   }
 
   return (
-    <div className="min-h-screen bg-[#fffaf6] text-[#3f342c]">
+    <div className={(pathname === "/shop" || /^\/shop\/[^/]+$/.test(pathname)) ? "min-h-screen bg-black text-[#fff4e3]" : "min-h-screen bg-[#fffaf6] text-[#3f342c]"}>
       {!useStillnessNavbar && <Navbar />}
       <main>{children}</main>
       {/* <FooterSection /> */}

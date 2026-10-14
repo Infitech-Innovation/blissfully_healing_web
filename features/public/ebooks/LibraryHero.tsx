@@ -29,14 +29,14 @@ export default function LibraryHero({ ebooks }: LibraryHeroProps) {
 
 
     const quickFilters = [
-        { label: "Trending", icon: Flame, color: "text-[#8f6249] bg-[#fffaf6] border-[#eadfd4]" },
-        { label: "New Releases", icon: Clock, color: "text-[#8f6249] bg-[#fffaf6] border-[#eadfd4]" },
-        { label: "Editor's Pick", icon: Sparkles, color: "text-[#8f6249] bg-[#fffaf6] border-[#eadfd4]" },
-        { label: "Audiobooks", icon: Bookmark, color: "text-[#8f6249] bg-[#fffaf6] border-[#eadfd4]" },
+        { label: "Trending", icon: Flame, color: "text-[#edba63] bg-[#17110b] border-[#976025]" },
+        { label: "New Releases", icon: Clock, color: "text-[#edba63] bg-[#17110b] border-[#976025]" },
+        { label: "Editor's Pick", icon: Sparkles, color: "text-[#edba63] bg-[#17110b] border-[#976025]" },
+        { label: "Audiobooks", icon: Bookmark, color: "text-[#edba63] bg-[#17110b] border-[#976025]" },
     ];
 
     return (
-        <section className="relative overflow-hidden bg-gradient-to-b from-[#fffaf6] via-white to-white pt-2 pb-4 md:pt-3 md:pb-5  mb-6 ">
+        <section className="relative overflow-hidden bg-black pt-2 pb-4 md:pt-3 md:pb-5  mb-6 ">
             {/* Decorative background blobs */}
             <div className="absolute top-0 right-0 -z-10 h-72 w-72 rounded-full bg-[#eadfd4]/40 blur-3xl" />
             <div className="absolute bottom-0 left-1/4 -z-10 h-60 w-60 rounded-full bg-[#f8f0e8]/60 blur-3xl" />
@@ -46,14 +46,14 @@ export default function LibraryHero({ ebooks }: LibraryHeroProps) {
 
                     {/* Left Column: Text & Search */}
                     <div className="flex flex-col justify-center space-y-6 lg:col-span-7">
-                        <h1 className="text-4xl font-extrabold tracking-tight text-[#2f251f] sm:text-5xl md:text-6xl">
+                        <h1 className="text-4xl font-extrabold tracking-tight text-[#fff4e3] sm:text-5xl md:text-6xl">
                             Explore Your Next <br />
-                            <span className="bg-gradient-to-r from-[#8f6249] to-[#6f5c4f] bg-clip-text text-transparent">
+                            <span className="bg-gradient-to-r from-[#ffdf99] to-[#edba63] bg-clip-text text-transparent">
                                 Great Adventure
                             </span>
                         </h1>
 
-                        <p className="max-w-xl text-base text-[#6f5c4f] md:text-lg">
+                        <p className="max-w-xl text-base text-[#d6c5aa] md:text-lg">
                             Instantly download bestsellers, hidden gems, and technical guides. Filter by genre, author, or mood to find your perfect digital read.
                         </p>
 
@@ -61,14 +61,14 @@ export default function LibraryHero({ ebooks }: LibraryHeroProps) {
                         <div className="max-w-xl w-full">
                             <div className="relative flex items-center drop-shadow-sm">
                                 <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
-                                    <Search className="h-5 w-5 text-[#6f5c4f]/50" />
+                                    <Search className="h-5 w-5 text-[#d6c5aa]/50" />
                                 </div>
                                 <input
                                     type="text"
                                     placeholder="Search by title, author, topics..."
-                                    className="w-full rounded-2xl border border-[#eadfd4] bg-white py-3.5 pl-12 pr-32 text-sm text-[#2f251f] placeholder-[#6f5c4f]/50 focus:border-[#8f6249] focus:outline-none focus:ring-2 focus:ring-[#8f6249]/20 transition-all"
+                                    className="w-full rounded-2xl border border-[#976025] bg-[#100c08] py-3.5 pl-12 pr-32 text-sm text-[#fff4e3] placeholder-[#d6c5aa]/60 focus:border-[#8f6249] focus:outline-none focus:ring-2 focus:ring-[#8f6249]/20 transition-all"
                                 />
-                                <button className="absolute right-2 rounded-xl bg-[#8f6249] px-5 py-2 text-sm font-semibold text-white hover:bg-[#2f251f] focus:outline-none focus:ring-2 focus:ring-[#8f6249] focus:ring-offset-2 transition-all">
+                                <button className="absolute right-2 rounded-xl bg-[#8f6249] px-5 py-2 text-sm font-semibold text-white hover:bg-[#2f251f] focus:outline-none focus:ring-2 focus:ring-[#8f6249] focus:ring-offset-2 focus:ring-offset-black transition-all">
                                     Search
                                 </button>
                             </div>
@@ -76,7 +76,7 @@ export default function LibraryHero({ ebooks }: LibraryHeroProps) {
 
                         {/* Quick Filters */}
                         <div className="space-y-2.5">
-                            <span className="text-xs font-semibold text-[#6f5c4f]/60 uppercase tracking-wider">Quick Filters</span>
+                            <span className="text-xs font-semibold text-[#d6c5aa]/60 uppercase tracking-wider">Quick Filters</span>
                             <div className="flex flex-wrap gap-2.5">
                                 {quickFilters.map((filter, index) => {
                                     const Icon = filter.icon;

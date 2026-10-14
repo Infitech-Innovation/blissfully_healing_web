@@ -9,9 +9,11 @@ import {
     Tag,
     CheckCircle,
     Layers,
+    Crown,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import styles from "./EbookDetailsView.module.css";
 
 interface EbookDetailsViewProps {
     ebook: EBook;
@@ -26,13 +28,13 @@ export default function EbookDetailsView({ ebook: book }: EbookDetailsViewProps)
     };
 
     return (
-        <div className="min-h-screen bg-[#fffaf6] px-4 py-10 sm:px-6 lg:px-8">
+        <div className={`${styles.details} min-h-screen bg-black px-4 py-10 sm:px-6 lg:px-8`}>
             <div className="mx-auto max-w-5xl">
 
                 {/* Navigation Breadcrumb Bar */}
                 <Link
                     href="/shop"
-                    className="mb-8 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#6f5c4f] transition hover:text-[#8f6249]"
+                    className="mb-8 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#d5ccbf] transition hover:text-[#c7a05d]"
                 >
                     <ArrowLeft size={14} /> Back to Library
                 </Link>
@@ -42,8 +44,9 @@ export default function EbookDetailsView({ ebook: book }: EbookDetailsViewProps)
 
                     {/* Left Column: Visual Book Profile Cover Sticky Anchor */}
                     <div className="md:col-span-1">
-                        <div className="sticky top-6 flex flex-col items-center">
-                            <div className="relative aspect-[3/4] w-full max-w-[280px] overflow-hidden rounded-[8px] border border-[#eadfd4] bg-[#f8f0e8] shadow-[0_18px_45px_rgba(63,52,44,0.1)] transition duration-300 hover:shadow-[0_28px_70px_rgba(63,52,44,0.16)] md:max-w-none">
+                        <div className="sticky top-28 flex flex-col items-center">
+                            <div className={styles.badge} aria-hidden="true"><Crown size={34} strokeWidth={1.4} /></div>
+                            <div className={`${styles.coverFrame} relative aspect-[3/4] w-full max-w-[280px] overflow-hidden md:max-w-none`}>
                                 <Image
                                     src={book.cover_image}
                                     alt={book.title}
@@ -53,7 +56,7 @@ export default function EbookDetailsView({ ebook: book }: EbookDetailsViewProps)
                                     unoptimized
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#2f251f]/20 to-transparent" />
-                                <span className="absolute top-4 left-4 rounded-full bg-white/95 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-[#8f6249] shadow-sm">
+                                <span className="absolute bottom-5 left-1/2 -translate-x-1/2 rounded-full bg-[#0a0908]/95 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-[#c7a05d] shadow-sm">
                                     {book.category_label}
                                 </span>
                             </div>
@@ -62,15 +65,15 @@ export default function EbookDetailsView({ ebook: book }: EbookDetailsViewProps)
 
                     {/* Right Column: Book Profiles & Information Systems Meta */}
                     <div className="flex flex-col md:col-span-2">
-                        <article className="flex flex-1 flex-col rounded-[8px] border border-[#eadfd4] bg-white p-6 shadow-[0_18px_45px_rgba(63,52,44,0.06)] sm:p-8">
+                        <article className={`${styles.frame} flex flex-1 flex-col rounded-[8px] p-6 sm:p-8`}>
 
                             {/* Top Banner Asset Identifiers */}
-                            <div className="mb-6 flex flex-wrap items-center justify-between gap-4 border-b border-[#f8f0e8] pb-5">
+                            <div className="mb-6 flex flex-wrap items-center justify-between gap-4 border-b border-[#c7a05d]/30 pb-5">
                                 <div>
-                                    <h1 className="font-serif text-2xl font-bold text-[#2f251f] sm:text-3xl">
+                                    <h1 className="font-serif text-3xl font-normal text-[#c7a05d] sm:text-4xl">
                                         {book.title}
                                     </h1>
-                                    <p className="mt-1 text-sm italic text-[#8f6249]">
+                                    <p className="mt-1 text-sm italic text-[#c7a05d]">
                                         by {book.author}
                                     </p>
                                 </div>
@@ -78,13 +81,13 @@ export default function EbookDetailsView({ ebook: book }: EbookDetailsViewProps)
                                 {/* Cost/Pricing Tier Indicator Badge */}
                                 <div>
                                     {isFree ? (
-                                        <span className="flex items-center gap-1.5 font-bold text-2xl text-[#0F766E]">
-                                            <Tag size={22} className="text-[#0F766E]" />
+                                        <span className="flex items-center gap-1.5 font-bold text-2xl text-[#c7a05d]">
+                                            <Tag size={22} className="text-[#c7a05d]" />
                                             Free
                                         </span>
                                     ) : (
-                                        <span className="flex items-center gap-1.5 font-bold text-2xl text-[#2f251f]">
-                                            <Tag size={22} className="text-[#8f6249]" />
+                                        <span className="flex items-center gap-1.5 font-bold text-2xl text-[#ead8b5]">
+                                            <Tag size={22} className="text-[#c7a05d]" />
                                             KES {book.price}
                                         </span>
                                     )}
@@ -92,29 +95,29 @@ export default function EbookDetailsView({ ebook: book }: EbookDetailsViewProps)
                             </div>
 
                             {/* Core Physical File Metrics Deck */}
-                            <div className="mb-8 grid grid-cols-3 gap-2 rounded-[6px] bg-[#fffaf6] p-4 text-center text-xs text-[#6f5c4f]">
-                                <div className="border-r border-[#eadfd4]/60">
-                                    <span className="block text-[10px] uppercase tracking-wider text-gray-400">
+                            <div className="mb-8 grid grid-cols-3 gap-2 rounded-[6px] bg-[#0a0908] p-4 text-center text-xs text-[#d5ccbf]">
+                                <div className="border-r border-[#c7a05d]/60">
+                                    <span className="block text-[10px] uppercase tracking-wider text-[#c7a05d]">
                                         File Format
                                     </span>
-                                    <span className="mt-1 flex items-center justify-center gap-1.5 font-semibold text-[#2f251f]">
-                                        <FileText size={13} className="text-[#8f6249]" />{" "}
+                                    <span className="mt-1 flex items-center justify-center gap-1.5 font-semibold text-[#ead8b5]">
+                                        <FileText size={13} className="text-[#c7a05d]" />{" "}
                                         {book.file_format}
                                     </span>
                                 </div>
-                                <div className="border-r border-[#eadfd4]/60">
-                                    <span className="block text-[10px] uppercase tracking-wider text-gray-400">
+                                <div className="border-r border-[#c7a05d]/60">
+                                    <span className="block text-[10px] uppercase tracking-wider text-[#c7a05d]">
                                         Extent
                                     </span>
-                                    <span className="mt-1 block font-semibold text-[#2f251f]">
+                                    <span className="mt-1 block font-semibold text-[#ead8b5]">
                                         {book.file_pages} Pages
                                     </span>
                                 </div>
                                 <div>
-                                    <span className="block text-[10px] uppercase tracking-wider text-gray-400">
+                                    <span className="block text-[10px] uppercase tracking-wider text-[#c7a05d]">
                                         File Size
                                     </span>
-                                    <span className="mt-1 block font-semibold text-[#2f251f]">
+                                    <span className="mt-1 block font-semibold text-[#ead8b5]">
                                         {book.file_size_mb} MB
                                     </span>
                                 </div>
@@ -122,19 +125,19 @@ export default function EbookDetailsView({ ebook: book }: EbookDetailsViewProps)
 
                             {/* Book Summary Description Segment */}
                             <div className="mb-8">
-                                <h2 className="mb-3 text-xs font-bold uppercase tracking-wider text-[#2f251f]">
+                                <h2 className="mb-3 text-xs font-bold uppercase tracking-wider text-[#ead8b5]">
                                     Synopsis / Summary
                                 </h2>
-                                <p className="text-sm leading-relaxed text-[#6f5c4f]">
+                                <p className="text-sm leading-relaxed text-[#d5ccbf]">
                                     {book.short_description || "No description provided for this digital asset item."}
                                 </p>
                             </div>
 
                             {/* Interactive Modules / Manifest Content List Checklist */}
                             {book.modules && book.modules.length > 0 && (
-                                <div className="mb-8 border-t border-[#f8f0e8] pt-6">
-                                    <h2 className="mb-4 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#2f251f]">
-                                        <Layers size={14} className="text-[#8f6249]" />
+                                <div className="mb-8 border-t border-[#c7a05d]/30 pt-6">
+                                    <h2 className="mb-4 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#ead8b5]">
+                                        <Layers size={14} className="text-[#c7a05d]" />
                                         Included Content Modules ({book.modules.length})
                                     </h2>
                                     <ul className="grid gap-3 sm:grid-cols-2">
@@ -143,11 +146,11 @@ export default function EbookDetailsView({ ebook: book }: EbookDetailsViewProps)
                                             .map((mod) => (
                                                 <li
                                                     key={mod.id}
-                                                    className="flex items-start gap-2.5 rounded-[6px] border border-[#f8f0e8] bg-[#fffaf6]/50 p-3 text-xs text-[#6f5c4f]"
+                                                    className="flex items-start gap-2.5 rounded-[6px] border border-[#c7a05d]/30 bg-[#0a0908]/50 p-3 text-xs text-[#d5ccbf]"
                                                 >
                                                     <CheckCircle
                                                         size={14}
-                                                        className="mt-0.5 shrink-0 text-[#8f6249]/70"
+                                                        className="mt-0.5 shrink-0 text-[#c7a05d]/70"
                                                     />
                                                     <span className="font-medium line-clamp-2">{mod.text}</span>
                                                 </li>
@@ -157,12 +160,12 @@ export default function EbookDetailsView({ ebook: book }: EbookDetailsViewProps)
                             )}
 
                             {/* Primary Conversions Call To Action Bar */}
-                            <div className="mt-auto border-t border-[#f8f0e8] pt-6">
+                            <div className="mt-auto border-t border-[#c7a05d]/30 pt-6">
                                 {isFree ? (
                                     <button
                                         type="button"
                                         onClick={handleFreeClaim}
-                                        className="flex w-full items-center justify-center gap-2 rounded-[8px] bg-[#2f251f] px-6 py-4 text-xs font-bold uppercase tracking-widest text-white transition hover:bg-[#8f6249]"
+                                        className="flex w-full items-center justify-center gap-2 rounded-[8px] border border-[#c7a05d] bg-[#201b13] px-6 py-4 text-xs font-bold uppercase tracking-widest text-[#ead8b5] transition hover:bg-[#29241b] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#ead8b5]"
                                     >
                                         <BookOpen size={14} />
                                         Claim This Book for Free
@@ -170,6 +173,7 @@ export default function EbookDetailsView({ ebook: book }: EbookDetailsViewProps)
                                 ) : (
                                     /* Your custom checkout component handles the redirect, styling, and onClick internally */
                                     <CheckOutButton
+                                        className="mt-0 border border-[#c7a05d] bg-[#201b13] py-4 text-[#ead8b5] hover:bg-[#29241b] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#ead8b5]"
                                         id={book.id}
                                         type="ebook"
                                         btnName={`Purchase E-Book • KES ${book.price}`}
